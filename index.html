@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,34 +37,7 @@
                 padding: 5rem 3rem;
             }
         }
-        /* New custom style for the high-fidelity banner replication */
-        .banner-replication {
-            background: linear-gradient(90deg, #f0f4f8 0%, #ffffff 100%);
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .venice-skyline-svg {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100px; /* Sizing to match the image scale */
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path fill="%231E293B" opacity="0.1" d="M0 100 L0 50 C 150 10, 350 10, 500 50 C 650 90, 850 90, 1000 50 L1000 100 Z" /></svg>'); /* Simple abstract wave/mesh background */
-            background-size: cover;
-            background-repeat: no-repeat;
-            
-        }
-        .venice-skyline-svg::before {
-            content: 'Venice Skyline Silhouette Placeholder';
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 10px;
-            color: #475569;
-            opacity: 0.8;
-        }
+        /* Removing old CSS for banner replication */
     </style>
 </head>
 <body>
@@ -75,34 +48,24 @@
         <!-- Fixed Left Sidebar (w-72 is approx 18rem, fits the screenshot layout) -->
         <aside id="sidebar" class="w-72 flex-shrink-0 bg-white shadow-xl overflow-y-auto hidden md:block">
             
-            <!-- Conference Identity Section - Now uses the high-fidelity banner placeholder -->
-            <div id="home" class="banner-replication p-6 pb-2 text-center">
+            <!-- Conference Identity Section - Now uses a Base64 image placeholder -->
+            <div id="home" class="p-0 text-center relative overflow-hidden border-b border-gray-200">
                 
-                <!-- SVG/Image Replication Block -->
-                <div class="relative pt-4 pb-20 overflow-hidden">
+                <!-- 
+                    *** ACTION REQUIRED: PASTE YOUR BASE64 STRING HERE *** 1. Convert your blue5.png file to a Base64 string using an online tool.
+                    2. Replace 'YOUR_BLUE5_PNG_BASE64_STRING_HERE' below with the actual string.
                     
-                    <!-- I3DA 2026 Text & City Silhouette -->
-                    <div class="z-10 relative">
-                        <!-- Simplified representation of the image content -->
-                        <div class="flex items-center justify-center space-x-2">
-                            <h1 class="text-3xl font-extrabold text-gray-900 leading-none">
-                                I3DA <span class="text-blue-700">2026</span>
-                            </h1>
-                            <div class="h-10 w-px bg-gray-300"></div>
-                            <h2 class="text-xl font-semibold text-gray-700 leading-tight">
-                                Immersive and 3D Audio
-                            </h2>
-                        </div>
-                    </div>
-
-                    <!-- Visual Background Layer mimicking blue5.jpg -->
-                    <div class="venice-skyline-svg">
-                        <!-- Visual elements placed inside ::before pseudo-element in CSS -->
-                    </div>
-                </div>
+                    The format must be: 'data:image/png;base64,ACTUAL_BASE64_STRING'
+                -->
+                <img 
+                    src="data:image/png;base64,YOUR_BLUE5_PNG_BASE64_STRING_HERE" 
+                    alt="I3DA 2026 Immersive and 3D Audio Logo" 
+                    class="w-full h-auto object-cover max-h-36 mb-4 p-2"
+                    onerror="this.src='https://placehold.co/288x144/F1F5F9/1E293B?text=I3DA+Logo+Placeholder'; this.classList.add('bg-gray-100', 'p-4');"
+                >
                 
                 <!-- Event Details below the image/logo area -->
-                <div class="mt-4 text-center">
+                <div class="mt-4 text-center p-4 pt-0">
                     <p class="text-xs text-gray-500 mt-1">
                         19–22 November, 2026, Venice, Italy
                     </p>
