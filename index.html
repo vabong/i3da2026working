@@ -65,8 +65,8 @@
     <!-- Main Flex Container: Sidebar (fixed) and Content (scrollable) -->
     <div class="flex h-screen overflow-hidden">
 
-        <!-- Fixed Left Sidebar (w-80 for a wider logo display) -->
-        <aside id="sidebar" class="w-80 flex-shrink-0 bg-white shadow-xl overflow-y-auto hidden md:block">
+        <!-- Fixed Left Sidebar (w-96 for a wider logo display) -->
+        <aside id="sidebar" class="w-96 flex-shrink-0 bg-white shadow-xl overflow-y-auto hidden md:block">
             
             <!-- Conference Identity Section - Now uses a direct file reference -->
             <div id="home" class="p-0 text-center relative overflow-hidden border-b border-gray-200">
@@ -74,13 +74,13 @@
                 <!-- 
                     *** USING DIRECT FILE REFERENCE *** NOTE: For this to work on your Vercel deployment, the 'blue5.jpg' file 
                     must be uploaded and placed in the same directory as this index.html file.
-                    Logo size doubled: max-h-36 -> max-h-72.
+                    Logo size increased: max-h-72 -> max-h-96.
                 -->
                 <img 
                     src="blue5.jpg" 
                     alt="I3DA 2026 Immersive and 3D Audio Logo" 
-                    class="w-full h-auto object-cover max-h-72 mb-4 p-2"
-                    onerror="this.src='https://placehold.co/320x288/E0F2F1/005F73?text=I3DA+Logo+Missing'; this.classList.add('bg-gray-100', 'p-4');"
+                    class="w-full h-auto object-cover max-h-96 mb-4 p-2"
+                    onerror="this.src='https://placehold.co/384x384/E0F2F1/005F73?text=I3DA+Logo+Missing'; this.classList.add('bg-gray-100', 'p-4');"
                 >
                 
                 <!-- Event Details below the image/logo area -->
@@ -340,7 +340,6 @@
                                 <p><strong>Dr. Jane Doe</strong> - Chair</p>
                                 <p><strong>Prof. John Smith</strong> - Treasurer</p>
                                 <p><strong>Ms. Alice Brown</strong> - Logistics</p>
-                                <p><strong>Dr. Robert Green</strong> - Media Relations</p>
                             </div>
                         </div>
                         <div class="bg-white p-6 rounded-lg shadow-md">
