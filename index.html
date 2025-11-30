@@ -20,14 +20,18 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Smooth scrolling within sections if they overflow */
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; height: 100vh; overflow: hidden; }
-        .nav-link { transition: all 0.2s; padding: 0.5rem 0.75rem; display: block; border-radius: 0.375rem; }
+        .nav-link { transition: all 0.2s; padding: 0.5rem 0.75rem; display: block; border-radius: 0.375rem; cursor: pointer; }
         .nav-link:hover, .nav-link.active { color: #005f73; font-weight: 700; background-color: #f0f8f8; }
         .section-padding { padding: 4rem 1.5rem; }
         @media (min-width: 640px) { .section-padding { padding: 5rem 3rem; } }
         /* Transition for sidebar fade in */
         #sidebar-logo-area { transition: opacity 0.5s ease-in-out; }
+        
+        /* Utility to hide sections initially controlled by JS */
+        .section-hidden { display: none; }
     </style>
 </head>
 <body>
@@ -49,14 +53,14 @@
             
             <div class="p-8 pt-4">
                 <nav class="space-y-1">
-                    <a href="#about" class="nav-link text-sm font-semibold text-gray-800">About</a>
-                    <a href="#call-for-papers" class="nav-link text-sm font-semibold text-gray-800">Call for papers</a>
-                    <a href="#committees" class="nav-link text-sm font-semibold text-gray-800">Organisers</a>
-                    <a href="#program" class="nav-link text-sm font-semibold text-gray-800">Program</a>
-                    <a href="#registration" class="nav-link text-sm font-semibold text-gray-800">Registration</a>
-                    <a href="#sponsors" class="nav-link text-sm font-semibold text-gray-800">Sponsors</a>
-                    <a href="#venue" class="nav-link text-sm font-semibold text-gray-800">Venue</a>
-                    <a href="#contact" class="nav-link text-sm font-semibold text-gray-800">Contact</a>
+                    <a data-target="about" class="nav-link text-sm font-semibold text-gray-800 active">About</a>
+                    <a data-target="call-for-papers" class="nav-link text-sm font-semibold text-gray-800">Call for papers</a>
+                    <a data-target="committees" class="nav-link text-sm font-semibold text-gray-800">Organisers</a>
+                    <a data-target="program" class="nav-link text-sm font-semibold text-gray-800">Program</a>
+                    <a data-target="registration" class="nav-link text-sm font-semibold text-gray-800">Registration</a>
+                    <a data-target="sponsors" class="nav-link text-sm font-semibold text-gray-800">Sponsors</a>
+                    <a data-target="venue" class="nav-link text-sm font-semibold text-gray-800">Venue</a>
+                    <a data-target="contact" class="nav-link text-sm font-semibold text-gray-800">Contact</a>
                 </nav>
             </div>
         </aside>
@@ -75,19 +79,20 @@
         <div id="mobile-menu" class="hidden fixed inset-0 z-20 bg-white overflow-y-auto p-6 pt-16">
             <h2 class="text-2xl font-bold mb-4 text-lagoon-blue">Menu</h2>
             <nav class="space-y-2">
-                <a href="#about" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">About</a>
-                <a href="#call-for-papers" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">Call for papers</a>
-                <a href="#contact" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">Contact</a>
+                <a data-target="about" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">About</a>
+                <a data-target="call-for-papers" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">Call for papers</a>
+                <a data-target="contact" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">Contact</a>
             </nav>
         </div>
 
         <!-- Main Content -->
         <main id="content-area" class="flex-grow overflow-y-auto bg-gray-50 md:mt-0 mt-16 scroll-smooth">
-            <!-- Full Width Banner -->
+            <!-- Full Width Banner (Only visible on About page) -->
             <section id="main-banner" class="w-full h-auto">
                 <img src="blue5.jpg" alt="I3DA 2026 Banner" class="w-full h-auto object-cover max-h-56" onerror="this.src='https://placehold.co/1000x224/E0F2F1/005F73?text=I3DA+Banner';">
             </section>
 
+            <!-- ABOUT (Default View) -->
             <section id="about" class="section-padding bg-white min-h-screen">
                 <div class="max-w-4xl mx-auto">
                     <h1 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8">I3DA Immersive Media in Heritage, Environment, Medicine, Psychology and Creative Applications</h1>
@@ -114,8 +119,8 @@
                 </div>
             </section>
 
-            <!-- Call for Papers Section - UPDATED -->
-            <section id="call-for-papers" class="section-padding bg-gray-100">
+            <!-- Call for Papers Section -->
+            <section id="call-for-papers" class="section-padding bg-gray-100 min-h-screen section-hidden">
                 <div class="max-w-4xl mx-auto">
                     <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Call for Papers</h2>
                     
@@ -145,6 +150,7 @@
                             <li>Paper Submission Deadline</li>
                             <li>Reviewing takes place</li>
                             <li>Reviewer Notifications sent out</li>
+                            <li>Acceptance notifications sent out</li>
                             <li>2nd round of Review updates</li>
                             <li>Submissions of Final Papers</li>
                             <li>Submission of Presentations and Posters</li>
@@ -234,13 +240,13 @@
                 </div>
             </section>
             
-            <section id="committees" class="section-padding bg-white"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Organisers</h2><p>Committee list...</p></div></section>
-            <section id="program" class="section-padding bg-gray-100"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Program</h2><p>Schedule...</p></div></section>
-            <section id="registration" class="section-padding bg-white"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Registration</h2><p>Registration info...</p></div></section>
-            <section id="sponsors" class="section-padding bg-gray-100"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Sponsors</h2><p>Sponsor logos...</p></div></section>
-            <section id="venue" class="section-padding bg-white"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Venue</h2><p>Venue details...</p></div></section>
+            <section id="committees" class="section-padding bg-white section-hidden"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Organisers</h2><p>Committee list...</p></div></section>
+            <section id="program" class="section-padding bg-gray-100 section-hidden"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Program</h2><p>Schedule...</p></div></section>
+            <section id="registration" class="section-padding bg-white section-hidden"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Registration</h2><p>Registration info...</p></div></section>
+            <section id="sponsors" class="section-padding bg-gray-100 section-hidden"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Sponsors</h2><p>Sponsor logos...</p></div></section>
+            <section id="venue" class="section-padding bg-white section-hidden"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Venue</h2><p>Venue details...</p></div></section>
 
-            <section id="contact" class="section-padding bg-gray-800 text-white">
+            <section id="contact" class="section-padding bg-gray-800 text-white section-hidden">
                 <div class="max-w-4xl mx-auto">
                     <h2 class="text-4xl font-bold mb-8 border-b-4 border-lagoon-blue pb-2">Contact Us</h2>
                     
@@ -295,7 +301,7 @@
                 </div>
             </section>
 
-            <footer class="bg-gray-900 text-white py-6 text-center text-sm">&copy; 2026 I3DA International Conference. Hosted by University of Bologna.</footer>
+            <footer class="bg-gray-900 text-white py-6 text-center text-sm">&copy; 2026 I3DA International Conference. Hosted by The University of Bologna.</footer>
         </main>
     </div>
 
@@ -303,41 +309,64 @@
         const menuButton = document.getElementById('menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const contentArea = document.getElementById('content-area');
-        const sidebar = document.getElementById('sidebar');
         const sidebarLogoArea = document.getElementById('sidebar-logo-area');
         const mainBanner = document.getElementById('main-banner');
-
+        
+        // Mobile Menu Logic
         menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        document.querySelectorAll('#mobile-menu a').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
-
-        // Dynamic Sidebar Reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    sidebarLogoArea.classList.remove('opacity-0');
-                    sidebarLogoArea.classList.add('opacity-100');
-                } else {
-                    sidebarLogoArea.classList.remove('opacity-100');
-                    sidebarLogoArea.classList.add('opacity-0');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        if(mainBanner) observer.observe(mainBanner);
-
-        // Active Link Highlighting
-        const sections = document.querySelectorAll('section');
-        const sidebarLinks = document.querySelectorAll('#sidebar a');
-        contentArea.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                if (contentArea.scrollTop >= section.offsetTop - 150) current = section.getAttribute('id');
-            });
-            sidebarLinks.forEach(a => {
-                a.classList.remove('active');
-                if (a.getAttribute('href').substring(1) === current) a.classList.add('active');
+        document.querySelectorAll('#mobile-menu a').forEach(l => {
+            l.addEventListener('click', (e) => {
+                mobileMenu.classList.add('hidden');
+                handleNavigation(e.currentTarget.getAttribute('data-target'));
             });
         });
+
+        // Desktop Sidebar Logic
+        document.querySelectorAll('#sidebar nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                handleNavigation(e.currentTarget.getAttribute('data-target'));
+            });
+        });
+
+        // Main Navigation Handler
+        function handleNavigation(targetId) {
+            // Update Active Link State
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(l => l.classList.add('active'));
+
+            // Hide all sections
+            const allSections = ['about', 'call-for-papers', 'committees', 'program', 'registration', 'sponsors', 'venue', 'contact'];
+            allSections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('section-hidden');
+            });
+
+            // Show Target Section
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) targetSection.classList.remove('section-hidden');
+
+            // Handle Special Home Logic (About Section)
+            if (targetId === 'about') {
+                if (mainBanner) mainBanner.classList.remove('hidden');
+                // Hide sidebar logo on home/about page
+                sidebarLogoArea.classList.remove('opacity-100');
+                sidebarLogoArea.classList.add('opacity-0');
+            } else {
+                if (mainBanner) mainBanner.classList.add('hidden');
+                // Show sidebar logo on other pages
+                sidebarLogoArea.classList.remove('opacity-0');
+                sidebarLogoArea.classList.add('opacity-100');
+            }
+
+            // Scroll to top
+            contentArea.scrollTop = 0;
+        }
+
+        // Initialize Home View
+        // No explicit init needed if HTML defaults match, but sidebar logo logic relies on JS class toggle
+        // Run once on load to ensure correct state
+        handleNavigation('about');
+
     </script>
 </body>
 </html>
