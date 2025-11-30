@@ -33,10 +33,11 @@
 <body>
 
     <div class="flex h-screen overflow-hidden">
-        <!-- Sidebar: Hidden by default (opacity 0, invisible) until scroll -->
+        <!-- Sidebar -->
         <aside id="sidebar" class="w-72 flex-shrink-0 bg-white shadow-xl overflow-y-auto hidden md:block transition-all duration-300">
             <div id="sidebar-logo-area" class="p-6 text-center border-b border-gray-200 opacity-0">
-                <img src="i3da_small_logo.png" alt="I3DA 2026 Small Logo" class="w-12 h-12 mx-auto object-contain mb-1" onerror="this.src='https://placehold.co/50x50/CCDDEE/005F73?text=Logo';">
+                <!-- Small Logo explicit 100x100px (Doubled) -->
+                <img src="i3da_small_logo.png" alt="I3DA 2026 Small Logo" class="w-[100px] h-[100px] mx-auto object-contain mb-1" onerror="this.src='https://placehold.co/100x100/CCDDEE/005F73?text=Logo';">
                 <h1 class="text-xl font-extrabold text-lagoon-blue mb-1">I3DA 2026</h1>
                 <p class="text-xs text-gray-500 mt-1">Venice, Italy</p>
                 <p class="text-xs text-gray-500 mt-1 mb-2">19–22 Nov</p>
@@ -91,24 +92,36 @@
                     </p>
                     <p class="text-gray-600 text-lg mb-6 leading-relaxed text-center font-semibold">Save the date! More info coming soon....</p>
                     <hr class="my-10 border-gray-200">
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">I3DA 2026 will again focus on innovation in 3D immersive audio, including virtual acoustics, architectural and musical acoustics...</p>
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">I3DA 2026 would like to involve academic and industrial researchers...</p>
+                    
+                    <!-- Full Text Paragraphs -->
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">
+                        I3DA 2026 will again focus on innovation in 3D immersive audio, including virtual acoustics, architectural and musical acoustics, subjective evaluations and listening tests, immersive soundscape design, and creative uses of immersive technologies. Furthermore, I3DA 2026 will be a special edition, that will include visual and interactive aspects of immersive media, such as related computer graphics, LIDAR scans, photogrammetry, immersive world building, digital archaeology, 3D visualization, and hardware and software applications across both fields. The aim is to open new possibilities for collaboration, networking, and deeper understanding between complementary sensory domains in immersive media.
+                    </p>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">
+                        I3DA 2026 would like to involve academic and industrial researchers to share their latest research, methods, and demos related to Immersive and 3D Audio, Interaction Design and Visuals in Audio Engineering, Computer Science and Visuals. Topics include virtual/augmented reality and their applications, digital archaeology, musical acoustics, signal processing in acoustics, non-linear acoustics in auralisation, machine learning related to immersive media, acoustics, heritage acoustics, psychoacoustics, gaming, art and sound studies contexts, bioacoustics and the environment. Further topics may be accepted.
+                    </p>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">
+                        I3DA will be indexed on IEEE like the last years, with Special Issues like last year.
+                    </p>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">
+                        The conference will represent the forefront of new methodologies and technologies in the field, establishing itself as a high-profile international meeting point for researchers and professionals in immersive media and 3D audio. This event will foster meaningful international collaborations—across academia, industry, heritage and museum institutions, the arts, and environmental initiatives—while driving forward innovation in immersive media.
+                    </p>
                 </div>
             </section>
 
+            <!-- Other sections placeholders -->
             <section id="call-for-papers" class="section-padding bg-gray-100">
                 <div class="max-w-4xl mx-auto">
                     <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Call for Papers</h2>
-                    <p>Details coming soon...</p>
+                    <p class="text-gray-600">Details about papers and submission deadlines will be posted here...</p>
                 </div>
             </section>
-
-            <!-- Other sections (Committees, Program, Registration, Sponsors, Venue) placeholders kept simple for brevity -->
-            <section id="committees" class="section-padding bg-white"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Organisers</h2></div></section>
-            <section id="program" class="section-padding bg-gray-100"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Program</h2></div></section>
-            <section id="registration" class="section-padding bg-white"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Registration</h2></div></section>
-            <section id="sponsors" class="section-padding bg-gray-100"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Sponsors</h2></div></section>
-            <section id="venue" class="section-padding bg-white"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Venue</h2></div></section>
+            
+            <section id="committees" class="section-padding bg-white"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Organisers</h2><p>Committee list...</p></div></section>
+            <section id="program" class="section-padding bg-gray-100"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Program</h2><p>Schedule...</p></div></section>
+            <section id="registration" class="section-padding bg-white"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Registration</h2><p>Registration info...</p></div></section>
+            <section id="sponsors" class="section-padding bg-gray-100"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Sponsors</h2><p>Sponsor logos...</p></div></section>
+            <section id="venue" class="section-padding bg-white"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Venue</h2><p>Venue details...</p></div></section>
 
             <section id="contact" class="section-padding bg-gray-800 text-white">
                 <div class="max-w-4xl mx-auto">
@@ -145,18 +158,16 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (!entry.isIntersecting) {
-                    // Banner is GONE: Show Sidebar identity
                     sidebarLogoArea.classList.remove('opacity-0');
                     sidebarLogoArea.classList.add('opacity-100');
                 } else {
-                    // Banner is VISIBLE: Hide Sidebar identity
                     sidebarLogoArea.classList.remove('opacity-100');
                     sidebarLogoArea.classList.add('opacity-0');
                 }
             });
-        }, { threshold: 0.1 }); // Trigger when 10% of banner is left
+        }, { threshold: 0.1 });
 
-        observer.observe(mainBanner);
+        if(mainBanner) observer.observe(mainBanner);
 
         // Active Link Highlighting
         const sections = document.querySelectorAll('section');
