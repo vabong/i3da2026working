@@ -65,8 +65,8 @@
     <!-- Main Flex Container: Sidebar (fixed) and Content (scrollable) -->
     <div class="flex h-screen overflow-hidden">
 
-        <!-- Fixed Left Sidebar (w-72 is approx 18rem, fits the screenshot layout) -->
-        <aside id="sidebar" class="w-72 flex-shrink-0 bg-white shadow-xl overflow-y-auto hidden md:block">
+        <!-- Fixed Left Sidebar (w-80 for a wider logo display) -->
+        <aside id="sidebar" class="w-80 flex-shrink-0 bg-white shadow-xl overflow-y-auto hidden md:block">
             
             <!-- Conference Identity Section - Now uses a direct file reference -->
             <div id="home" class="p-0 text-center relative overflow-hidden border-b border-gray-200">
@@ -80,7 +80,7 @@
                     src="blue5.jpg" 
                     alt="I3DA 2026 Immersive and 3D Audio Logo" 
                     class="w-full h-auto object-cover max-h-72 mb-4 p-2"
-                    onerror="this.src='https://placehold.co/288x288/E0F2F1/005F73?text=I3DA+Logo+Missing'; this.classList.add('bg-gray-100', 'p-4');"
+                    onerror="this.src='https://placehold.co/320x288/E0F2F1/005F73?text=I3DA+Logo+Missing'; this.classList.add('bg-gray-100', 'p-4');"
                 >
                 
                 <!-- Event Details below the image/logo area -->
