@@ -65,33 +65,27 @@
     <!-- Main Flex Container: Sidebar (fixed) and Content (scrollable) -->
     <div class="flex h-screen overflow-hidden">
 
-        <!-- Fixed Left Sidebar (w-96 for a wider logo display) -->
-        <aside id="sidebar" class="w-96 flex-shrink-0 bg-white shadow-xl overflow-y-auto hidden md:block">
+        <!-- Fixed Left Sidebar (w-72) -->
+        <aside id="sidebar" class="w-72 flex-shrink-0 bg-white shadow-xl overflow-y-auto hidden md:block">
             
-            <!-- Conference Identity Section - Now uses a direct file reference -->
-            <div id="home" class="p-0 text-center relative overflow-hidden border-b border-gray-200">
+            <!-- Conference Identity Section - Now a small logo area -->
+            <div id="home" class="p-6 text-center relative overflow-hidden border-b border-gray-200">
                 
-                <!-- 
-                    *** USING DIRECT FILE REFERENCE *** NOTE: For this to work on your Vercel deployment, the 'blue5.jpg' file 
-                    must be uploaded and placed in the same directory as this index.html file.
-                    Logo size increased: max-h-72 -> max-h-96.
-                -->
-                <img 
-                    src="blue5.jpg" 
-                    alt="I3DA 2026 Immersive and 3D Audio Logo" 
-                    class="w-full h-auto object-cover max-h-96 mb-4 p-2"
-                    onerror="this.src='https://placehold.co/384x384/E0F2F1/005F73?text=I3DA+Logo+Missing'; this.classList.add('bg-gray-100', 'p-4');"
-                >
-                
-                <!-- Event Details below the image/logo area -->
-                <div class="mt-4 text-center p-4 pt-0">
-                    <p class="text-xs text-gray-500 mt-1">
-                        19–22 November, 2026, Venice, Italy
-                    </p>
-                    <p class="text-sm text-gray-500 mt-1 mb-2">
-                        Hosted by the University of Bologna
-                    </p>
+                <!-- NEW SMALL LOGO PLACEHOLDER -->
+                <div class="w-20 h-20 mx-auto bg-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-500 mb-4">
+                    New Logo Here
                 </div>
+
+                <!-- Event Title and Details -->
+                <h1 class="text-xl font-extrabold text-lagoon-blue mb-1">
+                    I3DA 2026
+                </h1>
+                <p class="text-xs text-gray-500 mt-1">
+                    Venice, Italy
+                </p>
+                <p class="text-xs text-gray-500 mt-1 mb-2">
+                    19–22 Nov
+                </p>
             </div>
 
             <div class="p-8 pt-4">
@@ -104,6 +98,7 @@
                     <a href="#registration" class="nav-link text-sm font-semibold text-gray-800">Registration</a>
                     <a href="#sponsors" class="nav-link text-sm font-semibold text-gray-800">Sponsors</a>
                     <a href="#venue" class="nav-link text-sm font-semibold text-gray-800">Venue</a>
+                    <a href="#contact" class="nav-link text-sm font-semibold text-gray-800">Contact</a>
                 </nav>
             </div>
         </aside>
@@ -136,6 +131,16 @@
 
         <!-- Scrollable Main Content Area (Takes up remaining width) -->
         <main id="content-area" class="flex-grow overflow-y-auto bg-gray-50 md:mt-0 mt-16">
+
+            <!-- MAIN BANNER SECTION (New top element for the large logo) -->
+            <section id="main-banner" class="w-full h-auto">
+                <img 
+                    src="blue5.jpg" 
+                    alt="I3DA 2026 Immersive and 3D Audio Banner" 
+                    class="w-full h-auto object-cover max-h-56"
+                    onerror="this.src='https://placehold.co/1000x224/E0F2F1/005F73?text=I3DA+Full+Banner+Missing'; this.classList.add('bg-gray-100', 'p-4', 'min-h-[14rem]');"
+                >
+            </section>
 
             <!-- ABOUT SECTION: I3DA Landing Content -->
             <section id="about" class="section-padding bg-white min-h-screen">
@@ -477,8 +482,11 @@
             });
             
             // Special handling for 'About' section when at the very top
-            if (contentArea.scrollTop < sections[0].offsetTop - 100) {
+            // Note: The main-banner section is now at the top, so we check against the second section (about)
+            const aboutSection = document.getElementById('about');
+            if (contentArea.scrollTop < (aboutSection ? aboutSection.offsetTop - 100 : 0)) {
                  sidebarLinks.forEach(a => a.classList.remove('active'));
+                 // The 'home' identity is the top-most visual cue, so we set 'about' as active when scrolled up.
                  const aboutLink = document.querySelector('#sidebar a[href="#about"]');
                  if (aboutLink) {
                     aboutLink.classList.add('active');
