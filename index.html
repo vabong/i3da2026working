@@ -35,13 +35,18 @@
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
         <aside id="sidebar" class="w-72 flex-shrink-0 bg-white shadow-xl overflow-y-auto hidden md:block transition-all duration-300">
-            <div id="sidebar-logo-area" class="p-6 text-center border-b border-gray-200 opacity-0">
-                <!-- Small Logo explicit 100x100px (Doubled) -->
-                <img src="i3da_small_logo.png" alt="I3DA 2026 Small Logo" class="w-[100px] h-[100px] mx-auto object-contain mb-1" onerror="this.src='https://placehold.co/100x100/CCDDEE/005F73?text=Logo';">
-                <h1 class="text-xl font-extrabold text-lagoon-blue mb-1">I3DA 2026</h1>
-                <p class="text-xs text-gray-500 mt-1">Venice, Italy</p>
-                <p class="text-xs text-gray-500 mt-1 mb-2">19–22 Nov</p>
+            <div id="sidebar-logo-area" class="p-4 text-center border-b border-gray-200 opacity-0">
+                <!-- Logo: 250x250px, tightly packed with text below -->
+                <img src="i3da_small_logo.png" alt="I3DA 2026 Small Logo" class="w-[250px] h-[250px] mx-auto object-contain block" onerror="this.src='https://placehold.co/250x250/CCDDEE/005F73?text=Logo';">
+                
+                <!-- Text Group: Tighter spacing, larger/bolder font -->
+                <div class="mt-0">
+                    <h1 class="text-2xl font-extrabold text-lagoon-blue leading-tight">I3DA 2026</h1>
+                    <p class="text-base font-bold text-gray-700 leading-tight">Venice, Italy</p>
+                    <p class="text-base font-bold text-gray-700 leading-tight">19–22 Nov</p>
+                </div>
             </div>
+            
             <div class="p-8 pt-4">
                 <nav class="space-y-1">
                     <a href="#about" class="nav-link text-sm font-semibold text-gray-800">About</a>
