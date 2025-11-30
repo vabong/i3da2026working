@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I3DA 2026 - International Conference on Immersive and 3D Audio</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind Configuration for Custom Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Lagoon blue inspired by Venice and your logo
+                        'lagoon-blue': '#005f73',
+                        'lagoon-light': '#4da8b8',
+                        'lagoon-bg': '#f0f8f8',
+                    }
+                }
+            }
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* Custom styles for the fixed sidebar layout */
@@ -26,8 +41,14 @@
             border-radius: 0.375rem;
         }
         .nav-link:hover {
-            color: #1e40af; /* Darker blue on hover */
-            background-color: #f1f5f9; /* Light background on hover */
+            color: #005f73; /* Lagoon blue on hover */
+            background-color: #f0f8f8; /* Light lagoon background on hover */
+        }
+        /* Style for the active link (used in JS) */
+        .nav-link.active {
+            color: #005f73; /* Lagoon blue */
+            font-weight: 700;
+            background-color: #f0f8f8;
         }
         .section-padding {
             padding: 4rem 1.5rem; /* Reduced padding since we don't have a top nav */
@@ -53,12 +74,13 @@
                 <!-- 
                     *** USING DIRECT FILE REFERENCE *** NOTE: For this to work on your Vercel deployment, the 'blue5.jpg' file 
                     must be uploaded and placed in the same directory as this index.html file.
+                    Logo size doubled: max-h-36 -> max-h-72.
                 -->
                 <img 
                     src="blue5.jpg" 
                     alt="I3DA 2026 Immersive and 3D Audio Logo" 
-                    class="w-full h-auto object-cover max-h-36 mb-4 p-2"
-                    onerror="this.src='https://placehold.co/288x144/F1F5F9/1E293B?text=I3DA+Logo+Missing'; this.classList.add('bg-gray-100', 'p-4');"
+                    class="w-full h-auto object-cover max-h-72 mb-4 p-2"
+                    onerror="this.src='https://placehold.co/288x288/E0F2F1/005F73?text=I3DA+Logo+Missing'; this.classList.add('bg-gray-100', 'p-4');"
                 >
                 
                 <!-- Event Details below the image/logo area -->
@@ -90,7 +112,7 @@
         <header class="md:hidden bg-white shadow-md fixed w-full z-10">
             <div class="flex justify-between items-center h-16 px-4">
                 <div class="text-lg font-bold text-gray-800">I3DA 2026</div>
-                <button id="menu-button" type="button" class="p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
+                <button id="menu-button" type="button" class="p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-lagoon-blue">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
                 </button>
             </div>
@@ -98,16 +120,16 @@
 
         <!-- Mobile Menu Overlay (Click to expand/collapse) -->
         <div id="mobile-menu" class="hidden fixed inset-0 z-20 bg-white overflow-y-auto p-6 pt-16">
-            <h2 class="text-2xl font-bold mb-4 text-blue-700">Menu</h2>
+            <h2 class="text-2xl font-bold mb-4 text-lagoon-blue">Menu</h2>
             <nav class="space-y-2">
-                <a href="#about" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-blue-50">About</a>
-                <a href="#call-for-papers" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-blue-50">Call for papers</a>
-                <a href="#committees" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-blue-50">Organisers</a>
-                <a href="#program" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-blue-50">Program</a>
-                <a href="#registration" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-blue-50">Registration</a>
-                <a href="#sponsors" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-blue-50">Sponsors</a>
-                <a href="#venue" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-blue-50">Venue</a>
-                <a href="#contact" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-blue-50">Contact</a>
+                <a href="#about" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">About</a>
+                <a href="#call-for-papers" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">Call for papers</a>
+                <a href="#committees" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">Organisers</a>
+                <a href="#program" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">Program</a>
+                <a href="#registration" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">Registration</a>
+                <a href="#sponsors" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">Sponsors</a>
+                <a href="#venue" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">Venue</a>
+                <a href="#contact" class="nav-link block text-lg font-semibold text-gray-800 hover:bg-lagoon-bg">Contact</a>
             </nav>
         </div>
 
@@ -119,7 +141,8 @@
             <section id="about" class="section-padding bg-white min-h-screen">
                 <div class="max-w-4xl mx-auto">
                     
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-8">
+                    <!-- H1 size reduced to text-3xl md:text-4xl -->
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8">
                         I3DA Immersive Media in Heritage, Environment, Medicine, Psychology and Creative Applications
                     </h1>
                     
@@ -169,10 +192,10 @@
             <!-- Call for Papers Section (Retained Placeholder structure) -->
             <section id="call-for-papers" class="section-padding bg-gray-100">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-blue-500 pb-2">Call for Papers</h2>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Call for Papers</h2>
                     <div class="grid md:grid-cols-2 gap-8">
                         <div>
-                            <h3 class="text-2xl font-semibold text-blue-700 mb-4">Important Dates</h3>
+                            <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">Important Dates</h3>
                             <ul class="list-disc list-inside text-lg text-gray-700 space-y-2">
                                 <li>Abstract Submission Opens: [Date Placeholder]</li>
                                 <li>Abstract Submission Deadline: **[Date Placeholder]**</li>
@@ -182,7 +205,7 @@
                             </ul>
                         </div>
                         <div>
-                            <h3 class="text-2xl font-semibold text-blue-700 mb-4">Topics of Interest</h3>
+                            <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">Topics of Interest</h3>
                             <p class="text-gray-600 mb-4">
                                 Submissions are welcome across all areas of [Your Field]. Specific tracks include:
                             </p>
@@ -194,7 +217,7 @@
                         </div>
                     </div>
                     <div class="mt-8 text-center">
-                        <a href="#" class="inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-blue-700 transition duration-300">
+                        <a href="#" class="inline-block bg-lagoon-blue text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-lagoon-blue/90 transition duration-300">
                             View Submission Guidelines (PDF)
                         </a>
                     </div>
@@ -204,14 +227,14 @@
             <!-- Program Section (Retained Placeholder structure) -->
             <section id="program" class="section-padding bg-white">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-blue-500 pb-2">Program</h2>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Program</h2>
                     <p class="text-gray-600 text-lg mb-6 leading-relaxed">
                         The full program schedule will be released closer to the date, but here is a preliminary overview of the event structure:
                     </p>
 
                     <div class="space-y-6">
                         <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                            <h4 class="text-xl font-bold text-blue-700 mb-2">Day 1: [Date] - Workshops and Welcome</h4>
+                            <h4 class="text-xl font-bold text-lagoon-blue mb-2">Day 1: [Date] - Workshops and Welcome</h4>
                             <ul class="list-disc list-inside text-gray-700 ml-4">
                                 <li>Morning: Optional Pre-Symposium Workshops</li>
                                 <li>Afternoon: Registration and Poster Setup</li>
@@ -219,7 +242,7 @@
                             </ul>
                         </div>
                         <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                            <h4 class="text-xl font-bold text-blue-700 mb-2">Day 2 & 3: [Dates] - Conference Core</h4>
+                            <h4 class="text-xl font-bold text-lagoon-blue mb-2">Day 2 & 3: [Dates] - Conference Core</h4>
                             <ul class="list-disc list-inside text-gray-700 ml-4">
                                 <li>Full day of Parallel Sessions (Oral & Poster Presentations)</li>
                                 <li>Invited Plenary Speakers (Morning and Afternoon)</li>
@@ -227,7 +250,7 @@
                             </ul>
                         </div>
                         <div class="bg-gray-100 p-6 rounded-lg shadow-md">
-                            <h4 class="text-xl font-bold text-blue-700 mb-2">Day 4: [Date] - Technical Visits and Farewell</h4>
+                            <h4 class="text-xl font-bold text-lagoon-blue mb-2">Day 4: [Date] - Technical Visits and Farewell</h4>
                             <ul class="list-disc list-inside text-gray-700 ml-4">
                                 <li>Morning: Closing Remarks and Awards Ceremony</li>
                                 <li>Afternoon: Technical Tours to [Specific Lab/Site]</li>
@@ -241,17 +264,17 @@
             <!-- Venue Section (Retained Placeholder structure) -->
             <section id="venue" class="section-padding bg-gray-100">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-blue-500 pb-2">Venue</h2>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Venue</h2>
 
                     <div class="bg-white p-6 rounded-lg shadow-md">
-                        <h3 class="text-2xl font-semibold text-blue-700 mb-3">The Main Conference Center</h3>
+                        <h3 class="text-2xl font-semibold text-lagoon-blue mb-3">The Main Conference Center</h3>
                         <p class="text-gray-600 text-lg mb-4">
                             The symposium will be hosted at the **[Venue Name, e.g., Musiikkitalo's Black Box]** in the heart of [City]. This location offers state-of-the-art facilities and is centrally located for easy access to accommodation and local attractions.
                         </p>
                         <p class="text-gray-600 text-lg">
                             **Address:** [Street Address, City, Country]
                         </p>
-                        <h3 class="text-2xl font-semibold text-blue-700 mt-6 mb-3">Accommodation</h3>
+                        <h3 class="text-2xl font-semibold text-lagoon-blue mt-6 mb-3">Accommodation</h3>
                         <p class="text-gray-600 text-lg">
                             A list of recommended hotels with negotiated rates will be provided here. We advise booking early as the event coincides with the busy season in [City].
                         </p>
@@ -262,7 +285,7 @@
             <!-- Registration Section (Retained Placeholder structure) -->
             <section id="registration" class="section-padding bg-white">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-blue-500 pb-2">Registration</h2>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Registration</h2>
 
                     <p class="text-gray-600 text-lg mb-6 leading-relaxed">
                         Registration includes access to all technical sessions, lunch and coffee breaks, the welcome reception, and the conference proceedings.
@@ -270,7 +293,7 @@
 
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200 rounded-lg shadow-xl">
-                            <thead class="bg-blue-600 text-white">
+                            <thead class="bg-lagoon-blue text-white">
                                 <tr>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider rounded-tl-lg">Category</th>
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Early Bird (Until [Date])</th>
@@ -308,11 +331,11 @@
             <!-- Committees/Organisers Section (Retained Placeholder structure) -->
             <section id="committees" class="section-padding bg-gray-100">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-blue-500 pb-2">Organisers & Committees</h2>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Organisers & Committees</h2>
 
                     <div class="space-y-10">
                         <div class="bg-white p-6 rounded-lg shadow-md">
-                            <h3 class="text-2xl font-semibold text-blue-700 mb-4">Local Organizing Committee (LOC)</h3>
+                            <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">Local Organizing Committee (LOC)</h3>
                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-gray-700">
                                 <p><strong>Dr. Jane Doe</strong> - Chair</p>
                                 <p><strong>Prof. John Smith</strong> - Treasurer</p>
@@ -321,7 +344,7 @@
                             </div>
                         </div>
                         <div class="bg-white p-6 rounded-lg shadow-md">
-                            <h3 class="text-2xl font-semibold text-blue-700 mb-4">International Scientific Committee (ISC)</h3>
+                            <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">International Scientific Committee (ISC)</h3>
                             <p class="text-gray-600 mb-4">
                                 The ISC ensures the high quality of the symposium's technical program.
                             </p>
@@ -339,7 +362,7 @@
             <!-- Sponsors Section (Retained Placeholder structure) -->
             <section id="sponsors" class="section-padding bg-white">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-blue-500 pb-2">Sponsors</h2>
+                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b-4 border-lagoon-blue pb-2">Sponsors</h2>
                     <p class="text-gray-600 text-lg mb-8 leading-relaxed">
                         We gratefully acknowledge the generous support of our sponsors and partners, whose contributions are vital to the success of the symposium.
                     </p>
@@ -351,8 +374,8 @@
                         <div class="text-md text-gray-500 p-4 border rounded-md">Academic Supporter Logo</div>
                     </div>
 
-                    <p class="text-center text-blue-600 mt-8 text-lg font-medium">
-                        Interested in becoming a sponsor? Please <a href="#contact" class="underline hover:text-blue-800">contact us</a>.
+                    <p class="text-center text-lagoon-blue mt-8 text-lg font-medium">
+                        Interested in becoming a sponsor? Please <a href="#contact" class="underline hover:text-lagoon-light">contact us</a>.
                     </p>
                 </div>
             </section>
@@ -360,7 +383,7 @@
             <!-- Contact Section (Retained Placeholder structure) -->
             <section id="contact" class="section-padding bg-gray-800 text-white">
                 <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold mb-8 border-b-4 border-blue-500 pb-2">Contact Us</h2>
+                    <h2 class="text-4xl font-bold mb-8 border-b-4 border-lagoon-blue pb-2">Contact Us</h2>
 
                     <div class="grid md:grid-cols-2 gap-8">
                         <div>
@@ -369,13 +392,13 @@
                             </p>
                             <ul class="space-y-3">
                                 <li>
-                                    <span class="font-bold text-blue-300">Email:</span> <a href="mailto:info@yourevent.org" class="underline hover:text-blue-200">info@yourevent.org</a>
+                                    <span class="font-bold text-lagoon-light">Email:</span> <a href="mailto:info@yourevent.org" class="underline hover:text-lagoon-light">info@yourevent.org</a>
                                 </li>
                                 <li>
-                                    <span class="font-bold text-blue-300">Phone:</span> +1 (555) 123-4567
+                                    <span class="font-bold text-lagoon-light">Phone:</span> +1 (555) 123-4567
                                 </li>
                                 <li>
-                                    <span class="font-bold text-blue-300">Mailing Address:</span><br>
+                                    <span class="font-bold text-lagoon-light">Mailing Address:</span><br>
                                     Symposium Secretariat<br>
                                     [Department/Institution Name]<br>
                                     [Street Address, City, Zip]
@@ -385,10 +408,10 @@
                         <div>
                             <h3 class="text-2xl font-semibold mb-4">Social Media</h3>
                             <div class="flex space-x-4">
-                                <a href="#" class="text-3xl hover:text-blue-400 transition duration-300" aria-label="LinkedIn">
+                                <a href="#" class="text-3xl hover:text-lagoon-light transition duration-300" aria-label="LinkedIn">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
                                 </a>
-                                <a href="#" class="text-3xl hover:text-blue-400 transition duration-300" aria-label="X (Twitter)">
+                                <a href="#" class="text-3xl hover:text-lagoon-light transition duration-300" aria-label="X (Twitter)">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 4c2.5 3.7 5.5 5 8 5s4.4-1.5 6-2.5c2.4.2 4.1-1.2 5-2.7z"/></svg>
                                 </a>
                             </div>
@@ -444,12 +467,26 @@
             });
 
             sidebarLinks.forEach(a => {
-                a.classList.remove('text-blue-700', 'font-bold', 'bg-blue-50');
+                a.classList.remove('active'); // Remove the custom 'active' class
                 if (a.getAttribute('href').substring(1) === current) {
-                    a.classList.add('text-blue-700', 'font-bold', 'bg-blue-50');
+                    a.classList.add('active'); // Add the custom 'active' class
                 }
             });
+            
+            // Special handling for 'About' section when at the very top
+            if (contentArea.scrollTop < sections[0].offsetTop - 100) {
+                 sidebarLinks.forEach(a => a.classList.remove('active'));
+                 const aboutLink = document.querySelector('#sidebar a[href="#about"]');
+                 if (aboutLink) {
+                    aboutLink.classList.add('active');
+                 }
+            }
         });
+
+        // Initialize active state on load
+        if (sidebarLinks.length > 0) {
+            document.querySelector('#sidebar a[href="#about"]').classList.add('active');
+        }
     </script>
 
 </body>
