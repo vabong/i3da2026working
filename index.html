@@ -530,7 +530,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <section id="committees" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Organisers</h2><p class="font-light">Committee list...</p></div></section>
 
             <footer class="bg-white border-t border-gray-100 py-8 text-center text-xs text-gray-400 uppercase tracking-widest">
@@ -546,8 +546,9 @@
 
         const settings = {
             amplitude: 75,
-            frequency: 15,      
-            freqRamp: 1,     
+            startFreq: 2,       // Low frequency
+            endFreq: 50,        // High frequency
+            sweepDuration: 6.0, // Time for sweep
             speed: 0.009,      
             morphSpeed: 0.008, 
             holdTime: 9.5,     
@@ -618,20 +619,20 @@
 
         function loop() {
             if (!isAnimating) return;
-            let currentFreq = settings.frequency;
-            if (loopState === 'wave') {
-                currentFreq += Math.min(stateTime, 2.0) * settings.freqRamp;
-            } else {
-                currentFreq += 2.0 * settings.freqRamp;
-            }
-            wavePhaseAcc += settings.speed * currentFreq;
-            globalTime += settings.speed;
-            stateTime += (1/60); 
+            
+            let currentFreq = settings.endFreq; 
 
+            // Sine Sweep Logic
             if (loopState === 'wave') {
-                if (stateTime > 2.5) { loopState = 'forming'; stateTime = 0; }
-            } 
-            else if (loopState === 'forming') {
+                const t = Math.min(stateTime, settings.sweepDuration);
+                const progress = t / settings.sweepDuration;
+                currentFreq = settings.startFreq + (settings.endFreq - settings.startFreq) * progress;
+                
+                if (stateTime > settings.sweepDuration) {
+                    loopState = 'forming';
+                    stateTime = 0;
+                }
+            } else if (loopState === 'forming') {
                 morphProgress += settings.morphSpeed;
                 if (morphProgress >= 1) { morphProgress = 1; loopState = 'holding'; stateTime = 0; }
             }
@@ -642,6 +643,11 @@
                 morphProgress -= settings.morphSpeed;
                 if (morphProgress <= 0) { morphProgress = 0; loopState = 'wave'; stateTime = 0; }
             }
+
+            // Accumulate phase based on current instantaneous frequency
+            wavePhaseAcc += settings.speed * currentFreq;
+            globalTime += settings.speed;
+            stateTime += (1/60); 
 
             ctx.clearRect(0, 0, width, height);
             ctx.fillStyle = "black"; 
