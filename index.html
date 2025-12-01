@@ -23,6 +23,8 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         /* Smooth scrolling */
         html { scroll-behavior: smooth; }
@@ -73,34 +75,47 @@
 <body>
 
     <div class="flex h-screen overflow-hidden">
-        <aside id="sidebar" class="w-80 flex-shrink-0 bg-white shadow-2xl overflow-y-auto hidden md:block transition-all duration-300 z-20">
+        <aside id="sidebar" class="w-80 flex-shrink-0 bg-white shadow-2xl overflow-y-auto hidden md:block transition-all duration-300 z-20 flex flex-col justify-between">
             
-            <div id="sidebar-logo-area" class="pt-6 pb-6 text-center border-b border-gray-100 opacity-0">
-                <div id="anim-canvas-container">
-                    <canvas id="logoCanvas"></canvas>
+            <div>
+                <div id="sidebar-logo-area" class="pt-6 pb-6 text-center border-b border-gray-100 opacity-0">
+                    <div id="anim-canvas-container">
+                        <canvas id="logoCanvas"></canvas>
+                    </div>
+                    
+                    <div class="-mt-6 relative z-10 bg-white/80 backdrop-blur-sm py-2">
+                        <h1 class="text-4xl font-light text-lagoon-blue leading-none tracking-[0.15em]">I3DA</h1>
+                        <div class="text-lg font-light text-lagoon-blue tracking-[0.3em] mt-1">2026</div>
+                        <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase mt-3">Venice, Italy</p>
+                        <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase">19–22 Nov</p>
+                    </div>
                 </div>
                 
-                <div class="-mt-6 relative z-10 bg-white/80 backdrop-blur-sm py-2">
-                    <h1 class="text-4xl font-light text-lagoon-blue leading-none tracking-[0.15em]">I3DA</h1>
-                    <div class="text-lg font-light text-lagoon-blue tracking-[0.3em] mt-1">2026</div>
-                    <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase mt-3">Venice, Italy</p>
-                    <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase">19–22 Nov</p>
+                <div class="p-0 py-6">
+                    <nav class="space-y-1">
+                        <a data-target="about" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500 active">About</a>
+                        <a data-target="news" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">News</a>
+                        <a data-target="call-for-papers" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Call for papers</a>
+                        <a data-target="committees" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Organisers</a>
+                        <a data-target="program" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Program</a>
+                        <a data-target="registration" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Registration</a>
+                        <a data-target="sponsors" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Sponsors</a>
+                        <a data-target="patronage" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Patronage</a>
+                        <a data-target="venue" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Venue</a>
+                        <a data-target="contact" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Contact</a>
+                    </nav>
                 </div>
             </div>
-            
-            <div class="p-0 py-6">
-                <nav class="space-y-1">
-                    <a data-target="about" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500 active">About</a>
-                    <a data-target="news" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">News</a>
-                    <a data-target="call-for-papers" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Call for papers</a>
-                    <a data-target="committees" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Organisers</a>
-                    <a data-target="program" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Program</a>
-                    <a data-target="registration" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Registration</a>
-                    <a data-target="sponsors" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Sponsors</a>
-                    <a data-target="venue" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Venue</a>
-                    <a data-target="contact" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Contact</a>
-                </nav>
+
+            <div class="p-6 border-t border-gray-100 bg-gray-50">
+                <div class="flex justify-center space-x-6">
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-facebook text-lg"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-instagram text-lg"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-x-twitter text-lg"></i></a>
+                </div>
             </div>
+
         </aside>
 
         <header class="md:hidden bg-white shadow-sm fixed w-full z-30 border-b border-gray-100">
@@ -122,6 +137,7 @@
                 <a data-target="program" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Program</a>
                 <a data-target="registration" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Registration</a>
                 <a data-target="sponsors" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Sponsors</a>
+                <a data-target="patronage" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Patronage</a>
                 <a data-target="venue" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Venue</a>
                 <a data-target="contact" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Contact</a>
             </nav>
@@ -179,9 +195,26 @@
                                 We are happy to announce that <strong>I3DA 2026</strong> will be hosted in <strong>Venice, Italy</strong> in the Winter. Exact details following soon.
                             </p>
                         </div>
-                         <div class="text-center text-gray-400 italic font-light pt-6">
-                            More news entries will appear here soon!
+
+                        <div class="p-8 bg-white border border-gray-100 shadow-sm">
+                            <h3 class="text-2xl font-normal text-gray-800 mb-2">Links to Previous Publications</h3>
+                            <p class="text-xs uppercase tracking-widest text-gray-400 mb-6">Archive</p>
+                            <div class="text-lg font-light text-gray-700 leading-relaxed space-y-4">
+                                <div>
+                                    <p class="font-medium text-lagoon-blue">2025 Immersive and 3D Audio (I3DA)</p>
+                                    <a href="https://ieeexplore.ieee.org/document/11202048" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/document/11202048</a>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-lagoon-blue">2023 Immersive and 3D Audio (I3DA)</p>
+                                    <a href="https://ieeexplore.ieee.org/xpl/conhome/10288631/proceeding" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/xpl/conhome/10288631/proceeding</a>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-lagoon-blue">2021 Immersive and 3D Audio (I3DA)</p>
+                                    <a href="https://ieeexplore.ieee.org/xpl/conhome/9610826/proceeding" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/xpl/conhome/9610826/proceeding</a>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </section>
@@ -457,6 +490,15 @@
                     </div>
                 </div>
             </section>
+
+            <section id="patronage" class="section-padding bg-white section-hidden">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Patronage</h2>
+                    <p class="text-lg font-light text-gray-600 leading-relaxed mb-6">
+                        Information regarding patronage will appear here soon.
+                    </p>
+                </div>
+            </section>
             
             <section id="venue" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Venue</h2><p class="font-light">Venue details...</p></div></section>
             
@@ -474,6 +516,7 @@
                                 Via C. Pavese 50, I-47521 Cesena, Italy
                             </p>
                             <p class="text-gray-400 mt-2 text-sm">
+                                <span class="text-lagoon-light">Email:</span> <a href="mailto:lamberto.tronchin@unibo.it" class="underline hover:text-lagoon-light">lamberto.tronchin@unibo.it</a><br>
                                 <span class="text-lagoon-light">Tel:</span> +39.0547.338356
                             </p>
                         </div>
@@ -483,7 +526,7 @@
                             <p class="text-gray-300 mb-2">Dr. Cobi van Tonder</p>
                             <p class="text-gray-400 text-sm">Research Fellow, DA – University of Bologna</p>
                             <p class="text-gray-400 mt-2 text-sm">
-                                <span class="text-lagoon-light">E-mail:</span> <a href="mailto:cobi.vantonder@unibo.it" class="underline hover:text-lagoon-light">cobi.vantonder@unibo.it</a>
+                                <span class="text-lagoon-light">E-mail:</span> <a href="mailto:info@i3da2026.org" class="underline hover:text-lagoon-light">info@i3da2026.org</a>
                             </p>
                         </div>
                     </div>
@@ -639,7 +682,7 @@
         });
 
         function handleNavigation(targetId) {
-            const allSections = ['about', 'news', 'call-for-papers', 'committees', 'program', 'registration', 'sponsors', 'venue', 'contact'];
+            const allSections = ['about', 'news', 'call-for-papers', 'committees', 'program', 'registration', 'sponsors', 'patronage', 'venue', 'contact'];
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(l => l.classList.add('active'));
             allSections.forEach(id => {
