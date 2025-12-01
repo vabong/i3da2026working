@@ -72,6 +72,7 @@
             width: 100%;
             overflow: hidden;
             min-height: 200px; /* Prevent collapse */
+            transition: opacity 0.3s ease; /* Smooth visibility toggle */
         }
         #bannerCanvas {
             position: absolute;
@@ -81,7 +82,7 @@
             height: 100%;
             z-index: 10;
             pointer-events: none; 
-            transition: opacity 1.5s ease-out; /* Fade out transition */
+            opacity: 1; /* Always visible for loop */
         }
         
         canvas {
@@ -387,7 +388,7 @@
 
 
         // ==========================================
-        //  SYSTEM 2: BANNER ANIMATION (Ocean Wave Intro)
+        //  SYSTEM 2: BANNER ANIMATION (Ocean Wave Loop)
         // ==========================================
         const bannerCanvas = document.getElementById('bannerCanvas');
         const bannerCtx = bannerCanvas.getContext('2d');
@@ -429,12 +430,9 @@
             const drawW = image.width * scale;
             const drawH = image.height * scale;
             
-            // --- LEFT ALIGN ADJUSTMENT ---
-            // Instead of centered ((bnWidth - drawW) / 2), we place it on the left
-            // with a 5% margin (min 40px).
-            const dx = Math.max(40, bnWidth * 0.05);
-            
-            const dy = (bnHeight - drawH) / 2; // Keep vertical center
+            // --- RESTORED CENTER ALIGNMENT ---
+            const dx = (bnWidth - drawW) / 2;
+            const dy = (bnHeight - drawH) / 2;
 
             // Temp draw
             bannerCtx.drawImage(image, dx, dy, drawW, drawH);
@@ -463,15 +461,16 @@
             
             // Clean and Start
             bannerCtx.clearRect(0,0,bnWidth,bnHeight);
-            startBannerIntro();
+            startBannerLoop();
         }
 
-        function startBannerIntro() {
+        function startBannerLoop() {
             bnStage = 'wave';
             bnStateTime = 0;
             bnGlobalTime = 0;
             bnMorphProgress = 0;
             bnIsAnimating = true;
+            // Ensure Opacity is 1 for the loop
             bannerCanvas.style.opacity = 1;
             if(bnAnimId) cancelAnimationFrame(bnAnimId);
             bannerLoop();
@@ -489,11 +488,17 @@
                 if(bnMorphProgress >= 1) { bnMorphProgress = 1; bnStage = 'hold'; bnStateTime = 0; }
             } else if(bnStage === 'hold') {
                 if(bnStateTime > oceanSettings.holdTime) { 
-                    bnStage = 'fade'; 
-                    bannerCanvas.style.opacity = 0; // Trigger CSS transition
+                    bnStage = 'dissolve'; // Loop back instead of fading
+                    bnStateTime = 0;
                 }
-            } else if(bnStage === 'fade') {
-                if(bnStateTime > 1.6) { bnIsAnimating = false; return; }
+            } else if(bnStage === 'dissolve') {
+                // Dissolve back to Wave
+                bnMorphProgress -= oceanSettings.morphSpeed;
+                if(bnMorphProgress <= 0) { 
+                    bnMorphProgress = 0; 
+                    bnStage = 'wave'; 
+                    bnStateTime = 0; 
+                }
             }
 
             bannerCtx.clearRect(0,0,bnWidth,bnHeight);
@@ -532,7 +537,7 @@
         const mobileMenu = document.getElementById('mobile-menu');
         const contentArea = document.getElementById('content-area');
         const sidebarLogoArea = document.getElementById('sidebar-logo-area');
-        const mainBanner = document.getElementById('main-banner'); // Note: ID in HTML is main-banner-container
+        const mainBannerContainer = document.getElementById('main-banner-container'); 
 
         menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         document.querySelectorAll('#mobile-menu a').forEach(l => {
@@ -559,13 +564,21 @@
             if (targetSection) targetSection.classList.remove('section-hidden');
             contentArea.scrollTop = 0;
 
-            if (targetId === 'about') {
-                // Hide sidebar logo, show main banner
+            const showBanner = (targetId === 'about' || targetId === 'news');
+
+            if (showBanner) {
+                // Show Main Banner
+                if(mainBannerContainer) mainBannerContainer.classList.remove('hidden');
+                
+                // Hide sidebar logo
                 sidebarLogoArea.classList.remove('opacity-100');
                 sidebarLogoArea.classList.add('opacity-0');
                 sbIsAnimating = false; 
-                // Banner animation runs on load, no need to re-trigger unless requested
+                // Banner animation continues looping
             } else {
+                // Hide Main Banner
+                if(mainBannerContainer) mainBannerContainer.classList.add('hidden');
+
                 // Show sidebar logo
                 sidebarLogoArea.classList.remove('opacity-0');
                 sidebarLogoArea.classList.add('opacity-100');
