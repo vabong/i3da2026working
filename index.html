@@ -75,47 +75,41 @@
 <body>
 
     <div class="flex h-screen overflow-hidden">
-        <aside id="sidebar" class="w-80 flex-shrink-0 bg-white shadow-2xl overflow-y-auto hidden md:block transition-all duration-300 z-20 flex flex-col justify-between">
+        <aside id="sidebar" class="w-80 flex-shrink-0 bg-white shadow-2xl overflow-y-auto hidden md:block transition-all duration-300 z-20 flex flex-col">
             
-            <div>
-                <div id="sidebar-logo-area" class="pt-6 pb-6 text-center border-b border-gray-100 opacity-0">
-                    <div id="anim-canvas-container">
-                        <canvas id="logoCanvas"></canvas>
-                    </div>
-                    
-                    <div class="-mt-6 relative z-10 bg-white/80 backdrop-blur-sm py-2">
-                        <h1 class="text-4xl font-light text-lagoon-blue leading-none tracking-[0.15em]">I3DA</h1>
-                        <div class="text-lg font-light text-lagoon-blue tracking-[0.3em] mt-1">2026</div>
-                        <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase mt-3">Venice, Italy</p>
-                        <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase">19–22 Nov</p>
-                    </div>
+            <div id="sidebar-logo-area" class="pt-6 pb-2 text-center border-b border-gray-100 opacity-0">
+                <div id="anim-canvas-container">
+                    <canvas id="logoCanvas"></canvas>
                 </div>
                 
-                <div class="p-0 py-6">
-                    <nav class="space-y-1">
-                        <a data-target="about" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500 active">About</a>
-                        <a data-target="news" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">News</a>
-                        <a data-target="call-for-papers" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Call for papers</a>
-                        <a data-target="committees" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Organisers</a>
-                        <a data-target="program" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Program</a>
-                        <a data-target="registration" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Registration</a>
-                        <a data-target="sponsors" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Sponsors</a>
-                        <a data-target="patronage" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Patronage</a>
-                        <a data-target="venue" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Venue</a>
-                        <a data-target="contact" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Contact</a>
-                    </nav>
+                <div class="-mt-6 relative z-10 bg-white/80 backdrop-blur-sm py-2">
+                    <h1 class="text-4xl font-light text-lagoon-blue leading-none tracking-[0.15em]">I3DA</h1>
+                    <div class="text-lg font-light text-lagoon-blue tracking-[0.3em] mt-1">2026</div>
+                    <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase mt-3">Venice, Italy</p>
+                    <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase">19–22 Nov</p>
+
+                    <div class="flex justify-center space-x-5 mt-5 mb-2">
+                        <a href="https://www.linkedin.com/company/86452519/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
+                        <a href="https://www.facebook.com/I3DAudio/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-facebook text-lg"></i></a>
+                        <a href="https://www.instagram.com/i3da.2026/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="https://x.com/i3da2026" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-x-twitter text-lg"></i></a>
+                    </div>
                 </div>
             </div>
-
-            <div class="p-6 border-t border-gray-100 bg-gray-50">
-                <div class="flex justify-center space-x-6">
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-facebook text-lg"></i></a>
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-instagram text-lg"></i></a>
-                    <a href="#" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-x-twitter text-lg"></i></a>
-                </div>
+            
+            <div class="p-0 py-6 flex-grow">
+                <nav class="space-y-1">
+                    <a data-target="about" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500 active">About</a>
+                    <a data-target="venue" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Conference venue</a>
+                    <a data-target="program" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Programme</a>
+                    <a data-target="call-for-papers" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Call for papers</a>
+                    <a data-target="registration" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Registration</a>
+                    <a data-target="sponsors" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Sponsors</a>
+                    <a data-target="patronage" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Patronage</a>
+                    <a data-target="contact" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Contacts</a>
+                    <a data-target="news" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">News</a>
+                </nav>
             </div>
-
         </aside>
 
         <header class="md:hidden bg-white shadow-sm fixed w-full z-30 border-b border-gray-100">
@@ -131,16 +125,22 @@
             <h2 class="text-3xl font-light text-lagoon-blue mb-8 tracking-widest">MENU</h2>
             <nav class="space-y-4">
                 <a data-target="about" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">About</a>
-                <a data-target="news" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">News</a>
+                <a data-target="venue" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Conference venue</a>
+                <a data-target="program" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Programme</a>
                 <a data-target="call-for-papers" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Call for papers</a>
-                <a data-target="committees" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Organisers</a>
-                <a data-target="program" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Program</a>
                 <a data-target="registration" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Registration</a>
                 <a data-target="sponsors" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Sponsors</a>
                 <a data-target="patronage" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Patronage</a>
-                <a data-target="venue" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Venue</a>
-                <a data-target="contact" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Contact</a>
+                <a data-target="contact" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Contacts</a>
+                <a data-target="news" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">News</a>
             </nav>
+
+            <div class="flex justify-start space-x-6 mt-12 pt-8 border-t border-gray-100">
+                <a href="https://www.linkedin.com/company/86452519/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="https://www.facebook.com/I3DAudio/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-facebook text-xl"></i></a>
+                <a href="https://www.instagram.com/i3da.2026/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                <a href="https://x.com/i3da2026" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-x-twitter text-xl"></i></a>
+            </div>
         </div>
 
         <main id="content-area" class="flex-grow overflow-y-auto bg-gray-50 md:mt-0 mt-16 scroll-smooth">
@@ -183,41 +183,9 @@
                 </div>
             </section>
 
-            <section id="news" class="section-padding bg-white min-h-screen section-hidden">
-                <div class="max-w-5xl mx-auto">
-                    <h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Latest News</h2>
-                    
-                    <div id="news-container" class="space-y-10">
-                         <div class="p-8 bg-gray-50 border-l-2 border-lagoon-light">
-                            <h3 class="text-2xl font-normal text-lagoon-blue mb-2">Venice Host Announcement!</h3>
-                            <p class="text-xs uppercase tracking-widest text-gray-400 mb-6">November 2025</p>
-                            <p class="text-lg font-light text-gray-700 leading-relaxed">
-                                We are happy to announce that <strong>I3DA 2026</strong> will be hosted in <strong>Venice, Italy</strong> in the Winter. Exact details following soon.
-                            </p>
-                        </div>
+            <section id="venue" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Conference Venue</h2><p class="font-light text-lg">Venue details appearing soon...</p></div></section>
 
-                        <div class="p-8 bg-white border border-gray-100 shadow-sm">
-                            <h3 class="text-2xl font-normal text-gray-800 mb-2">Links to Previous Publications</h3>
-                            <p class="text-xs uppercase tracking-widest text-gray-400 mb-6">Archive</p>
-                            <div class="text-lg font-light text-gray-700 leading-relaxed space-y-4">
-                                <div>
-                                    <p class="font-medium text-lagoon-blue">2025 Immersive and 3D Audio (I3DA)</p>
-                                    <a href="https://ieeexplore.ieee.org/document/11202048" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/document/11202048</a>
-                                </div>
-                                <div>
-                                    <p class="font-medium text-lagoon-blue">2023 Immersive and 3D Audio (I3DA)</p>
-                                    <a href="https://ieeexplore.ieee.org/xpl/conhome/10288631/proceeding" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/xpl/conhome/10288631/proceeding</a>
-                                </div>
-                                <div>
-                                    <p class="font-medium text-lagoon-blue">2021 Immersive and 3D Audio (I3DA)</p>
-                                    <a href="https://ieeexplore.ieee.org/xpl/conhome/9610826/proceeding" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/xpl/conhome/9610826/proceeding</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
+            <section id="program" class="section-padding bg-gray-50 section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-200 pb-4 uppercase tracking-[0.1em]">Programme</h2><p class="font-light text-lg">Schedule appearing soon...</p></div></section>
 
             <section id="call-for-papers" class="section-padding bg-gray-50 min-h-screen section-hidden">
                 <div class="max-w-5xl mx-auto">
@@ -344,12 +312,8 @@
                     </div>
                 </div>
             </section>
-
-            <section id="committees" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Organisers</h2><p class="font-light">Committee list...</p></div></section>
             
-            <section id="program" class="section-padding bg-gray-50 section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-200 pb-4 uppercase tracking-[0.1em]">Program</h2><p class="font-light">Schedule...</p></div></section>
-            
-            <section id="registration" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Registration</h2><p class="font-light">Registration info...</p></div></section>
+            <section id="registration" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Registration</h2><p class="font-light text-lg">Registration info...</p></div></section>
             
             <section id="sponsors" class="section-padding bg-gray-50 section-hidden">
                 <div class="max-w-5xl mx-auto">
@@ -500,11 +464,9 @@
                 </div>
             </section>
             
-            <section id="venue" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Venue</h2><p class="font-light">Venue details...</p></div></section>
-            
             <section id="contact" class="section-padding bg-gray-900 text-white section-hidden">
                 <div class="max-w-5xl mx-auto">
-                    <h2 class="text-3xl font-light mb-12 border-b border-gray-700 pb-4 uppercase tracking-[0.1em]">Contact Us</h2>
+                    <h2 class="text-3xl font-light mb-12 border-b border-gray-700 pb-4 uppercase tracking-[0.1em]">Contacts</h2>
                     <h3 class="text-xl font-light mb-8 text-lagoon-light tracking-wide">Organizers</h3>
 
                     <div class="grid md:grid-cols-2 gap-12 font-light">
@@ -532,6 +494,44 @@
                     </div>
                 </div>
             </section>
+
+            <section id="news" class="section-padding bg-white min-h-screen section-hidden">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Latest News</h2>
+                    
+                    <div id="news-container" class="space-y-10">
+                         <div class="p-8 bg-gray-50 border-l-2 border-lagoon-light">
+                            <h3 class="text-2xl font-normal text-lagoon-blue mb-2">Venice Host Announcement!</h3>
+                            <p class="text-xs uppercase tracking-widest text-gray-400 mb-6">November 2025</p>
+                            <p class="text-lg font-light text-gray-700 leading-relaxed">
+                                We are happy to announce that <strong>I3DA 2026</strong> will be hosted in <strong>Venice, Italy</strong> in the Winter. Exact details following soon.
+                            </p>
+                        </div>
+
+                        <div class="p-8 bg-white border border-gray-100 shadow-sm">
+                            <h3 class="text-2xl font-normal text-gray-800 mb-2">Links to Previous Publications</h3>
+                            <p class="text-xs uppercase tracking-widest text-gray-400 mb-6">Archive</p>
+                            <div class="text-lg font-light text-gray-700 leading-relaxed space-y-4">
+                                <div>
+                                    <p class="font-medium text-lagoon-blue">2025 Immersive and 3D Audio (I3DA)</p>
+                                    <a href="https://ieeexplore.ieee.org/document/11202048" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/document/11202048</a>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-lagoon-blue">2023 Immersive and 3D Audio (I3DA)</p>
+                                    <a href="https://ieeexplore.ieee.org/xpl/conhome/10288631/proceeding" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/xpl/conhome/10288631/proceeding</a>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-lagoon-blue">2021 Immersive and 3D Audio (I3DA)</p>
+                                    <a href="https://ieeexplore.ieee.org/xpl/conhome/9610826/proceeding" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/xpl/conhome/9610826/proceeding</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            
+            <section id="committees" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Organisers</h2><p class="font-light">Committee list...</p></div></section>
 
             <footer class="bg-white border-t border-gray-100 py-8 text-center text-xs text-gray-400 uppercase tracking-widest">
                 &copy; 2026 I3DA International Conference. Hosted by The University of Bologna.
