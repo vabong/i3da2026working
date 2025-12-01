@@ -47,7 +47,7 @@
             display: flex;
             justify-content: center;
             align-items: flex-end; /* Align to bottom to meet text */
-            padding-bottom: 10px; /* Slight breathing room before text starts */
+            padding-bottom: 0px; /* Remove padding to close gap */
         }
         canvas {
             display: block;
@@ -67,7 +67,7 @@
                     <canvas id="logoCanvas"></canvas>
                 </div>
                 
-                <div class="-mt-4 relative z-10">
+                <div class="-mt-6 relative z-10">
                     <h1 class="text-2xl font-extrabold text-lagoon-blue leading-none">I3DA 2026</h1>
                     <p class="text-base font-bold text-gray-700 leading-tight mt-1">Venice, Italy</p>
                     <p class="text-base font-bold text-gray-700 leading-tight">19–22 Nov</p>
@@ -120,7 +120,8 @@
 
             <section id="about" class="section-padding bg-white min-h-screen">
                 <div class="max-w-4xl mx-auto">
-                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8">I3DA Immersive Media in Heritage, Environment and Being</h1>
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-gray-800 mb-8">I3DA: Immersive Media in Heritage, Nature and Consciousness</h1>
+                    
                     <p class="text-center text-xl text-gray-700 mb-8 leading-relaxed">
                         We are organising the 4th<br><strong>International Conference on Immersive and 3D Audio</strong><br>
                         The University of Bologna will host the event in <strong>Venice,</strong><br>19–22 November, 2026
@@ -156,14 +157,14 @@
         const ctx = canvas.getContext('2d');
         const logoSrc = 'logo.jpg'; // CHANGE THIS IF NEEDED
 
-        // SETTINGS (Tuned from your feedback)
+        // SETTINGS (Applied from your Screenshot)
         const settings = {
-            amplitude: 60,
-            frequency: 4,      
-            freqRamp: 2.5,     
-            speed: 0.012,      
+            amplitude: 75,
+            frequency: 15,      
+            freqRamp: 1,     
+            speed: 0.009,      
             morphSpeed: 0.008, 
-            holdTime: 3.0,     
+            holdTime: 9.5,     
             pSize: 1.0         
         };
 
@@ -198,7 +199,7 @@
             
             // Center Horizontally, Align closer to Bottom Vertically
             const offX = (width - drawW) / 2;
-            const offY = (height - drawH) / 2 + 10; // +10 pushes it slightly down towards text
+            const offY = (height - drawH) / 2 + 15; // +15 pushes it down closer to the negative margin text
 
             // Draw temp to read pixels
             ctx.drawImage(img, offX, offY, drawW, drawH);
