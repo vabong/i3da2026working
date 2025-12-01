@@ -428,8 +428,13 @@
             const scale = Math.min(bnWidth / image.width, bnHeight / image.height) * 0.85;
             const drawW = image.width * scale;
             const drawH = image.height * scale;
-            const dx = (bnWidth - drawW) / 2;
-            const dy = (bnHeight - drawH) / 2; // Center it
+            
+            // --- LEFT ALIGN ADJUSTMENT ---
+            // Instead of centered ((bnWidth - drawW) / 2), we place it on the left
+            // with a 5% margin (min 40px).
+            const dx = Math.max(40, bnWidth * 0.05);
+            
+            const dy = (bnHeight - drawH) / 2; // Keep vertical center
 
             // Temp draw
             bannerCtx.drawImage(image, dx, dy, drawW, drawH);
