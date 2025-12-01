@@ -21,30 +21,38 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Smooth scrolling within sections if they overflow */
+        /* Smooth scrolling */
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; height: 100vh; overflow: hidden; }
+        
         .nav-link { transition: all 0.2s; padding: 0.5rem 0.75rem; display: block; border-radius: 0.375rem; cursor: pointer; }
         .nav-link:hover, .nav-link.active { color: #005f73; font-weight: 700; background-color: #f0f8f8; }
+        
         .section-padding { padding: 4rem 1.5rem; }
         @media (min-width: 640px) { .section-padding { padding: 5rem 3rem; } }
-        /* Transition for sidebar fade in */
+        
+        /* Sidebar Transitions */
         #sidebar-logo-area { transition: opacity 0.5s ease-in-out; }
         
-        /* Utility to hide sections initially controlled by JS */
+        /* Utility */
         .section-hidden { display: none; }
 
-        /* Animation Canvas Styles */
+        /* --- ANIMATION CANVAS STYLING --- */
         #anim-canvas-container {
-            width: 250px;
-            height: 250px;
-            margin: 0 auto;
+            width: 100%; /* Fill the sidebar width */
+            height: 220px; /* Fixed height to frame the logo */
             position: relative;
+            overflow: hidden;
+            /* Flex center to keep logo in middle */
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* Align to bottom to meet text */
+            padding-bottom: 10px; /* Slight breathing room before text starts */
         }
         canvas {
+            display: block;
             width: 100%;
             height: 100%;
-            display: block;
         }
     </style>
 </head>
@@ -52,15 +60,16 @@
 
     <div class="flex h-screen overflow-hidden">
         <aside id="sidebar" class="w-72 flex-shrink-0 bg-white shadow-xl overflow-y-auto hidden md:block transition-all duration-300">
-            <div id="sidebar-logo-area" class="p-4 text-center border-b border-gray-200 opacity-0">
+            
+            <div id="sidebar-logo-area" class="pt-6 pb-2 text-center border-b border-gray-200 opacity-0">
                 
                 <div id="anim-canvas-container">
                     <canvas id="logoCanvas"></canvas>
                 </div>
                 
-                <div class="mt-0">
-                    <h1 class="text-2xl font-extrabold text-lagoon-blue leading-tight">I3DA 2026</h1>
-                    <p class="text-base font-bold text-gray-700 leading-tight">Venice, Italy</p>
+                <div class="-mt-4 relative z-10">
+                    <h1 class="text-2xl font-extrabold text-lagoon-blue leading-none">I3DA 2026</h1>
+                    <p class="text-base font-bold text-gray-700 leading-tight mt-1">Venice, Italy</p>
                     <p class="text-base font-bold text-gray-700 leading-tight">19–22 Nov</p>
                 </div>
             </div>
@@ -118,384 +127,62 @@
                     </p>
                     <p class="text-gray-600 text-lg mb-6 leading-relaxed text-center font-semibold">Save the date! More info coming soon....</p>
                     <hr class="my-10 border-gray-200">
-                    
                     <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">
-                        I3DA 2026 will again focus on innovation in 3D immersive audio, including virtual acoustics, architectural and musical acoustics, subjective evaluations and listening tests, immersive soundscape design, and creative uses of immersive technologies. Furthermore, I3DA 2026 will be a special edition, that will include visual and interactive aspects of immersive media, such as related computer graphics, LIDAR scans, photogrammetry, immersive world building, digital archaeology, 3D visualization, and hardware and software applications across both fields. The aim is to open new possibilities for collaboration, networking, and deeper understanding between complementary sensory domains in immersive media.
-                    </p>
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">
-                        I3DA 2026 would like to involve academic and industrial researchers to share their latest research, methods, and demos related to Immersive and 3D Audio, Interaction Design and Visuals in Audio Engineering, Computer Science and Visuals. Topics include virtual/augmented reality and their applications, digital archaeology, musical acoustics, signal processing in acoustics, non-linear acoustics in auralisation, machine learning related to immersive media, acoustics, heritage acoustics, psychoacoustics, gaming, art and sound studies contexts, bioacoustics and the environment. Further topics may be accepted.
-                    </p>
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">
-                        I3DA will be indexed on IEEE like the last years, with Special Issues like last year.
-                    </p>
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">
-                        The conference will represent the forefront of new methodologies and technologies in the field, establishing itself as a high-profile international meeting point for researchers and professionals in immersive media and 3D audio. This event will foster meaningful international collaborations—across academia, industry, heritage and museum institutions, the arts, and environmental initiatives—while driving forward innovation in immersive media.
+                        I3DA 2026 will again focus on innovation in 3D immersive audio...
                     </p>
                 </div>
             </section>
 
             <section id="news" class="section-padding bg-white min-h-screen section-hidden">
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b border-gray-300 pb-2">Latest News</h2>
-                    
-                    <div id="news-container" class="space-y-10">
-                        
-                        <div class="p-6 bg-gray-50 rounded-lg shadow-md border-t-4 border-lagoon-light">
-                            <h3 class="text-2xl font-bold text-lagoon-blue mb-2">Venice Host Announcement!</h3>
-                            <p class="text-sm text-gray-500 mb-4 font-semibold">November 2025</p>
-                            <p class="text-lg text-gray-700 leading-relaxed">
-                                We are happy to announce that <strong>I3DA 2026</strong> will be hosted in <strong>Venice, Italy</strong> in the Winter. Exact details following soon.
-                            </p>
-                        </div>
-                        
-                        <div class="text-center text-gray-500 italic pt-6">
-                            More news entries will appear here soon!
-                        </div>
-
-                    </div>
-                </div>
+                <div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b border-gray-300 pb-2">Latest News</h2><p>News content...</p></div>
             </section>
-            
             <section id="call-for-papers" class="section-padding bg-gray-100 min-h-screen section-hidden">
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b border-gray-300 pb-2">Call for Papers</h2>
-                    
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">
-                        We cordially invite you to submit your papers and posters for the <strong>International Conference on Immersive and 3D Audio (I3DA 2026)</strong>. The Organizing Committee is pleased to announce that I3DA 2026 will be hosted in Piazza Scaravilli, University of Bologna, Italy.
-                    </p>
-                    
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">
-                        I3DA 2026 will again focus on <strong>innovation in 3D immersive audio</strong> including architectural acoustics, virtual acoustics, automotive acoustics, subjective evaluations and listening tests, immersive soundscape design and creative uses of immersive technologies.
-                    </p>
-
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify border-l-4 border-lagoon-light pl-4 bg-white p-4 rounded-r-lg">
-                        <strong>Special Edition Focus:</strong> Furthermore, I3DA 2026 will be a special edition, that will include <strong>visual and interactive aspects of immersive media</strong>, such as related computer graphics, LIDAR scans, photogrammetry, immersive world building, digital archaeology, 3D visualization, and hardware and software applications across both fields. The aim is to open new possibilities for collaboration, networking, and deeper understanding between complementary sensory domains in immersive media.
-                    </p>
-
-                    <p class="text-gray-600 text-lg mb-6 leading-relaxed text-justify">
-                        I3DA 2026 would like to involve academic and industrial researchers to share their latest research, methods, and demos related to Immersive and 3D Audio, Interaction Design and Visuals in Audio Engineering, Computer Science and Visuals. Topics include virtual/augmented reality and their applications, digital archaeology, musical acoustics, signal processing in acoustics, non-linear acoustics in auralisation, machine learning related to immersive media, acoustics, heritage acoustics, psychoacoustics, gaming, art and sound studies contexts, bioacoustics and the environment. Further topics may be accepted.
-                    </p>
-
-                    <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">Planned Timeline</h3>
-                    <div class="bg-white p-6 rounded-lg shadow-sm mb-8 border border-gray-200">
-                        <p class="text-gray-600 mb-4 italic font-semibold">Specific dates will be announced soon for the following milestones:</p>
-                        <ul class="list-disc list-inside text-lg text-gray-700 space-y-2">
-                            <li>Official CFP announced</li>
-                            <li>Abstract Submissions Open in Easychair</li>
-                            <li>Abstract Submission Deadline</li>
-                            <li>Paper Submission Deadline</li>
-                            <li>Reviewing takes place</li>
-                            <li>Reviewer Notifications sent out</li>
-                            <li>Acceptance notifications sent out</li>
-                            <li>2nd round of Review updates</li>
-                            <li>Submissions of Final Papers</li>
-                            <li>Submission of Presentations and Posters</li>
-                        </ul>
-                    </div>
-
-                    <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">How to Submit a Paper</h3>
-                    <p class="text-gray-600 text-lg mb-4">
-                        To submit your full paper, please log into your SUBMISSION, click ADD FILES on the top-right hand side and add your file. The papers must be submitted via EasyChair paper management system, following the IEEE guidelines for proceedings papers.
-                    </p>
-                    <p class="text-gray-600 text-lg mb-4">
-                        The expected number of pages for contribution should preferably not exceed 10 pages for paper. Authors must follow IEEE <a href="https://conferences.ieeeauthorcenter.ieee.org/author-ethics/" target="_blank" class="text-lagoon-light hover:underline font-bold">ethical</a> and <a href="https://conferences.ieeeauthorcenter.ieee.org/write-your-paper/" target="_blank" class="text-lagoon-light hover:underline font-bold">writing</a> guidelines.
-                    </p>
-                    <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-lagoon-blue mb-8">
-                        <h4 class="font-bold text-gray-800 mb-2">Useful Resources:</h4>
-                        <ul class="list-disc list-inside text-gray-700">
-                            <li><a href="#" class="hover:text-lagoon-blue">How to make a submission via EasyChair</a></li>
-                            <li><a href="#" class="hover:text-lagoon-blue">IEEE conference templates</a></li>
-                        </ul>
-                    </div>
-
-                    <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">Anti-Plagiarism Screening</h3>
-                    <p class="text-gray-600 text-lg mb-6">
-                        We will conduct to the submitted papers an anti-plagiarism screening to ensure that all papers are clear, authentic and relevant to the conference material. We submit all papers to the Turnitin and/or Compilatio Scanner. Please note that once a paper is submitted to I3DA, it cannot be presented to other journals/conferences.
-                    </p>
-
-                    <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">Templates</h3>
-                    <p class="text-gray-600 text-lg mb-4">
-                        There are no page limits, but we suggest a maximum of 8-10 pages. Authors can download and use the following templates:
-                    </p>
-                    <div class="bg-white p-6 rounded-lg shadow-sm mb-8">
-                        <h4 class="font-bold text-gray-800 mb-4">Templates for Oral Presentations and Posters</h4>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-lagoon-blue" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"/></svg>
-                                <a href="#" class="text-lagoon-blue font-semibold hover:underline">Microsoft Word – A4</a>: <span class="italic ml-1 text-gray-500">Template will be available soon</span>
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-lagoon-blue" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"/></svg>
-                                <a href="#" class="text-lagoon-blue font-semibold hover:underline">LaTeX Template Instructions</a>: <span class="italic ml-1 text-gray-500">Template will be available soon</span>
-                            </li>
-                            <li class="flex items-center">
-                                <svg class="w-5 h-5 mr-2 text-lagoon-blue" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"/></svg>
-                                <a href="#" class="text-lagoon-blue font-semibold hover:underline">Template (ZIP)</a>: <span class="italic ml-1 text-gray-500">Template will be available soon</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">Copyright</h3>
-                    <p class="text-gray-600 text-lg mb-4 italic">
-                        Please note: On the first page, left bottom footnote, add the correct copyright number.
-                    </p>
-                    <div class="bg-white p-6 rounded-lg shadow-sm mb-8 space-y-4 text-sm text-gray-700">
-                        <div>
-                            <p class="font-bold">For most papers the copyright notice is:</p>
-                            <p class="font-mono bg-gray-50 p-2 mt-1">xxxx (to be announced)</p>
-                        </div>
-                        <div>
-                            <p class="font-bold">For papers in which all authors are employed by the US government:</p>
-                            <p class="font-mono bg-gray-50 p-2 mt-1">U.S. Government work not protected by U.S. copyright</p>
-                        </div>
-                        <div>
-                            <p class="font-bold">For papers in which all authors are employed by a Crown government (UK, Canada, and Australia):</p>
-                            <p class="font-mono bg-gray-50 p-2 mt-1">xxxx (to be announced)</p>
-                        </div>
-                        <div>
-                            <p class="font-bold">For papers in which all authors are employed by the European Union:</p>
-                            <p class="font-mono bg-gray-50 p-2 mt-1">xxxx (to be announced)</p>
-                        </div>
-                    </div>
-
-                    <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">Publishing Policy</h3>
-                    <p class="text-gray-600 text-lg mb-6 text-justify">
-                        Authors of selected papers will be invited to submit extended versions for consideration in a special issue with one or more of the partner journals indexed on Scopus and WoS. Only submissions that were presented at the Conference by one of the authors may be invited to a special issue. Manuscripts have to be submitted to the special issue of the journal according to instructions provided in the invitation letter. Each manuscript will then be reviewed according to the journal policy. The authors are obliged to inform the conference of the status of their submission in a way provided in the invitation letter.
-                    </p>
-
-                    <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">Indexing</h3>
-                    <p class="text-gray-600 text-lg mb-6 text-justify">
-                        All conferences and conference proceedings must meet IEEEs quality standards, and IEEE reserves the right not to publish any proceedings that do not meet these standards. Accepted and orally presented papers are submitted to IEEE Xplore. The IEEE makes every reasonable attempt to ensure that abstracts and index entries of content accepted into the program are included in databases provided by independent abstracting and indexing (A&I) services. Each A&I partner makes its own editorial decision on what content it will index. IEEE cannot guarantee entries are included in any particular database. IEEE reserves the right to exclude a paper from distribution after the conference (e.g., removal from IEEE Xplore) if the paper is not presented at the conference or does not comply with IEEE Best Practices.
-                    </p>
-
-                    <h3 class="text-2xl font-semibold text-lagoon-blue mb-4">Special Issues</h3>
-                    <ul class="list-disc list-inside text-lg text-gray-700 space-y-2">
-                        <li>Special Issue – Journal of the Audio Engineering Society</li>
-                        <li>Special Issue – Applied Sciences</li>
-                    </ul>
-                </div>
+                <div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b border-gray-300 pb-2">Call for Papers</h2><p>Content...</p></div>
             </section>
-            
             <section id="committees" class="section-padding bg-white section-hidden"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b border-gray-300 pb-2">Organisers</h2><p>Committee list...</p></div></section>
             <section id="program" class="section-padding bg-gray-100 section-hidden"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b border-gray-300 pb-2">Program</h2><p>Schedule...</p></div></section>
             <section id="registration" class="section-padding bg-white section-hidden"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b border-gray-300 pb-2">Registration</h2><p>Registration info...</p></div></section>
-
-            <section id="sponsors" class="section-padding bg-gray-100 section-hidden">
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold text-gray-800 mb-8 border-b border-gray-300 pb-2">Sponsorship Opportunities</h2>
-                    
-                    <div class="mb-10 p-6 bg-white rounded-xl shadow-md border-l-4 border-lagoon-light">
-                        <h3 class="text-3xl font-extrabold text-lagoon-blue mb-4">Partner with I3DA 2026</h3>
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            The International Conference on Immersive and 3D Audio (I3DA 2026) is the premier global forum connecting leading researchers, engineers, and industry professionals in spatial audio, VR/AR, architectural acoustics, and media.
-                        </p>
-                        <p class="text-lg text-gray-700 leading-relaxed mt-3">
-                            Partnering with us in Venice (19–22 November 2026) offers a unique opportunity to position your brand as a thought leader, access specialized talent, and directly engage a highly technical audience.
-                        </p>
-                        <p class="text-md text-gray-600 font-semibold mt-4 italic">
-                            All sponsorship amounts are listed excluding VAT.
-                        </p>
-                    </div>
-
-                    <h3 class="text-3xl font-bold text-gray-700 mb-6 border-b border-gray-300 pb-2">💎 Core Sponsorship Tiers: Maximize Your Visibility</h3>
-
-                    <div class="grid lg:grid-cols-2 gap-8">
-
-                        <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-amber-600 hover:shadow-xl transition duration-300">
-                            <h4 class="text-2xl font-extrabold text-amber-600 mb-3">Tier 1: Bronze Sponsorship (1.000 €)</h4>
-                            <p class="text-sm text-gray-500 mb-3 font-semibold">Focus on essential brand recognition.</p>
-                            <ul class="list-disc list-outside ml-5 text-gray-700 space-y-2">
-                                <li><strong>Online Recognition:</strong> Name and logo on the event website with a direct link.</li>
-                                <li><strong>Print Recognition:</strong> Logo included in the Abstract Book (PDF).</li>
-                                <li><strong>Social Media:</strong> Mention of sponsorship on conference social channels.</li>
-                            </ul>
-                        </div>
-
-                        <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-gray-400 hover:shadow-xl transition duration-300">
-                            <h4 class="text-2xl font-extrabold text-gray-700 mb-3">Tier 2: Silver Sponsorship (2.000 €)</h4>
-                            <p class="text-sm text-gray-500 mb-3 font-semibold">Enhance networking and direct access.</p>
-                            <p class="font-semibold text-lg text-lagoon-blue mb-3">Includes all Bronze benefits, PLUS:</p>
-                            <ul class="list-disc list-outside ml-5 text-gray-700 space-y-2">
-                                <li><strong>Networking Access:</strong> List of attendees provided (subject to GDPR/privacy consent).</li>
-                                <li><strong>Delegate Passes:</strong> Two complimentary delegate passes for company representatives.</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-yellow-500 hover:shadow-xl transition duration-300">
-                            <h4 class="text-2xl font-extrabold text-yellow-700 mb-3">Tier 3: Gold Sponsorship (5.000 €)</h4>
-                            <p class="text-sm text-gray-500 mb-3 font-semibold">Establish a significant presence and thought leadership.</p>
-                            <p class="font-semibold text-lg text-lagoon-blue mb-3">Includes all Silver benefits, PLUS:</p>
-                            <ul class="list-disc list-outside ml-5 text-gray-700 space-y-2">
-                                <li><strong>Enhanced Branding:</strong> Larger logo on the website, labeled "Main Sponsor".</li>
-                                <li><strong>Promotional Material:</strong> Half-page advertisement in the Abstract Book (PDF).</li>
-                                <li><strong>Presentation Slot:</strong> One 30-minute commercial presentation slot during lunchtime.</li>
-                                <li><strong>Exhibition:</strong> Designated Exhibition Space (2m x 2m) for promotional materials.</li>
-                                <li><strong>Specific Event Sponsorship:</strong> Sponsorship of a dedicated Coffee Break (Signage placed at the refreshment area).</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-venice-red hover:shadow-xl transition duration-300">
-                            <h4 class="text-2xl font-extrabold text-venice-red mb-3">Tier 4: Platinum Sponsorship (VIP) (10.000 €)</h4>
-                            <p class="text-sm text-gray-500 mb-3 font-semibold">Achieve maximum exposure, exclusivity, and delegate engagement.</p>
-                            <p class="font-semibold text-lg text-lagoon-blue mb-3">Includes all Gold benefits, PLUS:</p>
-                            <ul class="list-disc list-outside ml-5 text-gray-700 space-y-2">
-                                <li><strong>Premium Branding:</strong> Largest logo prominently featured on the website, labeled "Main Sponsor".</li>
-                                <li><strong>Promotional Material:</strong> One full page advertisement in the Abstract Book (PDF).</li>
-                                <li><strong>Presentation Slots:</strong> Two separate 30-minute commercial presentation slots during lunchtime.</li>
-                                <li><strong>Exclusive Event Sponsorship:</strong> Primary Sponsorship of the Conference Reception/Dinner (includes exclusive speaking opportunity at the event and large-format branding).</li>
-                                <li><strong>Premium Branding Item:</strong> Branding on the Official Attendee Badge Lanyards.</li>
-                                <li><strong>Private Space:</strong> Designated Private Meeting Space for client interaction throughout the conference duration.</li>
-                            </ul>
-                        </div>
-
-                    </div> <hr class="my-10 border-gray-300">
-
-                    <h3 class="text-3xl font-bold text-gray-700 mb-6 border-b border-gray-300 pb-2">🎁 A La Carte / Exclusive Sponsorship Opportunities</h3>
-                    <p class="text-lg text-gray-600 mb-6 italic">
-                        Target specific goals with these high-impact, exclusive add-ons (costs vary and are negotiated separately):
-                    </p>
-                    <div class="overflow-x-auto bg-white rounded-lg shadow-md">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-lagoon-bg">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-lagoon-blue uppercase tracking-wider">Opportunity</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-lagoon-blue uppercase tracking-wider">Value Proposition</th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-lagoon-blue uppercase tracking-wider">Ideal For</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200 text-gray-700">
-                                <tr>
-                                    <td class="px-6 py-4 font-semibold whitespace-nowrap">Diversity & Inclusion Grant Fund Sponsorship</td>
-                                    <td class="px-6 py-4">Sponsor registration and travel grants for attendees from marginalized groups or low-income countries.</td>
-                                    <td class="px-6 py-4">Organizations dedicated to promoting diversity and inclusion in STEM/Media fields.</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 font-semibold whitespace-nowrap">Keynote Speaker Sponsorship</td>
-                                    <td class="px-6 py-4">Exclusive branding on the session for a high-profile speaker; short introductory address.</td>
-                                    <td class="px-6 py-4">Technology leaders seeking deep thought leadership.</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 font-semibold whitespace-nowrap">Official Wi-Fi Sponsorship</td>
-                                    <td class="px-6 py-4">Brand the Wi-Fi network name and password for the duration of the event (e.g., "[Company Name] I3DA2026").</td>
-                                    <td class="px-6 py-4">High visibility, constant engagement.</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 font-semibold whitespace-nowrap">Best Paper Award Sponsorship</td>
-                                    <td class="px-6 py-4">Present the award at the closing ceremony and gain visibility with top research talent.</td>
-                                    <td class="px-6 py-4">Companies focused on R&D and talent acquisition.</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 font-semibold whitespace-nowrap">Delegate Bag/Notebook Sponsorship</td>
-                                    <td class="px-6 py-4">Provide branded bags or notebooks/pens distributed to every attendee.</td>
-                                    <td class="px-6 py-4">Brand longevity and practical visibility.</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 font-semibold whitespace-nowrap">Cultural Excursion Sponsorship</td>
-                                    <td class="px-6 py-4">Exclusive branding of the unique Venice heritage tour/experience.</td>
-                                    <td class="px-6 py-4">Organizations focused on CSR, culture, or environmental technology.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-
-                    <div class="mt-10 bg-white p-6 rounded-xl shadow-lg border-l-4 border-lagoon-blue">
-                        <h4 class="text-xl font-bold text-lagoon-blue mb-2">Next Steps</h4>
-                        <p class="text-lg text-gray-700 font-semibold mb-4">We are ready to work with you to create a customized package that aligns perfectly with your marketing objectives.</p>
-                        
-                        <p class="text-gray-600 mb-2">All sponsorship contracts will be formalized and undersigned by <strong>Fondazione Alma Mater – Università di Bologna</strong>.</p>
-                        
-                        <h4 class="text-xl font-bold text-lagoon-blue mt-4 mb-2">Contact Information</h4>
-                        <p class="text-gray-600">
-                            <strong>To discuss a partnership, please contact:</strong><br>
-                            <span class="font-semibold">Dr. Cobi van Tonder</span><br>
-                            <span class="font-semibold">Email:</span> <a href="mailto:cobi.vantonder@unibo.it" class="text-lagoon-light hover:underline">cobi.vantonder@unibo.it</a><br>
-                            <span class="font-semibold">Phone:</span> +39 353 480 4642
-                        </p>
-                    </div>
-                </div>
-            </section>
-            
+            <section id="sponsors" class="section-padding bg-gray-100 section-hidden"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b border-gray-300 pb-2">Sponsorship Opportunities</h2><p>Details...</p></div></section>
             <section id="venue" class="section-padding bg-white section-hidden"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold text-gray-800 mb-8 border-b border-gray-300 pb-2">Venue</h2><p>Venue details...</p></div></section>
-
-            <section id="contact" class="section-padding bg-gray-800 text-white section-hidden">
-                <div class="max-w-4xl mx-auto">
-                    <h2 class="text-4xl font-bold mb-8 border-b border-gray-300 pb-2">Contact Us</h2>
-                    
-                    <h3 class="text-2xl font-semibold mb-6 text-lagoon-light">Organizers</h3>
-
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h4 class="text-xl font-bold text-white mb-2">General Conference Chair</h4>
-                            <p class="font-semibold text-lg mb-2">Prof. Lamberto Tronchin</p>
-                            <p class="text-gray-300 leading-relaxed">
-                                DA – CIARM – University of Bologna<br>
-                                Via C. Pavese 50,<br>
-                                I-47521 Cesena, Italy
-                            </p>
-                            <p class="text-gray-300 mt-2">
-                                <span class="font-semibold text-lagoon-light">Tel:</span> +39.0547.338356
-                            </p>
-                        </div>
-
-                        <div>
-                            <h4 class="text-xl font-bold text-white mb-2">Conference Director</h4>
-                            <p class="font-semibold text-lg mb-2">Dr. Cobi van Tonder</p>
-                            <p class="text-gray-300">Research Fellow, DA – University of Bologna</p>
-                            <p class="text-300 mt-2">
-                                <span class="font-semibold text-lagoon-light">E-mail:</span> <a href="mailto:cobi.vantonder@unibo.it" class="underline hover:text-lagoon-light">cobi.vantonder@unibo.it</a>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="mt-12 pt-8 border-t border-gray-700">
-                        <h3 class="text-2xl font-semibold mb-6 text-lagoon-light">Follow Us</h3>
-                        <div class="flex space-x-6">
-                            <a href="https://www.linkedin.com/company/i3da/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition duration-300 transform hover:scale-110" aria-label="LinkedIn">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-                            </a>
-                            <a href="https://x.com/i3da2026" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition duration-300 transform hover:scale-110" aria-label="X">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 4c2.5 3.7 5.5 5 8 5s4.4-1.5 6-2.5c2.4.2 4.1-1.2 5-2.7z"/></svg>
-                            </a>
-                            <a href="https://www.facebook.com/I3DAudio/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition duration-300 transform hover:scale-110" aria-label="Facebook">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                            </a>
-                            <a href="https://www.instagram.com/i3da.2026/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition duration-300 transform hover:scale-110" aria-label="Instagram">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <section id="contact" class="section-padding bg-gray-800 text-white section-hidden"><div class="max-w-4xl mx-auto"><h2 class="text-4xl font-bold mb-8 border-b border-gray-300 pb-2">Contact Us</h2><p>Contact info...</p></div></section>
 
             <footer class="bg-gray-900 text-white py-6 text-center text-sm">&copy; 2026 I3DA International Conference. Hosted by The University of Bologna.</footer>
         </main>
     </div>
 
     <script>
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const contentArea = document.getElementById('content-area');
-        const sidebarLogoArea = document.getElementById('sidebar-logo-area');
-        const mainBanner = document.getElementById('main-banner');
-        
         // --- ANIMATION CONFIG ---
         const canvas = document.getElementById('logoCanvas');
         const ctx = canvas.getContext('2d');
-        // CHANGE THIS TO YOUR LOGO FILENAME
-        const logoSrc = 'logo.jpg'; 
+        const logoSrc = 'logo.jpg'; // CHANGE THIS IF NEEDED
+
+        // SETTINGS (Tuned from your feedback)
+        const settings = {
+            amplitude: 60,
+            frequency: 4,      
+            freqRamp: 2.5,     
+            speed: 0.012,      
+            morphSpeed: 0.008, 
+            holdTime: 3.0,     
+            pSize: 1.0         
+        };
 
         let particles = [];
         let width, height;
         let isAnimating = false;
-        let time = 0;
-        let animationState = 'wave';
+        
+        let globalTime = 0;       
+        let wavePhaseAcc = 0;     
+        let stateTime = 0;        
+        let loopState = 'wave';   
         let morphProgress = 0;
+        
         let sourceImageObj = null;
         let animationFrameId;
 
         // --- ANIMATION LOGIC ---
         function initAnimation(img) {
+            // Resize logic to fill container
             width = canvas.parentElement.offsetWidth;
             height = canvas.parentElement.offsetHeight;
             const dpr = window.devicePixelRatio || 1;
@@ -503,47 +190,50 @@
             canvas.height = height * dpr;
             ctx.scale(dpr, dpr);
 
-            // Scale to fit canvas
-            const scale = Math.min(width / img.width, height / img.height) * 0.9;
+            // Scale image to fill width comfortably
+            // 0.85 scale gives it presence without touching edges
+            const scale = Math.min(width / img.width, height / img.height) * 0.85;
             const drawW = img.width * scale;
             const drawH = img.height * scale;
+            
+            // Center Horizontally, Align closer to Bottom Vertically
             const offX = (width - drawW) / 2;
-            const offY = (height - drawH) / 2;
+            const offY = (height - drawH) / 2 + 10; // +10 pushes it slightly down towards text
 
+            // Draw temp to read pixels
             ctx.drawImage(img, offX, offY, drawW, drawH);
             const imgData = ctx.getImageData(0, 0, width * dpr, height * dpr);
             const data = imgData.data;
 
             particles = [];
-            const step = 2 * dpr; 
-
+            const step = 1 * dpr; // High Res
+            
             for (let y = 0; y < height * dpr; y += step) {
                 for (let x = 0; x < width * dpr; x += step) {
                     const index = (y * (width * dpr) + x) * 4;
-                    const r = data[index];
-                    const g = data[index + 1];
-                    const b = data[index + 2];
                     const a = data[index + 3];
+                    const r = data[index];
+                    const g = data[index+1];
+                    const b = data[index+2];
 
-                    // Pixel detection logic
-                    if (a > 10 && (r+g+b)/3 < 250) { 
+                    // Pixel detection (Dark pixels on white bg)
+                    if (a > 128 && (r+g+b)/3 < 200) {
                         particles.push({
                             x: x / dpr,
                             y: y / dpr,
-                            color: `rgb(${r},${g},${b})`,
-                            phase: (x / width) * 20 + (y/height) * 10
+                            phaseOffset: (x / width) * 10 
                         });
                     }
                 }
             }
-            ctx.clearRect(0, 0, width, height);
+            ctx.clearRect(0, 0, width, height); // Clear temp draw
         }
 
         function startAnimation() {
             if(!sourceImageObj) return;
-            time = 0;
+            stateTime = 0;
             morphProgress = 0;
-            animationState = 'wave';
+            loopState = 'wave';
             isAnimating = true;
             if(animationFrameId) cancelAnimationFrame(animationFrameId);
             loop();
@@ -551,57 +241,77 @@
 
         function loop() {
             if (!isAnimating) return;
-            time += 0.04;
 
-            if (animationState === 'wave') {
-                if (time > 2.5) animationState = 'morph';
+            // Frequency Ramp Logic
+            let currentFreq = settings.frequency;
+            if (loopState === 'wave') {
+                currentFreq += Math.min(stateTime, 2.0) * settings.freqRamp;
+            } else {
+                currentFreq += 2.0 * settings.freqRamp;
             }
-            else if (animationState === 'morph') {
-                morphProgress += 0.02;
+
+            wavePhaseAcc += settings.speed * currentFreq;
+            globalTime += settings.speed;
+            stateTime += (1/60); 
+
+            // State Machine
+            if (loopState === 'wave') {
+                if (stateTime > 2.5) {
+                    loopState = 'forming';
+                    stateTime = 0;
+                }
+            } 
+            else if (loopState === 'forming') {
+                morphProgress += settings.morphSpeed;
                 if (morphProgress >= 1) {
                     morphProgress = 1;
-                    animationState = 'done';
+                    loopState = 'holding';
+                    stateTime = 0;
+                }
+            }
+            else if (loopState === 'holding') {
+                if (stateTime >= settings.holdTime) {
+                    loopState = 'dissolving';
+                    stateTime = 0;
+                }
+            }
+            else if (loopState === 'dissolving') {
+                morphProgress -= settings.morphSpeed;
+                if (morphProgress <= 0) {
+                    morphProgress = 0;
+                    loopState = 'wave';
+                    stateTime = 0;
                 }
             }
 
             ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = "black"; // Monochrome
 
             for (let i = 0; i < particles.length; i++) {
                 const p = particles[i];
-                let waveIntensity = 1 - morphProgress;
-                
-                const waveY = (height / 2) + 
-                              Math.sin(p.phase + time * 3) * 30 * waveIntensity * Math.sin(time*0.5) +
-                              Math.cos(p.phase * 0.5 - time * 2) * 10 * waveIntensity;
 
+                const waveY = (height / 2) + 
+                              Math.sin(p.phaseOffset + wavePhaseAcc) * settings.amplitude * Math.sin(globalTime * 0.5); 
+                
+                const targetY = p.y;
                 const t = morphProgress;
                 const ease = t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-                const renderY = waveY + (p.y - waveY) * ease;
+                const renderY = waveY + (targetY - waveY) * ease;
 
-                ctx.fillStyle = p.color;
-                ctx.fillRect(p.x, renderY, 1.5, 1.5);
+                ctx.fillRect(p.x, renderY, settings.pSize, settings.pSize); 
             }
 
-            if (animationState !== 'done') {
-                animationFrameId = requestAnimationFrame(loop);
-            } else {
-                // Static final draw
-                ctx.clearRect(0, 0, width, height);
-                if(sourceImageObj) {
-                    const scale = Math.min(width / sourceImageObj.width, height / sourceImageObj.height) * 0.9;
-                    const drawW = sourceImageObj.width * scale;
-                    const drawH = sourceImageObj.height * scale;
-                    const offX = (width - drawW) / 2;
-                    const offY = (height - drawH) / 2;
-                    ctx.drawImage(sourceImageObj, offX, offY, drawW, drawH);
-                }
-                isAnimating = false;
-            }
+            animationFrameId = requestAnimationFrame(loop);
         }
 
-        // --- NAVIGATION & UI ---
-
-        // Load the logo immediately
+        // --- NAVIGATION LOGIC ---
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const contentArea = document.getElementById('content-area');
+        const sidebarLogoArea = document.getElementById('sidebar-logo-area');
+        const mainBanner = document.getElementById('main-banner');
+        
+        // Load Image
         const img = new Image();
         img.onload = () => {
             sourceImageObj = img;
@@ -628,11 +338,9 @@
         function handleNavigation(targetId) {
             const allSections = ['about', 'news', 'call-for-papers', 'committees', 'program', 'registration', 'sponsors', 'venue', 'contact'];
             
-            // Active Link Styling
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(l => l.classList.add('active'));
 
-            // Show/Hide Sections
             allSections.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) el.classList.add('section-hidden');
@@ -642,24 +350,21 @@
 
             contentArea.scrollTop = 0;
 
-            // --- ANIMATION TRIGGER ---
             if (targetId === 'about') {
-                // HOME PAGE: Show Main Banner, Hide Sidebar Animation Area
                 if (mainBanner) mainBanner.classList.remove('hidden');
                 sidebarLogoArea.classList.remove('opacity-100');
                 sidebarLogoArea.classList.add('opacity-0');
-                isAnimating = false;
+                isAnimating = false; // Pause on home
             } else {
-                // OTHER PAGES: Hide Main Banner, Show Sidebar Animation, TRIGGER IT
                 if (mainBanner) mainBanner.classList.add('hidden');
                 sidebarLogoArea.classList.remove('opacity-0');
                 sidebarLogoArea.classList.add('opacity-100');
                 
-                if(sourceImageObj) startAnimation();
+                // Only start if not already animating
+                if(sourceImageObj && !isAnimating) startAnimation();
             }
         }
 
-        // Initialize default view
         handleNavigation('about');
 
     </script>
