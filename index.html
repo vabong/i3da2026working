@@ -530,7 +530,7 @@
                     </div>
                 </div>
             </section>
-
+            
             <section id="committees" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Organisers</h2><p class="font-light">Committee list...</p></div></section>
 
             <footer class="bg-white border-t border-gray-100 py-8 text-center text-xs text-gray-400 uppercase tracking-widest">
@@ -544,15 +544,18 @@
         const ctx = canvas.getContext('2d');
         const logoSrc = 'logo.jpg'; 
 
+        // UPDATED SETTINGS FROM YOUR SCREENSHOT
         const settings = {
-            amplitude: 75,
-            startFreq: 2,       // Low frequency
-            endFreq: 50,        // High frequency
-            sweepDuration: 6.0, // Time for sweep
-            speed: 0.009,      
-            morphSpeed: 0.008, 
-            holdTime: 9.5,     
-            pSize: 1.0         
+            startSpatial: 0.5,    // Start Ripples (Low Freq)
+            endSpatial: 18,       // End Ripples (High Freq)
+            amplitude: 75,        // Wave Height
+            sweepDuration: 6.0,   // Sweep Duration (sec)
+            pWidth: 1,            // Particle Width
+            pHeight: 1,           // Particle Height
+            resolution: 1,        // Resolution Step (1 = HD)
+            morphSpeed: 0.005,    // Morph Speed
+            holdTime: 9.5,        // Keep existing hold time for readability
+            speed: 0.009          // Animation Speed (temporal)
         };
 
         let particles = [];
@@ -561,7 +564,7 @@
         let globalTime = 0;       
         let wavePhaseAcc = 0;     
         let stateTime = 0;        
-        let loopState = 'wave';   
+        let loopState = 'sweep_in'; // New start state
         let morphProgress = 0;
         let sourceImageObj = null;
         let animationFrameId;
@@ -585,21 +588,22 @@
             const data = imgData.data;
 
             particles = [];
-            const step = 1 * dpr; 
-            
-            for (let y = 0; y < height * dpr; y += step) {
-                for (let x = 0; x < width * dpr; x += step) {
-                    const index = (y * (width * dpr) + x) * 4;
-                    const a = data[index + 3];
-                    const r = data[index];
-                    const g = data[index+1];
-                    const b = data[index+2];
+            // Use resolution setting from screenshot
+            const step = Math.max(1, Math.floor(settings.resolution * dpr)); 
+
+            for(let y=0; y < height*dpr; y+=step) {
+                for(let x=0; x < width*dpr; x+=step) {
+                    const i = (y * (width*dpr) + x) * 4;
+                    const r = data[i];
+                    const g = data[i+1];
+                    const b = data[i+2];
+                    const a = data[i+3];
 
                     if (a > 128 && (r+g+b)/3 < 200) {
                         particles.push({
                             x: x / dpr,
                             y: y / dpr,
-                            phaseOffset: (x / width) * 10 
+                            normX: x / (width * dpr) 
                         });
                     }
                 }
@@ -610,8 +614,9 @@
         function startAnimation() {
             if(!sourceImageObj) return;
             stateTime = 0;
+            globalTime = 0;
             morphProgress = 0;
-            loopState = 'wave';
+            loopState = 'sweep_in'; // Start with Low -> High sweep
             isAnimating = true;
             if(animationFrameId) cancelAnimationFrame(animationFrameId);
             loop();
@@ -619,48 +624,92 @@
 
         function loop() {
             if (!isAnimating) return;
-            
-            let currentFreq = settings.endFreq; 
 
-            // Sine Sweep Logic
-            if (loopState === 'wave') {
-                const t = Math.min(stateTime, settings.sweepDuration);
-                const progress = t / settings.sweepDuration;
-                currentFreq = settings.startFreq + (settings.endFreq - settings.startFreq) * progress;
+            globalTime += settings.speed;
+            stateTime += 1/60;
+
+            // --- BOOMERANG LOOP LOGIC ---
+            let currentSpatialFreq = settings.startSpatial;
+            let currentMorph = morphProgress;
+
+            if (loopState === 'sweep_in') {
+                // 1. Sweep Low -> High
+                const progress = Math.min(stateTime / settings.sweepDuration, 1.0);
+                currentSpatialFreq = settings.startSpatial + (settings.endSpatial - settings.startSpatial) * progress;
                 
-                if (stateTime > settings.sweepDuration) {
+                if (stateTime >= settings.sweepDuration) {
                     loopState = 'forming';
                     stateTime = 0;
                 }
-            } else if (loopState === 'forming') {
+            }
+            else if (loopState === 'forming') {
+                // 2. Morph Wave -> Image
+                currentSpatialFreq = settings.endSpatial; // Lock at high freq
                 morphProgress += settings.morphSpeed;
-                if (morphProgress >= 1) { morphProgress = 1; loopState = 'holding'; stateTime = 0; }
+                currentMorph = morphProgress;
+                
+                if(morphProgress >= 1) {
+                    morphProgress = 1;
+                    loopState = 'holding';
+                    stateTime = 0;
+                }
             }
             else if (loopState === 'holding') {
-                if (stateTime >= settings.holdTime) { loopState = 'dissolving'; stateTime = 0; }
+                // 3. Hold Image
+                currentSpatialFreq = settings.endSpatial;
+                currentMorph = 1;
+                
+                if(stateTime >= settings.holdTime) {
+                    loopState = 'dissolving';
+                    stateTime = 0;
+                }
             }
             else if (loopState === 'dissolving') {
+                // 4. Dissolve Image -> Wave (Reverse Form)
+                currentSpatialFreq = settings.endSpatial;
                 morphProgress -= settings.morphSpeed;
-                if (morphProgress <= 0) { morphProgress = 0; loopState = 'wave'; stateTime = 0; }
+                currentMorph = morphProgress;
+                
+                if(morphProgress <= 0) {
+                    morphProgress = 0;
+                    loopState = 'sweep_out';
+                    stateTime = 0;
+                }
+            }
+            else if (loopState === 'sweep_out') {
+                // 5. Sweep High -> Low (Reverse Sweep)
+                const progress = Math.min(stateTime / settings.sweepDuration, 1.0);
+                // Invert progress: Start at End, go to Start
+                currentSpatialFreq = settings.endSpatial - (settings.endSpatial - settings.startSpatial) * progress;
+                currentMorph = 0;
+
+                if (stateTime >= settings.sweepDuration) {
+                    loopState = 'sweep_in';
+                    stateTime = 0;
+                }
             }
 
-            // Accumulate phase based on current instantaneous frequency
-            wavePhaseAcc += settings.speed * currentFreq;
-            globalTime += settings.speed;
-            stateTime += (1/60); 
-
             ctx.clearRect(0, 0, width, height);
-            ctx.fillStyle = "black"; 
+            ctx.fillStyle = 'black';
 
             for (let i = 0; i < particles.length; i++) {
                 const p = particles[i];
-                const waveY = (height / 2) + Math.sin(p.phaseOffset + wavePhaseAcc) * settings.amplitude * Math.sin(globalTime * 0.5); 
+
+                // Wave Calculation
+                const sineVal = Math.sin( (p.normX * currentSpatialFreq * Math.PI * 2) + globalTime );
+                const waveY = (height / 2) + sineVal * settings.amplitude;
                 const targetY = p.y;
-                const t = morphProgress;
+
+                // Easing
+                const t = currentMorph;
                 const ease = t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+                
                 const renderY = waveY + (targetY - waveY) * ease;
-                ctx.fillRect(p.x, renderY, settings.pSize, settings.pSize); 
+
+                // Draw Particle
+                ctx.fillRect(p.x, renderY, settings.pWidth, settings.pHeight); 
             }
+
             animationFrameId = requestAnimationFrame(loop);
         }
 
