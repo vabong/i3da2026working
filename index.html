@@ -71,8 +71,8 @@
             position: relative;
             width: 100%;
             overflow: hidden;
-            min-height: 200px; /* Ensure a minimum size */
-            transition: opacity 0.3s ease;
+            min-height: 200px; /* Prevent collapse */
+            transition: opacity 0.3s ease; /* Smooth visibility toggle */
         }
         #bannerCanvas {
             position: absolute;
@@ -82,7 +82,7 @@
             height: 100%;
             z-index: 10;
             pointer-events: none; 
-            opacity: 1;
+            opacity: 1; /* Always visible for loop */
         }
         
         canvas {
@@ -140,6 +140,27 @@
                 </button>
             </div>
         </header>
+
+        <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-white overflow-y-auto p-8 pt-24">
+            <h2 class="text-3xl font-light text-lagoon-blue mb-8 tracking-widest">MENU</h2>
+            <nav class="space-y-4">
+                <a data-target="about" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">About</a>
+                <a data-target="venue" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Conference venue</a>
+                <a data-target="program" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Programme</a>
+                <a data-target="call-for-papers" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Call for papers</a>
+                <a data-target="registration" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Registration</a>
+                <a data-target="sponsors" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Sponsors</a>
+                <a data-target="patronage" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Patronage</a>
+                <a data-target="contact" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Contacts</a>
+                <a data-target="news" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">News</a>
+            </nav>
+            <div class="flex justify-start space-x-6 mt-12 pt-8 border-t border-gray-100">
+                <a href="https://www.linkedin.com/company/86452519/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="https://www.facebook.com/I3DAudio/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-facebook text-xl"></i></a>
+                <a href="https://www.instagram.com/i3da.2026/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                <a href="https://x.com/i3da2026" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-x-twitter text-xl"></i></a>
+            </div>
+        </div>
 
         <main id="content-area" class="flex-grow overflow-y-auto bg-gray-50 md:mt-0 mt-24 scroll-smooth">
             
@@ -516,10 +537,10 @@
 
         function initBannerAnimation(image) {
             const container = document.getElementById('main-banner-container');
-            const imgElement = container.querySelector('img'); // Get the actual image element
+            const imgElement = container.querySelector('img'); 
             
             bnWidth = container.offsetWidth;
-            // FIX: Use the image element's rendered height for accurate canvas size
+            // FIXED: Use the actual rendered height of the image for accurate canvas size
             bnHeight = imgElement.offsetHeight || 224; 
             
             const dpr = window.devicePixelRatio || 1;
@@ -572,6 +593,7 @@
             bnGlobalTime = 0;
             bnMorphProgress = 0;
             bnIsAnimating = true;
+            // Ensure Opacity is 1 for the loop
             bannerCanvas.style.opacity = 1;
             if(bnAnimId) cancelAnimationFrame(bnAnimId);
             bannerLoop();
@@ -634,13 +656,21 @@
         // ==========================================
         //  NAVIGATION & UI LOGIC
         // ==========================================
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
         const contentArea = document.getElementById('content-area');
         const sidebarLogoArea = document.getElementById('sidebar-logo-area');
         const mainBannerContainer = document.getElementById('main-banner-container'); 
+        
+        // Mobile Menu Button Logic (FIXED)
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        // Added a check for element existence for robustness
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
         document.querySelectorAll('#mobile-menu a').forEach(l => {
             l.addEventListener('click', (e) => {
                 mobileMenu.classList.add('hidden');
