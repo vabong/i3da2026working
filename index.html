@@ -171,15 +171,14 @@
 
             <section id="about" class="section-padding bg-white min-h-screen">
                 <div class="max-w-5xl mx-auto">
-                    <h1 class="text-4xl md:text-5xl font-extralight text-gray-800 mb-10 leading-tight">
-                        I3DA: Immersive Media in <span class="text-lagoon-blue font-normal">Heritage</span>, <span class="text-lagoon-blue font-normal">Nature</span> and <span class="text-lagoon-blue font-normal">Consciousness</span>
-                    </h1>
                     
                     <div class="text-center mb-12">
-                        <p class="text-xl md:text-2xl font-light text-gray-600 leading-relaxed mb-4">
-                            We are organising the 4th<br>
-                            <span class="font-normal text-gray-900">International Conference on Immersive and 3D Audio</span>
+                        <p class="text-xl md:text-2xl font-light text-gray-600 leading-relaxed mb-2">
+                            We are organising the 4th
                         </p>
+                        <h1 class="text-4xl md:text-5xl font-extralight text-gray-800 mb-4 leading-tight">
+                            International Conference on Immersive and 3D Audio
+                        </h1>
                         <div class="inline-block border-t border-b border-gray-200 py-3 px-8 mt-2">
                             <p class="text-sm uppercase tracking-[0.2em] text-gray-500">Venice, Italy &nbsp;|&nbsp; 19–22 November 2026</p>
                         </div>
@@ -187,6 +186,10 @@
 
                     <p class="text-lagoon-blue text-lg mb-10 text-center font-medium tracking-wide">Save the date! More info coming soon...</p>
                     
+                    <h2 class="text-3xl font-extralight text-gray-800 mb-10 leading-tight text-center">
+                        I3DA: Immersive Media in <span class="text-lagoon-blue font-normal">Heritage</span>, <span class="text-lagoon-blue font-normal">Nature</span> and <span class="text-lagoon-blue font-normal">Consciousness</span>
+                    </h2>
+
                     <div class="space-y-8 text-lg font-light text-gray-600 text-justify leading-loose">
                          <p>
                             I3DA 2026 will again focus on innovation in 3D immersive audio, including virtual acoustics, architectural and musical acoustics, subjective evaluations and listening tests, immersive soundscape design, and creative uses of immersive technologies. Furthermore, I3DA 2026 will be a special edition, that will include visual and interactive aspects of immersive media, such as related computer graphics, LIDAR scans, photogrammetry, immersive world building, digital archaeology, 3D visualization, and hardware and software applications across both fields. The aim is to open new possibilities for collaboration, networking, and deeper understanding between complementary sensory domains in immersive media.
@@ -579,10 +582,12 @@
         const oceanSettings = {
             swellAmp: 41, swellFreq: 2, swellSpeed: 0.15,
             chopAmp: 20, chopFreq: 8, chopSpeed: 0.08,
-            waveDuration: 10.0, // 50% reduction
+            waveDuration: 10.0,
             morphSpeed: 0.004,
             resolution: 1,
-            holdTime: 3.0
+            holdTime: 3.0,
+            // New setting for particle size/line thickness
+            particleSize: 0.8
         };
 
         let bannerParticles = [];
@@ -700,7 +705,8 @@
                 
                 const currentY = waveY + (p.ty - waveY) * ease;
 
-                bannerCtx.fillRect(currentX, currentY, 1.5, 1.5);
+                // LINE THICKNESS ADJUSTMENT
+                bannerCtx.fillRect(currentX, currentY, oceanSettings.particleSize, oceanSettings.particleSize);
             }
             bnAnimId = requestAnimationFrame(bannerLoop);
         }
