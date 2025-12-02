@@ -261,8 +261,14 @@
                         <div class="mt-6">
                             <h4 class="font-medium text-gray-800 mb-2">Useful Resources:</h4>
                             <ul class="list-disc list-inside space-y-1">
-                                <li><a href="#" class="text-lagoon-light hover:underline">How to make a submission via EasyChair</a></li>
-                                <li><a href="#" class="text-lagoon-light hover:underline">IEEE conference templates</a></li>
+                                <li>
+                                    <a href="#" class="text-lagoon-light hover:underline">How to make a submission via EasyChair</a> 
+                                    <span class="text-sm text-gray-400 font-light">(Instructions coming soon)</span>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-lagoon-light hover:underline">IEEE conference templates</a> 
+                                    <span class="text-sm text-gray-400 font-light">(Instructions coming soon)</span>
+                                </li>
                             </ul>
                         </div>
 
@@ -281,15 +287,15 @@
                             <ul class="space-y-4">
                                 <li>
                                     <a href="#" class="text-lagoon-blue font-medium hover:underline">Microsoft Word – A4</a>
-                                    <span class="block text-sm text-gray-400 italic mt-1">: Template will be available soon</span>
+                                    <span class="block text-sm text-gray-400 italic mt-1">(Instructions coming soon)</span>
                                 </li>
                                 <li>
                                     <a href="#" class="text-lagoon-blue font-medium hover:underline">LaTeX Template Instructions</a>
-                                    <span class="block text-sm text-gray-400 italic mt-1">: Template will be available soon</span>
+                                    <span class="block text-sm text-gray-400 italic mt-1">(Instructions coming soon)</span>
                                 </li>
                                 <li>
                                     <a href="#" class="text-lagoon-blue font-medium hover:underline">Template (ZIP)</a>
-                                    <span class="block text-sm text-gray-400 italic mt-1">: Template will be available soon</span>
+                                    <span class="block text-sm text-gray-400 italic mt-1">(Instructions coming soon)</span>
                                 </li>
                             </ul>
                         </div>
@@ -586,7 +592,6 @@
             morphSpeed: 0.004,
             resolution: 1,
             holdTime: 3.0,
-            // New setting for particle size/line thickness
             particleSize: 0.8
         };
 
@@ -664,115 +669,3 @@
         function bannerLoop() {
             if(!bnIsAnimating) return;
             bnGlobalTime += 1/60;
-            bnStateTime += 1/60;
-
-            if(bnStage === 'wave') {
-                if(bnStateTime > oceanSettings.waveDuration) { bnStage = 'morph'; bnStateTime = 0; }
-            } else if(bnStage === 'morph') {
-                bnMorphProgress += oceanSettings.morphSpeed;
-                if(bnMorphProgress >= 1) { bnMorphProgress = 1; bnStage = 'hold'; bnStateTime = 0; }
-            } else if(bnStage === 'hold') {
-                if(bnStateTime > oceanSettings.holdTime) { 
-                    bnStage = 'dissolve'; 
-                    bnStateTime = 0;
-                }
-            } else if(bnStage === 'dissolve') {
-                bnMorphProgress -= oceanSettings.morphSpeed;
-                if(bnMorphProgress <= 0) { 
-                    bnMorphProgress = 0; 
-                    bnStage = 'wave'; 
-                    bnStateTime = 0; 
-                }
-            }
-
-            bannerCtx.clearRect(0,0,bnWidth,bnHeight);
-            bannerCtx.fillStyle = '#fff'; 
-
-            for(let i=0; i<bannerParticles.length; i++) {
-                const p = bannerParticles[i];
-
-                const t = bnMorphProgress;
-                const ease = t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-                const currentX = p.sx + (p.tx - p.sx) * ease;
-                
-                const normX = currentX / bnWidth;
-
-                const y1 = Math.sin(normX * oceanSettings.swellFreq * Math.PI + bnGlobalTime * oceanSettings.swellSpeed) * oceanSettings.swellAmp;
-                const y2 = Math.cos(normX * oceanSettings.chopFreq * Math.PI - bnGlobalTime * oceanSettings.chopSpeed) * oceanSettings.chopAmp;
-                const y3 = Math.sin(p.phase + bnGlobalTime * 2) * 2;
-                
-                const waveY = (bnHeight/2) + y1 + y2 + y3;
-                
-                const currentY = waveY + (p.ty - waveY) * ease;
-
-                // LINE THICKNESS ADJUSTMENT
-                bannerCtx.fillRect(currentX, currentY, oceanSettings.particleSize, oceanSettings.particleSize);
-            }
-            bnAnimId = requestAnimationFrame(bannerLoop);
-        }
-
-        // ==========================================
-        //  NAVIGATION & UI LOGIC
-        // ==========================================
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const contentArea = document.getElementById('content-area');
-        const sidebarLogoArea = document.getElementById('sidebar-logo-area');
-        const mainBannerContainer = document.getElementById('main-banner-container'); 
-
-        menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        document.querySelectorAll('#mobile-menu a').forEach(l => {
-            l.addEventListener('click', (e) => {
-                mobileMenu.classList.add('hidden');
-                handleNavigation(e.currentTarget.getAttribute('data-target'));
-            });
-        });
-        document.querySelectorAll('#sidebar nav a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                handleNavigation(e.currentTarget.getAttribute('data-target'));
-            });
-        });
-
-        function handleNavigation(targetId) {
-            const allSections = ['about', 'news', 'call-for-papers', 'committees', 'program', 'registration', 'sponsors', 'patronage', 'venue', 'contact'];
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(l => l.classList.add('active'));
-            allSections.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.classList.add('section-hidden');
-            });
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) targetSection.classList.remove('section-hidden');
-            contentArea.scrollTop = 0;
-
-            const showBanner = (targetId === 'about' || targetId === 'news');
-
-            if (showBanner) {
-                // Show Main Banner
-                if(mainBannerContainer) mainBannerContainer.classList.remove('hidden');
-                
-                // Hide sidebar logo
-                sidebarLogoArea.classList.remove('opacity-100');
-                sidebarLogoArea.classList.add('opacity-0');
-                sbIsAnimating = false; 
-            } else {
-                // Hide Main Banner
-                if(mainBannerContainer) mainBannerContainer.classList.add('hidden');
-
-                // Show sidebar logo
-                sidebarLogoArea.classList.remove('opacity-0');
-                sidebarLogoArea.classList.add('opacity-100');
-                if(sourceImageObj && !sbIsAnimating) startSidebarLoop();
-            }
-        }
-        // Init state
-        handleNavigation('about');
-        
-        // Window Resize Handler for both canvases
-        window.addEventListener('resize', () => {
-            if(sourceImageObj) initSidebarAnimation(sourceImageObj);
-            if(sourceImageObj) initBannerAnimation(sourceImageObj);
-        });
-    </script>
-</body>
-</html>
