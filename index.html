@@ -185,12 +185,10 @@
             <section id="about" class="section-padding bg-white min-h-screen">
                 <div class="max-w-5xl mx-auto">
                     
-                
-                <h1 class="text-4xl md:text-5xl font-light text-gray-800 mb-6 leading-tight text-center">
-                    <span class="text-xl md:text-2xl font-light">We are organising the 4th</span><br>
-                    <span class="font-normal text-lagoon-blue">International Conference on Immersive and 3D Audio</span>
-                </h1>
-
+                    <h1 class="text-4xl md:text-5xl font-light text-gray-800 mb-6 leading-tight text-center">
+                        <span class="text-xl md:text-2xl font-light">We are organising the 4th</span><br>
+                        <span class="font-normal text-lagoon-blue">International Conference on Immersive and 3D Audio</span>
+                    </h1>
                     
                     <div class="text-center mb-12">
                         <div class="inline-block border-t border-b border-gray-200 py-3 px-8 mt-2">
@@ -251,11 +249,13 @@
                          <p class="text-md text-gray-400 font-medium mt-4 italic">All sponsorship amounts are listed excluding VAT.</p>
                     </div>
                     
-                    <div class="mt-8 bg-white p-8 border-l-2 border-lagoon-blue shadow-md">
-                        <h4 class="text-2xl font-normal text-lagoon-blue mb-4 tracking-wide">Contact Us for Sponsorship Details</h4>
-                        <p class="text-lg text-gray-700 font-light mb-4">We are ready to work with you to create a customized package that aligns perfectly with your marketing objectives.</p>
+                    <div class="mt-8 bg-white p-8 border-l-2 border-lagoon-blue shadow-md text-center">
+                        <h4 class="text-2xl font-normal text-lagoon-blue mb-4 tracking-wide">Ready to Partner?</h4>
+                        <a href="#contact" class="inline-block bg-lagoon-blue text-white py-3 px-8 rounded-lg text-sm uppercase tracking-widest font-medium hover:bg-lagoon-light transition-colors shadow-lg">
+                            Contact Us for Details
+                        </a>
                         
-                        <h4 class="text-lg font-normal text-gray-800 mt-8 mb-4 uppercase tracking-widest">Contact Information</h4>
+                        <h4 class="text-lg font-normal text-gray-800 mt-8 mb-4 uppercase tracking-widest border-t border-gray-100 pt-6">Sponsorship Contact Information</h4>
                         <p class="text-gray-600 font-light leading-relaxed">
                             <strong>To discuss a partnership, please contact:</strong><br>
                             <span class="font-normal">Dr. Cobi van Tonder</span><br>
@@ -364,7 +364,8 @@
         
         const sidebarSettings = {
             // Animation timing and physics settings
-            startSpatial: 0.5, endSpatial: 18, amplitude: 55,
+            startSpatial: 0.5, endSpatial: 18, 
+            amplitude: 75, // <-- CONTROLS SIDEBAR WAVE SIZE
             sweepDuration: 6.0, pWidth: 1, pHeight: 1, resolution: 1,
             morphSpeed: 0.005, holdTime: 9.5, speed: 0.009
         };
@@ -507,7 +508,7 @@
         const oceanSettings = {
             swellAmp: 41, swellFreq: 2, swellSpeed: 0.15,
             chopAmp: 20, chopFreq: 8, chopSpeed: 0.08,
-            waveDuration: 2.0, // <-- DURATION OF THE WIDE WAVE PHASE (Set to faster 5s)
+            waveDuration: 5.0, // <-- DURATION OF THE WIDE WAVE PHASE (Set to faster 5s)
             morphSpeed: 0.004,
             resolution: 1,
             holdTime: 1.0       // <-- DURATION OF THE STATIC LOGO PHASE (Set to faster 1s)
