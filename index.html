@@ -11,12 +11,14 @@
         tailwind.config = {
             theme: {
                 extend: {
+                    // Custom color palette based on "lagoon" and "venice" themes
                     colors: {
                         'lagoon-blue': '#005f73',
                         'lagoon-light': '#4da8b8',
                         'lagoon-bg': '#f0f8f8',
                         'venice-red': '#A52A2A', 
                     },
+                    // Custom font family
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     }
@@ -29,31 +31,96 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* CUSTOM STYLES */
+        
+        /* Ensures smooth scroll when clicking internal links */
         html { scroll-behavior: smooth; }
+        /* Base font and prevents body overflow */
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; height: 100vh; overflow: hidden; }
-        .nav-link { transition: all 0.3s ease; padding: 0.75rem 1rem; display: block; border-radius: 0; cursor: pointer; border-left: 2px solid transparent; }
-        .nav-link:hover, .nav-link.active { color: #005f73; background-color: #f8fafc; border-left-color: #005f73; }
+        
+        /* Styling for the sidebar navigation links */
+        .nav-link { 
+            transition: all 0.3s ease; 
+            padding: 0.75rem 1rem; 
+            display: block; 
+            border-radius: 0; 
+            cursor: pointer;
+            border-left: 2px solid transparent; /* Used for active state indicator */
+        }
+        /* Active and hover states for navigation links */
+        .nav-link:hover, .nav-link.active { 
+            color: #005f73; 
+            background-color: #f8fafc; 
+            border-left-color: #005f73; 
+        }
+        
+        /* Consistent vertical padding for all content sections */
         .section-padding { padding: 4rem 1.5rem; }
         @media (min-width: 640px) { .section-padding { padding: 6rem 4rem; } }
+        
+        /* Smooth transition for showing/hiding the sidebar logo based on navigation */
         #sidebar-logo-area { transition: opacity 0.5s ease-in-out; }
+        
+        /* Utility class to hide sections not currently active */
         .section-hidden { display: none; }
-        #anim-canvas-container { width: 100%; height: 220px; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: flex-end; padding-bottom: 0px; }
-        #main-banner-container { position: relative; width: 100%; overflow: hidden; min-height: 200px; transition: opacity 0.3s ease; }
-        #bannerCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; opacity: 1; }
-        canvas { display: block; width: 100%; height: 100%; }
+
+        /* --- SIDEBAR CANVAS CONTAINER --- */
+        #anim-canvas-container {
+            width: 100%; 
+            height: 220px; 
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; 
+            padding-bottom: 0px; 
+        }
+        
+        /* --- BANNER CANVAS CONTAINER (Main Header) --- */
+        #main-banner-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            min-height: 200px; 
+            transition: opacity 0.3s ease; 
+        }
+        /* Canvas layer for the particle animation, overlaid on the banner image */
+        #bannerCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none; /* Allows clicks to pass through to the image/container */
+            opacity: 1; 
+        }
+        
+        /* General canvas styling */
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
 
     <div class="flex h-screen overflow-hidden">
+        
         <aside id="sidebar" class="w-80 flex-shrink-0 bg-white shadow-2xl overflow-y-auto hidden md:block transition-all duration-300 z-20 flex flex-col">
+            
             <div id="sidebar-logo-area" class="pt-6 pb-2 text-center border-b border-gray-100 opacity-0">
-                <div id="anim-canvas-container"><canvas id="logoCanvas"></canvas></div>
+                <div id="anim-canvas-container">
+                    <canvas id="logoCanvas"></canvas>
+                </div>
+                
                 <div class="-mt-6 relative z-10 bg-white/80 backdrop-blur-sm py-2">
                     <h1 class="text-4xl font-light text-lagoon-blue leading-none tracking-[0.15em]">I3DA</h1>
                     <div class="text-lg font-light text-lagoon-blue tracking-[0.3em] mt-1">2026</div>
                     <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase mt-3">Venice, Italy</p>
                     <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase">19–22 Nov</p>
+
                     <div class="flex justify-center space-x-5 mt-5 mb-2">
                         <a href="https://www.linkedin.com/company/86452519/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
                         <a href="https://www.facebook.com/I3DAudio/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-facebook text-lg"></i></a>
@@ -62,6 +129,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="p-0 py-6 flex-grow">
                 <nav class="space-y-1">
                     <a data-target="about" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500 active">About</a>
@@ -99,9 +167,16 @@
                 <a data-target="contact" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Contacts</a>
                 <a data-target="news" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">News</a>
             </nav>
+            <div class="flex justify-start space-x-6 mt-12 pt-8 border-t border-gray-100">
+                <a href="https://www.linkedin.com/company/86452519/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="https://www.facebook.com/I3DAudio/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-facebook text-xl"></i></a>
+                <a href="https://www.instagram.com/i3da.2026/" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-instagram text-xl"></i></a>
+                <a href="https://x.com/i3da2026" target="_blank" class="text-gray-400 hover:text-lagoon-blue transition-colors"><i class="fab fa-x-twitter text-xl"></i></a>
+            </div>
         </div>
 
         <main id="content-area" class="flex-grow overflow-y-auto bg-gray-50 md:mt-0 mt-24 scroll-smooth">
+            
             <section id="main-banner-container" class="w-full">
                 <canvas id="bannerCanvas"></canvas>
                 <img src="blue5.jpg" alt="I3DA 2026 Banner" class="w-full h-auto block" onerror="this.src='https://placehold.co/1000x224/E0F2F1/005F73?text=I3DA+Banner';">
@@ -109,30 +184,43 @@
 
             <section id="about" class="section-padding bg-white min-h-screen">
                 <div class="max-w-5xl mx-auto">
+                    
                     <h1 class="text-4xl md:text-5xl font-light text-gray-800 mb-6 leading-tight text-center">
                         <span class="text-xl md:text-2xl font-light">We are organising the 4th</span>
+
                         <span class="font-normal text-lagoon-blue">International Conference on Immersive and 3D Audio</span>
                     </h1>
+                    
                     <div class="text-center mb-12">
                         <div class="inline-block border-t border-b border-gray-200 py-3 px-8 mt-2">
                             <p class="text-sm uppercase tracking-[0.2em] text-gray-500">Venice, Italy &nbsp;|&nbsp; 19–22 November 2026</p>
                         </div>
                     </div>
+
                     <p class="text-lagoon-blue text-lg mb-12 text-center font-medium tracking-wide">Save the date! More info coming soon...</p>
+                    
                     <h2 class="text-2xl font-extralight text-gray-800 mb-8 leading-tight text-center">
                         I3DA: Immersive Media in <span class="text-lagoon-blue font-normal">Heritage</span>, <span class="text-lagoon-blue font-normal">Nature</span> and <span class="text-lagoon-blue font-normal">Consciousness</span>
                     </h2>
+
                     <div class="space-y-8 text-lg font-light text-gray-600 text-justify leading-loose">
-                         <p>I3DA 2026 will again focus on innovation in 3D immersive audio, including virtual acoustics, architectural and musical acoustics, subjective evaluations and listening tests, immersive soundscape design, and creative uses of immersive technologies. Furthermore, I3DA 2026 will be a special edition, that will include visual and interactive aspects of immersive media, such as related computer graphics, LIDAR scans, photogrammetry, immersive world building, digital archaeology, 3D visualization, and hardware and software applications across both fields. The aim is to open new possibilities for collaboration, networking, and deeper understanding between complementary sensory domains in immersive media.</p>
-                         <p>I3DA 2026 would like to involve academic and industrial researchers to share their latest research, methods, and demos related to Immersive and 3D Audio, Interaction Design and Visuals in Audio Engineering, Computer Science and Visuals. Topics include virtual/augmented reality and their applications, digital archaeology, musical acoustics, signal processing in acoustics, non-linear acoustics in auralisation, machine learning related to immersive media, acoustics, heritage acoustics, psychoacoustics, gaming, art and sound studies contexts, bioacoustics and the environment. Further topics may be accepted.</p>
-                         <p>I3DA will be indexed on IEEE like the last years, with Special Issues like last year.</p>
-                         <p>The conference will represent the forefront of new methodologies and technologies in the field, establishing itself as a high-profile international meeting point for researchers and professionals in immersive media and 3D audio. This event will foster meaningful international collaborations—across academia, industry, heritage and museum institutions, the arts, and environmental initiatives—while driving forward innovation in immersive media.</p>
+                         <p>
+                            I3DA 2026 will again focus on innovation in 3D immersive audio, including virtual acoustics, architectural and musical acoustics, subjective evaluations and listening tests, immersive soundscape design, and creative uses of immersive technologies. Furthermore, I3DA 2026 will be a special edition, that will include visual and interactive aspects of immersive media, such as related computer graphics, LIDAR scans, photogrammetry, immersive world building, digital archaeology, 3D visualization, and hardware and software applications across both fields. The aim is to open new possibilities for collaboration, networking, and deeper understanding between complementary sensory domains in immersive media.
+                        </p>
+                        <p>
+                            I3DA 2026 would like to involve academic and industrial researchers to share their latest research, methods, and demos related to Immersive and 3D Audio, Interaction Design and Visuals in Audio Engineering, Computer Science and Visuals. Topics include virtual/augmented reality and their applications, digital archaeology, musical acoustics, signal processing in acoustics, non-linear acoustics in auralisation, machine learning related to immersive media, acoustics, heritage acoustics, psychoacoustics, gaming, art and sound studies contexts, bioacoustics and the environment. Further topics may be accepted.
+                        </p>
+                        <p>
+                            I3DA will be indexed on IEEE like the last years, with Special Issues like last year.
+                        </p>
+                        <p>
+                            The conference will represent the forefront of new methodologies and technologies in the field, establishing itself as a high-profile international meeting point for researchers and professionals in immersive media and 3D audio. This event will foster meaningful international collaborations—across academia, industry, heritage and museum institutions, the arts, and environmental initiatives—while driving forward innovation in immersive media.
+                        </p>
                     </div>
                 </div>
             </section>
 
             <section id="venue" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Conference Venue</h2><p class="font-light text-lg">Venue details appearing soon...</p></div></section>
-            
             <section id="program" class="section-padding bg-gray-50 section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-200 pb-4 uppercase tracking-[0.1em]">Programme</h2><p class="font-light text-lg">Schedule appearing soon...</p></div></section>
             
             <section id="call-for-papers" class="section-padding bg-gray-50 min-h-screen section-hidden">
@@ -142,6 +230,7 @@
                         <p>We cordially invite you to submit your papers and posters for the <strong class="font-medium text-gray-800">International Conference on Immersive and 3D Audio (I3DA 2026)</strong>. The Organizing Committee is pleased to announce that I3DA 2026 will be hosted in Piazza Scaravilli, University of Bologna, Italy.</p>
                         <p>I3DA 2026 will again focus on <strong class="font-medium">innovation in 3D immersive audio</strong> including architectural acoustics, virtual acoustics, automotive acoustics, subjective evaluations and listening tests, immersive soundscape design and creative uses of immersive technologies.</p>
                         <div class="bg-white p-8 border border-gray-100 shadow-sm"><p class="italic text-lagoon-blue mb-2 font-medium">Special Edition Focus</p><p>Furthermore, I3DA 2026 will be a special edition, that will include <strong class="font-medium text-gray-800">visual and interactive aspects of immersive media</strong>, such as related computer graphics, LIDAR scans, photogrammetry, immersive world building, digital archaeology, 3D visualization, and hardware and software applications across both fields.</p></div>
+                        
                         <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Planned Timeline</h3>
                         <div class="bg-white p-6 border border-gray-100">
                             <p class="italic text-gray-500 mb-4">Specific dates will be announced soon for the following milestones:</p>
@@ -158,38 +247,74 @@
                                 <li>Submission of Presentations and Posters</li>
                             </ul>
                         </div>
+
                         <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">How to Submit a Paper</h3>
                         <p>To submit your full paper, please log into your SUBMISSION, click ADD FILES on the top-right hand side and add your file. The papers must be submitted via EasyChair paper management system, following the IEEE guidelines for proceedings papers.</p>
                         <p>The expected number of pages for contribution should preferably not exceed 10 pages for paper. Authors must follow IEEE <a href="https://conferences.ieeeauthorcenter.ieee.org/author-ethics/" target="_blank" class="text-lagoon-light hover:underline font-medium">ethical</a> and <a href="https://conferences.ieeeauthorcenter.ieee.org/write-your-paper/" target="_blank" class="text-lagoon-light hover:underline font-medium">writing</a> guidelines.</p>
-                        <div class="mt-6"><h4 class="font-medium text-gray-800 mb-2">Useful Resources:</h4>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-medium text-gray-800 mb-2">Useful Resources:</h4>
                             <ul class="list-disc list-inside space-y-1">
-                                <li><a href="#" class="text-lagoon-light hover:underline">How to make a submission via EasyChair</a> <span class="text-sm text-gray-400 font-light">(Coming soon)</span></li>
-                                <li><a href="#" class="text-lagoon-light hover:underline">IEEE conference templates</a> <span class="text-sm text-gray-400 font-light">(Coming soon)</span></li>
+                                <li>
+                                    <a href="#" class="text-lagoon-light hover:underline">How to make a submission via EasyChair</a> 
+                                    <span class="text-sm text-gray-400 font-light">(Coming soon)</span>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-lagoon-light hover:underline">IEEE conference templates</a> 
+                                    <span class="text-sm text-gray-400 font-light">(Coming soon)</span>
+                                </li>
                             </ul>
                         </div>
+
                         <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Anti-Plagiarism Screening</h3>
                         <p>We will conduct to the submitted papers an anti-plagiarism screening to ensure that all papers are clear, authentic and relevant to the conference material. We submit all papers to the Turnitin and/or Compilatio Scanner. Please note that once a paper is submitted to I3DA, it cannot be presented to other journals/conferences.</p>
+
                         <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Templates</h3>
                         <p>There are no page limits, but we suggest a maximum of 8-10 pages. Authors can download and use the following templates:</p>
-                        <div class="bg-white p-6 border border-gray-100 mt-6"><h4 class="font-medium text-gray-800 mb-4">Templates for Oral Presentations and Posters</h4>
+                        <div class="bg-white p-6 border border-gray-100 mt-6">
+                            <h4 class="font-medium text-gray-800 mb-4">Templates for Oral Presentations and Posters</h4>
                             <ul class="space-y-4">
-                                <li><a href="#" class="text-lagoon-blue font-medium hover:underline">Microsoft Word – A4</a> <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span></li>
-                                <li><a href="#" class="text-lagoon-blue font-medium hover:underline">LaTeX Template Instructions</a> <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span></li>
-                                <li><a href="#" class="text-lagoon-blue font-medium hover:underline">Template (ZIP)</a> <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span></li>
+                                <li>
+                                    <a href="#" class="text-lagoon-blue font-medium hover:underline">Microsoft Word – A4</a>
+                                    <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-lagoon-blue font-medium hover:underline">LaTeX Template Instructions</a>
+                                    <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-lagoon-blue font-medium hover:underline">Template (ZIP)</a>
+                                    <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span>
+                                </li>
                             </ul>
                         </div>
+
                         <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Copyright</h3>
                         <p class="italic text-gray-500 mb-4">Please note: On the first page, left bottom footnote, add the correct copyright number.</p>
                         <div class="space-y-4 bg-gray-50 p-6">
-                            <div><p class="font-medium text-gray-800">For most papers the copyright notice is:</p><p class="font-mono text-sm text-gray-500 mt-1">xxxx (to be announced)</p></div>
-                            <div><p class="font-medium text-gray-800">For papers in which all authors are employed by the US government:</p><p class="font-mono text-sm text-gray-500 mt-1">U.S. Government work not protected by U.S. copyright</p></div>
-                            <div><p class="font-medium text-gray-800">For papers in which all authors are employed by a Crown government (UK, Canada, and Australia):</p><p class="font-mono text-sm text-gray-500 mt-1">xxxx (to be announced)</p></div>
-                            <div><p class="font-medium text-gray-800">For papers in which all authors are employed by the European Union:</p><p class="font-mono text-sm text-gray-500 mt-1">xxxx (to be announced)</p></div>
+                            <div>
+                                <p class="font-medium text-gray-800">For most papers the copyright notice is:</p>
+                                <p class="font-mono text-sm text-gray-500 mt-1">xxxx (to be announced)</p>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">For papers in which all authors are employed by the US government:</p>
+                                <p class="font-mono text-sm text-gray-500 mt-1">U.S. Government work not protected by U.S. copyright</p>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">For papers in which all authors are employed by a Crown government (UK, Canada, and Australia):</p>
+                                <p class="font-mono text-sm text-gray-500 mt-1">xxxx (to be announced)</p>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-800">For papers in which all authors are employed by the European Union:</p>
+                                <p class="font-mono text-sm text-gray-500 mt-1">xxxx (to be announced)</p>
+                            </div>
                         </div>
+
                         <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Publishing Policy</h3>
                         <p>Authors of selected papers will be invited to submit extended versions for consideration in a special issue with one or more of the partner journals indexed on Scopus and WoS. Only submissions that were presented at the Conference by one of the authors may be invited to a special issue. Manuscripts have to be submitted to the special issue of the journal according to instructions provided in the invitation letter. Each manuscript will then be reviewed according to the journal policy. The authors are obliged to inform the conference of the status of their submission in a way provided in the invitation letter.</p>
                         <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Indexing</h3>
                         <p>All conferences and conference proceedings must meet IEEEs quality standards, and IEEE reserves the right not to publish any proceedings that do not meet these standards. Accepted and orally presented papers are submitted to IEEE Xplore. The IEEE makes every reasonable attempt to ensure that abstracts and index entries of content accepted into the program are included in databases provided by independent abstracting and indexing (A&I) services. Each A&I partner makes its own editorial decision on what content it will index. IEEE cannot guarantee entries are included in any particular database. IEEE reserves the right to exclude a paper from distribution after the conference (e.g., removal from IEEE Xplore) if the paper is not presented at the conference or does not comply with IEEE Best Practices.</p>
+
                         <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Special Issues</h3>
                         <ul class="list-disc list-inside space-y-2">
                             <li>Special Issue – Journal of the Audio Engineering Society</li>
@@ -202,43 +327,66 @@
             <section id="registration" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Registration</h2><p class="font-light text-lg">Registration info...</p></div></section>
             
             <section id="sponsors" class="section-padding bg-gray-50 section-hidden">
-                <div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-200 pb-4 uppercase tracking-[0.1em]">Sponsorship Opportunities</h2>
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-200 pb-4 uppercase tracking-[0.1em]">Sponsorship Opportunities</h2>
+                    
                     <div class="mb-12 p-8 bg-white border border-gray-100 shadow-sm">
                         <h3 class="text-2xl font-light text-lagoon-blue mb-4">Partner with I3DA 2026</h3>
                         <p class="text-lg font-light text-gray-600 leading-relaxed mb-4">The International Conference on Immersive and 3D Audio (I3DA 2026) is the premier global forum connecting leading researchers, engineers, and industry professionals in spatial audio, VR/AR, architectural acoustics, and media.</p>
                         <p class="text-lg font-light text-gray-600 leading-relaxed mb-4">Partnering with us in Venice (19–22 November 2026) offers a unique opportunity to position your brand as a thought leader, access specialized talent, and directly engage a highly technical audience.</p>
                          <p class="text-md text-gray-400 font-medium mt-4 italic">All sponsorship amounts are listed excluding VAT.</p>
                     </div>
+                    
                     <div class="p-8 text-center border-2 border-lagoon-blue bg-white/70 shadow-lg mb-16">
-                        <p class="text-xl font-medium text-lagoon-blue mb-4">Contact us for detailed sponsorship tiers and financial information.</p>
-                        <a href="mailto:cobi.vantonder@unibo.it?subject=I3DA%202026%20Sponsorship%20Enquiry" class="inline-block bg-lagoon-blue text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-lagoon-light transition-colors uppercase tracking-widest">Contact us for More Information</a>
+                        <p class="text-xl font-medium text-lagoon-blue mb-4">
+                            Contact us for detailed sponsorship tiers and financial information.
+                        </p>
+                        <a href="mailto:cobi.vantonder@unibo.it?subject=I3DA%202026%20Sponsorship%20Enquiry" class="inline-block bg-lagoon-blue text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-lagoon-light transition-colors uppercase tracking-widest">
+                            Contact us for More Information
+                        </a>
                     </div>
+
                     <div class="mt-8 bg-white p-8 border-l-2 border-lagoon-blue shadow-sm">
                         <h4 class="text-xl font-normal text-lagoon-blue mb-4 tracking-wide">Next Steps</h4>
                         <p class="text-lg text-gray-700 font-light mb-4">We are ready to work with you to create a customized package that aligns perfectly with your marketing objectives.</p>
+                        
                         <h4 class="text-lg font-normal text-gray-800 mt-8 mb-4 uppercase tracking-widest">Contact Information</h4>
-                        <p class="text-gray-600 font-light leading-relaxed"><strong>To discuss a partnership, please contact:</strong><br><br><span class="font-normal">Dr. Cobi van Tonder</span><br><br><span class="font-normal">Email:</span> <a href="mailto:cobi.vantonder@unibo.it" class="text-lagoon-light hover:underline">cobi.vantonder@unibo.it</a><br><br></p>
+                        <p class="text-gray-600 font-light leading-relaxed">
+                            <strong>To discuss a partnership, please contact:</strong><br><br>
+                            <span class="font-normal">Dr. Cobi van Tonder</span><br><br>
+                            <span class="font-normal">Email:</span> <a href="mailto:cobi.vantonder@unibo.it" class="text-lagoon-light hover:underline">cobi.vantonder@unibo.it</a><br><br>
+                        </p>
                     </div>
                 </div>
             </section>
+
             <section id="patronage" class="section-padding bg-white section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Patronage</h2><p class="text-lg font-light text-gray-600 leading-relaxed mb-6">Information regarding patronage will appear here soon.</p></div></section>
             
             <section id="contact" class="section-padding bg-gray-900 text-white section-hidden">
                 <div class="max-w-5xl mx-auto">
                     <h2 class="text-3xl font-light mb-12 border-b border-gray-700 pb-4 uppercase tracking-[0.1em]">Contacts</h2>
                     <h3 class="text-xl font-light mb-8 text-lagoon-light tracking-wide">Organizers</h3>
+
                     <div class="grid md:grid-cols-2 gap-12 font-light">
                         <div>
                             <h4 class="text-lg font-normal text-white mb-2">General Conference Chair</h4>
                             <p class="text-gray-300 mb-2">Prof. Lamberto Tronchin</p>
-                            <p class="text-gray-400 leading-relaxed text-sm">DA – CIARM – University of Bologna<br><br>Via C. Pavese 50, I-47521 Cesena, Italy</p>
-                            <p class="text-gray-400 mt-2 text-sm"><span class="text-lagoon-light">Email:</span> <a href="mailto:lamberto.tronchin@unibo.it" class="underline hover:text-lagoon-light">lamberto.tronchin@unibo.it</a><br><br></p>
+                            <p class="text-gray-400 leading-relaxed text-sm">
+                                DA – CIARM – University of Bologna<br><br>
+                                Via C. Pavese 50, I-47521 Cesena, Italy
+                            </p>
+                            <p class="text-gray-400 mt-2 text-sm">
+                                <span class="text-lagoon-light">Email:</span> <a href="mailto:lamberto.tronchin@unibo.it" class="underline hover:text-lagoon-light">lamberto.tronchin@unibo.it</a><br><br>
+                            </p>
                         </div>
+
                         <div>
                             <h4 class="text-lg font-normal text-white mb-2">Conference Director</h4>
                             <p class="text-gray-300 mb-2">Dr. Cobi van Tonder</p>
                             <p class="text-gray-400 text-sm">Research Fellow, DA – University of Bologna</p>
-                            <p class="text-gray-400 mt-2 text-sm"><span class="text-lagoon-light">E-mail:</span> <a href="mailto:info@i3da2026.org" class="underline hover:text-lagoon-light">info@i3da2026.org</a></p>
+                            <p class="text-gray-400 mt-2 text-sm">
+                                <span class="text-lagoon-light">E-mail:</span> <a href="mailto:info@i3da2026.org" class="underline hover:text-lagoon-light">info@i3da2026.org</a>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -248,30 +396,61 @@
                 <div class="max-w-5xl mx-auto">
                     <h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Latest News</h2>
                     <div id="news-container" class="space-y-10">
-                        <div class="p-8 bg-gray-50 border-l-2 border-lagoon-light">
+                        
+                         <div class="p-8 bg-gray-50 border-l-2 border-lagoon-light">
                             <h3 class="text-2xl font-normal text-lagoon-blue mb-2">Collaboration with Fondazione Levi</h3>
                             <p class="text-xs uppercase tracking-widest text-gray-400 mb-6">23 December 2025</p>
-                            <div class="mb-8"><img src="thumbnail_LEVI oriz2 esec_senzabianco.jpg" alt="Fondazione Ugo e Olga Levi Logo" class="max-h-24 w-auto object-contain"></div>
-                            <div class="flex flex-col md:flex-row gap-8 items-start">
+                            
+                            <div class="mb-8">
+                                <img src="thumbnail_LEVI oriz2 esec_senzabianco.jpg" alt="Fondazione Ugo e Olga Levi Logo" class="max-h-24 w-auto object-contain">
+                            </div>
+
+                            <div class="flex flex-col md:flex-row gap-8">
                                 <div class="md:w-1/2 space-y-4 text-lg font-light text-gray-700 text-justify leading-loose">
                                     <p>We are pleased to announce a collaboration with the Fondazione Levi. On this special occasion of the International Conference in Immersive and 3D Audio, both the spaces of Fondazione Levi and those of Warwick University at Palazzo Giustinian Lolin, on the Grand Canal, will be made available for our event.</p>
                                     <p>Fondazione Ugo e Olga Levi, founded in Venice in 1962 and based in the historic Palazzo Giustinian Lolin on the Grand Canal, is an international centre for musical and musicological research. It preserves, studies, and promotes the tangible and intangible heritage of music through its specialised library, research projects, and cultural initiatives in Italy and abroad. Alongside its scholarly activities, the Foundation promotes the dissemination of musical knowledge through a significant publishing programme devoted to academic publications, scholarly series, and musicological editions. Committed to the education of new generations, it engages primary and secondary school students, university students, doctoral candidates, and researchers through scholarships, internships, traineeships, and educational projects.</p>
-                                    <p class="text-sm text-gray-500 pt-4">Fondazione Ugo e Olga Levi<br>San Marco 2893<br>30124 Venezia<br>t. 041 786777<br><a href="https://www.fondazionelevi.it" target="_blank" class="text-lagoon-light hover:underline">www.fondazionelevi.it</a></p>
+                                    <p class="text-sm text-gray-500 pt-4">
+                                        Fondazione Ugo e Olga Levi<br>
+                                        San Marco 2893<br>
+                                        30124 Venezia<br>
+                                        t. 041 786777<br>
+                                        <a href="https://www.fondazionelevi.it" target="_blank" class="text-lagoon-light hover:underline">www.fondazionelevi.it</a>
+                                    </p>
                                 </div>
-                                <div class="md:w-1/2"><img src="FL.jpeg" alt="Fondazione Levi Event" class="w-full h-auto shadow-md object-contain"></div>
+                                <div class="md:w-1/2">
+                                    <img src="FL.jpeg" alt="Fondazione Levi Event" class="w-full h-auto shadow-md object-contain">
+                                </div>
                             </div>
                          </div>
-                         <div class="p-8 bg-gray-50 border-l-2 border-lagoon-light"><h3 class="text-2xl font-normal text-lagoon-blue mb-2">Venice Host Announcement!</h3><p class="text-xs uppercase tracking-widest text-gray-400 mb-6">November 2025</p><p class="text-lg font-light text-gray-700 leading-relaxed">We are happy to announce that <strong>I3DA 2026</strong> will be hosted in <strong>Venice, Italy</strong>.</p></div>
-                         <div class="p-8 bg-white border border-gray-100 shadow-sm"><h3 class="text-2xl font-normal text-gray-800 mb-2">Links to Previous Publications</h3><p class="text-xs uppercase tracking-widest text-gray-400 mb-6">Archive</p>
+
+                         <div class="p-8 bg-gray-50 border-l-2 border-lagoon-light">
+                            <h3 class="text-2xl font-normal text-lagoon-blue mb-2">Venice Host Announcement!</h3>
+                            <p class="text-xs uppercase tracking-widest text-gray-400 mb-6">November 2025</p>
+                            <p class="text-lg font-light text-gray-700 leading-relaxed">We are happy to announce that <strong>I3DA 2026</strong> will be hosted in <strong>Venice, Italy</strong>.</p>
+                         </div>
+                         
+                         <div class="p-8 bg-white border border-gray-100 shadow-sm">
+                            <h3 class="text-2xl font-normal text-gray-800 mb-2">Links to Previous Publications</h3>
+                            <p class="text-xs uppercase tracking-widest text-gray-400 mb-6">Archive</p>
                             <div class="text-lg font-light text-gray-700 leading-relaxed space-y-4">
-                                <div><p class="font-medium text-lagoon-blue">2025 Immersive and 3D Audio (I3DA)</p><a href="https://ieeexplore.ieee.org/document/11202048" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/document/11202048</a></div>
-                                <div><p class="font-medium text-lagoon-blue">2023 Immersive and 3D Audio (I3DA)</p><a href="https://ieeexplore.ieee.org/xpl/conhome/10288631/proceeding" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/xpl/conhome/10288631/proceeding</a></div>
-                                <div><p class="font-medium text-lagoon-blue">2021 Immersive and 3D Audio (I3DA)</p><a href="https://ieeexplore.ieee.org/xpl/conhome/9610826/proceeding" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/xpl/conhome/9610826/proceeding</a></div>
+                                <div>
+                                    <p class="font-medium text-lagoon-blue">2025 Immersive and 3D Audio (I3DA)</p>
+                                    <a href="https://ieeexplore.ieee.org/document/11202048" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/document/11202048</a>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-lagoon-blue">2023 Immersive and 3D Audio (I3DA)</p>
+                                    <a href="https://ieeexplore.ieee.org/xpl/conhome/10288631/proceeding" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/xpl/conhome/10288631/proceeding</a>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-lagoon-blue">2021 Immersive and 3D Audio (I3DA)</p>
+                                    <a href="https://ieeexplore.ieee.org/xpl/conhome/9610826/proceeding" target="_blank" class="text-sm text-gray-500 hover:text-lagoon-light underline break-all">https://ieeexplore.ieee.org/xpl/conhome/9610826/proceeding</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
+
             <footer class="bg-white border-t border-gray-100 py-8 text-center text-xs text-gray-400 uppercase tracking-widest">
                 <div class="flex justify-center space-x-5 mb-4 text-gray-500">
                     <a href="https://www.linkedin.com/company/86452519/" target="_blank" class="hover:text-lagoon-blue transition-colors"><i class="fab fa-linkedin text-lg"></i></a>
@@ -285,77 +464,387 @@
     </div>
 
     <script>
-        const logoSrc = 'logo.jpg'; const img = new Image(); let sourceImageObj = null;
-        img.onload = () => { sourceImageObj = img; initSidebarAnimation(img); initBannerAnimation(img); };
+        // =========================================================
+        // JAVASCRIPT: LOGO LOADING AND CANVAS ANIMATION LOGIC
+        // =========================================================
+        
+        // --- GLOBAL IMAGE LOADER ---
+        const logoSrc = 'logo.jpg'; // Path to the logo image
+        const img = new Image();
+        let sourceImageObj = null;
+
+        // When the logo image finishes loading, initialize both animations
+        img.onload = () => { 
+            sourceImageObj = img; 
+            initSidebarAnimation(img);
+            initBannerAnimation(img);
+        };
         img.src = logoSrc;
-        const sidebarCanvas = document.getElementById('logoCanvas'); const sidebarCtx = sidebarCanvas.getContext('2d');
-        const sidebarSettings = { startSpatial: 0.5, endSpatial: 18, amplitude: 55, sweepDuration: 6.0, pWidth: 1, pHeight: 1, resolution: 1, morphSpeed: 0.005, holdTime: 9.5, speed: 0.009 };
-        let sidebarParticles = []; let sbWidth, sbHeight, sbIsAnimating = false, sbGlobalTime = 0, sbStateTime = 0, sbLoopState = 'sweep_in', sbMorphProgress = 0, sbAnimId;
-        function drawStaticSidebarLogo() { if (!sidebarCtx || sidebarParticles.length === 0) return; sidebarCtx.clearRect(0, 0, sbWidth, sbHeight); sidebarCtx.fillStyle = 'black'; sidebarParticles.forEach(p => sidebarCtx.fillRect(p.x, p.y, sidebarSettings.pWidth, sidebarSettings.pHeight)); }
-        function initSidebarAnimation(image) {
-            sbWidth = sidebarCanvas.parentElement.offsetWidth; sbHeight = sidebarCanvas.parentElement.offsetHeight;
-            const dpr = window.devicePixelRatio || 1; sidebarCanvas.width = sbWidth * dpr; sidebarCanvas.height = sbHeight * dpr; sidebarCtx.scale(dpr, dpr);
-            const scale = Math.min(sbWidth / image.width, sbHeight / image.height) * 0.85; const drawW = image.width * scale; const drawH = image.height * scale;
-            const offX = (sbWidth - drawW) / 2; const offY = (sbHeight - drawH) / 2 + 20; 
-            sidebarCtx.drawImage(image, offX, offY, drawW, drawH); const data = sidebarCtx.getImageData(0, 0, sbWidth * dpr, sbHeight * dpr).data;
-            sidebarParticles = []; const step = Math.max(1, Math.floor(sidebarSettings.resolution * dpr)); 
-            for(let y=0; y < sbHeight*dpr; y+=step) { for(let x=0; x < sbWidth*dpr; x+=step) { const i = (y * (sbWidth*dpr) + x) * 4; if (data[i+3] > 128 && (data[i]+data[i+1]+data[i+2])/3 < 200) { sidebarParticles.push({ x: x / dpr, y: y / dpr, normX: x / (sbWidth * dpr) }); } } }
-            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight); drawStaticSidebarLogo();
-            if(!document.getElementById('sidebar-logo-area').classList.contains('opacity-0')) startSidebarLoop();
+
+
+        // ==========================================
+        //  SYSTEM 1: SIDEBAR ANIMATION (Sine Sweep / Boomerang)
+        //  Controls the small logo animation in the sidebar
+        // ==========================================
+        const sidebarCanvas = document.getElementById('logoCanvas');
+        const sidebarCtx = sidebarCanvas.getContext('2d');
+        
+        const sidebarSettings = {
+            // Animation timing and physics settings
+            startSpatial: 0.5, endSpatial: 18, 
+            amplitude: 55, // <-- CONTROLS SIDEBAR WAVE SIZE
+            sweepDuration: 6.0, pWidth: 1, pHeight: 1, resolution: 1,
+            morphSpeed: 0.005, holdTime: 9.5, speed: 0.009
+        };
+
+        let sidebarParticles = [];
+        let sbWidth, sbHeight;
+        let sbIsAnimating = false;
+        let sbGlobalTime = 0;       
+        let sbStateTime = 0;        
+        let sbLoopState = 'sweep_in'; // sweep_in -> forming -> holding -> dissolving -> sweep_out -> loop
+        let sbMorphProgress = 0;
+        let sbAnimId;
+
+        // Helper function for drawing a static logo (fallback when animation is paused)
+        function drawStaticSidebarLogo() {
+            if (!sidebarCtx || sidebarParticles.length === 0) return;
+            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight);
+            sidebarCtx.fillStyle = 'black';
+            sidebarParticles.forEach(p => sidebarCtx.fillRect(p.x, p.y, sidebarSettings.pWidth, sidebarSettings.pHeight));
         }
-        function startSidebarLoop() { sbStateTime = 0; sbGlobalTime = 0; sbMorphProgress = 0; sbLoopState = 'sweep_in'; sbIsAnimating = true; if(sbAnimId) cancelAnimationFrame(sbAnimId); sidebarLoop(); }
+
+        // Initializes particles based on the logo image data
+        function initSidebarAnimation(image) {
+            sbWidth = sidebarCanvas.parentElement.offsetWidth;
+            sbHeight = sidebarCanvas.parentElement.offsetHeight;
+            const dpr = window.devicePixelRatio || 1;
+            sidebarCanvas.width = sbWidth * dpr;
+            sidebarCanvas.height = sbHeight * dpr;
+            sidebarCtx.scale(dpr, dpr);
+
+            // Calculate draw dimensions and offset to center the logo
+            const scale = Math.min(sbWidth / image.width, sbHeight / image.height) * 0.85;
+            const drawW = image.width * scale;
+            const drawH = image.height * scale;
+            const offX = (sbWidth - drawW) / 2;
+            const offY = (sbHeight - drawH) / 2 + 20; 
+
+            // Read image data and populate sidebarParticles array
+            sidebarCtx.drawImage(image, offX, offY, drawW, drawH);
+            const data = sidebarCtx.getImageData(0, 0, sbWidth * dpr, sbHeight * dpr).data;
+            
+            // Particle creation logic
+            sidebarParticles = [];
+            const step = Math.max(1, Math.floor(sidebarSettings.resolution * dpr)); 
+
+            for(let y=0; y < sbHeight*dpr; y+=step) {
+                for(let x=0; x < sbWidth*dpr; x+=step) {
+                    const i = (y * (sbWidth*dpr) + x) * 4;
+                    if (data[i+3] > 128 && (data[i]+data[i+1]+data[i+2])/3 < 200) {
+                        sidebarParticles.push({
+                            x: x / dpr,
+                            y: y / dpr,
+                            normX: x / (sbWidth * dpr) 
+                        });
+                    }
+                }
+            }
+            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight); 
+            
+            // Draw static logo initially to guarantee logo visibility on load
+            drawStaticSidebarLogo();
+
+            // Start loop if the sidebar is currently showing content other than 'About'/'News'
+            const sidebarArea = document.getElementById('sidebar-logo-area');
+            if(!sidebarArea.classList.contains('opacity-0')) {
+                startSidebarLoop();
+            }
+        }
+
+        function startSidebarLoop() {
+            // Reset animation state and start the loop
+            sbStateTime = 0; sbGlobalTime = 0; sbMorphProgress = 0;
+            sbLoopState = 'sweep_in'; sbIsAnimating = true;
+            if(sbAnimId) cancelAnimationFrame(sbAnimId);
+            sidebarLoop();
+        }
+
         function sidebarLoop() {
-            if (!sbIsAnimating) { drawStaticSidebarLogo(); return; }
-            sbGlobalTime += sidebarSettings.speed; sbStateTime += 1/60; let currentFreq = sidebarSettings.startSpatial; let currentMorph = sbMorphProgress;
-            if (sbLoopState === 'sweep_in') { const p = Math.min(sbStateTime / sidebarSettings.sweepDuration, 1.0); currentFreq = sidebarSettings.startSpatial + (sidebarSettings.endSpatial - sidebarSettings.startSpatial) * p; if (sbStateTime >= sidebarSettings.sweepDuration) { sbLoopState = 'forming'; sbStateTime = 0; } }
-            else if (sbLoopState === 'forming') { currentFreq = sidebarSettings.endSpatial; sbMorphProgress += sidebarSettings.morphSpeed; currentMorph = sbMorphProgress; if(sbMorphProgress >= 1) { sbMorphProgress = 1; sbLoopState = 'holding'; sbStateTime = 0; } }
-            else if (sbLoopState === 'holding') { currentFreq = sidebarSettings.endSpatial; currentMorph = 1; if(sbStateTime >= sidebarSettings.holdTime) { sbLoopState = 'dissolving'; sbStateTime = 0; } }
-            else if (sbLoopState === 'dissolving') { currentFreq = sidebarSettings.endSpatial; sbMorphProgress -= sidebarSettings.morphSpeed; currentMorph = sbMorphProgress; if(sbMorphProgress <= 0) { sbMorphProgress = 0; sbLoopState = 'sweep_out'; sbStateTime = 0; } }
-            else if (sbLoopState === 'sweep_out') { const p = Math.min(sbStateTime / sidebarSettings.sweepDuration, 1.0); currentFreq = sidebarSettings.endSpatial - (sidebarSettings.endSpatial - sidebarSettings.startSpatial) * p; currentMorph = 0; if (sbStateTime >= sidebarSettings.sweepDuration) { sbLoopState = 'sweep_in'; sbStateTime = 0; } }
-            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight); sidebarCtx.fillStyle = 'black';
-            for (let i = 0; i < sidebarParticles.length; i++) { const p = sidebarParticles[i]; const sineVal = Math.sin( (p.normX * currentFreq * Math.PI * 2) + sbGlobalTime ); const waveY = (sbHeight / 2) + sineVal * sidebarSettings.amplitude; const t = currentMorph; const ease = t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; const renderY = waveY + (p.y - waveY) * ease; sidebarCtx.fillRect(p.x, renderY, sidebarSettings.pWidth, sidebarSettings.pHeight); }
+            // Draws the sine sweep animation
+            if (!sbIsAnimating) {
+                drawStaticSidebarLogo(); // Draw static fallback if loop halts
+                return;
+            }
+            
+            sbGlobalTime += sidebarSettings.speed;
+            sbStateTime += 1/60;
+
+            let currentFreq = sidebarSettings.startSpatial;
+            let currentMorph = sbMorphProgress;
+
+            // State machine for the sine sweep logo animation loop:
+            if (sbLoopState === 'sweep_in') { // Start sweeping frequency up
+                const p = Math.min(sbStateTime / sidebarSettings.sweepDuration, 1.0);
+                currentFreq = sidebarSettings.startSpatial + (sidebarSettings.endSpatial - sidebarSettings.startSpatial) * p;
+                if (sbStateTime >= sidebarSettings.sweepDuration) { sbLoopState = 'forming'; sbStateTime = 0; }
+            } else if (sbLoopState === 'forming') { // Particles move from wave to logo shape
+                currentFreq = sidebarSettings.endSpatial;
+                sbMorphProgress += sidebarSettings.morphSpeed;
+                currentMorph = sbMorphProgress;
+                if(sbMorphProgress >= 1) { sbMorphProgress = 1; sbLoopState = 'holding'; sbStateTime = 0; }
+            } else if (sbLoopState === 'holding') { // Logo remains static
+                currentFreq = sidebarSettings.endSpatial; currentMorph = 1;
+                if(sbStateTime >= sidebarSettings.holdTime) { sbLoopState = 'dissolving'; sbStateTime = 0; }
+            } else if (sbLoopState === 'dissolving') { // Particles dissolve back into wave
+                currentFreq = sidebarSettings.endSpatial;
+                sbMorphProgress -= sidebarSettings.morphSpeed;
+                currentMorph = sbMorphProgress;
+                if(sbMorphProgress <= 0) { sbMorphProgress = 0; sbLoopState = 'sweep_out'; sbStateTime = 0; }
+            } else if (sbLoopState === 'sweep_out') { // Final sweep phase before loop restarts
+                const p = Math.min(sbStateTime / sidebarSettings.sweepDuration, 1.0);
+                currentFreq = sidebarSettings.endSpatial - (sidebarSettings.endSpatial - sidebarSettings.startSpatial) * p;
+                currentMorph = 0;
+                if (sbStateTime >= sidebarSettings.sweepDuration) { sbLoopState = 'sweep_in'; sbStateTime = 0; }
+            }
+            
+            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight);
+            sidebarCtx.fillStyle = 'black';
+
+            for (let i = 0; i < sidebarParticles.length; i++) {
+                const p = sidebarParticles[i];
+                const sineVal = Math.sin( (p.normX * currentFreq * Math.PI * 2) + sbGlobalTime );
+                const waveY = (sbHeight / 2) + sineVal * sidebarSettings.amplitude;
+                const t = currentMorph;
+                const ease = t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+                const renderY = waveY + (p.y - waveY) * ease;
+                sidebarCtx.fillRect(p.x, renderY, sidebarSettings.pWidth, sidebarSettings.pHeight); 
+            }
             sbAnimId = requestAnimationFrame(sidebarLoop);
         }
-        const bannerCanvas = document.getElementById('bannerCanvas'); const bannerCtx = bannerCanvas.getContext('2d');
-        const oceanSettings = { swellAmp: 41, swellFreq: 2, swellSpeed: 0.15, chopAmp: 20, chopFreq: 8, chopSpeed: 0.08, waveDuration: 3.0, morphSpeed: 0.004, resolution: 1, holdTime: 1.0 };
-        let bannerParticles = [], bnWidth, bnHeight, bnIsAnimating = false, bnGlobalTime = 0, bnStateTime = 0, bnStage = 'wave', bnMorphProgress = 0, bnAnimId;
+
+
+        // ==========================================
+        //  SYSTEM 2: BANNER ANIMATION (Ocean Wave Loop)
+        //  Controls the particle animation on the main banner
+        // ==========================================
+        const bannerCanvas = document.getElementById('bannerCanvas');
+        const bannerCtx = bannerCanvas.getContext('2d');
+        
+        // Settings for the Ocean Wave effect and Loop timing (Set to faster speeds)
+        const oceanSettings = {
+            swellAmp: 41, swellFreq: 2, swellSpeed: 0.15,
+            chopAmp: 20, chopFreq: 8, chopSpeed: 0.08,
+            waveDuration: 3.0, // <-- DURATION OF THE WIDE WAVE PHASE (Set to faster 5s)
+            morphSpeed: 0.004,
+            resolution: 1,
+            holdTime: 1.0       // <-- DURATION OF THE STATIC LOGO PHASE (Set to faster 1s)
+        };
+
+        let bannerParticles = [];
+        let bnWidth, bnHeight;
+        let bnIsAnimating = false;
+        let bnGlobalTime = 0;
+        let bnStateTime = 0;
+        let bnStage = 'wave'; // wave -> morph -> hold -> dissolve -> wave -> loop
+        let bnMorphProgress = 0;
+        let bnAnimId;
+
+        // Initializes particles and sets canvas dimensions
         function initBannerAnimation(image) {
-            const container = document.getElementById('main-banner-container'); const imgElement = container.querySelector('img'); 
-            bnWidth = container.offsetWidth; bnHeight = imgElement.offsetHeight || 224; const dpr = window.devicePixelRatio || 1;
-            bannerCanvas.width = bnWidth * dpr; bannerCanvas.height = bnHeight * dpr; bannerCtx.scale(dpr, dpr);
-            const scale = Math.min(bnWidth / image.width, bnHeight / image.height) * 0.85; const drawW = image.width * scale; const drawH = image.height * scale;
-            const dx = (bnWidth - drawW) / 2; const dy = (bnHeight - drawH) / 2; bannerCtx.drawImage(image, dx, dy, drawW, drawH); const data = bannerCtx.getImageData(0,0, bnWidth*dpr, bnHeight*dpr).data;
-            bannerParticles = []; const step = Math.max(1, Math.floor(oceanSettings.resolution * dpr));
-            for(let y=0; y < bnHeight*dpr; y+=step) { for(let x=0; x < bnWidth*dpr; x+=step) { const i = (y*(bnWidth*dpr)+x)*4; if(data[i+3] > 128 && (data[i]+data[i+1]+data[i+2])/3 < 200) { bannerParticles.push({ tx: x/dpr, ty: y/dpr, sx: Math.random() * bnWidth, phase: Math.random() * Math.PI * 2 }); } } }
-            bannerCtx.clearRect(0,0,bnWidth,bnHeight); startBannerLoop();
+            const container = document.getElementById('main-banner-container');
+            const imgElement = container.querySelector('img'); 
+            
+            bnWidth = container.offsetWidth;
+            // FIX: Ensure canvas height matches the rendered background image height
+            bnHeight = imgElement.offsetHeight || 224; 
+            
+            const dpr = window.devicePixelRatio || 1;
+            bannerCanvas.width = bnWidth * dpr;
+            bannerCanvas.height = bnHeight * dpr;
+            bannerCtx.scale(dpr, dpr);
+
+            // Calculate logo target position (CENTERED)
+            const scale = Math.min(bnWidth / image.width, bnHeight / image.height) * 0.85;
+            const drawW = image.width * scale;
+            const drawH = image.height * scale;
+            const dx = (bnWidth - drawW) / 2;
+            const dy = (bnHeight - drawH) / 2;
+
+            // Read image data and populate bannerParticles array
+            bannerCtx.drawImage(image, dx, dy, drawW, drawH);
+            const data = bannerCtx.getImageData(0,0, bnWidth*dpr, bnHeight*dpr).data;
+            
+            bannerParticles = [];
+            const step = Math.max(1, Math.floor(oceanSettings.resolution * dpr));
+
+            for(let y=0; y < bnHeight*dpr; y+=step) {
+                for(let x=0; x < bnWidth*dpr; x+=step) {
+                    const i = (y*(bnWidth*dpr)+x)*4;
+                    const a = data[i+3];
+                    const b = (data[i]+data[i+1]+data[i+2])/3;
+
+                    if(a > 128 && b < 200) {
+                        bannerParticles.push({
+                            tx: x/dpr, // Target X (logo shape)
+                            ty: y/dpr, // Target Y (logo shape)
+                            sx: Math.random() * bnWidth, // Starting X (random spread)
+                            phase: Math.random() * Math.PI * 2 
+                        });
+                    }
+                }
+            }
+            
+            bannerCtx.clearRect(0,0,bnWidth,bnHeight);
+            startBannerLoop();
         }
-        function startBannerLoop() { bnStage = 'wave'; bnStateTime = 0; bnGlobalTime = 0; bnMorphProgress = 0; bnIsAnimating = true; bannerCanvas.style.opacity = 1; if(bnAnimId) cancelAnimationFrame(bnAnimId); bannerLoop(); }
+
+        function startBannerLoop() {
+            // Reset and start the banner animation loop
+            bnStage = 'wave';
+            bnStateTime = 0;
+            bnGlobalTime = 0;
+            bnMorphProgress = 0;
+            bnIsAnimating = true;
+            bannerCanvas.style.opacity = 1;
+            if(bnAnimId) cancelAnimationFrame(bnAnimId);
+            bannerLoop();
+        }
+
         function bannerLoop() {
-            if(!bnIsAnimating) return; bnGlobalTime += 1/60; bnStateTime += 1/60;
-            if(bnStage === 'wave' && bnStateTime > oceanSettings.waveDuration) { bnStage = 'morph'; bnStateTime = 0; }
-            else if(bnStage === 'morph') { bnMorphProgress += oceanSettings.morphSpeed; if(bnMorphProgress >= 1) { bnMorphProgress = 1; bnStage = 'hold'; bnStateTime = 0; } }
-            else if(bnStage === 'hold' && bnStateTime > oceanSettings.holdTime) { bnStage = 'dissolve'; bnStateTime = 0; }
-            else if(bnStage === 'dissolve') { bnMorphProgress -= oceanSettings.morphSpeed; if(bnMorphProgress <= 0) { bnMorphProgress = 0; bnStage = 'wave'; bnStateTime = 0; } }
-            bannerCtx.clearRect(0,0,bnWidth,bnHeight); bannerCtx.fillStyle = '#fff'; 
-            for(let i=0; i<bannerParticles.length; i++) { const p = bannerParticles[i]; const t = bnMorphProgress; const ease = t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; const currentX = p.sx + (p.tx - p.sx) * ease; const normX = currentX / bnWidth; const waveY = (bnHeight/2) + Math.sin(normX * oceanSettings.swellFreq * Math.PI + bnGlobalTime * oceanSettings.swellSpeed) * oceanSettings.swellAmp + Math.cos(normX * oceanSettings.chopFreq * Math.PI - bnGlobalTime * oceanSettings.chopSpeed) * oceanSettings.chopAmp + Math.sin(p.phase + bnGlobalTime * 2) * 2; const currentY = waveY + (p.ty - waveY) * ease; bannerCtx.fillRect(currentX, currentY, 1.5, 1.5); }
+            if(!bnIsAnimating) return;
+            bnGlobalTime += 1/60;
+            bnStateTime += 1/60;
+
+            // State machine for the looping ocean animation:
+            if(bnStage === 'wave') { // Wide particle distribution, governed by wave physics
+                if(bnStateTime > oceanSettings.waveDuration) { bnStage = 'morph'; bnStateTime = 0; }
+            } else if(bnStage === 'morph') { // Transition from wave state to logo shape
+                bnMorphProgress += oceanSettings.morphSpeed;
+                if(bnMorphProgress >= 1) { bnMorphProgress = 1; bnStage = 'hold'; bnStateTime = 0; }
+            } else if(bnStage === 'hold') { // Logo stays static
+                if(bnStateTime > oceanSettings.holdTime) { 
+                    bnStage = 'dissolve'; 
+                    bnStateTime = 0;
+                }
+            } else if(bnStage === 'dissolve') { // Transition from logo shape back to wave state
+                bnMorphProgress -= oceanSettings.morphSpeed;
+                if(bnMorphProgress <= 0) { 
+                    bnMorphProgress = 0; 
+                    bnStage = 'wave'; 
+                    bnStateTime = 0; 
+                }
+            }
+
+            bannerCtx.clearRect(0,0,bnWidth,bnHeight);
+            bannerCtx.fillStyle = '#fff'; 
+
+            for(let i=0; i<bannerParticles.length; i++) {
+                const p = bannerParticles[i];
+
+                // Calculate current X position using interpolation (Morphing)
+                const t = bnMorphProgress;
+                const ease = t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; // Easing function
+                const currentX = p.sx + (p.tx - p.sx) * ease;
+                
+                const normX = currentX / bnWidth;
+
+                // Calculate wave displacement for the particle's Y position
+                const y1 = Math.sin(normX * oceanSettings.swellFreq * Math.PI + bnGlobalTime * oceanSettings.swellSpeed) * oceanSettings.swellAmp;
+                const y2 = Math.cos(normX * oceanSettings.chopFreq * Math.PI - bnGlobalTime * oceanSettings.chopSpeed) * oceanSettings.chopAmp;
+                const y3 = Math.sin(p.phase + bnGlobalTime * 2) * 2;
+                const waveY = (bnHeight/2) + y1 + y2 + y3;
+                
+                // Calculate current Y position using interpolation (Morphing)
+                const currentY = waveY + (p.ty - waveY) * ease;
+
+                bannerCtx.fillRect(currentX, currentY, 1.5, 1.5);
+            }
             bnAnimId = requestAnimationFrame(bannerLoop);
         }
-        const contentArea = document.getElementById('content-area'); const sidebarLogoArea = document.getElementById('sidebar-logo-area'); const mainBannerContainer = document.getElementById('main-banner-container'); const menuButton = document.getElementById('menu-button'); const mobileMenu = document.getElementById('mobile-menu');
-        if (menuButton && mobileMenu) menuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        document.querySelectorAll('#mobile-menu a').forEach(l => l.addEventListener('click', (e) => { mobileMenu.classList.add('hidden'); handleNavigation(e.currentTarget.getAttribute('data-target')); }));
-        document.querySelectorAll('#sidebar nav a').forEach(link => link.addEventListener('click', (e) => handleNavigation(e.currentTarget.getAttribute('data-target'))));
+
+        // ==========================================
+        //  NAVIGATION & UI LOGIC
+        // ==========================================
+        const contentArea = document.getElementById('content-area');
+        const sidebarLogoArea = document.getElementById('sidebar-logo-area');
+        const mainBannerContainer = document.getElementById('main-banner-container'); 
+        
+        const menuButton = document.getElementById('menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        // Robust listener to toggle the mobile hamburger menu
+        if (menuButton && mobileMenu) {
+            menuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Listeners for mobile menu links (closes menu on click)
+        document.querySelectorAll('#mobile-menu a').forEach(l => {
+            l.addEventListener('click', (e) => {
+                mobileMenu.classList.add('hidden');
+                handleNavigation(e.currentTarget.getAttribute('data-target'));
+            });
+        });
+        
+        // Listeners for desktop sidebar links
+        document.querySelectorAll('#sidebar nav a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                handleNavigation(e.currentTarget.getAttribute('data-target'));
+            });
+        });
+
+        // Function controlling which content section is visible
         function handleNavigation(targetId) {
             const allSections = ['about', 'news', 'call-for-papers', 'committees', 'program', 'registration', 'sponsors', 'patronage', 'venue', 'contact'];
+            
+            // 1. Update active link state
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(l => l.classList.add('active'));
-            allSections.forEach(id => { const el = document.getElementById(id); if (el) el.classList.add('section-hidden'); });
-            const targetSection = document.getElementById(targetId); if (targetSection) targetSection.classList.remove('section-hidden');
-            contentArea.scrollTop = 0; const showBanner = (targetId === 'about' || targetId === 'news');
-            if (showBanner) { if(mainBannerContainer) mainBannerContainer.classList.remove('hidden'); sidebarLogoArea.classList.remove('opacity-100'); sidebarLogoArea.classList.add('opacity-0'); sbIsAnimating = false; }
-            else { if(mainBannerContainer) mainBannerContainer.classList.add('hidden'); sidebarLogoArea.classList.remove('opacity-0'); sidebarLogoArea.classList.add('opacity-100'); if(sourceImageObj && !sbIsAnimating) startSidebarLoop(); else drawStaticSidebarLogo(); }
+            
+            // 2. Hide all sections and show only the target section
+            allSections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('section-hidden');
+            });
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) targetSection.classList.remove('section-hidden');
+            contentArea.scrollTop = 0;
+
+            // 3. Control Banner/Sidebar Logo Visibility
+            const showBanner = (targetId === 'about' || targetId === 'news');
+
+            if (showBanner) {
+                // Show Main Banner and hide Sidebar Logo
+                if(mainBannerContainer) mainBannerContainer.classList.remove('hidden');
+                
+                sidebarLogoArea.classList.remove('opacity-100');
+                sidebarLogoArea.classList.add('opacity-0');
+                sbIsAnimating = false; 
+            } else {
+                // Hide Main Banner and show Sidebar Logo
+                if(mainBannerContainer) mainBannerContainer.classList.add('hidden');
+
+                sidebarLogoArea.classList.remove('opacity-0');
+                sidebarLogoArea.classList.add('opacity-100');
+                
+                // Restart or draw static sidebar logo
+                if(sourceImageObj && !sbIsAnimating) {
+                    startSidebarLoop();
+                } else if (sidebarParticles.length > 0) {
+                    drawStaticSidebarLogo();
+                }
+            }
         }
+        // Initialize the page to the 'about' section on load
         handleNavigation('about');
-        window.addEventListener('resize', () => { if(sourceImageObj) { initSidebarAnimation(sourceImageObj); initBannerAnimation(sourceImageObj); } });
+        
+        // Window Resize Handler: Recalculates canvas dimensions on resize
+        window.addEventListener('resize', () => {
+            if(sourceImageObj) initSidebarAnimation(sourceImageObj);
+            if(sourceImageObj) initBannerAnimation(sourceImageObj);
+        });
     </script>
 </body>
 </html>
