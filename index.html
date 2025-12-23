@@ -202,24 +202,16 @@
             <section id="venue" class="section-padding bg-white section-hidden">
                 <div class="max-w-5xl mx-auto">
                     <h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-100 pb-4 uppercase tracking-[0.1em]">Conference Venue</h2>
-                    <div class="mb-12">
-                        <img src="thumbnail_LEVI oriz2 esec_senzabianco.jpg" alt="Fondazione Ugo e Olga Levi" class="h-24 w-auto mb-8">
-                        <div class="space-y-6 text-lg font-light text-gray-600 text-justify leading-loose">
-                            <p>We are pleased to announce a collaboration with the Fondazione Levi. On this special occasion of the International Conference in Immersive and 3D Audio, both the spaces of Fondazione Levi and those of Warwick University at Palazzo Giustinian Lolin, on the Grand Canal, will be made available for our event.</p>
-                            <p>Fondazione Ugo e Olga Levi, founded in Venice in 1962 and based in the historic Palazzo Giustinian Lolin on the Grand Canal, is an international centre for musical and musicological research. It preserves, studies, and promotes the tangible and intangible heritage of music through its specialised library, research projects, and cultural initiatives in Italy and abroad. Alongside its scholarly activities, the Foundation promotes the dissemination of musical knowledge through a significant publishing programme devoted to academic publications, scholarly series, and musicological editions. Committed to the education of new generations, it engages primary and secondary school students, university students, doctoral candidates, and researchers through scholarships, internships, traineeships, and educational projects.</p>
-                            <div class="pt-6 text-gray-500 font-light">
-                                <p>Fondazione Ugo e Olga Levi</p>
-                                <p>San Marco 2893</p>
-                                <p>30124 Venezia</p>
-                                <p>t. 041 786777</p>
-                                <p><a href="http://www.fondazionelevi.it" target="_blank" class="text-lagoon-light hover:underline">www.fondazionelevi.it</a></p>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="font-light text-lg">Venue details appearing soon...</p>
                 </div>
             </section>
 
-            <section id="program" class="section-padding bg-gray-50 section-hidden"><div class="max-w-5xl mx-auto"><h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-200 pb-4 uppercase tracking-[0.1em]">Programme</h2><p class="font-light text-lg">Schedule appearing soon...</p></div></section>
+            <section id="program" class="section-padding bg-gray-50 section-hidden">
+                <div class="max-w-5xl mx-auto">
+                    <h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-200 pb-4 uppercase tracking-[0.1em]">Programme</h2>
+                    <p class="font-light text-lg">Schedule appearing soon...</p>
+                </div>
+            </section>
             
             <section id="call-for-papers" class="section-padding bg-gray-50 min-h-screen section-hidden">
                 <div class="max-w-5xl mx-auto">
@@ -395,13 +387,26 @@
                         
                          <div class="p-8 bg-gray-50 border-l-2 border-lagoon-light">
                             <h3 class="text-2xl font-normal text-lagoon-blue mb-2">Collaboration with Fondazione Levi</h3>
-                            <p class="text-xs uppercase tracking-widest text-gray-400 mb-6">April 2024</p>
-                            <div class="flex flex-col md:flex-row gap-8">
+                            <p class="text-xs uppercase tracking-widest text-gray-400 mb-6">23 December 2025</p>
+                            
+                            <img src="thumbnail_LEVI oriz2 esec_senzabianco.jpg" alt="Fondazione Ugo e Olga Levi Logo" class="h-24 w-auto mb-8">
+                            
+                            <div class="flex flex-col md:flex-row gap-8 items-start mb-8">
                                 <div class="md:w-1/2">
-                                    <p class="text-lg font-light text-gray-700 leading-relaxed">We are pleased to announce a collaboration with the Fondazione Levi. On this special occasion of the International Conference in Immersive and 3D Audio, both the spaces of Fondazione Levi and those of Warwick University at Palazzo Giustinian Lolin, on the Grand Canal, will be made available for our event.</p>
+                                    <div class="space-y-6 text-lg font-light text-gray-700 leading-relaxed text-justify">
+                                        <p>We are pleased to announce a collaboration with the Fondazione Levi. On this special occasion of the International Conference in Immersive and 3D Audio, both the spaces of Fondazione Levi and those of Warwick University at Palazzo Giustinian Lolin, on the Grand Canal, will be made available for our event.</p>
+                                        <p>Fondazione Ugo e Olga Levi, founded in Venice in 1962 and based in the historic Palazzo Giustinian Lolin on the Grand Canal, is an international centre for musical and musicological research. It preserves, studies, and promotes the tangible and intangible heritage of music through its specialised library, research projects, and cultural initiatives in Italy and abroad. Alongside its scholarly activities, the Foundation promotes the dissemination of musical knowledge through a significant publishing programme devoted to academic publications, scholarly series, and musicological editions. Committed to the education of new generations, it engages primary and secondary school students, university students, doctoral candidates, and researchers through scholarships, internships, traineeships, and educational projects.</p>
+                                        <div class="pt-6 font-light text-gray-500">
+                                            <p>Fondazione Ugo e Olga Levi</p>
+                                            <p>San Marco 2893</p>
+                                            <p>30124 Venezia</p>
+                                            <p>t. 041 786777</p>
+                                            <p><a href="http://www.fondazionelevi.it" target="_blank" class="text-lagoon-light hover:underline">www.fondazionelevi.it</a></p>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="md:w-1/2">
-                                    <img src="FL.jpeg" alt="Fondazione Levi" class="w-full h-auto shadow-md">
+                                    <img src="FL.jpeg" alt="Fondazione Levi performance" class="w-full h-auto shadow-md">
                                 </div>
                             </div>
                          </div>
@@ -634,130 +639,4 @@
 
                     if(a > 128 && b < 200) {
                         bannerParticles.push({
-                            tx: x/dpr, 
-                            ty: y/dpr, 
-                            sx: Math.random() * bnWidth, 
-                            phase: Math.random() * Math.PI * 2 
-                        });
-                    }
-                }
-            }
-            bannerCtx.clearRect(0,0,bnWidth,bnHeight);
-            startBannerLoop();
-        }
-
-        function startBannerLoop() {
-            bnStage = 'wave';
-            bnStateTime = 0;
-            bnGlobalTime = 0;
-            bnMorphProgress = 0;
-            bnIsAnimating = true;
-            bannerCanvas.style.opacity = 1;
-            if(bnAnimId) cancelAnimationFrame(bnAnimId);
-            bannerLoop();
-        }
-
-        function bannerLoop() {
-            if(!bnIsAnimating) return;
-            bnGlobalTime += 1/60;
-            bnStateTime += 1/60;
-
-            if(bnStage === 'wave') {
-                if(bnStateTime > oceanSettings.waveDuration) { bnStage = 'morph'; bnStateTime = 0; }
-            } else if(bnStage === 'morph') { 
-                bnMorphProgress += oceanSettings.morphSpeed;
-                if(bnMorphProgress >= 1) { bnMorphProgress = 1; bnStage = 'hold'; bnStateTime = 0; }
-            } else if(bnStage === 'hold') { 
-                if(bnStateTime > oceanSettings.holdTime) { bnStage = 'dissolve'; bnStateTime = 0; }
-            } else if(bnStage === 'dissolve') { 
-                bnMorphProgress -= oceanSettings.morphSpeed;
-                if(bnMorphProgress <= 0) { bnMorphProgress = 0; bnStage = 'wave'; bnStateTime = 0; }
-            }
-
-            bannerCtx.clearRect(0,0,bnWidth,bnHeight);
-            bannerCtx.fillStyle = '#fff'; 
-
-            for(let i=0; i<bannerParticles.length; i++) {
-                const p = bannerParticles[i];
-                const t = bnMorphProgress;
-                const ease = t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-                const currentX = p.sx + (p.tx - p.sx) * ease;
-                const normX = currentX / bnWidth;
-
-                const y1 = Math.sin(normX * oceanSettings.swellFreq * Math.PI + bnGlobalTime * oceanSettings.swellSpeed) * oceanSettings.swellAmp;
-                const y2 = Math.cos(normX * oceanSettings.chopFreq * Math.PI - bnGlobalTime * oceanSettings.chopSpeed) * oceanSettings.chopAmp;
-                const y3 = Math.sin(p.phase + bnGlobalTime * 2) * 2;
-                const waveY = (bnHeight/2) + y1 + y2 + y3;
-                const currentY = waveY + (p.ty - waveY) * ease;
-
-                bannerCtx.fillRect(currentX, currentY, 1.5, 1.5);
-            }
-            bnAnimId = requestAnimationFrame(bannerLoop);
-        }
-
-        const contentArea = document.getElementById('content-area');
-        const sidebarLogoArea = document.getElementById('sidebar-logo-area');
-        const mainBannerContainer = document.getElementById('main-banner-container'); 
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (menuButton && mobileMenu) {
-            menuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
-        }
-        
-        document.querySelectorAll('#mobile-menu a').forEach(l => {
-            l.addEventListener('click', (e) => {
-                mobileMenu.classList.add('hidden');
-                handleNavigation(e.currentTarget.getAttribute('data-target'));
-            });
-        });
-        
-        document.querySelectorAll('#sidebar nav a').forEach(link => {
-            link.addEventListener('click', (e) => {
-                handleNavigation(e.currentTarget.getAttribute('data-target'));
-            });
-        });
-
-        function handleNavigation(targetId) {
-            const allSections = ['about', 'news', 'call-for-papers', 'program', 'registration', 'sponsors', 'patronage', 'venue', 'contact'];
-            
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(l => l.classList.add('active'));
-            
-            allSections.forEach(id => {
-                const el = document.getElementById(id);
-                if (el) el.classList.add('section-hidden');
-            });
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) targetSection.classList.remove('section-hidden');
-            contentArea.scrollTop = 0;
-
-            const showBanner = (targetId === 'about' || targetId === 'news');
-
-            if (showBanner) {
-                if(mainBannerContainer) mainBannerContainer.classList.remove('hidden');
-                sidebarLogoArea.classList.remove('opacity-100');
-                sidebarLogoArea.classList.add('opacity-0');
-                sbIsAnimating = false; 
-            } else {
-                if(mainBannerContainer) mainBannerContainer.classList.add('hidden');
-                sidebarLogoArea.classList.remove('opacity-0');
-                sidebarLogoArea.classList.add('opacity-100');
-                if(sourceImageObj && !sbIsAnimating) {
-                    startSidebarLoop();
-                } else if (sidebarParticles.length > 0) {
-                    drawStaticSidebarLogo();
-                }
-            }
-        }
-        handleNavigation('about');
-        
-        window.addEventListener('resize', () => {
-            if(sourceImageObj) initSidebarAnimation(sourceImageObj);
-            if(sourceImageObj) initBannerAnimation(sourceImageObj);
-        });
-    </script>
-</body>
-</html>
+                            tx: x/
