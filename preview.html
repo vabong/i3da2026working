@@ -15,7 +15,7 @@
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; height: 100vh; overflow: hidden; }
-        .nav-link { transition: all 0.3s ease; padding: 0.75rem 1rem; display: block; border-left: 2px solid transparent; }
+        p { hyphens: auto; -webkit-hyphens: auto; }
         .section-padding { padding: 4rem 1.5rem; }
         @media (min-width: 640px) { .section-padding { padding: 6rem 4rem; } }
         #sidebar-logo-area { transition: opacity 0.5s ease-in-out; }
@@ -28,14 +28,18 @@
 <body>
     <div class="flex h-screen overflow-hidden">
         <aside id="sidebar" class="w-80 flex-shrink-0 bg-white shadow-2xl overflow-y-auto hidden md:block transition-all duration-300 z-20 flex flex-col">
-            <div id="sidebar-logo-area" class="pt-6 pb-2 text-center border-b border-gray-100 opacity-0">
+            <div id="sidebar-logo-area" class="pt-6 pb-2 text-center border-b border-gray-100 opacity-100">
                 <div id="anim-canvas-container"><canvas id="logoCanvas"></canvas></div>
                 <div class="-mt-6 relative z-10 bg-white/80 backdrop-blur-sm py-2">
                     <h1 class="text-4xl font-light text-lagoon-blue tracking-[0.15em]">I3DA</h1>
                     <div class="text-lg font-light text-lagoon-blue tracking-[0.3em] mt-1">2026</div>
                 </div>
             </div>
-            <div class="p-6 flex-grow"><p class="text-xs uppercase tracking-widest text-gray-400">Preview Mode</p></div>
+            <div class="p-8 flex-grow">
+                <p class="text-xs uppercase tracking-widest text-lagoon-blue font-bold mb-4">Preview Mode</p>
+                <p class="text-xs text-gray-400 leading-relaxed">You are viewing a draft of the following post:</p>
+                <p class="text-xs text-gray-600 mt-2 italic">Collaboration with Fondazione Levi</p>
+            </div>
         </aside>
 
         <main id="content-area" class="flex-grow overflow-y-auto bg-gray-50 md:mt-0 mt-24 scroll-smooth">
@@ -43,26 +47,38 @@
                 <canvas id="bannerCanvas"></canvas>
                 <img src="blue5.jpg" class="w-full h-auto block" onerror="this.src='https://placehold.co/1000x224/E0F2F1/005F73?text=I3DA+Banner';">
             </section>
-            <div id="dynamic-content"></div>
+            
+            <div id="dynamic-content">
+                </div>
         </main>
     </div>
 
     <script>
-        // ... (Animations Logic same as Master) ...
-        // Update this array with the filename of the post you want them to see:
-        const previewPost = '2025-12-23-fondazione-levi.html'; 
+        // Animations logic (same as Master)
+        const logoSrc = 'logo.jpg'; const img = new Image(); let sourceImageObj = null;
+        img.onload = () => { sourceImageObj = img; initSidebarAnimation(img); initBannerAnimation(img); }; img.src = logoSrc;
 
+        // Load specific draft
         async function initPreview() {
             const contentContainer = document.getElementById('dynamic-content');
-            // 1. Load the News Shell
-            const shellRes = await fetch('sections/news.html');
-            contentContainer.innerHTML = await shellRes.text();
+            try {
+                // 1. Load the News Section wrapper
+                const shellRes = await fetch('sections/news.html');
+                contentContainer.innerHTML = await shellRes.text();
 
-            // 2. Load the specific post into the news-container
-            const postRes = await fetch(`news-posts/${previewPost}`);
-            const newsContainer = document.getElementById('news-container');
-            newsContainer.innerHTML = await postRes.text();
+                // 2. Load the specific Fondazione Levi post into the container
+                const postRes = await fetch('news-posts/2025-12-23-fondazione-levi.html');
+                const newsContainer = document.getElementById('news-container');
+                newsContainer.innerHTML = await postRes.text();
+            } catch (e) {
+                contentContainer.innerHTML = `<p class="p-20 text-red-500">Error: Make sure you have uploaded news-posts/2025-12-23-fondazione-levi.html and sections/news.html</p>`;
+            }
         }
+
+        // Animation boilerplates
+        const sidebarCanvas = document.getElementById('logoCanvas'); const sidebarCtx = sidebarCanvas.getContext('2d');
+        function initSidebarAnimation(image) { /* sidebar logic... */ }
+        function initBannerAnimation(image) { /* banner logic... */ }
 
         initPreview();
     </script>
