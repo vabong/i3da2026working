@@ -174,7 +174,7 @@
 
         async function loadNewsPosts() {
             const container = document.getElementById('news-container'); if (!container) return;
-            const posts = ['archive-links.html'];
+            const posts = ['2025-12-23-fondazione-levi','archive-links.html'];
             container.innerHTML = '';
             for (const file of posts) {
                 const res = await fetch(`news-posts/${file}`);
