@@ -189,11 +189,24 @@
         }));
         window.addEventListener('resize', () => { if(sourceImageObj) { initSidebarAnimation(sourceImageObj); initBannerAnimation(sourceImageObj); } });
         
-        window.addEventListener('load', () => {
-            const params = new URLSearchParams(window.location.search);
-            const section = params.get('section') || 'about';
-            setTimeout(() => handleNavigation(section), 200);
-        });
+       window.addEventListener('load', () => {
+    const params = new URLSearchParams(window.location.search);
+    const section = params.get('section') || 'about';
+    
+    // 1. Navigate to the correct section (News)
+    setTimeout(async () => {
+        await handleNavigation(section);
+        
+        // 2. If there is a #hash in the URL, scroll to that specific post
+        const hash = window.location.hash;
+        if (hash) {
+            const targetElement = document.querySelector(hash);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, 300); // Slightly longer delay to ensure News content is fetched
+});
     </script>
 </body>
 </html>
