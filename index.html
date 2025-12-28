@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I3DA 2026 - International Conference on Immersive and 3D Audio</title>
+    
+    <meta property="og:title" content="I3DA 2026 - Collaboration with Fondazione Levi">
+    <meta property="og:description" content="The I3DA 2026 international conference will take place at Palazzo Giustinian Lolin, Venice.">
+    <meta property="og:image" content="https://www.i3da2026.org/Facciata Palazzo Giustinian Lolin - LEVI - Notte.jpg">
+    <meta property="og:url" content="https://www.i3da2026.org/?section=news#levi">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://www.i3da2026.org/Facciata Palazzo Giustinian Lolin - LEVI - Notte.jpg">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'lagoon-blue': '#005f73', 'lagoon-light': '#4da8b8', 'lagoon-bg': '#f0f8f8', 'venice-red': '#A52A2A' },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; height: 100vh; overflow: hidden; }
+        p { hyphens: auto; -webkit-hyphens: auto; }
+        .nav-link { transition: all 0.3s ease; padding: 0.75rem 1rem; display: block; border-left: 2px solid transparent; cursor: pointer; }
+        .nav-link:hover, .nav-link.active { color: #005f73; background-color: #f8fafc; border-left-color: #005f73; }
+        .section-padding { padding: 4rem 1.5rem; }
+        @media (min-width: 640px) { .section-padding { padding: 6rem 4rem; } }
+        #sidebar-logo-area { transition: opacity 0.5s ease-in-out; }
+        #anim-canvas-container { width: 100%; height: 220px; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: flex-end; }
+        #main-banner-container { position: relative; width: 100%; overflow: hidden; min-height: 200px; transition: opacity 0.3s ease; }
+        #bannerCanvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; pointer-events: none; }
+        canvas { display: block; width: 100%; height: 100%; }
+    </style>
+</head>
+<body>
+    <div class="flex h-screen overflow-hidden">
+        
+        <aside id="sidebar" class="w-80 flex-shrink-0 bg-white shadow-2xl overflow-y-auto hidden md:block z-20 flex flex-col">
+            <div id="sidebar-logo-area" class="pt-6 pb-2 text-center border-b border-gray-100 opacity-0">
+                <div id="anim-canvas-container"><canvas id="logoCanvas"></canvas></div>
+                <div class="-mt-6 relative z-10 bg-white/80 backdrop-blur-sm py-2">
+                    <h1 class="text-4xl font-light text-lagoon-blue leading-none tracking-[0.15em]">I3DA</h1>
+                    <div class="text-lg font-light text-lagoon-blue tracking-[0.3em] mt-1">2026</div>
+                    <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase mt-3">Venice, Italy</p>
+                    <p class="text-xs font-medium text-gray-500 tracking-[0.2em] uppercase">19–22 Nov</p>
+                    <div class="flex justify-center space-x-5 mt-5 mb-2">
+                        <a href="https://www.linkedin.com/company/86452519/" target="_blank" class="text-gray-400 hover:text-lagoon-blue"><i class="fab fa-linkedin text-lg"></i></a>
+                        <a href="https://www.facebook.com/I3DAudio/" target="_blank" class="text-gray-400 hover:text-lagoon-blue"><i class="fab fa-facebook text-lg"></i></a>
+                        <a href="https://www.instagram.com/i3da.2026/" target="_blank" class="text-gray-400 hover:text-lagoon-blue"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="https://x.com/i3da2026" target="_blank" class="text-gray-400 hover:text-lagoon-blue"><i class="fab fa-x-twitter text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="p-0 py-6 flex-grow">
+                <nav class="space-y-1">
+                    <a data-target="about" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500 active">About</a>
+                    <a data-target="venue" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Conference venue</a>
+                    <a data-target="program" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Programme</a>
+                    <a data-target="call-for-papers" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Call for papers</a>
+                    <a data-target="registration" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Registration</a>
+                    <a data-target="sponsors" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Sponsors</a>
+                    <a data-target="patronage" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Patronage</a>
+                    <a data-target="contact" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Contacts</a>
+                    <a data-target="news" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">News</a>
+                </nav>
+            </div>
+        </aside>
+
+        <header class="md:hidden bg-white shadow-sm fixed w-full z-30 border-b border-gray-100">
+            <div class="flex justify-between items-center h-16 px-6">
+                <div class="text-xl font-light tracking-[0.15em] text-lagoon-blue">I3DA 2026</div>
+                <button id="menu-button" type="button" class="p-2 text-gray-400"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7" /></svg></button>
+            </div>
+        </header>
+
+        <div id="mobile-menu" class="hidden fixed inset-0 z-40 bg-white overflow-y-auto p-8 pt-24">
+            <h2 class="text-3xl font-light text-lagoon-blue mb-8 tracking-widest">MENU</h2>
+            <nav class="space-y-4">
+                <a data-target="about" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">About</a>
+                <a data-target="venue" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Conference venue</a>
+                <a data-target="program" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Programme</a>
+                <a data-target="call-for-papers" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Call for papers</a>
+                <a data-target="registration" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Registration</a>
+                <a data-target="sponsors" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Sponsors</a>
+                <a data-target="patronage" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Patronage</a>
+                <a data-target="contact" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Contacts</a>
+                <a data-target="news" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">News</a>
+            </nav>
+        </div>
+
+        <main id="content-area" class="flex-grow overflow-y-auto bg-gray-50 md:mt-0 mt-24 scroll-smooth">
+            <section id="main-banner-container" class="w-full">
+                <canvas id="bannerCanvas"></canvas>
+                <img src="blue5.jpg" alt="Banner" class="w-full h-auto block" onerror="this.src='https://placehold.co/1000x224/E0F2F1/005F73?text=I3DA+Banner';">
+            </section>
+            <div id="dynamic-content"></div>
+        </main>
+    </div>
+
+    <script>
+        /* --- 1. GLOBAL INITIALIZATION & IMAGE LOADING --- */
+        const logoSrc = 'logo.jpg'; const img = new Image(); let sourceImageObj = null;
+        img.onload = () => { sourceImageObj = img; initSidebarAnimation(img); initBannerAnimation(img); }; img.src = logoSrc;
+
+        /* --- 2. SIDEBAR ANIMATION ENGINE (SINE SWEEP) --- */
+        const sidebarCanvas = document.getElementById('logoCanvas'); const sidebarCtx = sidebarCanvas.getContext('2d');
+        const sidebarSettings = { startSpatial: 0.5, endSpatial: 18, amplitude: 55, sweepDuration: 6.0, pWidth: 1, pHeight: 1, resolution: 1, morphSpeed: 0.005, holdTime: 9.5, speed: 0.009 };
+        let sidebarParticles = [], sbWidth, sbHeight, sbIsAnimating = false, sbGlobalTime = 0, sbStateTime = 0, sbLoopState = 'sweep_in', sbMorphProgress = 0, sbAnimId;
+
+        function drawStaticSidebarLogo() { if (!sidebarCtx || sidebarParticles.length === 0) return; sidebarCtx.clearRect(0, 0, sbWidth, sbHeight); sidebarCtx.fillStyle = 'black'; sidebarParticles.forEach(p => sidebarCtx.fillRect(p.x, p.y, sidebarSettings.pWidth, sidebarSettings.pHeight)); }
+        function initSidebarAnimation(image) {
+            sbWidth = sidebarCanvas.parentElement.offsetWidth; sbHeight = sidebarCanvas.parentElement.offsetHeight;
+            const dpr = window.devicePixelRatio || 1; sidebarCanvas.width = sbWidth * dpr; sidebarCanvas.height = sbHeight * dpr; sidebarCtx.scale(dpr, dpr);
+            const scale = Math.min(sbWidth / image.width, sbHeight / image.height) * 0.85;
+            const drawW = image.width * scale, drawH = image.height * scale;
+            const offX = (sbWidth - drawW) / 2, offY = (sbHeight - drawH) / 2 + 20; 
+            sidebarCtx.drawImage(image, offX, offY, drawW, drawH); const data = sidebarCtx.getImageData(0, 0, sbWidth * dpr, sbHeight * dpr).data;
+            sidebarParticles = []; const step = Math.max(1, Math.floor(sidebarSettings.resolution * dpr)); 
+            for(let y=0; y < sbHeight*dpr; y+=step) { for(let x=0; x < sbWidth*dpr; x+=step) { const i = (y * (sbWidth*dpr) + x) * 4; if (data[i+3] > 128 && (data[i]+data[i+1]+data[i+2])/3 < 200) { sidebarParticles.push({ x: x / dpr, y: y / dpr, normX: x / (sbWidth * dpr) }); } } }
+            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight); drawStaticSidebarLogo();
+        }
+        function startSidebarLoop() { sbStateTime = 0; sbGlobalTime = 0; sbMorphProgress = 0; sbLoopState = 'sweep_in'; sbIsAnimating = true; if(sbAnimId) cancelAnimationFrame(sbAnimId); sidebarLoop(); }
+        function sidebarLoop() {
+            if (!sbIsAnimating) { drawStaticSidebarLogo(); return; }
+            sbGlobalTime += sidebarSettings.speed; sbStateTime += 1/60; let currentFreq = sidebarSettings.startSpatial, currentMorph = sbMorphProgress;
+            if (sbLoopState === 'sweep_in') { const p = Math.min(sbStateTime / sidebarSettings.sweepDuration, 1.0); currentFreq = sidebarSettings.startSpatial + (sidebarSettings.endSpatial - sidebarSettings.startSpatial) * p; if (sbStateTime >= sidebarSettings.sweepDuration) { sbLoopState = 'forming'; sbStateTime = 0; } }
+            else if (sbLoopState === 'forming') { sbMorphProgress += sidebarSettings.morphSpeed; currentMorph = sbMorphProgress; if(sbMorphProgress >= 1) { sbLoopState = 'holding'; sbStateTime = 0; } }
+            else if (sbLoopState === 'holding') { if(sbStateTime >= sidebarSettings.holdTime) { sbLoopState = 'dissolving'; sbStateTime = 0; } }
+            else if (sbLoopState === 'dissolving') { sbMorphProgress -= sidebarSettings.morphSpeed; currentMorph = sbMorphProgress; if(sbMorphProgress <= 0) { sbLoopState = 'sweep_out'; sbStateTime = 0; } }
+            else if (sbLoopState === 'sweep_out') { const p = Math.min(sbStateTime / sidebarSettings.sweepDuration, 1.0); currentFreq = sidebarSettings.endSpatial - (sidebarSettings.endSpatial - sidebarSettings.startSpatial) * p; if (sbStateTime >= sidebarSettings.sweepDuration) { sbLoopState = 'sweep_in'; sbStateTime = 0; } }
+            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight); sidebarCtx.fillStyle = 'black';
+            for (let i = 0; i < sidebarParticles.length; i++) { const p = sidebarParticles[i]; const waveY = (sbHeight / 2) + Math.sin( (p.normX * currentFreq * Math.PI * 2) + sbGlobalTime ) * sidebarSettings.amplitude; const ease = currentMorph < .5 ? 4 * currentMorph * currentMorph * currentMorph : (currentMorph - 1) * (2 * currentMorph - 2) * (2 * currentMorph - 2) + 1; const renderY = waveY + (p.y - waveY) * ease; sidebarCtx.fillRect(p.x, renderY, sidebarSettings.pWidth, sidebarSettings.pHeight); }
+            sbAnimId = requestAnimationFrame(sidebarLoop);
+        }
+
+        /* --- 3. BANNER ANIMATION ENGINE (OCEAN WAVE) --- */
+        const bannerCanvas = document.getElementById('bannerCanvas'); const bannerCtx = bannerCanvas.getContext('2d');
+        const oceanSettings = { swellAmp: 41, swellFreq: 2, swellSpeed: 0.15, chopAmp: 20, chopFreq: 8, chopSpeed: 0.08, waveDuration: 3.0, morphSpeed: 0.004, resolution: 1, holdTime: 1.0 };
+        let bannerParticles = [], bnWidth, bnHeight, bnIsAnimating = false, bnGlobalTime = 0, bnStateTime = 0, bnStage = 'wave', bnMorphProgress = 0, bnAnimId;
+
+        function initBannerAnimation(image) {
+            const container = document.getElementById('main-banner-container'); const imgElement = container.querySelector('img'); 
+            bnWidth = container.offsetWidth; bnHeight = imgElement.offsetHeight || 224; const dpr = window.devicePixelRatio || 1;
+            bannerCanvas.width = bnWidth * dpr; bannerCanvas.height = bnHeight * dpr; bannerCtx.scale(dpr, dpr);
+            const scale = Math.min(bnWidth / image.width, bnHeight / image.height) * 0.85; const drawW = image.width * scale, drawH = image.height * scale;
+            const dx = (bnWidth - drawW) / 2, dy = (bnHeight - drawH) / 2; bannerCtx.drawImage(image, dx, dy, drawW, drawH);
+            const data = bannerCtx.getImageData(0,0, bnWidth*dpr, bnHeight*dpr).data; bannerParticles = []; const step = Math.max(1, Math.floor(oceanSettings.resolution * dpr));
+            for(let y=0; y < bnHeight*dpr; y+=step) { for(let x=0; x < bnWidth*dpr; x+=step) { const i = (y*(bnWidth*dpr)+x)*4; if(data[i+3] > 128 && (data[i]+data[i+1]+data[i+2])/3 < 200) { bannerParticles.push({ tx: x/dpr, ty: y/dpr, sx: Math.random() * bnWidth, phase: Math.random() * Math.PI * 2 }); } } }
+            bannerCtx.clearRect(0,0,bnWidth,bnHeight); startBannerLoop();
+        }
+        function startBannerLoop() { bnStage = 'wave'; bnStateTime = 0; bnGlobalTime = 0; bnMorphProgress = 0; bnIsAnimating = true; if(bnAnimId) cancelAnimationFrame(bnAnimId); bannerLoop(); }
+        function bannerLoop() {
+            if(!bnIsAnimating) return; bnGlobalTime += 1/60; bnStateTime += 1/60;
+            if(bnStage === 'wave' && bnStateTime > oceanSettings.waveDuration) bnStage = 'morph';
+            else if(bnStage === 'morph') { bnMorphProgress += oceanSettings.morphSpeed; if(bnMorphProgress >= 1) bnStage = 'hold'; }
+            else if(bnStage === 'hold' && bnStateTime > oceanSettings.holdTime) bnStage = 'dissolve';
+            else if(bnStage === 'dissolve') { bnMorphProgress -= oceanSettings.morphSpeed; if(bnMorphProgress <= 0) bnStage = 'wave'; }
+            bannerCtx.clearRect(0,0,bnWidth,bnHeight); bannerCtx.fillStyle = '#fff'; 
+            for(let i=0; i<bannerParticles.length; i++) { const p = bannerParticles[i], t = bnMorphProgress; const ease = t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; const currentX = p.sx + (p.tx - p.sx) * ease; const normX = currentX / bnWidth; const waveY = (bnHeight/2) + Math.sin(normX * oceanSettings.swellFreq * Math.PI + bnGlobalTime * oceanSettings.swellSpeed) * oceanSettings.swellAmp + Math.cos(normX * oceanSettings.chopFreq * Math.PI - bnGlobalTime * oceanSettings.chopSpeed) * oceanSettings.chopAmp; const currentY = waveY + (p.ty - waveY) * ease; bannerCtx.fillRect(currentX, currentY, 1.5, 1.5); }
+            bnAnimId = requestAnimationFrame(bannerLoop);
+        }
+
+        /* --- 4. CORE NAVIGATION & PAGE LOADING --- */
+        async function handleNavigation(targetId) {
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(l => l.classList.add('active'));
+            try {
+                const response = await fetch(`sections/${targetId}.html`);
+                if (response.ok) {
+                    document.getElementById('dynamic-content').innerHTML = await response.text();
+                    if (targetId === 'news') loadNewsPosts();
+                }
+            } catch (err) { console.error("Navigation Error:", err); }
+            const logoArea = document.getElementById('sidebar-logo-area'); const banner = document.getElementById('main-banner-container');
+            if (targetId === 'about' || targetId === 'news') { banner.classList.remove('hidden'); logoArea.classList.add('opacity-0'); sbIsAnimating = false; }
+            else { banner.classList.add('hidden'); logoArea.classList.remove('opacity-0'); logoArea.classList.add('opacity-100'); startSidebarLoop(); }
+            document.getElementById('content-area').scrollTop = 0;
+        }
+
+        /* --- 5. NEWS CONTENT LOADER --- */
+        async function loadNewsPosts() {
+            const container = document.getElementById('news-container'); if (!container) return;
+            // UPDATE THIS LIST TO ADD NEW POSTS
+            const posts = ['2025-12-23-fondazione-levi.html','archive-links.html'];
+            container.innerHTML = '';
+            for (const file of posts) {
+                const res = await fetch(`news-posts/${file}`);
+                if (res.ok) { 
+                    const div = document.createElement('div'); 
+                    div.className = "mb-16 block clear-both"; // Ensures visual separation
+                    div.innerHTML = await res.text(); 
+                    container.appendChild(div); 
+                }
+            }
+        }
+
+        /* --- 6. EVENT LISTENERS & DEEP LINKING --- */
+        document.getElementById('menu-button').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+        document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', (e) => {
+            document.getElementById('mobile-menu').classList.add('hidden');
+            handleNavigation(e.currentTarget.getAttribute('data-target'));
+        }));
+        window.addEventListener('resize', () => { if(sourceImageObj) { initSidebarAnimation(sourceImageObj); initBannerAnimation(sourceImageObj); } });
+        
+        window.addEventListener('load', () => {
+            const params = new URLSearchParams(window.location.search);
+            const validSections = ['about', 'venue', 'program', 'call-for-papers', 'registration', 'sponsors', 'patronage', 'contact', 'news', 'sponsorship-info'];
+            
+            let section = params.get('section') || 'about';
+            if (!validSections.includes(section)) section = 'about';
+
+            setTimeout(async () => {
+                await handleNavigation(section);
+                const hash = window.location.hash;
+                if (hash) {
+                    const targetElement = document.querySelector(hash);
+                    if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 300);
+        });
+    </script>
+</body>
+</html>
