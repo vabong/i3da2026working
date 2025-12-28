@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I3DA 2026 - International Conference on Immersive and 3D Audio</title>
+    
+    <meta property="og:title" content="I3DA 2026 - Collaboration with Fondazione Levi">
+    <meta property="og:description" content="The I3DA 2026 international conference will take place at Palazzo Giustinian Lolin, Venice.">
+    <meta property="og:image" content="https://www.i3da2026.org/Facciata Palazzo Giustinian Lolin - LEVI - Notte.jpg">
+    <meta property="og:url" content="https://www.i3da2026.org/?section=news#levi">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://www.i3da2026.org/Facciata Palazzo Giustinian Lolin - LEVI - Notte.jpg">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,6 +26,7 @@
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; height: 100vh; overflow: hidden; }
@@ -34,6 +44,7 @@
 </head>
 <body>
     <div class="flex h-screen overflow-hidden">
+        
         <aside id="sidebar" class="w-80 flex-shrink-0 bg-white shadow-2xl overflow-y-auto hidden md:block z-20 flex flex-col">
             <div id="sidebar-logo-area" class="pt-6 pb-2 text-center border-b border-gray-100 opacity-0">
                 <div id="anim-canvas-container"><canvas id="logoCanvas"></canvas></div>
@@ -97,9 +108,11 @@
     </div>
 
     <script>
+        /* --- 1. GLOBAL INITIALIZATION & IMAGE LOADING --- */
         const logoSrc = 'logo.jpg'; const img = new Image(); let sourceImageObj = null;
         img.onload = () => { sourceImageObj = img; initSidebarAnimation(img); initBannerAnimation(img); }; img.src = logoSrc;
 
+        /* --- 2. SIDEBAR ANIMATION ENGINE (SINE SWEEP) --- */
         const sidebarCanvas = document.getElementById('logoCanvas'); const sidebarCtx = sidebarCanvas.getContext('2d');
         const sidebarSettings = { startSpatial: 0.5, endSpatial: 18, amplitude: 55, sweepDuration: 6.0, pWidth: 1, pHeight: 1, resolution: 1, morphSpeed: 0.005, holdTime: 9.5, speed: 0.009 };
         let sidebarParticles = [], sbWidth, sbHeight, sbIsAnimating = false, sbGlobalTime = 0, sbStateTime = 0, sbLoopState = 'sweep_in', sbMorphProgress = 0, sbAnimId;
@@ -130,6 +143,7 @@
             sbAnimId = requestAnimationFrame(sidebarLoop);
         }
 
+        /* --- 3. BANNER ANIMATION ENGINE (OCEAN WAVE) --- */
         const bannerCanvas = document.getElementById('bannerCanvas'); const bannerCtx = bannerCanvas.getContext('2d');
         const oceanSettings = { swellAmp: 41, swellFreq: 2, swellSpeed: 0.15, chopAmp: 20, chopFreq: 8, chopSpeed: 0.08, waveDuration: 3.0, morphSpeed: 0.004, resolution: 1, holdTime: 1.0 };
         let bannerParticles = [], bnWidth, bnHeight, bnIsAnimating = false, bnGlobalTime = 0, bnStateTime = 0, bnStage = 'wave', bnMorphProgress = 0, bnAnimId;
@@ -156,6 +170,7 @@
             bnAnimId = requestAnimationFrame(bannerLoop);
         }
 
+        /* --- 4. CORE NAVIGATION & PAGE LOADING --- */
         async function handleNavigation(targetId) {
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(l => l.classList.add('active'));
@@ -165,23 +180,31 @@
                     document.getElementById('dynamic-content').innerHTML = await response.text();
                     if (targetId === 'news') loadNewsPosts();
                 }
-            } catch (err) { console.error(err); }
+            } catch (err) { console.error("Navigation Error:", err); }
             const logoArea = document.getElementById('sidebar-logo-area'); const banner = document.getElementById('main-banner-container');
             if (targetId === 'about' || targetId === 'news') { banner.classList.remove('hidden'); logoArea.classList.add('opacity-0'); sbIsAnimating = false; }
             else { banner.classList.add('hidden'); logoArea.classList.remove('opacity-0'); logoArea.classList.add('opacity-100'); startSidebarLoop(); }
             document.getElementById('content-area').scrollTop = 0;
         }
 
+        /* --- 5. NEWS CONTENT LOADER --- */
         async function loadNewsPosts() {
             const container = document.getElementById('news-container'); if (!container) return;
+            // UPDATE THIS LIST TO ADD NEW POSTS
             const posts = ['2025-12-23-fondazione-levi.html','archive-links.html'];
             container.innerHTML = '';
             for (const file of posts) {
                 const res = await fetch(`news-posts/${file}`);
-                if (res.ok) { const div = document.createElement('div'); div.innerHTML = await res.text(); container.appendChild(div); }
+                if (res.ok) { 
+                    const div = document.createElement('div'); 
+                    div.className = "mb-16 block clear-both"; // Ensures visual separation
+                    div.innerHTML = await res.text(); 
+                    container.appendChild(div); 
+                }
             }
         }
 
+        /* --- 6. EVENT LISTENERS & DEEP LINKING --- */
         document.getElementById('menu-button').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
         document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', (e) => {
             document.getElementById('mobile-menu').classList.add('hidden');
@@ -189,24 +212,22 @@
         }));
         window.addEventListener('resize', () => { if(sourceImageObj) { initSidebarAnimation(sourceImageObj); initBannerAnimation(sourceImageObj); } });
         
-       window.addEventListener('load', () => {
-    const params = new URLSearchParams(window.location.search);
-    const section = params.get('section') || 'about';
-    
-    // 1. Navigate to the correct section (News)
-    setTimeout(async () => {
-        await handleNavigation(section);
-        
-        // 2. If there is a #hash in the URL, scroll to that specific post
-        const hash = window.location.hash;
-        if (hash) {
-            const targetElement = document.querySelector(hash);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    }, 300); // Slightly longer delay to ensure News content is fetched
-});
+        window.addEventListener('load', () => {
+            const params = new URLSearchParams(window.location.search);
+            const validSections = ['about', 'venue', 'program', 'call-for-papers', 'registration', 'sponsors', 'patronage', 'contact', 'news', 'sponsorship-info'];
+            
+            let section = params.get('section') || 'about';
+            if (!validSections.includes(section)) section = 'about';
+
+            setTimeout(async () => {
+                await handleNavigation(section);
+                const hash = window.location.hash;
+                if (hash) {
+                    const targetElement = document.querySelector(hash);
+                    if (targetElement) targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 300);
+        });
     </script>
 </body>
 </html>
