@@ -1,0 +1,36 @@
+/* ==============================
+   GLOBAL SITE STYLE OVERRIDES
+   (works alongside Tailwind)
+   ============================== */
+
+/* 1) Global body typography */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fafc;
+}
+
+/* 2) Make long text more readable and less "spaced out" */
+#dynamic-content p {
+  line-height: 1.65;   /* tighter than Tailwind's leading-loose */
+}
+
+/* 3) Reduce excessive section padding site-wide */
+.section-padding {
+  padding: 3.5rem 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .section-padding {
+    padding: 4.5rem 3rem;
+  }
+}
+
+/* 4) Reduce big vertical gaps between elements */
+#dynamic-content .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 1.5rem; /* instead of Tailwind's very large spacing */
+}
+
+/* 5) Optional: make text slightly more compact for long pages */
+#dynamic-content {
+  font-size: 1rem; /* equivalent to text-base */
+}
