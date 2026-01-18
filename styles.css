@@ -145,14 +145,59 @@ canvas {
 }
 
 /* ----------------------------------------------------------
-9) SPONSOR BUTTON VISIBILITY (ALL SCREENS)
+9) ACCESSIBILITY: LINKS, CONTRAST, FOCUS (GLOBAL)
 ---------------------------------------------------------- */
+
+/* A) Make links identifiable without relying on color (WCAG-friendly)
+   Applies only to content links, not nav-links, not CTA buttons. */
+#dynamic-content a:not(.nav-link):not(.bg-lagoon-blue):not(.bg-lagoon-light):not(.inline-block) {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+#dynamic-content a:not(.nav-link):not(.bg-lagoon-blue):not(.bg-lagoon-light):not(.inline-block):hover {
+  text-decoration-thickness: 2px;
+}
+
+/* B) Improve contrast for lagoon-light links in body text
+   Keep your lagoon-light look on hover, but ensure readable base color. */
+#dynamic-content a.text-lagoon-light {
+  color: #005f73 !important; /* lagoon-blue for AA contrast on light bg */
+}
+
+#dynamic-content a.text-lagoon-light:hover {
+  color: #4da8b8 !important; /* lagoon-light on hover */
+}
+
+/* C) Visible keyboard focus rings (site-wide) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #005f73;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ----------------------------------------------------------
+10) SPONSOR BUTTON VISIBILITY (ALL SCREENS)
+---------------------------------------------------------- */
+
+/* Strong guarantee: any lagoon-blue button/link has white text */
 #dynamic-content a.bg-lagoon-blue,
-#dynamic-content button.bg-lagoon-blue {
+#dynamic-content button.bg-lagoon-blue,
+#dynamic-content .bg-lagoon-blue a,
+#dynamic-content .bg-lagoon-blue button {
   color: #ffffff !important;
 }
 
-#dynamic-content a.bg-lagoon-blue:hover {
+/* Keep contrast when hovering */
+#dynamic-content a.bg-lagoon-blue:hover,
+#dynamic-content button.bg-lagoon-blue:hover {
+  color: #ffffff !important;
+}
+
+/* Also ensure visited state doesn't override */
+#dynamic-content a.bg-lagoon-blue:visited {
   color: #ffffff !important;
 }
 
