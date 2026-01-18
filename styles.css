@@ -23,7 +23,7 @@ p {
 
 /* Target only dynamic content (your section pages) */
 #dynamic-content p {
-  line-height: 1.65;   /* tighter than Tailwind's leading-loose */
+  line-height: 1.65; /* tighter than Tailwind's leading-loose */
 }
 
 /* Slightly more compact default text for long pages */
@@ -34,14 +34,13 @@ p {
 /* ----------------------------------------------------------
 3) REDUCE EXCESSIVE SECTION PADDING SITE-WIDE
 ---------------------------------------------------------- */
-
 .section-padding {
-  padding: 3.5rem 1.25rem;  /* was very generous before */
+  padding: 3.5rem 1.25rem; /* was very generous before */
 }
 
 @media (min-width: 640px) {
   .section-padding {
-    padding: 4.5rem 3rem;   /* still elegant, but tighter */
+    padding: 4.5rem 3rem; /* still elegant, but tighter */
   }
 }
 
@@ -49,12 +48,12 @@ p {
 4) REDUCE BIG VERTICAL GAPS BETWEEN ELEMENTS
 ---------------------------------------------------------- */
 
-/* This replaces Tailwind’s space-y-8 in dynamic content only */
+/* Reduce Tailwind’s large stack spacing in dynamic content only */
 #dynamic-content .space-y-8 > :not([hidden]) ~ :not([hidden]) {
-  margin-top: 1.5rem; /* cleaner, less scroll fatigue */
+  margin-top: 1.5rem; /* was 2rem */
 }
 
-/* For very large white “card” blocks */
+/* For large white “card” blocks */
 #dynamic-content .bg-white.p-8 {
   padding: 1.75rem;
 }
@@ -67,7 +66,6 @@ p {
 /* ----------------------------------------------------------
 5) HEADINGS — KEEP AIR BUT AVOID GIGANTIC GAPS
 ---------------------------------------------------------- */
-
 #dynamic-content h2,
 #dynamic-content h3,
 #dynamic-content h4 {
@@ -83,7 +81,6 @@ p {
 /* ----------------------------------------------------------
 6) NAVIGATION (keeps your current left menu working)
 ---------------------------------------------------------- */
-
 .nav-link {
   transition: all 0.3s ease;
   padding: 0.75rem 1rem;
@@ -100,9 +97,8 @@ p {
 }
 
 /* ----------------------------------------------------------
-7) SMOOTHER SCROLLING (you already had this, kept)
+7) SMOOTHER SCROLLING
 ---------------------------------------------------------- */
-
 html {
   scroll-behavior: smooth;
 }
@@ -110,7 +106,6 @@ html {
 /* ----------------------------------------------------------
 8) BANNER & ANIMATION CONTAINERS (kept intact)
 ---------------------------------------------------------- */
-
 #sidebar-logo-area {
   transition: opacity 0.5s ease-in-out;
 }
@@ -149,11 +144,28 @@ canvas {
   height: 100%;
 }
 
+/* ----------------------------------------------------------
+9) SPONSOR BUTTON VISIBILITY (ALL SCREENS)
+---------------------------------------------------------- */
+#dynamic-content a.bg-lagoon-blue,
+#dynamic-content button.bg-lagoon-blue {
+  color: #ffffff !important;
+}
+
+#dynamic-content a.bg-lagoon-blue:hover {
+  color: #ffffff !important;
+}
+
+/* Fallbacks in case Tailwind custom color utilities are not generated */
+.bg-lagoon-blue { background-color: #005f73 !important; }
+.bg-lagoon-light { background-color: #4da8b8 !important; }
+.text-lagoon-blue { color: #005f73 !important; }
+.text-lagoon-light { color: #4da8b8 !important; }
+.border-lagoon-blue { border-color: #005f73 !important; }
+
 /* ==========================================================
    MOBILE OPTIMIZATIONS (small screens)
-   Paste at bottom of styles.css
    ========================================================== */
-
 @media (max-width: 767px) {
 
   /* 1) Make long pages feel shorter */
@@ -164,6 +176,7 @@ canvas {
   /* 2) Slightly smaller base text on phones (still readable) */
   #dynamic-content {
     font-size: 0.98rem;
+    text-align: left;
   }
 
   /* 3) Improve paragraph rhythm on mobile */
@@ -176,7 +189,7 @@ canvas {
     margin-top: 1.1rem;
   }
 
-  /* 5) Headings: reduce “gapiness” and prevent huge blocks */
+  /* 5) Headings: reduce “gapiness” */
   #dynamic-content h2.text-3xl {
     margin-bottom: 1.25rem;
   }
@@ -191,37 +204,18 @@ canvas {
     padding: 1.25rem;
   }
 
-  /* 7) Lists: reduce spacing + improve tap targets */
+  /* 7) Lists: reduce indentation on narrow screens */
   #dynamic-content ul.list-disc.list-inside {
-    padding-left: 0.25rem; /* prevents too much indentation on narrow screens */
+    padding-left: 0.25rem;
   }
 
   #dynamic-content ul li {
     margin-bottom: 0.25rem;
   }
 
-  /* 8) Make long URLs/emails not overflow */
+  /* 8) Prevent long URLs/emails from overflowing */
   #dynamic-content a {
     overflow-wrap: anywhere;
     word-break: break-word;
   }
-
-  /* 9) Optional: avoid justified text on mobile (better readability) */
-  /* If any section uses md:text-justify, on mobile it already becomes left.
-     This ensures everything stays left-aligned on very small devices. */
-  #dynamic-content {
-    text-align: left;
-  }
-   /* -------- FIX FOR SPONSOR BUTTON VISIBILITY -------- */
-
-/* Force readable text on lagoon-blue buttons everywhere */
-#dynamic-content a.bg-lagoon-blue,
-#dynamic-content button.bg-lagoon-blue {
-  color: #ffffff !important;
 }
-
-/* Keep contrast when hovering */
-#dynamic-content a.bg-lagoon-blue:hover {
-  color: #ffffff !important;
-}
-
