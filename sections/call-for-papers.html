@@ -1,26 +1,34 @@
-<section class="section-padding bg-gray-50 min-h-screen">
+<section id="cfp-top" class="section-padding bg-gray-50 min-h-screen">
   <div class="max-w-5xl mx-auto">
+
+<style>
+/* ======== STRICT SINGLE-LINE BULLETS FOR THIS PAGE ONLY ======== */
+.cfp-bullets li {
+  margin: 0 !important;
+  padding: 0.05rem 0 !important;
+  line-height: 1.2 !important;
+}
+
+/* make list blocks tighter overall */
+.cfp-bullets {
+  margin-top: 0.35rem !important;
+  margin-bottom: 0.75rem !important;
+}
+</style>
 
     <h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-200 pb-4 uppercase tracking-[0.1em]">
       Call for Papers
     </h2>
 
-    <!-- Sticky mini submenu (desktop only) -->
+    <!-- Sticky mini submenu (desktop) -->
     <div class="hidden lg:block sticky top-0 z-20 bg-gray-50/90 backdrop-blur-sm border-b border-gray-200 -mt-8 mb-8">
       <div class="py-3">
-        <nav class="flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em]">
-          <a href="#topics" class="px-3 py-2 rounded-md border border-gray-200 bg-white text-gray-600 hover:text-lagoon-blue hover:border-lagoon-blue transition-colors">
-            Topics of Interest
-          </a>
-          <a href="#dates" class="px-3 py-2 rounded-md border border-gray-200 bg-white text-gray-600 hover:text-lagoon-blue hover:border-lagoon-blue transition-colors">
-            Key Dates
-          </a>
-          <a href="#submit" class="px-3 py-2 rounded-md border border-gray-200 bg-white text-gray-600 hover:text-lagoon-blue hover:border-lagoon-blue transition-colors">
-            How to Submit a Paper
-          </a>
-          <a href="#templates" class="px-3 py-2 rounded-md border border-gray-200 bg-white text-gray-600 hover:text-lagoon-blue hover:border-lagoon-blue transition-colors">
-            Templates
-          </a>
+        <nav class="flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em] font-medium text-gray-600">
+          <a href="#cfp-top" class="px-3 py-1 border border-gray-300 rounded hover:bg-white">CFP (Top)</a>
+          <a href="#topics" class="px-3 py-1 border border-gray-300 rounded hover:bg-white">Topics of Interest</a>
+          <a href="#key-dates" class="px-3 py-1 border border-gray-300 rounded hover:bg-white">Key Dates</a>
+          <a href="#how-to-submit" class="px-3 py-1 border border-gray-300 rounded hover:bg-white">How to Submit</a>
+          <a href="#templates" class="px-3 py-1 border border-gray-300 rounded hover:bg-white">Templates</a>
         </nav>
       </div>
     </div>
@@ -34,16 +42,15 @@
         enabling both in-person and remote participation and presentation via Zoom where appropriate.
       </p>
 
-      <!-- EASYCHAIR BUTTON (top) -->
-      <div class="my-6 text-center">
+      <p class="mt-4 mb-8 text-center">
         <a href="https://easychair.org/cfp/I3DA2026"
            target="_blank"
-           class="inline-block bg-lagoon-blue text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-lagoon-light transition-colors tracking-wide">
-          Submit via EasyChair: https://easychair.org/cfp/I3DA2026
+           class="inline-block bg-lagoon-blue text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-lagoon-light transition-colors uppercase tracking-widest">
+           Submit via EasyChair
         </a>
-      </div>
+      </p>
 
-      <!-- Condensed About -->
+      <!-- About the Conference -->
       <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">About the Conference</h3>
 
       <p>
@@ -69,116 +76,106 @@
       </div>
 
       <!-- Topics of Interest -->
-      <h3 id="topics" class="scroll-mt-20 text-2xl font-light text-lagoon-blue mt-12 mb-6">
-        Topics of Interest
-      </h3>
+      <h3 id="topics" class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Topics of Interest</h3>
 
       <div class="bg-white p-6 border border-gray-100">
-        <p class="italic text-gray-500 mb-4">
-          Submissions are welcome in (but not limited to) the following areas:
-        </p>
+        <p class="italic text-gray-500 mb-4">Submissions are welcome in (but not limited to) the following areas:</p>
 
         <strong class="block mt-4 mb-1 text-gray-800">Spatial Audio Algorithms & Systems</strong>
-        <ul class="list-disc list-inside m-0 p-0">
-          <li class="m-0 p-0 leading-tight">Binaural, Ambisonics, and multichannel rendering algorithms and systems</li>
-          <li class="m-0 p-0 leading-tight">Real-time spatialisation engines and middleware</li>
-          <li class="m-0 p-0 leading-tight">Room acoustics simulation engines and auralization pipelines</li>
-          <li class="m-0 p-0 leading-tight">Cross-platform spatial audio frameworks (XR, game engines, browsers, mobile, automotive)</li>
-          <li class="m-0 p-0 leading-tight">Performance optimization, latency, scalability, reproducibility and real-time constraints</li>
+        <ul class="list-disc list-inside cfp-bullets">
+          <li>Binaural, Ambisonics, and multichannel rendering algorithms and systems</li>
+          <li>Real-time spatialisation engines and middleware</li>
+          <li>Room acoustics simulation engines and auralization pipelines</li>
+          <li>Cross-platform spatial audio frameworks (XR, game engines, browsers, mobile, automotive)</li>
+          <li>Performance optimization, latency, scalability, reproducibility and real-time constraints</li>
         </ul>
 
         <strong class="block mt-4 mb-1 text-gray-800">Spatial Audio, Auralization & Digital Twins</strong>
-        <ul class="list-disc list-inside m-0 p-0">
-          <li class="m-0 p-0 leading-tight">Auralization, virtual acoustics, and acoustic digital twins</li>
-          <li class="m-0 p-0 leading-tight">Reconstruction of historical acoustic environments</li>
-          <li class="m-0 p-0 leading-tight">Musicological auralization: immersive realization of historical scores, premieres, and lost performance practices</li>
-          <li class="m-0 p-0 leading-tight">Digital twins of architectural, environmental, and virtual acoustic spaces</li>
+        <ul class="list-disc list-inside cfp-bullets">
+          <li>Auralization, virtual acoustics, and acoustic digital twins</li>
+          <li>Reconstruction of historical acoustic environments</li>
+          <li>Musicological auralization: immersive realization of historical scores, premieres, and lost performance practices</li>
+          <li>Digital twins of architectural, environmental, and virtual acoustic spaces</li>
         </ul>
 
         <strong class="block mt-4 mb-1 text-gray-800">Architectural Acoustics & Immersive Space Design</strong>
-        <ul class="list-disc list-inside m-0 p-0">
-          <li class="m-0 p-0 leading-tight">Immersive design and renovation of studios, theaters, churches, and heritage performance spaces</li>
-          <li class="m-0 p-0 leading-tight">Loudspeaker arrays, WFS, beamforming, and spatial reinforcement</li>
+        <ul class="list-disc list-inside cfp-bullets">
+          <li>Immersive design and renovation of studios, theaters, churches, and heritage performance spaces</li>
+          <li>Loudspeaker arrays, WFS, beamforming, and spatial reinforcement</li>
         </ul>
 
         <strong class="block mt-4 mb-1 text-gray-800">Spatial Capture & Measurement Technologies</strong>
-        <ul class="list-disc list-inside m-0 p-0">
-          <li class="m-0 p-0 leading-tight">Spatial microphone arrays and Higher Order Ambisonics capture</li>
-          <li class="m-0 p-0 leading-tight">Soundscape and environmental recording systems</li>
-          <li class="m-0 p-0 leading-tight">Bioacoustics and hydrophone-based immersive capture</li>
-          <li class="m-0 p-0 leading-tight">MEMS, wearable, and miniaturized spatial sensing devices</li>
+        <ul class="list-disc list-inside cfp-bullets">
+          <li>Spatial microphone arrays and Higher Order Ambisonics capture</li>
+          <li>Soundscape and environmental recording systems</li>
+          <li>Bioacoustics and hydrophone-based immersive capture</li>
+          <li>MEMS, wearable, and miniaturized spatial sensing devices</li>
         </ul>
 
         <strong class="block mt-4 mb-1 text-gray-800">Visual Interaction, XR & Digital Archaeology (Special 2026 Focus)</strong>
-        <ul class="list-disc list-inside m-0 p-0">
-          <li class="m-0 p-0 leading-tight">LiDAR, photogrammetry, and 3D scanning</li>
-          <li class="m-0 p-0 leading-tight">Audio-visual synchronization and immersive visualization</li>
-          <li class="m-0 p-0 leading-tight">XR interaction and navigation in virtual heritage environments</li>
-          <li class="m-0 p-0 leading-tight">Cross-disciplinary visual–audio pipelines for digital archaeology</li>
+        <ul class="list-disc list-inside cfp-bullets">
+          <li>LiDAR, photogrammetry, and 3D scanning</li>
+          <li>Audio-visual synchronization and immersive visualization</li>
+          <li>XR interaction and navigation in virtual heritage environments</li>
+          <li>Cross-disciplinary visual–audio pipelines for digital archaeology</li>
         </ul>
 
         <strong class="block mt-4 mb-1 text-gray-800">Heritage, Soundscapes & Digital Humanities</strong>
-        <ul class="list-disc list-inside m-0 p-0">
-          <li class="m-0 p-0 leading-tight">Sonic archaeology and heritage acoustics</li>
-          <li class="m-0 p-0 leading-tight">Soundscape studies and environmental acoustics</li>
-          <li class="m-0 p-0 leading-tight">Digital humanities approaches to acoustic heritage documentation</li>
-          <li class="m-0 p-0 leading-tight">Environmental and urban soundscapes as cultural heritage</li>
+        <ul class="list-disc list-inside cfp-bullets">
+          <li>Sonic archaeology and heritage acoustics</li>
+          <li>Soundscape studies and environmental acoustics</li>
+          <li>Digital humanities approaches to acoustic heritage documentation</li>
+          <li>Environmental and urban soundscapes as cultural heritage</li>
         </ul>
 
         <strong class="block mt-4 mb-1 text-gray-800">Audio Engineering, Signal Processing & AI</strong>
-        <ul class="list-disc list-inside m-0 p-0">
-          <li class="m-0 p-0 leading-tight">Advanced acoustic measurement, modeling, simulation, and nonlinear acoustics</li>
-          <li class="m-0 p-0 leading-tight">Signal processing algorithms for spatial, binaural, and immersive audio</li>
-          <li class="m-0 p-0 leading-tight">Machine learning and artificial intelligence for spatial rendering, personalization, source separation, acoustic modeling, and cross-environment reproduction</li>
-          <li class="m-0 p-0 leading-tight">Automotive and intelligent immersive audio systems</li>
+        <ul class="list-disc list-inside cfp-bullets">
+          <li>Advanced acoustic measurement, modeling, simulation, and nonlinear acoustics</li>
+          <li>Signal processing algorithms for spatial, binaural, and immersive audio</li>
+          <li>Machine learning and artificial intelligence for spatial rendering, personalization, source separation, acoustic modeling, and cross-environment reproduction</li>
+          <li>Automotive and intelligent immersive audio systems</li>
         </ul>
 
         <strong class="block mt-4 mb-1 text-gray-800">Perception, Cognition & Consciousness</strong>
-        <ul class="list-disc list-inside m-0 p-0">
-          <li class="m-0 p-0 leading-tight">Psychoacoustics and spatial hearing</li>
-          <li class="m-0 p-0 leading-tight">Listening tests, presence, and emotional immersion</li>
-          <li class="m-0 p-0 leading-tight">EEG and biometric evaluation</li>
-          <li class="m-0 p-0 leading-tight">Consciousness, attention, presence, and self-awareness in immersive environments</li>
+        <ul class="list-disc list-inside cfp-bullets">
+          <li>Psychoacoustics and spatial hearing</li>
+          <li>Listening tests, presence, and emotional immersion</li>
+          <li>EEG and biometric evaluation</li>
+          <li>Consciousness, attention, presence, and self-awareness in immersive environments</li>
         </ul>
 
         <strong class="block mt-4 mb-1 text-gray-800">Nature, Bioacoustics & Eco-acoustics</strong>
-        <ul class="list-disc list-inside m-0 p-0">
-          <li class="m-0 p-0 leading-tight">Environmental soundscapes and biodiversity monitoring</li>
-          <li class="m-0 p-0 leading-tight">Immersive representation of natural and fragile ecosystems</li>
-          <li class="m-0 p-0 leading-tight">Underwater immersive acoustics and lagoon studies</li>
+        <ul class="list-disc list-inside cfp-bullets">
+          <li>Environmental soundscapes and biodiversity monitoring</li>
+          <li>Immersive representation of natural and fragile ecosystems</li>
+          <li>Underwater immersive acoustics and lagoon studies</li>
         </ul>
 
         <strong class="block mt-4 mb-1 text-gray-800">Creative Practice & Immersive Media</strong>
-        <ul class="list-disc list-inside m-0 p-0">
-          <li class="m-0 p-0 leading-tight">Immersive music, installations, and XR storytelling</li>
-          <li class="m-0 p-0 leading-tight">Site-specific heritage and archaeological immersive experiences</li>
+        <ul class="list-disc list-inside cfp-bullets">
+          <li>Immersive music, installations, and XR storytelling</li>
+          <li>Site-specific heritage and archaeological immersive experiences</li>
         </ul>
       </div>
 
       <!-- Planned Timeline -->
-      <h3 id="dates" class="scroll-mt-20 text-2xl font-light text-lagoon-blue mt-12 mb-6">
-        Planned Timeline
-      </h3>
-
+      <h3 id="key-dates" class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Planned Timeline</h3>
       <div class="bg-white p-6 border border-gray-100">
         <p class="italic text-gray-500 mb-4">Key dates for I3DA 2026:</p>
-        <ul class="list-disc list-inside m-0 p-0">
-          <li class="m-0 p-0 leading-tight">Call for Papers Launch — January 15, 2026</li>
-          <li class="m-0 p-0 leading-tight">Abstract Submission Deadline — April 3, 2026</li>
-          <li class="m-0 p-0 leading-tight">Full Paper Submission Deadline — May 18, 2026</li>
-          <li class="m-0 p-0 leading-tight">Author Notification — June 18, 2026</li>
-          <li class="m-0 p-0 leading-tight">Early Bird Registration (Author Cut-off) — July 10, 2026</li>
-          <li class="m-0 p-0 leading-tight">Presentation Files Due — November 16, 2026</li>
-          <li class="m-0 p-0 leading-tight">Conference Dates — November 19–22, 2026</li>
-          <li class="m-0 p-0 leading-tight">Final Camera-Ready Due (IEEE) — December 4, 2026</li>
+        <ul class="list-disc list-inside cfp-bullets">
+          <li>Call for Papers Launch — January 15, 2026</li>
+          <li>Abstract Submission Deadline — April 3, 2026</li>
+          <li>Full Paper Submission Deadline — May 18, 2026</li>
+          <li>Author Notification — June 18, 2026</li>
+          <li>Early Bird Registration (Author Cut-off) — July 10, 2026</li>
+          <li>Presentation Files Due — November 16, 2026</li>
+          <li>Conference Dates — November 19–22, 2026</li>
+          <li>Final Camera-Ready Due (IEEE) — December 4, 2026</li>
         </ul>
       </div>
 
       <!-- How to Submit -->
-      <h3 id="submit" class="scroll-mt-20 text-2xl font-light text-lagoon-blue mt-12 mb-6">
-        How to Submit a Paper
-      </h3>
-
+      <h3 id="how-to-submit" class="text-2xl font-light text-lagoon-blue mt-12 mb-6">How to Submit a Paper</h3>
       <p>
         To submit your full paper, please log into your EasyChair submission portal, click ADD FILES on the top-right hand side, and upload your manuscript.
         Papers must be submitted via the EasyChair system following IEEE guidelines for proceedings papers.
@@ -189,46 +186,30 @@
         guidelines.
       </p>
 
-      <!-- EASYCHAIR BUTTON (bottom) -->
-      <div class="mt-6 text-center">
+      <p class="text-center mt-6">
         <a href="https://easychair.org/cfp/I3DA2026"
            target="_blank"
-           class="inline-block bg-lagoon-blue text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-lagoon-light transition-colors tracking-wide">
-          Submit via EasyChair: https://easychair.org/cfp/I3DA2026
+           class="inline-block bg-lagoon-blue text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-lagoon-light transition-colors uppercase tracking-widest">
+           Submit via EasyChair
         </a>
-      </div>
+      </p>
 
       <!-- Anti-Plagiarism -->
-      <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">
-        Anti-Plagiarism Screening
-      </h3>
-
+      <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Anti-Plagiarism Screening</h3>
       <p>
         We will conduct anti-plagiarism screening of all submitted papers using Turnitin and/or Compilatio Scanner.
         Please note that once a paper is submitted to I3DA, it cannot be presented to other journals or conferences.
       </p>
 
       <!-- Templates -->
-      <h3 id="templates" class="scroll-mt-20 text-2xl font-light text-lagoon-blue mt-12 mb-6">
-        Templates
-      </h3>
-
+      <h3 id="templates" class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Templates</h3>
       <p>There are no page limits, but we suggest a maximum of 8–10 pages.</p>
 
       <div class="bg-white p-6 border border-gray-100 mt-6">
-        <ul class="list-none m-0 p-0">
-          <li class="m-0 p-0">
-            <a href="#" class="text-lagoon-blue font-medium hover:underline">Microsoft Word – A4</a>
-            <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span>
-          </li>
-          <li class="mt-4 m-0 p-0">
-            <a href="#" class="text-lagoon-blue font-medium hover:underline">LaTeX Template Instructions</a>
-            <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span>
-          </li>
-          <li class="mt-4 m-0 p-0">
-            <a href="#" class="text-lagoon-blue font-medium hover:underline">Template (ZIP)</a>
-            <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span>
-          </li>
+        <ul class="cfp-bullets">
+          <li><a href="#" class="text-lagoon-blue font-medium hover:underline">Microsoft Word – A4</a> (Coming soon)</li>
+          <li><a href="#" class="text-lagoon-blue font-medium hover:underline">LaTeX Template Instructions</a> (Coming soon)</li>
+          <li><a href="#" class="text-lagoon-blue font-medium hover:underline">Template (ZIP)</a> (Coming soon)</li>
         </ul>
       </div>
 
@@ -240,9 +221,9 @@
 
       <!-- Special Issues -->
       <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Special Issues</h3>
-      <ul class="list-disc list-inside m-0 p-0">
-        <li class="m-0 p-0 leading-tight">Special Issue – Journal of the Audio Engineering Society</li>
-        <li class="m-0 p-0 leading-tight">Special Issue – Applied Sciences</li>
+      <ul class="cfp-bullets">
+        <li>Special Issue – Journal of the Audio Engineering Society</li>
+        <li>Special Issue – Applied Sciences</li>
       </ul>
 
       <!-- Contacts -->
