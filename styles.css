@@ -1,36 +1,151 @@
-/* ==============================
+/* ==========================================================
    GLOBAL SITE STYLE OVERRIDES
-   (works alongside Tailwind)
-   ============================== */
+   (works alongside Tailwind, does NOT replace it)
+   ========================================================== */
 
-/* 1) Global body typography */
+/* ----------------------------------------------------------
+1) GLOBAL BODY & BASE TYPOGRAPHY
+---------------------------------------------------------- */
 body {
   font-family: 'Inter', sans-serif;
   background-color: #f8fafc;
 }
 
-/* 2) Make long text more readable and less "spaced out" */
+/* Improve hyphenation and avoid ragged text in long paragraphs */
+p {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* ----------------------------------------------------------
+2) MAKE LONG TEXT MORE READABLE & LESS “SPACED OUT”
+---------------------------------------------------------- */
+
+/* Target only dynamic content (your section pages) */
 #dynamic-content p {
   line-height: 1.65;   /* tighter than Tailwind's leading-loose */
 }
 
-/* 3) Reduce excessive section padding site-wide */
+/* Slightly more compact default text for long pages */
+#dynamic-content {
+  font-size: 1rem; /* equivalent to Tailwind text-base */
+}
+
+/* ----------------------------------------------------------
+3) REDUCE EXCESSIVE SECTION PADDING SITE-WIDE
+---------------------------------------------------------- */
+
 .section-padding {
-  padding: 3.5rem 1.25rem;
+  padding: 3.5rem 1.25rem;  /* was very generous before */
 }
 
 @media (min-width: 640px) {
   .section-padding {
-    padding: 4.5rem 3rem;
+    padding: 4.5rem 3rem;   /* still elegant, but tighter */
   }
 }
 
-/* 4) Reduce big vertical gaps between elements */
+/* ----------------------------------------------------------
+4) REDUCE BIG VERTICAL GAPS BETWEEN ELEMENTS
+---------------------------------------------------------- */
+
+/* This replaces Tailwind’s space-y-8 in dynamic content only */
 #dynamic-content .space-y-8 > :not([hidden]) ~ :not([hidden]) {
-  margin-top: 1.5rem; /* instead of Tailwind's very large spacing */
+  margin-top: 1.5rem; /* cleaner, less scroll fatigue */
 }
 
-/* 5) Optional: make text slightly more compact for long pages */
-#dynamic-content {
-  font-size: 1rem; /* equivalent to text-base */
+/* For very large white “card” blocks */
+#dynamic-content .bg-white.p-8 {
+  padding: 1.75rem;
 }
+
+/* Lists feel calmer and less stretched */
+#dynamic-content ul li {
+  margin-bottom: 0.35rem;
+}
+
+/* ----------------------------------------------------------
+5) HEADINGS — KEEP AIR BUT AVOID GIGANTIC GAPS
+---------------------------------------------------------- */
+
+#dynamic-content h2,
+#dynamic-content h3,
+#dynamic-content h4 {
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Special case for your section titles */
+#dynamic-content h2.text-3xl {
+  margin-bottom: 2rem;
+}
+
+/* ----------------------------------------------------------
+6) NAVIGATION (keeps your current left menu working)
+---------------------------------------------------------- */
+
+.nav-link {
+  transition: all 0.3s ease;
+  padding: 0.75rem 1rem;
+  display: block;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #005f73;
+  background-color: #f8fafc;
+  border-left-color: #005f73;
+}
+
+/* ----------------------------------------------------------
+7) SMOOTHER SCROLLING (you already had this, kept)
+---------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ----------------------------------------------------------
+8) BANNER & ANIMATION CONTAINERS (kept intact)
+---------------------------------------------------------- */
+
+#sidebar-logo-area {
+  transition: opacity 0.5s ease-in-out;
+}
+
+#anim-canvas-container {
+  width: 100%;
+  height: 220px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#main-banner-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-height: 200px;
+  transition: opacity 0.3s ease;
+}
+
+#bannerCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  pointer-events: none;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
