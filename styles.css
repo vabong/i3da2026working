@@ -149,3 +149,67 @@ canvas {
   height: 100%;
 }
 
+/* ==========================================================
+   MOBILE OPTIMIZATIONS (small screens)
+   Paste at bottom of styles.css
+   ========================================================== */
+
+@media (max-width: 767px) {
+
+  /* 1) Make long pages feel shorter */
+  .section-padding {
+    padding: 2.25rem 1.1rem;
+  }
+
+  /* 2) Slightly smaller base text on phones (still readable) */
+  #dynamic-content {
+    font-size: 0.98rem;
+  }
+
+  /* 3) Improve paragraph rhythm on mobile */
+  #dynamic-content p {
+    line-height: 1.58;
+  }
+
+  /* 4) Reduce large vertical stacks */
+  #dynamic-content .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: 1.1rem;
+  }
+
+  /* 5) Headings: reduce “gapiness” and prevent huge blocks */
+  #dynamic-content h2.text-3xl {
+    margin-bottom: 1.25rem;
+  }
+
+  #dynamic-content h3 {
+    margin-top: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  /* 6) Cards: keep nice but less bulky */
+  #dynamic-content .bg-white.p-8 {
+    padding: 1.25rem;
+  }
+
+  /* 7) Lists: reduce spacing + improve tap targets */
+  #dynamic-content ul.list-disc.list-inside {
+    padding-left: 0.25rem; /* prevents too much indentation on narrow screens */
+  }
+
+  #dynamic-content ul li {
+    margin-bottom: 0.25rem;
+  }
+
+  /* 8) Make long URLs/emails not overflow */
+  #dynamic-content a {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* 9) Optional: avoid justified text on mobile (better readability) */
+  /* If any section uses md:text-justify, on mobile it already becomes left.
+     This ensures everything stays left-aligned on very small devices. */
+  #dynamic-content {
+    text-align: left;
+  }
+}
