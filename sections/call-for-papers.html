@@ -5,6 +5,26 @@
       Call for Papers
     </h2>
 
+    <!-- Sticky mini submenu (desktop only) -->
+    <div class="hidden lg:block sticky top-0 z-20 bg-gray-50/90 backdrop-blur-sm border-b border-gray-200 -mt-8 mb-8">
+      <div class="py-3">
+        <nav class="flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em]">
+          <a href="#topics" class="px-3 py-2 rounded-md border border-gray-200 bg-white text-gray-600 hover:text-lagoon-blue hover:border-lagoon-blue transition-colors">
+            Topics of Interest
+          </a>
+          <a href="#dates" class="px-3 py-2 rounded-md border border-gray-200 bg-white text-gray-600 hover:text-lagoon-blue hover:border-lagoon-blue transition-colors">
+            Key Dates
+          </a>
+          <a href="#submit" class="px-3 py-2 rounded-md border border-gray-200 bg-white text-gray-600 hover:text-lagoon-blue hover:border-lagoon-blue transition-colors">
+            How to Submit a Paper
+          </a>
+          <a href="#templates" class="px-3 py-2 rounded-md border border-gray-200 bg-white text-gray-600 hover:text-lagoon-blue hover:border-lagoon-blue transition-colors">
+            Templates
+          </a>
+        </nav>
+      </div>
+    </div>
+
     <div class="space-y-8 text-lg font-light text-gray-600 text-left md:text-justify leading-loose">
 
       <!-- Invitation + Hybrid (combined) -->
@@ -14,7 +34,7 @@
         enabling both in-person and remote participation and presentation via Zoom where appropriate.
       </p>
 
-      <!-- EASYCHAIR BUTTON (RESTORED) -->
+      <!-- EASYCHAIR BUTTON -->
       <div class="my-6 text-center">
         <a href="https://easychair.org/cfp/I3DA2026"
            target="_blank"
@@ -49,13 +69,11 @@
       </div>
 
       <!-- Topics of Interest -->
-      <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Topics of Interest</h3>
+      <h3 id="topics" class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Topics of Interest</h3>
 
       <div class="bg-white p-6 border border-gray-100">
-
         <p class="italic text-gray-500 mb-4">Submissions are welcome in (but not limited to) the following areas:</p>
 
-        <!-- NOTICE: space-y-2 REMOVED from ALL lists below -->
         <strong class="block mt-4 mb-2 text-gray-800">Spatial Audio Algorithms & Systems</strong>
         <ul class="list-disc list-inside mb-4">
           <li>Binaural, Ambisonics, and multichannel rendering algorithms and systems</li>
@@ -134,7 +152,7 @@
       </div>
 
       <!-- Planned Timeline -->
-      <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Planned Timeline</h3>
+      <h3 id="dates" class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Planned Timeline</h3>
       <div class="bg-white p-6 border border-gray-100">
         <p class="italic text-gray-500 mb-4">Key dates for I3DA 2026:</p>
         <ul class="list-disc list-inside">
@@ -150,7 +168,7 @@
       </div>
 
       <!-- How to Submit -->
-      <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">How to Submit a Paper</h3>
+      <h3 id="submit" class="text-2xl font-light text-lagoon-blue mt-12 mb-6">How to Submit a Paper</h3>
       <p>
         To submit your full paper, please log into your EasyChair submission portal, click ADD FILES on the top-right hand side, and upload your manuscript.
         Papers must be submitted via the EasyChair system following IEEE guidelines for proceedings papers.
@@ -161,6 +179,15 @@
         guidelines.
       </p>
 
+      <!-- EASYCHAIR BUTTON REPEATED AT END OF SUBMISSION SECTION -->
+      <div class="mt-6 text-center">
+        <a href="https://easychair.org/cfp/I3DA2026"
+           target="_blank"
+           class="inline-block bg-lagoon-blue text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:bg-lagoon-light transition-colors tracking-wide">
+          Submit via EasyChair: https://easychair.org/cfp/I3DA2026
+        </a>
+      </div>
+
       <!-- Anti-Plagiarism -->
       <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Anti-Plagiarism Screening</h3>
       <p>
@@ -169,7 +196,7 @@
       </p>
 
       <!-- Templates -->
-      <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Templates</h3>
+      <h3 id="templates" class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Templates</h3>
       <p>There are no page limits, but we suggest a maximum of 8–10 pages.</p>
 
       <div class="bg-white p-6 border border-gray-100 mt-6">
@@ -178,11 +205,11 @@
             <a href="#" class="text-lagoon-blue font-medium hover:underline">Microsoft Word – A4</a>
             <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span>
           </li>
-          <li>
+          <li class="mt-4">
             <a href="#" class="text-lagoon-blue font-medium hover:underline">LaTeX Template Instructions</a>
             <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span>
           </li>
-          <li>
+          <li class="mt-4">
             <a href="#" class="text-lagoon-blue font-medium hover:underline">Template (ZIP)</a>
             <span class="block text-sm text-gray-400 italic mt-1">(Coming soon)</span>
           </li>
