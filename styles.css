@@ -212,4 +212,16 @@ canvas {
   #dynamic-content {
     text-align: left;
   }
+   /* -------- FIX FOR SPONSOR BUTTON VISIBILITY -------- */
+
+/* Force readable text on lagoon-blue buttons everywhere */
+#dynamic-content a.bg-lagoon-blue,
+#dynamic-content button.bg-lagoon-blue {
+  color: #ffffff !important;
 }
+
+/* Keep contrast when hovering */
+#dynamic-content a.bg-lagoon-blue:hover {
+  color: #ffffff !important;
+}
+
