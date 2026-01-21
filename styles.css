@@ -263,4 +263,19 @@ button:focus-visible {
     overflow-wrap: anywhere;
     word-break: break-word;
   }
+
+  /* 9) MOBILE: reduce banner footprint + remove extra whitespace under banner */
+  #main-banner-container {
+    min-height: 120px;   /* was ~200+ */
+  }
+
+  #main-banner-container img {
+    margin-bottom: 0;
+    display: block;
+  }
+
+  /* If your first loaded section has top padding, tighten it on mobile */
+  #dynamic-content > section:first-child {
+    padding-top: 1.25rem;
+  }
 }
