@@ -122,7 +122,23 @@
     <script>
         /* --- 1. GLOBAL INITIALIZATION & IMAGE LOADING --- */
         const logoSrc = 'logo.jpg'; const img = new Image(); let sourceImageObj = null;
-        img.onload = () => { sourceImageObj = img; initSidebarAnimation(img); initBannerAnimation(img); }; img.src = logoSrc;
+
+        // UPDATED: wait for banner image to have a real rendered height (mobile fix)
+        img.onload = async () => {
+            sourceImageObj = img;
+            initSidebarAnimation(img);
+
+            const bannerImg = document.querySelector('#main-banner-container img');
+            if (bannerImg && !bannerImg.complete) {
+                await new Promise((resolve) => {
+                    bannerImg.addEventListener('load', resolve, { once: true });
+                    bannerImg.addEventListener('error', resolve, { once: true });
+                });
+            }
+
+            requestAnimationFrame(() => initBannerAnimation(img));
+        };
+        img.src = logoSrc;
 
         /* --- 2. SIDEBAR ANIMATION ENGINE (SINE SWEEP) --- */
         const sidebarCanvas = document.getElementById('logoCanvas'); const sidebarCtx = sidebarCanvas.getContext('2d');
@@ -162,8 +178,25 @@
 
         function initBannerAnimation(image) {
             const container = document.getElementById('main-banner-container'); const imgElement = container.querySelector('img'); 
-            bnWidth = container.offsetWidth; bnHeight = imgElement.offsetHeight || 224; const dpr = window.devicePixelRatio || 1;
-            bannerCanvas.width = bnWidth * dpr; bannerCanvas.height = bnHeight * dpr; bannerCtx.scale(dpr, dpr);
+            bnWidth = container.offsetWidth;
+
+            // UPDATED: robust height for mobile (avoid offsetHeight=0)
+            const renderedH = imgElement.getBoundingClientRect().height;
+            if (renderedH && renderedH > 0) {
+                bnHeight = Math.round(renderedH);
+            } else if (imgElement.naturalWidth && imgElement.naturalHeight) {
+                bnHeight = Math.round(bnWidth * (imgElement.naturalHeight / imgElement.naturalWidth));
+            } else {
+                bnHeight = 224;
+            }
+
+            const dpr = window.devicePixelRatio || 1;
+            bannerCanvas.width = bnWidth * dpr; bannerCanvas.height = bnHeight * dpr;
+
+            // UPDATED: reset transform before scaling (prevents compounding on resize / re-init)
+            bannerCtx.setTransform(1, 0, 0, 1, 0, 0);
+            bannerCtx.scale(dpr, dpr);
+
             const scale = Math.min(bnWidth / image.width, bnHeight / image.height) * 0.85; const drawW = image.width * scale, drawH = image.height * scale;
             const dx = (bnWidth - drawW) / 2, dy = (bnHeight - drawH) / 2; bannerCtx.drawImage(image, dx, dy, drawW, drawH);
             const data = bannerCtx.getImageData(0,0, bnWidth*dpr, bnHeight*dpr).data; bannerParticles = []; const step = Math.max(1, Math.floor(oceanSettings.resolution * dpr));
