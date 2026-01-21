@@ -111,10 +111,22 @@
         </div>
 
         <main id="content-area" class="flex-grow overflow-y-auto bg-gray-50 md:mt-0 mt-24 scroll-smooth">
-            <section id="main-banner-container" class="w-full">
-                <canvas id="bannerCanvas"></canvas>
-                <img src="blue5.jpg" alt="Banner" class="w-full h-auto block" onerror="this.src='https://placehold.co/1000x224/E0F2F1/005F73?text=I3DA+Banner';">
+
+            <!-- UPDATED: Desktop keeps animated banner; mobile uses static banner.jpg -->
+            <section id="main-banner-container" class="w-full relative">
+
+                <!-- Animated banner: DESKTOP / TABLET ONLY -->
+                <div class="hidden md:block w-full h-full">
+                    <canvas id="bannerCanvas"></canvas>
+                    <img src="blue5.jpg" alt="Banner" class="w-full h-auto block"
+                         onerror="this.src='https://placehold.co/1000x224/E0F2F1/005F73?text=I3DA+Banner';">
+                </div>
+
+                <!-- Static banner: MOBILE ONLY -->
+                <img src="banner.jpg" alt="Banner" class="block md:hidden w-full h-auto">
+
             </section>
+
             <div id="dynamic-content"></div>
         </main>
     </div>
@@ -123,20 +135,14 @@
         /* --- 1. GLOBAL INITIALIZATION & IMAGE LOADING --- */
         const logoSrc = 'logo.jpg'; const img = new Image(); let sourceImageObj = null;
 
-        // UPDATED: wait for banner image to have a real rendered height (mobile fix)
-        img.onload = async () => {
+        // UPDATED: banner animation only on >=768px (md+). Sidebar animation unchanged.
+        img.onload = () => {
             sourceImageObj = img;
             initSidebarAnimation(img);
 
-            const bannerImg = document.querySelector('#main-banner-container img');
-            if (bannerImg && !bannerImg.complete) {
-                await new Promise((resolve) => {
-                    bannerImg.addEventListener('load', resolve, { once: true });
-                    bannerImg.addEventListener('error', resolve, { once: true });
-                });
+            if (window.matchMedia('(min-width: 768px)').matches) {
+                initBannerAnimation(img);
             }
-
-            requestAnimationFrame(() => initBannerAnimation(img));
         };
         img.src = logoSrc;
 
@@ -177,26 +183,10 @@
         let bannerParticles = [], bnWidth, bnHeight, bnIsAnimating = false, bnGlobalTime = 0, bnStateTime = 0, bnStage = 'wave', bnMorphProgress = 0, bnAnimId;
 
         function initBannerAnimation(image) {
-            const container = document.getElementById('main-banner-container'); const imgElement = container.querySelector('img'); 
-            bnWidth = container.offsetWidth;
-
-            // UPDATED: robust height for mobile (avoid offsetHeight=0)
-            const renderedH = imgElement.getBoundingClientRect().height;
-            if (renderedH && renderedH > 0) {
-                bnHeight = Math.round(renderedH);
-            } else if (imgElement.naturalWidth && imgElement.naturalHeight) {
-                bnHeight = Math.round(bnWidth * (imgElement.naturalHeight / imgElement.naturalWidth));
-            } else {
-                bnHeight = 224;
-            }
-
-            const dpr = window.devicePixelRatio || 1;
-            bannerCanvas.width = bnWidth * dpr; bannerCanvas.height = bnHeight * dpr;
-
-            // UPDATED: reset transform before scaling (prevents compounding on resize / re-init)
-            bannerCtx.setTransform(1, 0, 0, 1, 0, 0);
-            bannerCtx.scale(dpr, dpr);
-
+            const container = document.getElementById('main-banner-container');
+            const imgElement = container.querySelector('img'); 
+            bnWidth = container.offsetWidth; bnHeight = imgElement.offsetHeight || 224; const dpr = window.devicePixelRatio || 1;
+            bannerCanvas.width = bnWidth * dpr; bannerCanvas.height = bnHeight * dpr; bannerCtx.scale(dpr, dpr);
             const scale = Math.min(bnWidth / image.width, bnHeight / image.height) * 0.85; const drawW = image.width * scale, drawH = image.height * scale;
             const dx = (bnWidth - drawW) / 2, dy = (bnHeight - drawH) / 2; bannerCtx.drawImage(image, dx, dy, drawW, drawH);
             const data = bannerCtx.getImageData(0,0, bnWidth*dpr, bnHeight*dpr).data; bannerParticles = []; const step = Math.max(1, Math.floor(oceanSettings.resolution * dpr));
@@ -255,7 +245,17 @@
             document.getElementById('mobile-menu').classList.add('hidden');
             handleNavigation(e.currentTarget.getAttribute('data-target'));
         }));
-        window.addEventListener('resize', () => { if(sourceImageObj) { initSidebarAnimation(sourceImageObj); initBannerAnimation(sourceImageObj); } });
+
+        // UPDATED: banner animation re-init only on md+ screens
+        window.addEventListener('resize', () => {
+            if (!sourceImageObj) return;
+
+            initSidebarAnimation(sourceImageObj);
+
+            if (window.matchMedia('(min-width: 768px)').matches) {
+                initBannerAnimation(sourceImageObj);
+            }
+        });
         
         window.addEventListener('load', () => {
             const params = new URLSearchParams(window.location.search);
