@@ -3,14 +3,18 @@
 
     <!-- ===== LOCAL STYLES (ABOUT PAGE ONLY) ===== -->
     <style>
-      /* Sticky submenu anchor offset fix */
+      /* Extra-safe anchor offset so headings are NEVER hidden */
       #overview,
       #scientific-board,
       #organising-committee {
-        scroll-margin-top: 140px; /* menu height + breathing room */
+        scroll-margin-top: 180px; /* sticky menu + generous buffer */
       }
 
-      /* Ensure submenu does not visually clash */
+      /* Extra spacing after section headings */
+      .about-section-heading {
+        margin-bottom: 2.5rem;
+      }
+
       .about-submenu a {
         transition: background-color 0.2s ease;
       }
@@ -35,8 +39,8 @@
     </p>
 
     <!-- ===== STICKY SUBMENU (DESKTOP ONLY) ===== -->
-    <div class="hidden lg:block sticky top-0 z-20 bg-white/90 backdrop-blur-sm border-b border-gray-200 -mt-6 mb-10">
-      <div class="py-3">
+    <div class="hidden lg:block sticky top-0 z-20 bg-white/90 backdrop-blur-sm border-b border-gray-200 -mt-6 mb-12">
+      <div class="py-4">
         <nav class="about-submenu flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em] font-medium text-gray-600">
           <a href="#overview" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">
             Conference Overview
@@ -55,7 +59,7 @@
     <div class="space-y-8 text-lg font-light text-gray-600 text-left md:text-justify leading-loose">
 
       <!-- ===== OVERVIEW ===== -->
-      <h2 id="overview" class="text-2xl font-extralight text-gray-800 mb-6 leading-tight text-center">
+      <h2 id="overview" class="about-section-heading text-2xl font-extralight text-gray-800 leading-tight text-center">
         I3DA: Immersive Media in 
         <span class="text-lagoon-blue font-normal">Heritage</span>, 
         <span class="text-lagoon-blue font-normal">Nature</span> and 
@@ -87,22 +91,34 @@
       </p>
 
       <!-- ===== SCIENTIFIC BOARD ===== -->
-      <h3 id="scientific-board" class="text-2xl font-light text-lagoon-blue mt-12 mb-4">
+      <h3 id="scientific-board" class="about-section-heading text-2xl font-light text-lagoon-blue mt-16">
         Scientific Board
       </h3>
 
-      <p class="italic text-gray-500">
-        Details of the Scientific Board will be announced shortly.
-      </p>
+      <ul class="list-disc list-inside leading-snug space-y-1">
+        <li>Angela Bellia (CNR, Institute of Heritage Science, Italy)</li>
+        <li>Antonella Bevilaqua (University of Parma, Italy)</li>
+        <li>Jonathan Berger (Stanford University, USA)</li>
+        <li>Athanasios Malamos (Hellenic Mediterranean University, Greece)</li>
+        <li>Gerriet K. Sharma (Spaes – Lab for Spatial Aesthetics in Sound, Germany)</li>
+        <li>Lamberto Tronchin (University of Bologna, Italy)</li>
+        <li>Cobi van Tonder (University of Bologna, Italy)</li>
+      </ul>
 
       <!-- ===== ORGANISING COMMITTEE ===== -->
-      <h3 id="organising-committee" class="text-2xl font-light text-lagoon-blue mt-12 mb-4">
+      <h3 id="organising-committee" class="about-section-heading text-2xl font-light text-lagoon-blue mt-16">
         Organising Committee
       </h3>
 
-      <p class="italic text-gray-500">
-        Information about the Organising Committee will be published here.
-      </p>
+      <ul class="list-disc list-inside leading-snug space-y-1">
+        <li>Cobi van Tonder (University of Bologna) – Organising Committee Chair</li>
+        <li>Lamberto Tronchin (University of Bologna)</li>
+        <li>Antonella Bevilacqua (University of Parma)</li>
+        <li>Luca Battisti (University of Bologna)</li>
+        <li>Matteo Fadda (University of Bologna)</li>
+        <li>Adriano Farina (University of Bologna)</li>
+        <li>Ruoran Yan (University of Bologna)</li>
+      </ul>
 
     </div>
   </div>
