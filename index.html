@@ -127,11 +127,37 @@
 
             </section>
 
+            <!-- The “under-banner” links you showed are NOT in this file;
+                 they are being injected from a section (e.g. sections/about.html).
+                 The removal below deletes ONLY that under-banner bar when it appears. -->
             <div id="dynamic-content"></div>
         </main>
     </div>
 
     <script>
+        /* --- REMOVE UNDER-BANNER NAV BAR (About / Call for Papers / Venue / Contact) --- */
+        function removeUnderBannerNav() {
+            // Look for the exact link texts you showed in the screenshot
+            const targets = new Set(['about', 'call for papers', 'venue', 'contact']);
+
+            // Find candidate anchors near the top of the page (under the banner)
+            const anchors = Array.from(document.querySelectorAll('a'))
+                .filter(a => {
+                    const t = (a.textContent || '').trim().toLowerCase();
+                    if (!targets.has(t)) return false;
+                    const r = a.getBoundingClientRect();
+                    // Under-banner area (top of viewport region)
+                    return r.top >= 0 && r.top < 400;
+                });
+
+            if (anchors.length < 2) return; // not that bar
+
+            // Remove the whole bar container (prefer <nav>, otherwise a wrapping div)
+            const nav = anchors[0].closest('nav');
+            const container = nav ? nav.closest('div') : anchors[0].closest('div');
+            if (container) container.remove();
+        }
+
         /* --- 1. GLOBAL INITIALIZATION & IMAGE LOADING --- */
         const logoSrc = 'logo.jpg'; const img = new Image(); let sourceImageObj = null;
 
@@ -213,6 +239,10 @@
                 const response = await fetch(`sections/${targetId}.html`);
                 if (response.ok) {
                     document.getElementById('dynamic-content').innerHTML = await response.text();
+
+                    // remove the under-banner nav (if the loaded section contains it)
+                    removeUnderBannerNav();
+
                     if (targetId === 'news') loadNewsPosts();
                 }
             } catch (err) { console.error("Navigation Error:", err); }
@@ -226,8 +256,7 @@
         async function loadNewsPosts() {
             const container = document.getElementById('news-container'); if (!container) return;
             // UPDATE THIS LIST TO ADD NEW POSTS
-            const posts = ['2026-01-27-warwick-venice-centre.html'
-,'2025-12-23-fondazione-levi.html','archive-links.html'];
+            const posts = ['2026-01-27-warwick-venice-centre.html','2025-12-23-fondazione-levi.html','archive-links.html'];
             container.innerHTML = '';
             for (const file of posts) {
                 const res = await fetch(`news-posts/${file}`);
@@ -238,6 +267,9 @@
                     container.appendChild(div); 
                 }
             }
+
+            // remove the under-banner nav (in case any post/section injected it)
+            removeUnderBannerNav();
         }
 
         /* --- 6. EVENT LISTENERS & DEEP LINKING --- */
@@ -267,6 +299,10 @@
 
             setTimeout(async () => {
                 await handleNavigation(section);
+
+                // one extra pass after first render
+                removeUnderBannerNav();
+
                 const hash = window.location.hash;
                 if (hash) {
                     const targetElement = document.querySelector(hash);
