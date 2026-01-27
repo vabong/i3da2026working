@@ -91,7 +91,11 @@
         <header class="md:hidden bg-white shadow-sm fixed w-full z-30 border-b border-gray-100">
             <div class="flex justify-between items-center h-16 px-6">
                 <div class="text-xl font-light tracking-[0.15em] text-lagoon-blue">I3DA 2026</div>
-                <button id="menu-button" type="button" class="p-2 text-gray-400"><svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7" /></svg></button>
+                <button id="menu-button" type="button" class="p-2 text-gray-400">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
             </div>
         </header>
 
@@ -127,35 +131,35 @@
 
             </section>
 
-            <!-- The “under-banner” links you showed are NOT in this file;
-                 they are being injected from a section (e.g. sections/about.html).
-                 The removal below deletes ONLY that under-banner bar when it appears. -->
             <div id="dynamic-content"></div>
         </main>
     </div>
 
     <script>
-        /* --- REMOVE UNDER-BANNER NAV BAR (About / Call for Papers / Venue / Contact) --- */
+        /* --- SAFE: REMOVE UNDER-BANNER NAV BAR (only inside #dynamic-content) --- */
         function removeUnderBannerNav() {
-            // Look for the exact link texts you showed in the screenshot
-            const targets = new Set(['about', 'call for papers', 'venue', 'contact']);
+            const root = document.getElementById('dynamic-content');
+            if (!root) return;
 
-            // Find candidate anchors near the top of the page (under the banner)
-            const anchors = Array.from(document.querySelectorAll('a'))
-                .filter(a => {
-                    const t = (a.textContent || '').trim().toLowerCase();
-                    if (!targets.has(t)) return false;
-                    const r = a.getBoundingClientRect();
-                    // Under-banner area (top of viewport region)
-                    return r.top >= 0 && r.top < 400;
-                });
+            const wanted = new Set(['about', 'call for papers', 'venue', 'contact']);
 
-            if (anchors.length < 2) return; // not that bar
+            // Only scan navs inside injected content (never the sidebar / mobile menu)
+            const navs = Array.from(root.querySelectorAll('nav'));
 
-            // Remove the whole bar container (prefer <nav>, otherwise a wrapping div)
-            const nav = anchors[0].closest('nav');
-            const container = nav ? nav.closest('div') : anchors[0].closest('div');
-            if (container) container.remove();
+            for (const nav of navs) {
+                const labels = Array.from(nav.querySelectorAll('a'))
+                    .map(a => (a.textContent || '').trim().toLowerCase())
+                    .filter(Boolean);
+
+                const hits = labels.filter(t => wanted.has(t)).length;
+
+                // This is that bar if it matches at least 3 of the 4 labels
+                if (hits >= 3) {
+                    const wrapper = nav.closest('div') || nav;
+                    wrapper.remove();
+                    return;
+                }
+            }
         }
 
         /* --- 1. GLOBAL INITIALIZATION & IMAGE LOADING --- */
@@ -240,7 +244,7 @@
                 if (response.ok) {
                     document.getElementById('dynamic-content').innerHTML = await response.text();
 
-                    // remove the under-banner nav (if the loaded section contains it)
+                    // Remove ONLY the under-banner bar that appears inside injected content
                     removeUnderBannerNav();
 
                     if (targetId === 'news') loadNewsPosts();
@@ -262,13 +266,13 @@
                 const res = await fetch(`news-posts/${file}`);
                 if (res.ok) { 
                     const div = document.createElement('div'); 
-                    div.className = "mb-16 block clear-both"; // Ensures visual separation
+                    div.className = "mb-16 block clear-both";
                     div.innerHTML = await res.text(); 
                     container.appendChild(div); 
                 }
             }
 
-            // remove the under-banner nav (in case any post/section injected it)
+            // Safety pass (still only checks inside dynamic content)
             removeUnderBannerNav();
         }
 
@@ -300,7 +304,7 @@
             setTimeout(async () => {
                 await handleNavigation(section);
 
-                // one extra pass after first render
+                // One extra safety pass
                 removeUnderBannerNav();
 
                 const hash = window.location.hash;
