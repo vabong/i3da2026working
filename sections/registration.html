@@ -1,5 +1,12 @@
-<section class="section-padding bg-lagoon-bg">
+<section id="registration-top" class="section-padding bg-lagoon-bg">
   <div class="max-w-6xl mx-auto">
+
+    <style>
+      /* ===== FIX: anchors not hidden under sticky menu ===== */
+      #registration-top, #funding-support {
+        scroll-margin-top: 90px;
+      }
+    </style>
 
     <!-- PAGE HEADER -->
     <div class="mb-14">
@@ -12,7 +19,25 @@
         Registration fees and conditions are listed below.
         Online payment links will be published soon.
         Registration will close one month prior to the conference.
+        <br><br>
+        <span class="italic text-gray-600">
+          See whether you may be eligible to apply for travel and accommodation support.
+        </span>
       </p>
+    </div>
+
+    <!-- Sticky mini submenu (desktop) -->
+    <div class="hidden lg:block sticky top-0 z-20 bg-lagoon-bg/90 backdrop-blur-sm border-b border-gray-200 -mt-8 mb-12">
+      <div class="py-3">
+        <nav class="flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em] font-medium text-gray-600">
+          <a href="#registration-top" class="px-3 py-1 border border-gray-300 rounded hover:bg-white">
+            Registration
+          </a>
+          <a href="#funding-support" class="px-3 py-1 border border-gray-300 rounded hover:bg-white">
+            Travel &amp; Funding Support
+          </a>
+        </nav>
+      </div>
     </div>
 
     <!-- ================= ONSITE (IN-PERSON) ================= -->
@@ -173,6 +198,56 @@
         <strong>VAT:</strong> All fees are subject to 22% VAT.
         VAT exemption applies only to Italian participants whose registration
         is paid directly by a public institution.
+      </p>
+    </div>
+
+    <!-- ================= TRAVEL & FUNDING SUPPORT ================= -->
+    <div id="funding-support" class="bg-white p-8 shadow-sm mt-16">
+      <h3 class="text-2xl font-light text-lagoon-blue mb-4">
+        Travel &amp; Funding Support
+      </h3>
+
+      <p class="font-light text-gray-700 mb-6 max-w-4xl">
+        Participants in I3DA 2026 may be eligible to apply for external mobility funding to support
+        travel and accommodation costs. The conference itself does not administer travel grants;
+        however, we are pleased to highlight the following European funding opportunity.
+      </p>
+
+      <div class="bg-lagoon-light/10 p-6 mb-6 border border-lagoon-light/20">
+        <p class="font-medium text-lagoon-blue mb-2">
+          Culture Moves Europe (Creative Europe)
+        </p>
+
+        <p class="font-light text-gray-700 mb-4">
+          Culture Moves Europe is a mobility funding programme of the European Commission (Creative Europe)
+          supporting artists and cultural professionals working across music, sound, performance,
+          and cultural heritage. Participation in I3DA 2026 — including presenting a paper, artwork,
+          performance, demonstration, or engaging in professional exchange — may form the basis of
+          an eligible mobility project.
+        </p>
+
+        <ul class="list-disc pl-6 text-gray-700 font-light space-y-1 mb-4">
+          <li>International travel allowance</li>
+          <li>Daily subsistence support during the stay</li>
+          <li>Additional top-ups (e.g. green travel, accessibility needs)</li>
+        </ul>
+
+        <p class="font-light text-gray-700">
+          Applications are made directly by participants to the Culture Moves Europe programme.
+          The I3DA 2026 Organising Committee can provide a letter of invitation and confirmation of participation upon request.
+        </p>
+      </div>
+
+      <p class="font-light text-gray-700">
+        Eligibility is determined by the funding body and typically applies to artists and cultural
+        professionals legally residing in Creative Europe countries.
+        <br>
+        More information:
+        <a href="https://culture.ec.europa.eu/culture-moves-europe"
+           target="_blank"
+           class="text-lagoon-light hover:underline font-medium">
+          culture.ec.europa.eu/culture-moves-europe
+        </a>
       </p>
     </div>
 
