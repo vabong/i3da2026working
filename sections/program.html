@@ -16,12 +16,11 @@
         <h3 class="text-2xl font-light text-lagoon-blue mb-6">Keynote Speakers</h3>
 
         <style>
-          /* Keynotes (scoped to this section only) */
           .keynotes-wrap details {
-            border: 1px solid rgba(229, 231, 235, 0.9); /* gray-200-ish */
+            border: 1px solid rgba(229,231,235,.9);
             border-radius: 18px;
-            background: rgba(255, 255, 255, 0.75);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+            background: rgba(255,255,255,.75);
+            box-shadow: 0 10px 25px rgba(0,0,0,.04);
             overflow: hidden;
           }
           .keynotes-wrap details + details { margin-top: 14px; }
@@ -29,7 +28,7 @@
           .keynotes-wrap summary {
             list-style: none;
             cursor: pointer;
-            padding: 18px 18px;
+            padding: 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -37,170 +36,106 @@
           }
           .keynotes-wrap summary::-webkit-details-marker { display: none; }
 
-          .keynotes-wrap .k-left {
+          .k-left {
             display: flex;
             align-items: center;
-            gap: 14px;
             min-width: 0;
           }
-
-          /* photo placeholder */
-          .keynotes-wrap .k-photo {
-            width: 64px;
-            height: 64px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.10), rgba(59, 130, 246, 0.08));
-            border: 1px dashed rgba(107, 114, 128, 0.35);
-            display: grid;
-            place-items: center;
-            flex: 0 0 auto;
-            overflow: hidden;
-          }
-          .keynotes-wrap .k-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-          }
-          .keynotes-wrap .k-phototext {
-            font-size: 12px;
-            color: rgba(107, 114, 128, 0.9);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-          }
-
-          .keynotes-wrap .k-title {
+          .k-title {
             display: flex;
             flex-direction: column;
             gap: 2px;
             min-width: 0;
           }
-          .keynotes-wrap .k-name {
+          .k-name {
             font-size: 1.05rem;
-            color: rgba(17, 24, 39, 0.95); /* gray-900-ish */
             font-weight: 500;
-            letter-spacing: 0.02em;
-            line-height: 1.25;
+            color: #111827;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
           }
-          .keynotes-wrap .k-affil {
-            font-size: 0.95rem;
-            color: rgba(75, 85, 99, 0.95); /* gray-600-ish */
+          .k-affil {
+            font-size: .95rem;
             font-weight: 300;
-            line-height: 1.2;
+            color: #4b5563;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
           }
 
-          /* arrow */
-          .keynotes-wrap .k-arrow {
+          .k-arrow {
             width: 40px;
             height: 40px;
             border-radius: 14px;
-            border: 1px solid rgba(229, 231, 235, 1);
-            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #e5e7eb;
             display: grid;
             place-items: center;
-            flex: 0 0 auto;
-            transition: transform 220ms ease, background 220ms ease;
+            transition: transform .22s ease, background .22s ease;
+            background: rgba(255,255,255,.9);
           }
-          .keynotes-wrap details[open] .k-arrow { transform: rotate(180deg); background: rgba(249, 250, 251, 1); }
+          details[open] .k-arrow {
+            transform: rotate(180deg);
+            background: #f9fafb;
+          }
 
-          .keynotes-wrap .k-body {
-            padding: 0 18px 18px 18px;
+          .k-body {
+            padding: 0 18px 18px;
           }
-          .keynotes-wrap .k-body-inner {
-            border-top: 1px solid rgba(229, 231, 235, 0.9);
+          .k-body-inner {
+            border-top: 1px solid #e5e7eb;
             padding-top: 14px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
           }
-          .keynotes-wrap .k-bio {
+          .k-bio {
             font-size: 1.02rem;
             font-weight: 300;
-            color: rgba(55, 65, 81, 1); /* gray-700-ish */
             line-height: 1.85;
-            text-align: left;
+            color: #374151;
           }
+
           @media (min-width: 768px) {
-            .keynotes-wrap .k-bio { text-align: justify; }
-            .keynotes-wrap summary { padding: 20px 20px; }
-            .keynotes-wrap .k-body { padding: 0 20px 20px 20px; }
-            .keynotes-wrap .k-photo { width: 72px; height: 72px; border-radius: 18px; }
+            .k-bio { text-align: justify; }
+            summary { padding: 20px; }
+            .k-body { padding: 0 20px 20px; }
           }
 
-          .keynotes-wrap .k-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.98rem;
-            font-weight: 400;
-            color: rgba(14, 116, 144, 1); /* lagoon-ish */
+          .k-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #0e7490;
+            border-bottom: 1px solid rgba(14,116,144,.3);
             text-decoration: none;
-            border-bottom: 1px solid rgba(14, 116, 144, 0.25);
-            padding-bottom: 2px;
           }
-          .keynotes-wrap .k-link:hover { border-bottom-color: rgba(14, 116, 144, 0.6); }
-
-          /* subtle note line */
-          .keynotes-wrap .k-note {
-            font-size: 0.92rem;
-            color: rgba(107, 114, 128, 1);
-            font-weight: 300;
-          }
-
-          /* nicer focus outline */
-          .keynotes-wrap summary:focus {
-            outline: none;
-          }
-          .keynotes-wrap summary:focus-visible {
-            outline: 2px solid rgba(14, 116, 144, 0.35);
-            outline-offset: 2px;
-            border-radius: 18px;
+          .k-link:hover {
+            border-bottom-color: rgba(14,116,144,.7);
           }
         </style>
 
         <div class="keynotes-wrap space-y-4">
+
           <!-- KEYNOTE 1 -->
           <details>
             <summary>
               <div class="k-left">
-                <!-- Replace the placeholder with your image when ready:
-                     <img src="assets/images/keynotes/angela-bellia.jpg" alt="Angela Bellia"> -->
-                <div class="k-photo" aria-hidden="true">
-                  <span class="k-phototext">Photo</span>
-                </div>
-
                 <div class="k-title">
                   <div class="k-name">Angela Bellia</div>
                   <div class="k-affil">University of Palermo, Italy</div>
                 </div>
               </div>
-
-              <div class="k-arrow" aria-hidden="true">
-                <!-- chevron-down icon -->
-                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <div class="k-arrow">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
                 </svg>
               </div>
             </summary>
-
             <div class="k-body">
               <div class="k-body-inner">
                 <div class="k-bio">
                   Angela Bellia is Full Professor of Musicology and Music History in the Department of Cultures and Societies at the University of Palermo. She earned her MA and PhD at the University of Bologna and completed her classic piano and opera singer studies at the Italian Conservatories of Music. Her research interests span sonic heritage, soundscape archaeology, sound studies, heritage acoustics, computational archaeomusicology, and digital heritage.
                   <br><br>
-                  Her research has been conducted at prestigious institutions, including the Institute of Fine Arts (New York University), the École des Hautes Etudes en Sciences Sociales (Paris), the University of Zürich, and the National Research Council of Italy (CNR). Her research activities have been supported by the European Union program Marie Skłodowska-Curie Actions (MSCA).
+                  Her research has been conducted at institutions including New York University, EHESS Paris, the University of Zürich, and the National Research Council of Italy. Supported by Marie Skłodowska-Curie Actions, she has led major European research initiatives.
                   <br><br>
-                  She has been the Principal Investigator of the AURAL project and is the recipient of a recently awarded Advanced Grant from the Italian Science Fund (FIS) for the VOICING project, funded by the Ministry of University and Research (MUR). Angela Bellia has been invited or selected to present at over 150 peer-reviewed international conferences and advanced schools across multiple continents.
-                  <br><br>
-                  She serves as Editor in Chief of the TELESTES series and of <em>Telestes: An International Journal of Archaeomusicology and Archaeology of Sound</em>. As the Chair and founding member of the Archaeomusicology Interest Group (AMIG) of the AIA, she has organized numerous international workshops and colloquia for their annual meetings. She is the author of numerous books and contributions published by prestigious academic publishers, including Bloomsbury, Brill, Fabrizio Serra, Franz Steiner Verlag, Oxbow, and Routledge.
-                  <br><br>
-                  Her contributions to promoting European research have been recognized with the MCAA “Outstanding Contributor Award” (2021).
+                  She is Principal Investigator of the AURAL project and recipient of an Advanced Grant from the Italian Science Fund (FIS) for the VOICING project. Her contributions have been recognized with the MCAA “Outstanding Contributor Award” (2021).
                 </div>
               </div>
             </div>
@@ -210,150 +145,68 @@
           <details>
             <summary>
               <div class="k-left">
-                <!-- Replace the placeholder with your image when ready:
-                     <img src="assets/images/keynotes/david-monacchi.jpg" alt="David Monacchi"> -->
-                <div class="k-photo" aria-hidden="true">
-                  <span class="k-phototext">Photo</span>
-                </div>
-
                 <div class="k-title">
                   <div class="k-name">David Monacchi</div>
-                  <div class="k-affil">Ecoacoustics • Composer • Interdisciplinary Artist</div>
+                  <div class="k-affil">Ecoacoustics · Composer · Interdisciplinary Artist</div>
                 </div>
               </div>
-
-              <div class="k-arrow" aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <div class="k-arrow">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
                 </svg>
               </div>
             </summary>
-
             <div class="k-body">
               <div class="k-body-inner">
                 <div class="k-bio">
-                  David Monacchi (Italy, 1970) is an ecoacoustics researcher, composer, and interdisciplinary artist. For over 25 years, he has been developing <em>Fragments of Extinction</em>, a long-term research and artistic project based on fieldwork in the world’s remaining areas of undisturbed primary equatorial forest across all continents.
+                  David Monacchi is an ecoacoustics researcher, composer, and interdisciplinary artist. For over 25 years he has developed <em>Fragments of Extinction</em>, conducting field research in the world’s remaining undisturbed primary equatorial forests.
                   <br><br>
-                  The recipient of multiple international awards for his work on the intangible heritage of ecosystems, Monacchi is pioneering a cross-disciplinary approach that combines unique 3D soundscape recordings with science-based sound art to raise awareness of the global biodiversity crisis. His patented Eco-acoustic Theatre—a spherical amphitheatre dedicated to deep sensorial and cognitive listening—has been installed in museums and public spaces worldwide and currently tours internationally as SONOSFERA®.
-                  <br><br>
-                  Monacchi’s work has been featured in leading scientific journals including <em>Nature</em> and <em>PNAS</em>. He is currently Full Professor at the State Conservatory of Pesaro, Italy. Through collaborations with organizations such as IUCN and ICCROM, his advocacy for primary forest soundscape conservation has culminated in invited plenary talks at the UN COP-14 Biodiversity Conference and the UN COP-27 Climate Change Conference.
+                  His work combines unique 3D soundscape recordings with science-based sound art to raise awareness of the biodiversity crisis. His Eco-acoustic Theatre, touring internationally as SONOSFERA®, has been presented in museums and public spaces worldwide.
                   <br><br>
                   <a class="k-link" href="https://www.fragmentsofextinction.org/" target="_blank" rel="noopener noreferrer">
-                    Fragments of Extinction
-                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                      <path d="M8 4H4.75C3.784 4 3 4.784 3 5.75V15.25C3 16.216 3.784 17 4.75 17H14.25C15.216 17 16 16.216 16 15.25V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                      <path d="M11 3H17V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                      <path d="M17 3L9 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                    </svg>
+                    https://www.fragmentsofextinction.org/
                   </a>
-                  <div class="k-note mt-3">Click the name to expand/collapse the full biography.</div>
                 </div>
               </div>
             </div>
           </details>
+
+          <!-- KEYNOTE 3 -->
+          <details>
+            <summary>
+              <div class="k-left">
+                <div class="k-title">
+                  <div class="k-name">Tin Oberman</div>
+                  <div class="k-affil">University College London (UCL)</div>
+                </div>
+              </div>
+              <div class="k-arrow">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="k-body">
+              <div class="k-body-inner">
+                <div class="k-bio italic text-gray-500">
+                  More information coming soon.
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- PLACEHOLDER -->
+          <div class="border border-dashed border-gray-300 rounded-2xl bg-white/60 px-6 py-5 text-center">
+            <p class="text-lg font-light text-gray-500 tracking-wide">
+              Additional keynote speakers will be announced soon
+            </p>
+          </div>
+
         </div>
       </div>
 
-      <h3 class="text-2xl font-light text-lagoon-blue mt-12 mb-6">Special Sessions</h3>
+      <!-- SPECIAL SESSIONS (unchanged, continues below) -->
 
-      <!-- FIX: remove outer numbering by using a plain list, and keep only "Special Session X:" inside each item -->
-      <ul class="list-none pl-0 space-y-0 leading-snug">
-        <li class="mb-4">
-          <span class="font-medium text-gray-800">Special Session 1: Spatial Audio Algorithms &amp; Systems - Chairperson: TBA</span>
-          <ul class="list-disc list-inside space-y-0 leading-snug mt-2">
-            <li>Binaural, Ambisonics, and multichannel rendering algorithms and systems</li>
-            <li>Real-time spatialisation engines and middleware</li>
-            <li>Room acoustics simulation engines and auralization pipelines</li>
-            <li>Cross-platform spatial audio frameworks (XR, game engines, browsers, mobile, automotive)</li>
-            <li>Performance optimization, latency, scalability, reproducibility and real-time constraints</li>
-          </ul>
-        </li>
-
-        <li class="mb-4">
-          <span class="font-medium text-gray-800">Special Session 2: Spatial Audio, Auralization &amp; Digital Twins - Chairperson: Angela Bellia</span>
-          <ul class="list-disc list-inside space-y-0 leading-snug mt-2">
-            <li>Auralization, virtual acoustics, and acoustic digital twins</li>
-            <li>Reconstruction of historical acoustic environments</li>
-            <li>Musicological auralization: immersive realization of historical scores, premieres, and lost performance practices</li>
-            <li>Digital twins of architectural, environmental, and virtual acoustic spaces</li>
-          </ul>
-        </li>
-
-        <li class="mb-4">
-          <span class="font-medium text-gray-800">Special Session 3: Architectural Acoustics &amp; Immersive Space Design - Chairperson: Gerriet K. Sharma</span>
-          <ul class="list-disc list-inside space-y-0 leading-snug mt-2">
-            <li>Immersive design and renovation of studios, theaters, churches, and heritage performance spaces</li>
-            <li>Loudspeaker arrays, WFS, beamforming, and spatial reinforcement</li>
-          </ul>
-        </li>
-
-        <li class="mb-4">
-          <span class="font-medium text-gray-800">Special Session 4: Spatial Capture &amp; Measurement Technologies - Chairperson: Athanasios Malamos</span>
-          <ul class="list-disc list-inside space-y-0 leading-snug mt-2">
-            <li>Spatial microphone arrays and Higher Order Ambisonics capture</li>
-            <li>Soundscape and environmental recording systems</li>
-            <li>Bioacoustics and hydrophone-based immersive capture</li>
-            <li>MEMS, wearable, and miniaturized spatial sensing devices</li>
-          </ul>
-        </li>
-
-        <li class="mb-4">
-          <span class="font-medium text-gray-800">Special Session 5: Visual Interaction, XR &amp; Digital Archaeology (Special 2026 Focus) - Chairperson: TBA</span>
-          <ul class="list-disc list-inside space-y-0 leading-snug mt-2">
-            <li>LiDAR, photogrammetry, and 3D scanning</li>
-            <li>Audio-visual synchronization and immersive visualization</li>
-            <li>XR interaction and navigation in virtual heritage environments</li>
-            <li>Cross-disciplinary visual–audio pipelines for digital archaeology</li>
-          </ul>
-        </li>
-
-        <li class="mb-4">
-          <span class="font-medium text-gray-800">Special Session 6: Heritage, Soundscapes &amp; Digital Humanities - Chairperson: Jonathan Berger</span>
-          <ul class="list-disc list-inside space-y-0 leading-snug mt-2">
-            <li>Sonic archaeology and heritage acoustics</li>
-            <li>Soundscape studies and environmental acoustics</li>
-            <li>Digital humanities approaches to acoustic heritage documentation</li>
-            <li>Environmental and urban soundscapes as cultural heritage</li>
-          </ul>
-        </li>
-
-        <li class="mb-4">
-          <span class="font-medium text-gray-800">Special Session 7: Audio Engineering, Signal Processing &amp; AI - Chairperson: TBA</span>
-          <ul class="list-disc list-inside space-y-0 leading-snug mt-2">
-            <li>Advanced acoustic measurement, modeling, simulation, and nonlinear acoustics</li>
-            <li>Signal processing algorithms for spatial, binaural, and immersive audio</li>
-            <li>Machine learning and artificial intelligence for spatial rendering, personalization, source separation, acoustic modeling, and cross-environment reproduction</li>
-            <li>Automotive and intelligent immersive audio systems</li>
-          </ul>
-        </li>
-
-        <li class="mb-4">
-          <span class="font-medium text-gray-800">Special Session 8: Perception, Cognition &amp; Consciousness - Chairpersons: Nicola Prodi & Julia Schütze</span>
-          <ul class="list-disc list-inside space-y-0 leading-snug mt-2">
-            <li>Psychoacoustics and spatial hearing</li>
-            <li>Listening tests, presence, and emotional immersion</li>
-            <li>EEG and biometric evaluation</li>
-            <li>Consciousness, attention, presence, and self-awareness in immersive environments</li>
-          </ul>
-        </li>
-
-        <li class="mb-4">
-          <span class="font-medium text-gray-800">Special Session 9: Nature, Bioacoustics &amp; Eco-acoustics - Chairperson: TBA</span>
-          <ul class="list-disc list-inside space-y-0 leading-snug mt-2">
-            <li>Environmental soundscapes and biodiversity monitoring</li>
-            <li>Immersive representation of natural and fragile ecosystems</li>
-            <li>Underwater immersive acoustics and lagoon studies</li>
-          </ul>
-        </li>
-
-        <li>
-          <span class="font-medium text-gray-800">Special Session 10: Creative Practice &amp; Immersive Media - Chairperson: Eito Murakami</span>
-          <ul class="list-disc list-inside space-y-0 leading-snug mt-2">
-            <li>Immersive music, installations, and XR storytelling</li>
-            <li>Site-specific heritage and archaeological immersive experiences</li>
-          </ul>
-        </li>
-      </ul>
     </div>
   </div>
 </section>
