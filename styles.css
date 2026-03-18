@@ -279,8 +279,8 @@ button:focus-visible {
 13) KEYNOTE SPEAKER AVATARS
 ---------------------------------------------------------- */
 .keynotes-wrap .k-photo {
-  width: 44px;
-  height: 44px;
+  width: 132px;
+  height: 132px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
