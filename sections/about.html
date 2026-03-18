@@ -1,250 +1,139 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+<section id="about-top" class="section-padding bg-white min-h-screen py-16">
+  <div class="max-w-5xl mx-auto px-4">
 
-  <title>I3DA 2026 — International Conference on Immersive and 3D Audio</title>
-  <meta name="description" content="I3DA 2026 — International Conference on Immersive and 3D Audio. Venice, Italy, 19–22 November 2026." />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://i3da2026.org/" />
+    <h1 class="text-4xl md:text-5xl font-light text-gray-800 mb-6 leading-tight text-center">
+      <span class="text-xl md:text-2xl font-light">We are organising the 4th</span><br>
+      <span class="font-normal text-lagoon-blue">International Conference on Immersive and 3D Audio</span>
+    </h1>
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="I3DA 2026 — International Conference on Immersive and 3D Audio" />
-  <meta property="og:description" content="Venice, Italy — 19–22 November 2026" />
-  <meta property="og:url" content="https://i3da2026.org/" />
-
-  <!-- Tailwind (CDN) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Optional: your site-wide stylesheet -->
-  <!-- <link rel="stylesheet" href="assets/css/styles.css" /> -->
-
-  <style>
-    /* Site palette helper if you don't already define it elsewhere */
-    :root {
-      --lagoon-blue: #0e7490; /* tweak to your exact brand color */
-    }
-    .text-lagoon-blue { color: var(--lagoon-blue); }
-    .bg-lagoon-blue { background-color: var(--lagoon-blue); }
-
-    /* Smooth anchor scrolling */
-    html { scroll-behavior: smooth; }
-  </style>
-</head>
-
-<body class="bg-white text-gray-800 antialiased">
-
-  <!-- ===== HEADER / TOP NAV (simple placeholder) ===== -->
-  <header class="border-b border-gray-200 bg-white">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="/" class="font-medium tracking-wide text-gray-800">
-        I3DA 2026
-      </a>
-      <nav class="hidden md:flex gap-6 text-sm text-gray-600">
-        <a href="#about-top" class="hover:text-gray-900">About</a>
-        <a href="call-for-papers.html" class="hover:text-gray-900">Call for Papers</a>
-        <a href="venue.html" class="hover:text-gray-900">Venue</a>
-        <a href="contact.html" class="hover:text-gray-900">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- ===== MAIN ===== -->
-  <main>
-
-    <!-- ===== ABOUT / OVERVIEW SECTION ===== -->
-    <section id="about-top" class="section-padding bg-white min-h-screen py-16">
-      <div class="max-w-5xl mx-auto px-4">
-
-        <!-- ===== LOCAL STYLES (ABOUT PAGE ONLY) ===== -->
-        <style>
-          /* Extra-safe anchor offset so headings are NEVER hidden */
-          #overview,
-          #general-chair,
-          #scientific-board,
-          #organising-committee {
-            scroll-margin-top: 180px; /* sticky menu + generous buffer */
-          }
-
-          /* Extra spacing after section headings */
-          .about-section-heading {
-            margin-bottom: 2.5rem;
-          }
-
-          .about-submenu a {
-            transition: background-color 0.2s ease;
-          }
-        </style>
-
-        <!-- ===== TITLE ===== -->
-        <h1 class="text-4xl md:text-5xl font-light text-gray-800 mb-6 leading-tight text-center">
-          <span class="text-xl md:text-2xl font-light">We are organising the 4th</span><br>
-          <span class="font-normal text-lagoon-blue">International Conference on Immersive and 3D Audio</span>
-        </h1>
-
-        <div class="text-center mb-12">
-          <div class="inline-block border-t border-b border-gray-200 py-3 px-8 mt-2">
-            <p class="text-sm uppercase tracking-[0.2em] text-gray-500">
-              Venice, Italy &nbsp;|&nbsp; 19–22 November 2026
-            </p>
-          </div>
-        </div>
-
-        <p class="text-lagoon-blue text-lg mb-12 text-center font-medium tracking-wide">
-          Save the date!
+    <div class="text-center mb-12">
+      <div class="inline-block border-t border-b border-gray-200 py-3 px-8 mt-2">
+        <p class="text-sm uppercase tracking-[0.2em] text-gray-500">
+          Venice, Italy &nbsp;|&nbsp; 19–22 November 2026
         </p>
-
-        <!-- ===== STICKY SUBMENU (DESKTOP ONLY) ===== -->
-        <div class="hidden lg:block sticky top-0 z-20 bg-white/90 backdrop-blur-sm border-b border-gray-200 -mt-6 mb-12">
-          <div class="py-4">
-            <nav class="about-submenu flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em] font-medium text-gray-600">
-              <a href="#overview" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">
-                Conference Overview
-              </a>
-              <a href="#general-chair" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">
-                General Chair
-              </a>
-              <a href="#scientific-board" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">
-                Scientific Board
-              </a>
-              <a href="#organising-committee" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">
-                Organising Committee
-              </a>
-            </nav>
-          </div>
-        </div>
-
-        <!-- ===== CONTENT ===== -->
-        <div class="space-y-8 text-lg font-light text-gray-600 text-left md:text-justify leading-loose">
-
-          <!-- ===== OVERVIEW ===== -->
-          <h2 id="overview" class="about-section-heading text-2xl font-extralight text-gray-800 leading-tight text-center">
-            I3DA: Immersive Media in
-            <span class="text-lagoon-blue font-normal">Heritage</span>,
-            <span class="text-lagoon-blue font-normal">Nature</span> and
-            <span class="text-lagoon-blue font-normal">Consciousness</span>
-          </h2>
-
-          <p>
-            I3DA 2026 will again focus on innovation in 3D immersive audio, including virtual acoustics, architectural and musical acoustics,
-            subjective evaluations and listening tests, immersive soundscape design, and creative uses of immersive technologies. Furthermore,
-            I3DA 2026 will be a special edition, that will include visual and interactive aspects of immersive media, such as related computer graphics,
-            LIDAR scans, photogrammetry, immersive world building, digital archaeology, 3D visualization, and hardware and software applications across both fields.
-            The aim is to open new possibilities for collaboration, networking, and deeper understanding between complementary sensory domains in immersive media.
-          </p>
-
-          <p>
-            I3DA 2026 invites academic and industrial researchers to share their latest research, methods, and demonstrations related to immersive and 3D audio,
-            audiovisual interaction, and spatial media technologies. Topics include virtual and augmented reality and their applications, digital archaeology,
-            musical acoustics, acoustic signal processing, nonlinear acoustics in auralization, machine learning for immersive media, heritage acoustics, psychoacoustics,
-            game audio, sound and media arts, as well as bioacoustics and environmental acoustics. Contributions beyond these areas that align with the conference theme
-            are also welcome.
-          </p>
-
-          <p>
-            The International Conference on Immersive and 3D Audio – I3DA 2026 will take place in Venice at Palazzo Giustinian Lolin, in the San Marco district,
-            a historic building that hosts internationally renowned academic and cultural institutions.
-          </p>
-
-          <p>
-            The conference I3DA 2026 is realized through collaboration between the University of Bologna, Department of Architecture with the Fondazione Ugo e Olga Levi and the University of Warwick Venice Centre.
-          </p>
-
-          <p>
-            I3DA will be indexed on IEEE like the the previous years, with Special Issues.
-          </p>
-
-          <p>
-            The conference will represent the forefront of new methodologies and technologies in the field, establishing itself as a high-profile international meeting
-            point for researchers and professionals in immersive media and 3D audio. This event will foster meaningful international collaborations—across academia,
-            industry, heritage and museum institutions, the arts, and environmental initiatives—while driving forward innovation in immersive media.
-          </p>
-
-          <!-- ===== GENERAL CONFERENCE CHAIR ===== -->
-<h3 id="general-chair" class="about-section-heading text-2xl font-light text-lagoon-blue mt-16">
-  General Conference Chair
-</h3>
-<!-- ===== GENERAL CONFERENCE CHAIR images ===== 
-<div class="flex flex-col sm:flex-row gap-6 items-start">
-  <img
-    src="lamberto-tronchin-600x677.jpg"
-    alt="Prof. Lamberto Tronchin"
-    class="w-40 sm:w-44 rounded-sm shadow-sm"
-  /> 
-          -->
-
-  <p class="leading-relaxed">
-    <span class="font-medium">Prof. Lamberto Tronchin</span><br>
-    Congress Chair I3DA 2026<br>
-    <span class="text-sm text-gray-500">(University of Bologna, Italy)</span>
-  </p>
-</div>
-
-
-          <!-- ===== SCIENTIFIC BOARD ===== -->
-          <h3 id="scientific-board" class="about-section-heading text-2xl font-light text-lagoon-blue mt-16">
-            Scientific Board
-          </h3>
-
-          <ul class="list-disc list-inside leading-snug space-y-1">
-            <li>Thushara Abhayapala (Australian National University, AU)</li>
-            <li>Francesco Aletta (University College London, UK)</li>
-            <li>Lidia Alvarez Morales (University of Seville, Spain)</li>
-            <li>Angela Bellia (University of Palermo, Italy)</li>
-            <li>Jonathan Berger (Stanford University, USA)</li>
-            <li>Antonella Bevilaqua (University of Parma, Italy)</li>
-            <li>Fabio Bisegna (University La Sapienza, Rome, Italy)</li>
-            <li>Thibaut Carpentier (IRCAM, France)</li>
-            <li>Hüseyin Hacıhabiboğlu (Graduate School of Informatics, Turkey)</li>
-            <li>Octávio Inácio (Inacoustics, Portugal)</li>
-            <li>Jean-Marc Jot (Founder and Principal | Virtuel Works LLC, USA)</li>
-            <li>Athanasios Malamos (Hellenic Mediterranean University, Greece)</li>
-            <li>Emma-Kate Matthews (University College London, UK)</li>
-            <li>Eito Murakami (Stanford University, USA)</li>
-            <li>Edoardo Piana (Università degli Studi di Brescia, Italy)</li>
-            <li>Boaz Rafaely (Ben-Gurion University of the Negev)</li>
-            <li>Julia Schütze (Faculty of Psychology, UniDistance Suisse, Brig, Switzerland)</li>
-            <li>Gerriet K. Sharma (Spaes – Lab for Spatial Aesthetics in Sound, Germany)</li>
-            <li>Zühre Sü Gül (MEZZO Stüdyo Mimari Akustik Tasarım  ve Danışmanlık, Turkey)</li>
-            <li>Lamberto Tronchin (University of Bologna, Italy)</li>
-            <li>Cobi van Tonder (University of Bologna, Italy)</li>
-            <li>Ning Xiang (RPI, Troy, USA)</li>
-            <li>Valeria Zane (Fondazione Ugo e Olga Levi onlus, Italy)</li>
-          </ul>
-
-          <!-- ===== ORGANISING COMMITTEE ===== -->
-          <h3 id="organising-committee" class="about-section-heading text-2xl font-light text-lagoon-blue mt-16">
-            Organising Committee
-          </h3>
-
-          <ul class="list-disc list-inside leading-snug space-y-1">
-            <li>Lamberto Tronchin (University of Bologna) - General Conference Chair</li>
-            <li>Cobi van Tonder (University of Bologna) – Chair of the Organising Committee</li>
-            <li>Antonella Bevilacqua (University of Parma)</li>
-            <li>Adriano Farina (University of Bologna)</li>
-            <li>Federica Gelli (Torri di Marmo)</li>
-            <li>Ruoran Yan (University of Bologna)</li>
-          </ul>
-
-        </div>
       </div>
-    </section>
-
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="border-t border-gray-200 bg-white">
-    <div class="max-w-6xl mx-auto px-4 py-10 text-sm text-gray-500">
-      <p class="mb-2">
-        © 2026 I3DA 2026. All rights reserved.
-      </p>
-      <p>
-        Venice, Italy — 19–22 November 2026
-      </p>
     </div>
-  </footer>
 
-</body>
-</html>
+    <p class="text-lagoon-blue text-lg mb-12 text-center font-medium tracking-wide">
+      Save the date!
+    </p>
+
+    <div class="hidden lg:block sticky top-0 z-20 bg-white/90 backdrop-blur-sm border-b border-gray-200 -mt-6 mb-12">
+      <div class="py-4">
+        <nav class="about-submenu flex flex-wrap gap-3 text-xs uppercase tracking-[0.18em] font-medium text-gray-600">
+          <a href="#overview" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">
+            Conference Overview
+          </a>
+          <a href="#general-chair" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">
+            General Chair
+          </a>
+          <a href="#scientific-board" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">
+            Scientific Board
+          </a>
+          <a href="#organising-committee" class="px-3 py-1 border border-gray-300 rounded hover:bg-gray-50">
+            Organising Committee
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="space-y-8 text-lg font-light text-gray-600 text-left md:text-justify leading-loose">
+
+      <h2 id="overview" class="about-section-heading text-2xl font-extralight text-gray-800 leading-tight text-center">
+        I3DA: Immersive Media in
+        <span class="text-lagoon-blue font-normal">Heritage</span>,
+        <span class="text-lagoon-blue font-normal">Nature</span> and
+        <span class="text-lagoon-blue font-normal">Consciousness</span>
+      </h2>
+
+      <p>
+        I3DA 2026 will again focus on innovation in 3D immersive audio, including virtual acoustics, architectural and musical acoustics,
+        subjective evaluations and listening tests, immersive soundscape design, and creative uses of immersive technologies. Furthermore,
+        I3DA 2026 will be a special edition, that will include visual and interactive aspects of immersive media, such as related computer graphics,
+        LIDAR scans, photogrammetry, immersive world building, digital archaeology, 3D visualization, and hardware and software applications across both fields.
+        The aim is to open new possibilities for collaboration, networking, and deeper understanding between complementary sensory domains in immersive media.
+      </p>
+
+      <p>
+        I3DA 2026 invites academic and industrial researchers to share their latest research, methods, and demonstrations related to immersive and 3D audio,
+        audiovisual interaction, and spatial media technologies. Topics include virtual and augmented reality and their applications, digital archaeology,
+        musical acoustics, acoustic signal processing, nonlinear acoustics in auralization, machine learning for immersive media, heritage acoustics, psychoacoustics,
+        game audio, sound and media arts, as well as bioacoustics and environmental acoustics. Contributions beyond these areas that align with the conference theme
+        are also welcome.
+      </p>
+
+      <p>
+        The International Conference on Immersive and 3D Audio – I3DA 2026 will take place in Venice at Palazzo Giustinian Lolin, in the San Marco district,
+        a historic building that hosts internationally renowned academic and cultural institutions.
+      </p>
+
+      <p>
+        The conference I3DA 2026 is realized through collaboration between the University of Bologna, Department of Architecture with the Fondazione Ugo e Olga Levi and the University of Warwick Venice Centre.
+      </p>
+
+      <p>
+        I3DA will be indexed on IEEE like the the previous years, with Special Issues.
+      </p>
+
+      <p>
+        The conference will represent the forefront of new methodologies and technologies in the field, establishing itself as a high-profile international meeting
+        point for researchers and professionals in immersive media and 3D audio. This event will foster meaningful international collaborations—across academia,
+        industry, heritage and museum institutions, the arts, and environmental initiatives—while driving forward innovation in immersive media.
+      </p>
+
+      <h3 id="general-chair" class="about-section-heading text-2xl font-light text-lagoon-blue mt-16">
+        General Conference Chair
+      </h3>
+
+      <p class="leading-relaxed">
+        <span class="font-medium">Prof. Lamberto Tronchin</span><br>
+        Congress Chair I3DA 2026<br>
+        <span class="text-sm text-gray-500">(University of Bologna, Italy)</span>
+      </p>
+
+      <h3 id="scientific-board" class="about-section-heading text-2xl font-light text-lagoon-blue mt-16">
+        Scientific Board
+      </h3>
+
+      <ul class="list-disc list-inside leading-snug space-y-1">
+        <li>Thushara Abhayapala (Australian National University, AU)</li>
+        <li>Francesco Aletta (University College London, UK)</li>
+        <li>Lidia Alvarez Morales (University of Seville, Spain)</li>
+        <li>Angela Bellia (University of Palermo, Italy)</li>
+        <li>Jonathan Berger (Stanford University, USA)</li>
+        <li>Antonella Bevilaqua (University of Parma, Italy)</li>
+        <li>Fabio Bisegna (University La Sapienza, Rome, Italy)</li>
+        <li>Thibaut Carpentier (IRCAM, France)</li>
+        <li>Hüseyin Hacıhabiboğlu (Graduate School of Informatics, Turkey)</li>
+        <li>Octávio Inácio (Inacoustics, Portugal)</li>
+        <li>Jean-Marc Jot (Founder and Principal | Virtuel Works LLC, USA)</li>
+        <li>Athanasios Malamos (Hellenic Mediterranean University, Greece)</li>
+        <li>Emma-Kate Matthews (University College London, UK)</li>
+        <li>Eito Murakami (Stanford University, USA)</li>
+        <li>Edoardo Piana (Università degli Studi di Brescia, Italy)</li>
+        <li>Boaz Rafaely (Ben-Gurion University of the Negev)</li>
+        <li>Julia Schütze (Faculty of Psychology, UniDistance Suisse, Brig, Switzerland)</li>
+        <li>Gerriet K. Sharma (Spaes – Lab for Spatial Aesthetics in Sound, Germany)</li>
+        <li>Zühre Sü Gül (MEZZO Stüdyo Mimari Akustik Tasarım ve Danışmanlık, Turkey)</li>
+        <li>Lamberto Tronchin (University of Bologna, Italy)</li>
+        <li>Cobi van Tonder (University of Bologna, Italy)</li>
+        <li>Ning Xiang (RPI, Troy, USA)</li>
+        <li>Valeria Zane (Fondazione Ugo e Olga Levi onlus, Italy)</li>
+      </ul>
+
+      <h3 id="organising-committee" class="about-section-heading text-2xl font-light text-lagoon-blue mt-16">
+        Organising Committee
+      </h3>
+
+      <ul class="list-disc list-inside leading-snug space-y-1">
+        <li>Lamberto Tronchin (University of Bologna) - General Conference Chair</li>
+        <li>Cobi van Tonder (University of Bologna) – Chair of the Organising Committee</li>
+        <li>Antonella Bevilacqua (University of Parma)</li>
+        <li>Adriano Farina (University of Bologna)</li>
+        <li>Federica Gelli (Torri di Marmo)</li>
+        <li>Ruoran Yan (University of Bologna)</li>
+      </ul>
+
+    </div>
+  </div>
+</section>
