@@ -13,7 +13,6 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://www.i3da2026.org/Facciata Palazzo Giustinian Lolin - LEVI - Notte.jpg">
 
-    <!-- IMPORTANT: Tailwind config MUST come BEFORE the CDN script -->
     <script>
         tailwind = window.tailwind || {};
         tailwind.config = {
@@ -32,8 +31,6 @@
     </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Your global stylesheet (NEW) -->
     <link rel="stylesheet" href="styles.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -116,19 +113,19 @@
 
         <main id="content-area" class="flex-grow overflow-y-auto bg-gray-50 md:mt-0 mt-24 scroll-smooth">
 
-            <!-- UPDATED: Desktop keeps animated banner; mobile uses static banner.jpg -->
             <section id="main-banner-container" class="w-full relative">
-
-                <!-- Animated banner: DESKTOP / TABLET ONLY -->
-                <div class="hidden md:block w-full h-full">
+                <div class="hidden md:block w-full h-full banner-desktop-wrap">
                     <canvas id="bannerCanvas"></canvas>
-                    <img src="blue5.jpg" alt="Banner" class="w-full h-auto block"
-                         onerror="this.src='https://placehold.co/1000x224/E0F2F1/005F73?text=I3DA+Banner';">
+                    <img
+                        id="desktop-banner-image"
+                        src="blue5.jpg"
+                        alt="Banner"
+                        class="w-full h-auto block"
+                        onerror="this.src='https://placehold.co/1000x224/E0F2F1/005F73?text=I3DA+Banner';"
+                    >
                 </div>
 
-                <!-- Static banner: MOBILE ONLY -->
                 <img src="banner.jpg" alt="Banner" class="block md:hidden w-full h-auto">
-
             </section>
 
             <div id="dynamic-content"></div>
@@ -136,14 +133,11 @@
     </div>
 
     <script>
-        /* --- SAFE: REMOVE UNDER-BANNER NAV BAR (only inside #dynamic-content) --- */
         function removeUnderBannerNav() {
             const root = document.getElementById('dynamic-content');
             if (!root) return;
 
             const wanted = new Set(['about', 'call for papers', 'venue', 'contact']);
-
-            // Only scan navs inside injected content (never the sidebar / mobile menu)
             const navs = Array.from(root.querySelectorAll('nav'));
 
             for (const nav of navs) {
@@ -153,7 +147,6 @@
 
                 const hits = labels.filter(t => wanted.has(t)).length;
 
-                // This is that bar if it matches at least 3 of the 4 labels
                 if (hits >= 3) {
                     const wrapper = nav.closest('div') || nav;
                     wrapper.remove();
@@ -162,135 +155,402 @@
             }
         }
 
-        /* --- 1. GLOBAL INITIALIZATION & IMAGE LOADING --- */
-        const logoSrc = 'logo.jpg'; const img = new Image(); let sourceImageObj = null;
+        const logoSrc = 'logo.jpg';
+        const img = new Image();
+        let sourceImageObj = null;
 
-        // UPDATED: banner animation only on >=768px (md+). Sidebar animation unchanged.
+        const sidebarCanvas = document.getElementById('logoCanvas');
+        const sidebarCtx = sidebarCanvas.getContext('2d');
+
+        const bannerCanvas = document.getElementById('bannerCanvas');
+        const bannerCtx = bannerCanvas.getContext('2d');
+
+        const sidebarSettings = {
+            startSpatial: 0.5,
+            endSpatial: 18,
+            amplitude: 55,
+            sweepDuration: 6.0,
+            pWidth: 1,
+            pHeight: 1,
+            resolution: 1,
+            morphSpeed: 0.005,
+            holdTime: 9.5,
+            speed: 0.009
+        };
+
+        const oceanSettings = {
+            swellAmp: 41,
+            swellFreq: 2,
+            swellSpeed: 0.15,
+            chopAmp: 20,
+            chopFreq: 8,
+            chopSpeed: 0.08,
+            waveDuration: 3.0,
+            morphSpeed: 0.004,
+            resolution: 1,
+            holdTime: 1.0
+        };
+
+        let sidebarParticles = [];
+        let sbWidth, sbHeight, sbIsAnimating = false, sbGlobalTime = 0, sbStateTime = 0, sbLoopState = 'sweep_in', sbMorphProgress = 0, sbAnimId;
+
+        let bannerParticles = [];
+        let bnWidth, bnHeight, bnIsAnimating = false, bnGlobalTime = 0, bnStateTime = 0, bnStage = 'wave', bnMorphProgress = 0, bnAnimId;
+
         img.onload = () => {
             sourceImageObj = img;
             initSidebarAnimation(img);
 
             if (window.matchMedia('(min-width: 768px)').matches) {
-                initBannerAnimation(img);
+                initBannerWhenReady(img);
             }
         };
         img.src = logoSrc;
 
-        /* --- 2. SIDEBAR ANIMATION ENGINE (SINE SWEEP) --- */
-        const sidebarCanvas = document.getElementById('logoCanvas'); const sidebarCtx = sidebarCanvas.getContext('2d');
-        const sidebarSettings = { startSpatial: 0.5, endSpatial: 18, amplitude: 55, sweepDuration: 6.0, pWidth: 1, pHeight: 1, resolution: 1, morphSpeed: 0.005, holdTime: 9.5, speed: 0.009 };
-        let sidebarParticles = [], sbWidth, sbHeight, sbIsAnimating = false, sbGlobalTime = 0, sbStateTime = 0, sbLoopState = 'sweep_in', sbMorphProgress = 0, sbAnimId;
-
-        function drawStaticSidebarLogo() { if (!sidebarCtx || sidebarParticles.length === 0) return; sidebarCtx.clearRect(0, 0, sbWidth, sbHeight); sidebarCtx.fillStyle = 'black'; sidebarParticles.forEach(p => sidebarCtx.fillRect(p.x, p.y, sidebarSettings.pWidth, sidebarSettings.pHeight)); }
-        function initSidebarAnimation(image) {
-            sbWidth = sidebarCanvas.parentElement.offsetWidth; sbHeight = sidebarCanvas.parentElement.offsetHeight;
-            const dpr = window.devicePixelRatio || 1; sidebarCanvas.width = sbWidth * dpr; sidebarCanvas.height = sbHeight * dpr; sidebarCtx.scale(dpr, dpr);
-            const scale = Math.min(sbWidth / image.width, sbHeight / image.height) * 0.85;
-            const drawW = image.width * scale, drawH = image.height * scale;
-            const offX = (sbWidth - drawW) / 2, offY = (sbHeight - drawH) / 2 + 20; 
-            sidebarCtx.drawImage(image, offX, offY, drawW, drawH); const data = sidebarCtx.getImageData(0, 0, sbWidth * dpr, sbHeight * dpr).data;
-            sidebarParticles = []; const step = Math.max(1, Math.floor(sidebarSettings.resolution * dpr)); 
-            for(let y=0; y < sbHeight*dpr; y+=step) { for(let x=0; x < sbWidth*dpr; x+=step) { const i = (y * (sbWidth*dpr) + x) * 4; if (data[i+3] > 128 && (data[i]+data[i+1]+data[i+2])/3 < 200) { sidebarParticles.push({ x: x / dpr, y: y / dpr, normX: x / (sbWidth * dpr) }); } } }
-            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight); drawStaticSidebarLogo();
+        function drawStaticSidebarLogo() {
+            if (!sidebarCtx || sidebarParticles.length === 0) return;
+            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight);
+            sidebarCtx.fillStyle = 'black';
+            sidebarParticles.forEach(p => sidebarCtx.fillRect(p.x, p.y, sidebarSettings.pWidth, sidebarSettings.pHeight));
         }
-        function startSidebarLoop() { sbStateTime = 0; sbGlobalTime = 0; sbMorphProgress = 0; sbLoopState = 'sweep_in'; sbIsAnimating = true; if(sbAnimId) cancelAnimationFrame(sbAnimId); sidebarLoop(); }
+
+        function initSidebarAnimation(image) {
+            if (!sidebarCanvas || !sidebarCtx || !sidebarCanvas.parentElement) return;
+
+            sbWidth = sidebarCanvas.parentElement.offsetWidth;
+            sbHeight = sidebarCanvas.parentElement.offsetHeight;
+
+            const dpr = window.devicePixelRatio || 1;
+            sidebarCanvas.width = sbWidth * dpr;
+            sidebarCanvas.height = sbHeight * dpr;
+
+            sidebarCtx.setTransform(1, 0, 0, 1, 0, 0);
+            sidebarCtx.scale(dpr, dpr);
+
+            const scale = Math.min(sbWidth / image.width, sbHeight / image.height) * 0.85;
+            const drawW = image.width * scale;
+            const drawH = image.height * scale;
+            const offX = (sbWidth - drawW) / 2;
+            const offY = (sbHeight - drawH) / 2 + 20;
+
+            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight);
+            sidebarCtx.drawImage(image, offX, offY, drawW, drawH);
+
+            const data = sidebarCtx.getImageData(0, 0, sbWidth * dpr, sbHeight * dpr).data;
+            sidebarParticles = [];
+
+            const step = Math.max(1, Math.floor(sidebarSettings.resolution * dpr));
+
+            for (let y = 0; y < sbHeight * dpr; y += step) {
+                for (let x = 0; x < sbWidth * dpr; x += step) {
+                    const i = (y * (sbWidth * dpr) + x) * 4;
+                    if (data[i + 3] > 128 && (data[i] + data[i + 1] + data[i + 2]) / 3 < 200) {
+                        sidebarParticles.push({
+                            x: x / dpr,
+                            y: y / dpr,
+                            normX: x / (sbWidth * dpr)
+                        });
+                    }
+                }
+            }
+
+            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight);
+            drawStaticSidebarLogo();
+        }
+
+        function startSidebarLoop() {
+            sbStateTime = 0;
+            sbGlobalTime = 0;
+            sbMorphProgress = 0;
+            sbLoopState = 'sweep_in';
+            sbIsAnimating = true;
+            if (sbAnimId) cancelAnimationFrame(sbAnimId);
+            sidebarLoop();
+        }
+
         function sidebarLoop() {
-            if (!sbIsAnimating) { drawStaticSidebarLogo(); return; }
-            sbGlobalTime += sidebarSettings.speed; sbStateTime += 1/60; let currentFreq = sidebarSettings.startSpatial, currentMorph = sbMorphProgress;
-            if (sbLoopState === 'sweep_in') { const p = Math.min(sbStateTime / sidebarSettings.sweepDuration, 1.0); currentFreq = sidebarSettings.startSpatial + (sidebarSettings.endSpatial - sidebarSettings.startSpatial) * p; if (sbStateTime >= sidebarSettings.sweepDuration) { sbLoopState = 'forming'; sbStateTime = 0; } }
-            else if (sbLoopState === 'forming') { sbMorphProgress += sidebarSettings.morphSpeed; currentMorph = sbMorphProgress; if(sbMorphProgress >= 1) { sbLoopState = 'holding'; sbStateTime = 0; } }
-            else if (sbLoopState === 'holding') { if(sbStateTime >= sidebarSettings.holdTime) { sbLoopState = 'dissolving'; sbStateTime = 0; } }
-            else if (sbLoopState === 'dissolving') { sbMorphProgress -= sidebarSettings.morphSpeed; currentMorph = sbMorphProgress; if(sbMorphProgress <= 0) { sbLoopState = 'sweep_out'; sbStateTime = 0; } }
-            else if (sbLoopState === 'sweep_out') { const p = Math.min(sbStateTime / sidebarSettings.sweepDuration, 1.0); currentFreq = sidebarSettings.endSpatial - (sidebarSettings.endSpatial - sidebarSettings.startSpatial) * p; if (sbStateTime >= sidebarSettings.sweepDuration) { sbLoopState = 'sweep_in'; sbStateTime = 0; } }
-            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight); sidebarCtx.fillStyle = 'black';
-            for (let i = 0; i < sidebarParticles.length; i++) { const p = sidebarParticles[i]; const waveY = (sbHeight / 2) + Math.sin( (p.normX * currentFreq * Math.PI * 2) + sbGlobalTime ) * sidebarSettings.amplitude; const ease = currentMorph < .5 ? 4 * currentMorph * currentMorph * currentMorph : (currentMorph - 1) * (2 * currentMorph - 2) * (2 * currentMorph - 2) + 1; const renderY = waveY + (p.y - waveY) * ease; sidebarCtx.fillRect(p.x, renderY, sidebarSettings.pWidth, sidebarSettings.pHeight); }
+            if (!sbIsAnimating) {
+                drawStaticSidebarLogo();
+                return;
+            }
+
+            sbGlobalTime += sidebarSettings.speed;
+            sbStateTime += 1 / 60;
+
+            let currentFreq = sidebarSettings.startSpatial;
+            let currentMorph = sbMorphProgress;
+
+            if (sbLoopState === 'sweep_in') {
+                const p = Math.min(sbStateTime / sidebarSettings.sweepDuration, 1.0);
+                currentFreq = sidebarSettings.startSpatial + (sidebarSettings.endSpatial - sidebarSettings.startSpatial) * p;
+                if (sbStateTime >= sidebarSettings.sweepDuration) {
+                    sbLoopState = 'forming';
+                    sbStateTime = 0;
+                }
+            } else if (sbLoopState === 'forming') {
+                sbMorphProgress += sidebarSettings.morphSpeed;
+                currentMorph = sbMorphProgress;
+                if (sbMorphProgress >= 1) {
+                    sbLoopState = 'holding';
+                    sbStateTime = 0;
+                }
+            } else if (sbLoopState === 'holding') {
+                if (sbStateTime >= sidebarSettings.holdTime) {
+                    sbLoopState = 'dissolving';
+                    sbStateTime = 0;
+                }
+            } else if (sbLoopState === 'dissolving') {
+                sbMorphProgress -= sidebarSettings.morphSpeed;
+                currentMorph = sbMorphProgress;
+                if (sbMorphProgress <= 0) {
+                    sbLoopState = 'sweep_out';
+                    sbStateTime = 0;
+                }
+            } else if (sbLoopState === 'sweep_out') {
+                const p = Math.min(sbStateTime / sidebarSettings.sweepDuration, 1.0);
+                currentFreq = sidebarSettings.endSpatial - (sidebarSettings.endSpatial - sidebarSettings.startSpatial) * p;
+                if (sbStateTime >= sidebarSettings.sweepDuration) {
+                    sbLoopState = 'sweep_in';
+                    sbStateTime = 0;
+                }
+            }
+
+            sidebarCtx.clearRect(0, 0, sbWidth, sbHeight);
+            sidebarCtx.fillStyle = 'black';
+
+            for (let i = 0; i < sidebarParticles.length; i++) {
+                const p = sidebarParticles[i];
+                const waveY = (sbHeight / 2) + Math.sin((p.normX * currentFreq * Math.PI * 2) + sbGlobalTime) * sidebarSettings.amplitude;
+                const ease = currentMorph < 0.5
+                    ? 4 * currentMorph * currentMorph * currentMorph
+                    : (currentMorph - 1) * (2 * currentMorph - 2) * (2 * currentMorph - 2) + 1;
+                const renderY = waveY + (p.y - waveY) * ease;
+                sidebarCtx.fillRect(p.x, renderY, sidebarSettings.pWidth, sidebarSettings.pHeight);
+            }
+
             sbAnimId = requestAnimationFrame(sidebarLoop);
         }
 
-        /* --- 3. BANNER ANIMATION ENGINE (OCEAN WAVE) --- */
-        const bannerCanvas = document.getElementById('bannerCanvas'); const bannerCtx = bannerCanvas.getContext('2d');
-        const oceanSettings = { swellAmp: 41, swellFreq: 2, swellSpeed: 0.15, chopAmp: 20, chopFreq: 8, chopSpeed: 0.08, waveDuration: 3.0, morphSpeed: 0.004, resolution: 1, holdTime: 1.0 };
-        let bannerParticles = [], bnWidth, bnHeight, bnIsAnimating = false, bnGlobalTime = 0, bnStateTime = 0, bnStage = 'wave', bnMorphProgress = 0, bnAnimId;
+        function initBannerWhenReady(image) {
+            const desktopBannerImage = document.getElementById('desktop-banner-image');
+            if (!desktopBannerImage) return;
+
+            const run = () => {
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        initBannerAnimation(image);
+                    });
+                });
+            };
+
+            if (desktopBannerImage.complete && desktopBannerImage.naturalWidth > 0) {
+                run();
+            } else {
+                desktopBannerImage.onload = run;
+            }
+        }
 
         function initBannerAnimation(image) {
             const container = document.getElementById('main-banner-container');
-            const imgElement = container.querySelector('img'); 
-            bnWidth = container.offsetWidth; bnHeight = imgElement.offsetHeight || 224; const dpr = window.devicePixelRatio || 1;
-            bannerCanvas.width = bnWidth * dpr; bannerCanvas.height = bnHeight * dpr; bannerCtx.scale(dpr, dpr);
-            const scale = Math.min(bnWidth / image.width, bnHeight / image.height) * 0.85; const drawW = image.width * scale, drawH = image.height * scale;
-            const dx = (bnWidth - drawW) / 2, dy = (bnHeight - drawH) / 2; bannerCtx.drawImage(image, dx, dy, drawW, drawH);
-            const data = bannerCtx.getImageData(0,0, bnWidth*dpr, bnHeight*dpr).data; bannerParticles = []; const step = Math.max(1, Math.floor(oceanSettings.resolution * dpr));
-            for(let y=0; y < bnHeight*dpr; y+=step) { for(let x=0; x < bnWidth*dpr; x+=step) { const i = (y*(bnWidth*dpr)+x)*4; if(data[i+3] > 128 && (data[i]+data[i+1]+data[i+2])/3 < 200) { bannerParticles.push({ tx: x/dpr, ty: y/dpr, sx: Math.random() * bnWidth, phase: Math.random() * Math.PI * 2 }); } } }
-            bannerCtx.clearRect(0,0,bnWidth,bnHeight); startBannerLoop();
+            const desktopWrap = container ? container.querySelector('.banner-desktop-wrap') : null;
+            const imgElement = document.getElementById('desktop-banner-image');
+
+            if (!container || !desktopWrap || !bannerCanvas || !bannerCtx || !imgElement) {
+                console.log('Banner init aborted:', { container, desktopWrap, bannerCanvas, bannerCtx, imgElement });
+                return;
+            }
+
+            bnWidth = desktopWrap.offsetWidth || container.offsetWidth;
+            bnHeight = imgElement.clientHeight || imgElement.offsetHeight || 224;
+
+            const dpr = window.devicePixelRatio || 1;
+
+            bannerCanvas.width = bnWidth * dpr;
+            bannerCanvas.height = bnHeight * dpr;
+
+            bannerCtx.setTransform(1, 0, 0, 1, 0, 0);
+            bannerCtx.scale(dpr, dpr);
+
+            const scale = Math.min(bnWidth / image.width, bnHeight / image.height) * 0.85;
+            const drawW = image.width * scale;
+            const drawH = image.height * scale;
+            const dx = (bnWidth - drawW) / 2;
+            const dy = (bnHeight - drawH) / 2;
+
+            bannerCtx.clearRect(0, 0, bnWidth, bnHeight);
+            bannerCtx.drawImage(image, dx, dy, drawW, drawH);
+
+            const data = bannerCtx.getImageData(0, 0, bnWidth * dpr, bnHeight * dpr).data;
+            bannerParticles = [];
+
+            const step = Math.max(1, Math.floor(oceanSettings.resolution * dpr));
+
+            for (let y = 0; y < bnHeight * dpr; y += step) {
+                for (let x = 0; x < bnWidth * dpr; x += step) {
+                    const i = (y * (bnWidth * dpr) + x) * 4;
+                    if (data[i + 3] > 128 && (data[i] + data[i + 1] + data[i + 2]) / 3 < 200) {
+                        bannerParticles.push({
+                            tx: x / dpr,
+                            ty: y / dpr,
+                            sx: Math.random() * bnWidth,
+                            phase: Math.random() * Math.PI * 2
+                        });
+                    }
+                }
+            }
+
+            bannerCtx.clearRect(0, 0, bnWidth, bnHeight);
+            console.log('Banner init ok:', { bnWidth, bnHeight, particles: bannerParticles.length });
+            startBannerLoop();
         }
-        function startBannerLoop() { bnStage = 'wave'; bnStateTime = 0; bnGlobalTime = 0; bnMorphProgress = 0; bnIsAnimating = true; if(bnAnimId) cancelAnimationFrame(bnAnimId); bannerLoop(); }
+
+        function startBannerLoop() {
+            bnStage = 'wave';
+            bnStateTime = 0;
+            bnGlobalTime = 0;
+            bnMorphProgress = 0;
+            bnIsAnimating = true;
+            if (bnAnimId) cancelAnimationFrame(bnAnimId);
+            bannerLoop();
+        }
+
+        function stopBannerLoop() {
+            bnIsAnimating = false;
+            if (bnAnimId) cancelAnimationFrame(bnAnimId);
+        }
+
         function bannerLoop() {
-            if(!bnIsAnimating) return; bnGlobalTime += 1/60; bnStateTime += 1/60;
-            if(bnStage === 'wave' && bnStateTime > oceanSettings.waveDuration) bnStage = 'morph';
-            else if(bnStage === 'morph') { bnMorphProgress += oceanSettings.morphSpeed; if(bnMorphProgress >= 1) bnStage = 'hold'; }
-            else if(bnStage === 'hold' && bnStateTime > oceanSettings.holdTime) bnStage = 'dissolve';
-            else if(bnStage === 'dissolve') { bnMorphProgress -= oceanSettings.morphSpeed; if(bnMorphProgress <= 0) bnStage = 'wave'; }
-            bannerCtx.clearRect(0,0,bnWidth,bnHeight); bannerCtx.fillStyle = '#fff'; 
-            for(let i=0; i<bannerParticles.length; i++) { const p = bannerParticles[i], t = bnMorphProgress; const ease = t < .5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1; const currentX = p.sx + (p.tx - p.sx) * ease; const normX = currentX / bnWidth; const waveY = (bnHeight/2) + Math.sin(normX * oceanSettings.swellFreq * Math.PI + bnGlobalTime * oceanSettings.swellSpeed) * oceanSettings.swellAmp + Math.cos(normX * oceanSettings.chopFreq * Math.PI - bnGlobalTime * oceanSettings.chopSpeed) * oceanSettings.chopAmp; const currentY = waveY + (p.ty - waveY) * ease; bannerCtx.fillRect(currentX, currentY, 1.5, 1.5); }
+            if (!bnIsAnimating) return;
+
+            bnGlobalTime += 1 / 60;
+            bnStateTime += 1 / 60;
+
+            if (bnStage === 'wave' && bnStateTime > oceanSettings.waveDuration) {
+                bnStage = 'morph';
+            } else if (bnStage === 'morph') {
+                bnMorphProgress += oceanSettings.morphSpeed;
+                if (bnMorphProgress >= 1) bnStage = 'hold';
+            } else if (bnStage === 'hold' && bnStateTime > oceanSettings.holdTime) {
+                bnStage = 'dissolve';
+            } else if (bnStage === 'dissolve') {
+                bnMorphProgress -= oceanSettings.morphSpeed;
+                if (bnMorphProgress <= 0) {
+                    bnMorphProgress = 0;
+                    bnStage = 'wave';
+                    bnStateTime = 0;
+                }
+            }
+
+            bannerCtx.clearRect(0, 0, bnWidth, bnHeight);
+            bannerCtx.fillStyle = '#ffffff';
+
+            for (let i = 0; i < bannerParticles.length; i++) {
+                const p = bannerParticles[i];
+                const t = bnMorphProgress;
+                const ease = t < 0.5
+                    ? 4 * t * t * t
+                    : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+
+                const currentX = p.sx + (p.tx - p.sx) * ease;
+                const normX = currentX / bnWidth;
+
+                const waveY =
+                    (bnHeight / 2) +
+                    Math.sin(normX * oceanSettings.swellFreq * Math.PI + bnGlobalTime * oceanSettings.swellSpeed) * oceanSettings.swellAmp +
+                    Math.cos(normX * oceanSettings.chopFreq * Math.PI - bnGlobalTime * oceanSettings.chopSpeed) * oceanSettings.chopAmp;
+
+                const currentY = waveY + (p.ty - waveY) * ease;
+                bannerCtx.fillRect(currentX, currentY, 1.5, 1.5);
+            }
+
             bnAnimId = requestAnimationFrame(bannerLoop);
         }
 
-        /* --- 4. CORE NAVIGATION & PAGE LOADING --- */
         async function handleNavigation(targetId) {
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(l => l.classList.add('active'));
+
             try {
                 const response = await fetch(`sections/${targetId}.html`);
                 if (response.ok) {
                     document.getElementById('dynamic-content').innerHTML = await response.text();
-
-                    // Remove ONLY the under-banner bar that appears inside injected content
                     removeUnderBannerNav();
 
-                    if (targetId === 'news') loadNewsPosts();
+                    if (targetId === 'news') {
+                        await loadNewsPosts();
+                    }
                 }
-            } catch (err) { console.error("Navigation Error:", err); }
-            const logoArea = document.getElementById('sidebar-logo-area'); const banner = document.getElementById('main-banner-container');
-            if (targetId === 'about' || targetId === 'news') { banner.classList.remove('hidden'); logoArea.classList.add('opacity-0'); sbIsAnimating = false; }
-            else { banner.classList.add('hidden'); logoArea.classList.remove('opacity-0'); logoArea.classList.add('opacity-100'); startSidebarLoop(); }
+            } catch (err) {
+                console.error("Navigation Error:", err);
+            }
+
+            const logoArea = document.getElementById('sidebar-logo-area');
+            const banner = document.getElementById('main-banner-container');
+
+            if (targetId === 'about' || targetId === 'news') {
+                banner.classList.remove('hidden');
+                logoArea.classList.add('opacity-0');
+                sbIsAnimating = false;
+
+                if (sourceImageObj && window.matchMedia('(min-width: 768px)').matches) {
+                    initBannerWhenReady(sourceImageObj);
+                }
+            } else {
+                banner.classList.add('hidden');
+                logoArea.classList.remove('opacity-0');
+                logoArea.classList.add('opacity-100');
+
+                stopBannerLoop();
+                startSidebarLoop();
+            }
+
             document.getElementById('content-area').scrollTop = 0;
         }
 
-        /* --- 5. NEWS CONTENT LOADER --- */
         async function loadNewsPosts() {
-            const container = document.getElementById('news-container'); if (!container) return;
-            // UPDATE THIS LIST TO ADD NEW POSTS
-            const posts = ['2026-02-keynote-speakers.html','2026-01-27-warwick-venice-centre.html','2025-12-23-fondazione-levi.html','archive-links.html'];
+            const container = document.getElementById('news-container');
+            if (!container) return;
+
+            const posts = [
+                '2026-02-keynote-speakers.html',
+                '2026-01-27-warwick-venice-centre.html',
+                '2025-12-23-fondazione-levi.html',
+                'archive-links.html'
+            ];
+
             container.innerHTML = '';
+
             for (const file of posts) {
                 const res = await fetch(`news-posts/${file}`);
-                if (res.ok) { 
-                    const div = document.createElement('div'); 
+                if (res.ok) {
+                    const div = document.createElement('div');
                     div.className = "mb-16 block clear-both";
-                    div.innerHTML = await res.text(); 
-                    container.appendChild(div); 
+                    div.innerHTML = await res.text();
+                    container.appendChild(div);
                 }
             }
 
-            // Safety pass (still only checks inside dynamic content)
             removeUnderBannerNav();
         }
 
-        /* --- 6. EVENT LISTENERS & DEEP LINKING --- */
-        document.getElementById('menu-button').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+        document.getElementById('menu-button').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
         document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', (e) => {
             document.getElementById('mobile-menu').classList.add('hidden');
             handleNavigation(e.currentTarget.getAttribute('data-target'));
         }));
 
-        // UPDATED: banner animation re-init only on md+ screens
         window.addEventListener('resize', () => {
             if (!sourceImageObj) return;
 
             initSidebarAnimation(sourceImageObj);
 
             if (window.matchMedia('(min-width: 768px)').matches) {
-                initBannerAnimation(sourceImageObj);
+                initBannerWhenReady(sourceImageObj);
+            } else {
+                stopBannerLoop();
             }
         });
         
@@ -303,8 +563,6 @@
 
             setTimeout(async () => {
                 await handleNavigation(section);
-
-                // One extra safety pass
                 removeUnderBannerNav();
 
                 const hash = window.location.hash;
