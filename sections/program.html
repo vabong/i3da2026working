@@ -1,0 +1,639 @@
+<section class="section-padding bg-gray-50">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-light text-gray-800 mb-12 border-b border-gray-200 pb-4 uppercase tracking-[0.1em]">
+      Programme
+    </h2>
+
+    <div class="space-y-8 text-lg font-light text-gray-600 text-left md:text-justify leading-loose">
+      <p class="font-light text-lg text-gray-600 leading-relaxed">
+        We are preparing an exciting program featuring daily keynote speakers, special sessions for oral and poster presentations, interactive demos, workshops, and panel discussions. The conference will also include a cultural excursion, a social dinner, and ample opportunities for informal networking and exchange. Further details about the program will be announced in due course.
+      </p>
+
+      <!-- ===================== -->
+      <!-- KEYNOTE SPEAKERS      -->
+      <!-- ===================== -->
+      <div class="mt-10">
+        <h3 class="text-2xl font-light text-lagoon-blue mb-6">Keynote Speakers</h3>
+
+        <style>
+          /* ── Keynotes ── */
+          .keynotes-wrap details {
+            border: 1px solid rgba(229, 231, 235, 0.9);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.75);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+          }
+          .keynotes-wrap details + details { margin-top: 14px; }
+          .keynotes-wrap summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 18px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+          }
+          .keynotes-wrap summary::-webkit-details-marker { display: none; }
+          .keynotes-wrap .k-left {
+            display: flex;
+            align-items: center;
+            min-width: 0;
+          }
+          .keynotes-wrap .k-title {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+          }
+          .keynotes-wrap .k-name {
+            font-size: 1.05rem;
+            color: rgba(17, 24, 39, 0.95);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            line-height: 1.25;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .keynotes-wrap .k-affil {
+            font-size: 0.95rem;
+            color: rgba(75, 85, 99, 0.95);
+            font-weight: 300;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .keynotes-wrap .k-arrow {
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
+            border: 1px solid rgba(229, 231, 235, 1);
+            background: rgba(255, 255, 255, 0.9);
+            display: grid;
+            place-items: center;
+            flex: 0 0 auto;
+            transition: transform 220ms ease, background 220ms ease;
+          }
+          .keynotes-wrap details[open] .k-arrow {
+            transform: rotate(180deg);
+            background: rgba(249, 250, 251, 1);
+          }
+          .keynotes-wrap .k-body { padding: 0 18px 18px 18px; }
+          .keynotes-wrap .k-body-inner {
+            border-top: 1px solid rgba(229, 231, 235, 0.9);
+            padding-top: 14px;
+          }
+          .keynotes-wrap .k-bio {
+            font-size: 1.02rem;
+            font-weight: 300;
+            color: rgba(55, 65, 81, 1);
+            line-height: 1.85;
+            text-align: left;
+          }
+          @media (min-width: 768px) {
+            .keynotes-wrap .k-bio { text-align: justify; }
+            .keynotes-wrap summary { padding: 20px 20px; }
+            .keynotes-wrap .k-body { padding: 0 20px 20px 20px; }
+          }
+          .keynotes-wrap .k-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.98rem;
+            font-weight: 400;
+            color: rgba(14, 116, 144, 1);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(14, 116, 144, 0.25);
+            padding-bottom: 2px;
+          }
+          .keynotes-wrap .k-link:hover { border-bottom-color: rgba(14, 116, 144, 0.6); }
+          .keynotes-wrap summary:focus { outline: none; }
+          .keynotes-wrap summary:focus-visible {
+            outline: 2px solid rgba(14, 116, 144, 0.35);
+            outline-offset: 2px;
+            border-radius: 18px;
+          }
+
+          /* ── Special Session Cards ── */
+          .sessions-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+          }
+          @media (min-width: 640px) {
+            .sessions-grid { grid-template-columns: repeat(2, 1fr); }
+          }
+          @media (min-width: 1024px) {
+            .sessions-grid { grid-template-columns: repeat(3, 1fr); }
+          }
+
+          .session-card {
+            border: 1px solid rgba(229, 231, 235, 0.9);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.75);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .session-card summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 16px 18px 14px 18px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+          }
+          .session-card summary::-webkit-details-marker { display: none; }
+          .session-card summary:focus { outline: none; }
+          .session-card summary:focus-visible {
+            outline: 2px solid rgba(14, 116, 144, 0.35);
+            outline-offset: 2px;
+          }
+
+          .session-card .sc-header {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            min-width: 0;
+          }
+          .session-card .sc-number {
+            font-size: 0.72rem;
+            font-weight: 400;
+            color: rgba(156, 163, 175, 1);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+          }
+          .session-card .sc-title {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: rgba(17, 24, 39, 0.95);
+            line-height: 1.3;
+            text-align: left;
+          }
+          .session-card .sc-chair {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: rgba(107, 114, 128, 1);
+            line-height: 1.3;
+            text-align: left;
+          }
+
+          .session-card .sc-arrow {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            border: 1px solid rgba(229, 231, 235, 1);
+            background: rgba(255, 255, 255, 0.9);
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            transition: transform 220ms ease, background 220ms ease;
+          }
+          .session-card[open] .sc-arrow {
+            transform: rotate(180deg);
+            background: rgba(249, 250, 251, 1);
+          }
+
+          /* topics and image both inside the expandable body */
+          .session-card .sc-body {
+            border-top: 1px solid rgba(229, 231, 235, 0.9);
+            display: flex;
+            flex-direction: column;
+          }
+
+          .session-card .sc-topics {
+            list-style: none;
+            padding: 14px 18px 14px 18px;
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: rgba(75, 85, 99, 1);
+            line-height: 1.6;
+            text-align: left;
+          }
+          .session-card .sc-topics li {
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.6);
+          }
+          .session-card .sc-topics li:first-child { padding-top: 0; }
+          .session-card .sc-topics li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+          }
+
+          /* image at the bottom, only visible when expanded */
+          .session-card .sc-img {
+            width: 80%;
+            margin: 0 auto 18px auto;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid rgba(229, 231, 235, 0.9);
+          }
+          .session-card .sc-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+          }
+        </style>
+
+        <div class="keynotes-wrap space-y-4">
+
+          <!-- KEYNOTE 1 -->
+          <details>
+            <summary>
+              <div class="k-left">
+                <div class="k-photo">
+                  <img src="/assets/images/keynotes/angela.webp" alt="Angela Bellia">
+                </div>
+                <div class="k-title">
+                  <div class="k-name">Angela Bellia</div>
+                  <div class="k-affil">University of Palermo, Italy</div>
+                </div>
+              </div>
+              <div class="k-arrow" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="k-body">
+              <div class="k-body-inner">
+                <div class="k-bio">
+                  Angela Bellia is Full Professor of Musicology and Music History in the Department of Cultures and Societies at the University of Palermo. She earned her MA and PhD at the University of Bologna and completed her classic piano and opera singer studies at the Italian Conservatories of Music. Her research interests span sonic heritage, soundscape archaeology, sound studies, heritage acoustics, computational archaeomusicology, and digital heritage.
+                  <br><br>
+                  Her research has been conducted at prestigious institutions, including the Institute of Fine Arts (New York University), the École des Hautes Etudes en Sciences Sociales (Paris), the University of Zürich, and the National Research Council of Italy (CNR). Her research activities have been supported by the European Union program Marie Skłodowska-Curie Actions (MSCA).
+                  <br><br>
+                  She has been the Principal Investigator of the AURAL project and is the recipient of a recently awarded Advanced Grant from the Italian Science Fund (FIS) for the VOICING project, funded by the Ministry of University and Research (MUR). Angela Bellia has been invited or selected to present at over 150 peer-reviewed international conferences and advanced schools across multiple continents.
+                  <br><br>
+                  She serves as Editor in Chief of the TELESTES series and of <em>Telestes: An International Journal of Archaeomusicology and Archaeology of Sound</em>. As the Chair and founding member of the Archaeomusicology Interest Group (AMIG) of the AIA, she has organized numerous international workshops and colloquia for their annual meetings. She is the author of numerous books and contributions published by prestigious academic publishers, including Bloomsbury, Brill, Fabrizio Serra, Franz Steiner Verlag, Oxbow, and Routledge.
+                  <br><br>
+                  Her contributions to promoting European research have been recognized with the MCAA "Outstanding Contributor Award" (2021).
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- KEYNOTE 2 -->
+          <details>
+            <summary>
+              <div class="k-left">
+                <div class="k-photo">
+                  <img src="/assets/images/keynotes/david.webp" alt="David Monacchi">
+                </div>
+                <div class="k-title">
+                  <div class="k-name">David Monacchi</div>
+                  <div class="k-affil">Ecoacoustics • Composer • Interdisciplinary Artist</div>
+                </div>
+              </div>
+              <div class="k-arrow" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="k-body">
+              <div class="k-body-inner">
+                <div class="k-bio">
+                  David Monacchi (Italy, 1970) is an ecoacoustics researcher, composer and interdisciplinary artist. He has been developing the project <em>Fragments of Extinction</em> for 25 years, conducting field research in the world's remaining areas of undisturbed primary equatorial forest in all continents. The recipient of multiple international awards for his work on intangible heritage of ecosystems, Monacchi is pioneering a cross-disciplinary approach based on unique 3D soundscape recordings, to raise awareness on the biodiversity crisis through science-based sound art.
+                  <br><br>
+                  His Eco-acoustic Theatre's patented invention (a spherical amphitheatre dedicated to sensorial and cognitive deep listening experiences) is being built in museums and public spaces, now traveling as SONOSFERA®. Monacchi has been portrayed by journals as <em>Nature</em> and <em>PNAS</em>, and is now full-professor at the State Conservatory of Pesaro, Italy. Collaborations with IUCN and ICCROM, to promote advocacy in primary forest soundscape conservation, culminated in an invited talk for the plenary session of the UN COP-14 Biodiversity Conference and for UN COP-27 Climate Change Conference.
+                  <br><br>
+                  <a class="k-link" href="https://www.fragmentsofextinction.org/" target="_blank" rel="noopener noreferrer">
+                    https://www.fragmentsofextinction.org/
+                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M8 4H4.75C3.784 4 3 4.784 3 5.75V15.25C3 16.216 3.784 17 4.75 17H14.25C15.216 17 16 16.216 16 15.25V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      <path d="M11 3H17V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      <path d="M17 3L9 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- KEYNOTE 3 -->
+          <details>
+            <summary>
+              <div class="k-left">
+                <div class="k-photo">
+                  <img src="/assets/images/keynotes/tin.jpeg" alt="Tin Oberman">
+                </div>
+                <div class="k-title">
+                  <div class="k-name">Tin Oberman</div>
+                  <div class="k-affil">University College London (UCL)</div>
+                </div>
+              </div>
+              <div class="k-arrow" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="k-body">
+              <div class="k-body-inner">
+                <div class="k-bio italic text-gray-500">
+                  More information coming soon.
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- KEYNOTE PLACEHOLDER -->
+          <div class="border border-dashed border-gray-300 rounded-2xl bg-white/60 px-6 py-5 text-center">
+            <p class="text-lg font-light text-gray-500 tracking-wide">
+              Additional keynote speakers will be announced soon
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===================== -->
+      <!-- SPECIAL SESSIONS      -->
+      <!-- ===================== -->
+      <div class="mt-12">
+        <h3 class="text-2xl font-light text-lagoon-blue mb-6">Special Sessions</h3>
+
+        <div class="sessions-grid">
+
+          <!-- SESSION 1 -->
+          <details class="session-card">
+            <summary>
+              <div class="sc-header">
+                <div class="sc-number">Special Session 1</div>
+                <div class="sc-title">Spatial Audio Algorithms &amp; Systems</div>
+                <div class="sc-chair">Chairperson: TBA</div>
+              </div>
+              <div class="sc-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="sc-body">
+              <ul class="sc-topics">
+                <li>Binaural, Ambisonics, and multichannel rendering algorithms and systems</li>
+                <li>Real-time spatialisation engines and middleware</li>
+                <li>Room acoustics simulation engines and auralization pipelines</li>
+                <li>Cross-platform spatial audio frameworks (XR, game engines, browsers, mobile, automotive)</li>
+                <li>Performance optimization, latency, scalability, reproducibility and real-time constraints</li>
+              </ul>
+              <div class="sc-img">
+                <img src="/assets/images/sessions/SS1.png" alt="Spatial Audio Algorithms & Systems">
+              </div>
+            </div>
+          </details>
+
+          <!-- SESSION 2 -->
+          <details class="session-card">
+            <summary>
+              <div class="sc-header">
+                <div class="sc-number">Special Session 2</div>
+                <div class="sc-title">Spatial Audio, Auralization &amp; Digital Twins</div>
+                <div class="sc-chair">Chairperson: Angela Bellia</div>
+              </div>
+              <div class="sc-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="sc-body">
+              <ul class="sc-topics">
+                <li>Auralization, virtual acoustics, and acoustic digital twins</li>
+                <li>Reconstruction of historical acoustic environments</li>
+                <li>Musicological auralization: immersive realization of historical scores, premieres, and lost performance practices</li>
+                <li>Digital twins of architectural, environmental, and virtual acoustic spaces</li>
+              </ul>
+              <div class="sc-img">
+                <img src="/assets/images/sessions/SS2.png" alt="Spatial Audio, Auralization & Digital Twins">
+              </div>
+            </div>
+          </details>
+
+          <!-- SESSION 3 -->
+          <details class="session-card">
+            <summary>
+              <div class="sc-header">
+                <div class="sc-number">Special Session 3</div>
+                <div class="sc-title">Architectural Acoustics &amp; Immersive Space Design</div>
+                <div class="sc-chair">Chairperson: Gerriet K. Sharma</div>
+              </div>
+              <div class="sc-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="sc-body">
+              <ul class="sc-topics">
+                <li>Immersive design and renovation of studios, theaters, churches, and heritage performance spaces</li>
+                <li>Loudspeaker arrays, WFS, beamforming, and spatial reinforcement</li>
+              </ul>
+              <div class="sc-img">
+                <img src="/assets/images/sessions/SS3.png" alt="Architectural Acoustics & Immersive Space Design">
+              </div>
+            </div>
+          </details>
+
+          <!-- SESSION 4 -->
+          <details class="session-card">
+            <summary>
+              <div class="sc-header">
+                <div class="sc-number">Special Session 4</div>
+                <div class="sc-title">Spatial Capture &amp; Measurement Technologies</div>
+                <div class="sc-chair">Chairperson: Athanasios Malamos</div>
+              </div>
+              <div class="sc-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="sc-body">
+              <ul class="sc-topics">
+                <li>Spatial microphone arrays and Higher Order Ambisonics capture</li>
+                <li>Soundscape and environmental recording systems</li>
+                <li>Bioacoustics and hydrophone-based immersive capture</li>
+                <li>MEMS, wearable, and miniaturized spatial sensing devices</li>
+              </ul>
+              <div class="sc-img">
+                <img src="/assets/images/sessions/SS4.png" alt="Spatial Capture & Measurement Technologies">
+              </div>
+            </div>
+          </details>
+
+          <!-- SESSION 5 -->
+          <details class="session-card">
+            <summary>
+              <div class="sc-header">
+                <div class="sc-number">Special Session 5</div>
+                <div class="sc-title">Visual Interaction, XR &amp; Digital Archaeology</div>
+                <div class="sc-chair">Chairperson: TBA</div>
+              </div>
+              <div class="sc-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="sc-body">
+              <ul class="sc-topics">
+                <li>LiDAR, photogrammetry, and 3D scanning</li>
+                <li>Audio-visual synchronization and immersive visualization</li>
+                <li>XR interaction and navigation in virtual heritage environments</li>
+                <li>Cross-disciplinary visual–audio pipelines for digital archaeology</li>
+              </ul>
+              <div class="sc-img">
+                <img src="/assets/images/sessions/SS5.png" alt="Visual Interaction, XR & Digital Archaeology">
+              </div>
+            </div>
+          </details>
+
+          <!-- SESSION 6 -->
+          <details class="session-card">
+            <summary>
+              <div class="sc-header">
+                <div class="sc-number">Special Session 6</div>
+                <div class="sc-title">Heritage, Soundscapes &amp; Digital Humanities</div>
+                <div class="sc-chair">Chairperson: Jonathan Berger</div>
+              </div>
+              <div class="sc-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="sc-body">
+              <ul class="sc-topics">
+                <li>Sonic archaeology and heritage acoustics</li>
+                <li>Soundscape studies and environmental acoustics</li>
+                <li>Digital humanities approaches to acoustic heritage documentation</li>
+                <li>Environmental and urban soundscapes as cultural heritage</li>
+              </ul>
+              <div class="sc-img">
+                <img src="/assets/images/sessions/SS6.png" alt="Heritage, Soundscapes & Digital Humanities">
+              </div>
+            </div>
+          </details>
+
+          <!-- SESSION 7 -->
+          <details class="session-card">
+            <summary>
+              <div class="sc-header">
+                <div class="sc-number">Special Session 7</div>
+                <div class="sc-title">Audio Engineering, Signal Processing &amp; AI</div>
+                <div class="sc-chair">Chairperson: TBA</div>
+              </div>
+              <div class="sc-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="sc-body">
+              <ul class="sc-topics">
+                <li>Advanced acoustic measurement, modeling, simulation, and nonlinear acoustics</li>
+                <li>Signal processing algorithms for spatial, binaural, and immersive audio</li>
+                <li>Machine learning and artificial intelligence for spatial rendering, personalization, source separation, acoustic modeling, and cross-environment reproduction</li>
+                <li>Automotive and intelligent immersive audio systems</li>
+              </ul>
+              <div class="sc-img">
+                <img src="/assets/images/sessions/SS7.png" alt="Audio Engineering, Signal Processing & AI">
+              </div>
+            </div>
+          </details>
+
+          <!-- SESSION 8 -->
+          <details class="session-card">
+            <summary>
+              <div class="sc-header">
+                <div class="sc-number">Special Session 8</div>
+                <div class="sc-title">Perception, Cognition &amp; Consciousness</div>
+                <div class="sc-chair">Chairpersons: Nicola Prodi &amp; Julia Schütze</div>
+              </div>
+              <div class="sc-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="sc-body">
+              <ul class="sc-topics">
+                <li>Psychoacoustics and spatial hearing</li>
+                <li>Listening tests, presence, and emotional immersion</li>
+                <li>EEG and biometric evaluation</li>
+                <li>Consciousness, attention, presence, and self-awareness in immersive environments</li>
+              </ul>
+              <div class="sc-img">
+                <img src="/assets/images/sessions/SS8.png" alt="Perception, Cognition & Consciousness">
+              </div>
+            </div>
+          </details>
+
+          <!-- SESSION 9 -->
+          <details class="session-card">
+            <summary>
+              <div class="sc-header">
+                <div class="sc-number">Special Session 9</div>
+                <div class="sc-title">Nature, Bioacoustics &amp; Eco-acoustics</div>
+                <div class="sc-chair">Chairperson: TBA</div>
+              </div>
+              <div class="sc-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="sc-body">
+              <ul class="sc-topics">
+                <li>Environmental soundscapes and biodiversity monitoring</li>
+                <li>Immersive representation of natural and fragile ecosystems</li>
+                <li>Underwater immersive acoustics and lagoon studies</li>
+              </ul>
+              <div class="sc-img">
+                <img src="/assets/images/sessions/SS9.png" alt="Nature, Bioacoustics & Eco-acoustics">
+              </div>
+            </div>
+          </details>
+
+          <!-- SESSION 10 -->
+          <details class="session-card">
+            <summary>
+              <div class="sc-header">
+                <div class="sc-number">Special Session 10</div>
+                <div class="sc-title">Creative Practice &amp; Immersive Media</div>
+                <div class="sc-chair">Chairperson: Eito Murakami</div>
+              </div>
+              <div class="sc-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </summary>
+            <div class="sc-body">
+              <ul class="sc-topics">
+                <li>Immersive music, installations, and XR storytelling</li>
+                <li>Site-specific heritage and archaeological immersive experiences</li>
+              </ul>
+              <div class="sc-img">
+                <img src="/assets/images/sessions/SS10.png" alt="Creative Practice & Immersive Media">
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
