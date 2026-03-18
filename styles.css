@@ -258,7 +258,23 @@ button:focus-visible {
   transform: translateY(-2px);
   border-color: rgba(0,95,115,0.4);
 }
+/* ----------------------------------------------------------
+12) ABOUT SECTION
+---------------------------------------------------------- */
+#overview,
+#general-chair,
+#scientific-board,
+#organising-committee {
+  scroll-margin-top: 180px;
+}
 
+.about-section-heading {
+  margin-bottom: 2.5rem;
+}
+
+.about-submenu a {
+  transition: background-color 0.2s ease;
+}
 /* ==========================================================
    MOBILE OPTIMIZATIONS (small screens)
    ========================================================== */
