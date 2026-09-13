@@ -19,26 +19,49 @@
             </p>
         </div>
 
-        <!-- SPONSOR -->
-        <div class="mb-16 bg-white p-10 border border-gray-100 shadow-sm text-center">
+        <!-- SPONSORS -->
+        <div class="mb-16 bg-white border border-gray-100 shadow-sm">
 
-            <h3 class="text-xl font-light text-gray-800 mb-8 uppercase tracking-widest">
-                Confirmed Sponsor
+            <h3 class="text-xl font-light text-gray-800 pt-10 mb-4 uppercase tracking-widest text-center">
+                Confirmed Sponsors
             </h3>
 
-            <img 
-                src="/assets/images/MH-acoustics-logo.png"
-                alt="MH Acoustics LLC"
-                style="max-width: 260px; height: auto; margin: 0 auto;"
-            >
+            <!-- Equal size and placement for every sponsor logo.
+                 Clear space around the Apple logo is at least the height of the body of the logo. -->
+            <div class="grid md:grid-cols-2">
 
-            <p class="text-gray-600 font-light mt-6 text-lg">
-                Thank you to 
-                <a href="https://mhacoustics.com/" target="_blank" rel="noopener" class="text-lagoon-light hover:underline">
-                    MH Acoustics LLC
-                </a> 
-                for supporting I3DA 2026.
-            </p>
+                <div class="flex items-center justify-center" style="padding: 96px;">
+                    <a href="https://mhacoustics.com/" target="_blank" rel="noopener">
+                        <img src="/assets/images/MH-acoustics-logo.png"
+                             alt="MH Acoustics LLC"
+                             style="height: 90px; width: auto;">
+                    </a>
+                </div>
+
+                <div class="flex items-center justify-center" style="padding: 96px;">
+                    <a href="https://www.apple.com" target="_blank" rel="noopener">
+                        <img src="/assets/images/apple-logo-black.png"
+                             alt="Apple"
+                             style="height: 90px; width: auto;">
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="px-10 pb-10 text-center">
+                <p class="text-gray-600 font-light text-lg">
+                    I3DA 2026 is made possible by our sponsors.
+                    <a href="https://www.apple.com" target="_blank" rel="noopener" class="text-lagoon-light hover:underline">Apple</a>
+                    joins the conference as Platinum Sponsor, alongside
+                    <a href="https://mhacoustics.com/" target="_blank" rel="noopener" class="text-lagoon-light hover:underline">MH Acoustics LLC</a>.
+                    We thank them both for their support.
+                </p>
+
+                <p class="text-gray-400 font-light text-xs mt-8 leading-relaxed">
+                    Apple and the Apple logo are trademarks of Apple Inc., registered in the U.S.
+                    and other countries and regions.
+                </p>
+            </div>
 
         </div>
 
