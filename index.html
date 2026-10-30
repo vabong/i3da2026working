@@ -479,6 +479,10 @@
                     if (targetId === 'news') {
                         await loadNewsPosts();
                     }
+
+                    if (targetId === 'program') {
+                        await loadProgramme();
+                    }
                 }
             } catch (err) {
                 console.error("Navigation Error:", err);
@@ -530,6 +534,176 @@
                     div.innerHTML = await res.text();
                     container.appendChild(div);
                 }
+            }
+
+            removeUnderBannerNav();
+        }
+
+        async function loadProgramme() {
+            const container = document.getElementById('programme-container');
+            if (!container) return;
+
+            let data;
+            try {
+                const res = await fetch('/program.json');
+                if (!res.ok) throw new Error('bad response');
+                data = await res.json();
+            } catch (err) {
+                console.error('Programme load error:', err);
+                container.innerHTML = '<p class="text-gray-400 text-sm font-light">The programme could not be loaded right now. Please try again later.</p>';
+                return;
+            }
+
+            const el = (tag, opts = {}) => {
+                const e = document.createElement(tag);
+                if (opts.className) e.className = opts.className;
+                if (opts.text !== undefined) e.textContent = opts.text;
+                if (opts.href !== undefined) { e.href = opts.href; e.target = '_blank'; e.rel = 'noopener'; }
+                return e;
+            };
+
+            const fmtTime = (s, en) => (s && en) ? `${s}–${en}` : (s || '');
+
+            // Set as inline styles rather than Tailwind border-{color} utility classes:
+            // the CDN build's generated rule order isn't guaranteed, so a directional
+            // class like border-l-venice-red can lose the cascade to the plain
+            // border-gray-100 utility also present on the card.
+            const accentByType = {
+                session: '#005f73',
+                keynote: '#005f73',
+                poster: '#4da8b8',
+                demo: '#4da8b8',
+                social: '#A52A2A'
+            };
+
+            const titleColorByType = {
+                social: 'text-venice-red'
+            };
+
+            function linkLabel(url) {
+                if (/maps\.(google|app\.goo)|google\.[a-z.]+\/maps/.test(url)) return 'View on map';
+                return 'More information';
+            }
+
+            function renderTalk(talk) {
+                const row = el('div', { className: 'flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-3 py-2 border-t border-gray-100 first:border-t-0' });
+
+                const meta = el('div', { className: 'flex gap-3 shrink-0 sm:w-28' });
+                if (talk.time) meta.appendChild(el('span', { className: 'text-xs text-gray-400 font-light', text: talk.time }));
+                meta.appendChild(el('span', { className: 'text-xs text-gray-400 font-light', text: '#' + talk.number }));
+                row.appendChild(meta);
+
+                const body = el('div', { className: 'min-w-0' });
+                body.appendChild(el('div', { className: 'text-sm text-gray-800 font-normal', text: talk.title }));
+
+                const authorsLine = el('div', { className: 'text-xs text-gray-500 font-light mt-0.5' });
+                (talk.authors || []).forEach((name, i) => {
+                    if (i > 0) authorsLine.appendChild(document.createTextNode(', '));
+                    const isPresenter = talk.presenter && name === talk.presenter;
+                    authorsLine.appendChild(el(isPresenter ? 'u' : 'span', { text: name }));
+                });
+                body.appendChild(authorsLine);
+                row.appendChild(body);
+                return row;
+            }
+
+            function renderItem(item) {
+                if (item.type === 'break') {
+                    const row = el('div', { className: 'flex justify-between items-center bg-lagoon-bg text-gray-500 text-xs font-light px-4 py-2 rounded my-2' });
+                    row.appendChild(el('span', { text: item.title }));
+                    row.appendChild(el('span', { className: 'shrink-0 ml-3', text: fmtTime(item.start, item.end) }));
+                    return row;
+                }
+
+                const accent = accentByType[item.type] || accentByType.session;
+                const titleColor = titleColorByType[item.type] || 'text-gray-800';
+                const card = el('div', { className: 'bg-white border border-gray-100 shadow-sm rounded-lg p-5 mb-4 border-l-4' });
+                card.style.borderLeftColor = accent;
+
+                const headLine = el('div', { className: 'flex flex-wrap items-center gap-2' });
+                headLine.appendChild(el('span', { className: 'text-xs uppercase tracking-widest text-gray-400 font-medium', text: fmtTime(item.start, item.end) }));
+                if (item.code) {
+                    headLine.appendChild(el('span', { className: 'inline-block text-[10px] font-semibold uppercase tracking-widest border border-lagoon-blue text-lagoon-blue rounded px-2 py-0.5', text: item.code }));
+                }
+                if (item.parallel) {
+                    headLine.appendChild(el('span', { className: 'inline-block text-[10px] uppercase tracking-widest bg-gray-100 text-gray-500 rounded-full px-2 py-0.5', text: 'Parallel' }));
+                }
+                card.appendChild(headLine);
+
+                card.appendChild(el('div', { className: `text-lg font-normal mt-1 ${titleColor}`, text: item.title }));
+
+                if (item.type === 'keynote' && item.keynote_title) {
+                    card.appendChild(el('div', { className: 'text-base font-light italic text-lagoon-blue mt-1', text: '“' + item.keynote_title + '”' }));
+                }
+
+                const metaBits = [];
+                if (item.room) metaBits.push('Room: ' + item.room);
+                if (item.chairs && item.chairs.length) {
+                    metaBits.push((item.chairs.length > 1 ? 'Chairs: ' : 'Chair: ') + item.chairs.join(', '));
+                }
+                if (metaBits.length) {
+                    card.appendChild(el('div', { className: 'text-sm text-gray-500 font-light mt-1', text: metaBits.join('  ·  ') }));
+                }
+
+                if (item.description && item.description.length) {
+                    const desc = el('div', { className: 'mt-3 space-y-1' });
+                    item.description.forEach(line => desc.appendChild(el('p', { className: 'text-sm text-gray-600 font-light leading-relaxed', text: line })));
+                    card.appendChild(desc);
+                }
+
+                if (item.links && item.links.length) {
+                    const links = el('div', { className: 'mt-2 space-y-1' });
+                    item.links.forEach(url => {
+                        links.appendChild(el('a', { href: url, className: 'block text-sm text-lagoon-light hover:underline font-light', text: linkLabel(url) + ' ↗' }));
+                    });
+                    card.appendChild(links);
+                }
+
+                if (item.talks && item.talks.length) {
+                    const talksWrap = el('div', { className: 'mt-4 border-t border-gray-100 pt-1' });
+                    item.talks.forEach(t => talksWrap.appendChild(renderTalk(t)));
+                    card.appendChild(talksWrap);
+                }
+
+                return card;
+            }
+
+            container.innerHTML = '';
+
+            if (data.days && data.days.length) {
+                const nav = el('div', { className: 'flex gap-2 overflow-x-auto whitespace-nowrap pb-2 mb-6 text-xs uppercase tracking-[0.15em] font-medium text-gray-600' });
+                data.days.forEach((day, i) => {
+                    const a = el('a', { className: 'shrink-0 px-3 py-1.5 border border-gray-300 rounded hover:bg-gray-50', text: day.label });
+                    a.href = '#prog-day-' + i;
+                    nav.appendChild(a);
+                });
+                container.appendChild(nav);
+            }
+
+            (data.days || []).forEach((day, i) => {
+                const dayWrap = el('div', { className: 'mb-10' });
+                dayWrap.id = 'prog-day-' + i;
+                dayWrap.style.scrollMarginTop = '20px';
+                dayWrap.appendChild(el('h4', { className: 'text-xl font-light text-lagoon-blue border-b border-gray-200 pb-2 mb-4', text: day.label }));
+                (day.sessions || []).forEach(item => dayWrap.appendChild(renderItem(item)));
+                container.appendChild(dayWrap);
+            });
+
+            if (data.rooms && data.rooms.length) {
+                const roomsWrap = el('div', { className: 'mt-12' });
+                roomsWrap.appendChild(el('h4', { className: 'text-xl font-light text-lagoon-blue border-b border-gray-200 pb-2 mb-4', text: 'Rooms & Locations' }));
+                const list = el('div', { className: 'bg-white border border-gray-100 shadow-sm rounded-lg divide-y divide-gray-100' });
+                data.rooms.forEach(r => {
+                    const row = el('div', { className: 'flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 px-5 py-3' });
+                    const left = el('div', {});
+                    left.appendChild(el('div', { className: 'text-sm font-normal text-gray-800', text: r.name }));
+                    if (r.location) left.appendChild(el('div', { className: 'text-xs text-gray-500 font-light mt-0.5', text: r.location }));
+                    row.appendChild(left);
+                    if (r.map) row.appendChild(el('a', { href: r.map, className: 'text-sm text-lagoon-light hover:underline font-light shrink-0', text: 'View on map ↗' }));
+                    list.appendChild(row);
+                });
+                roomsWrap.appendChild(list);
+                container.appendChild(roomsWrap);
             }
 
             removeUnderBannerNav();

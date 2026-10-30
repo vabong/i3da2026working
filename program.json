@@ -1,0 +1,1414 @@
+{
+  "conference": "I3DA 2026 – 4th International Conference on Immersive and 3D Audio",
+  "city": "Venice",
+  "dates": "19–22 November 2026",
+  "source": "EasyChair export, version 5 (30 Oct 2026)",
+  "days": [
+    {
+      "date": "2026-11-19",
+      "label": "Thursday 19 November",
+      "sessions": [
+        {
+          "id": "166",
+          "type": "break",
+          "title": "Registration and welcoming",
+          "start": "09:00",
+          "end": "09:55",
+          "parallel": false
+        },
+        {
+          "id": "167",
+          "type": "session",
+          "title": "Opening Ceremony",
+          "start": "10:00",
+          "end": "10:50",
+          "room": "Warwick hall",
+          "chairs": [
+            "Lamberto Tronchin"
+          ],
+          "description": [
+            "The Director of the Levi Foundation - Valeria Zane",
+            "The Academic Director of the Warwick Venice Centre - Prof. Bryan Brazeau",
+            "The Representatives of ECOSOC - United Nations - Chair of the Human Rights Training Commission at the United Nations in Geneva - Federica Gelli and Max Restivo",
+            "The Director of the Department of Project Culture, University IUAV - Prof. Fabio Peron",
+            "The President of AIA - Prof. Patrizio Fausti",
+            "The Past President of the International Institute of Acoustics and Vibration - Dott. Sergio Luzzi",
+            "The President of AES Italian Chapter - Dott. Daniele Ponteggia",
+            "The I3DA Conference Numbers - Prof. Lamberto Tronchin"
+          ],
+          "parallel": false
+        },
+        {
+          "id": "168",
+          "type": "session",
+          "title": "Scientific Committee of the Ugo and Olga Levi Foundation: Roberto Calabretto, president, and Laurent Feneyrou",
+          "start": "10:50",
+          "end": "11:30",
+          "room": "Warwick hall",
+          "chairs": [
+            "Valeria Zane"
+          ],
+          "description": [
+            "Scientific Committee of the Ugo and Olga Levi Foundation: Roberto Calabretto, president, and Laurent Feneyrou."
+          ],
+          "parallel": false
+        },
+        {
+          "id": "169",
+          "code": "K1",
+          "type": "keynote",
+          "title": "Angela Bellia",
+          "start": "11:30",
+          "end": "12:15",
+          "room": "Warwick hall",
+          "chairs": [
+            "Lamberto Tronchin"
+          ],
+          "keynote_title": "Voicing the Past: Aural Architecture as a New Approach for Exploring Historical Performance Spaces",
+          "parallel": false
+        },
+        {
+          "id": "170",
+          "code": "S8",
+          "type": "session",
+          "title": "Perception & Cognition",
+          "start": "12:15",
+          "end": "13:00",
+          "room": "Warwick hall",
+          "chairs": [
+            "Julia Schütze"
+          ],
+          "description": [
+            "Psychoacoustics and spatial hearing",
+            "Listening tests, presence, and emotional immersion",
+            "EEG and biometric evaluation",
+            "Consciousness, attention, presence, and self-awareness in immersive environments"
+          ],
+          "parallel": false,
+          "talks": [
+            {
+              "number": 43,
+              "time": "12:15",
+              "title": "Spatial Rendering of Virtual Wing Sounds Synchronized with Human Flapping Motion and Its Influence on the Sense of Wing Ownership",
+              "authors": [
+                "Nanase Fujiwara",
+                "Yoichi Haneda"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 42,
+              "time": "12:30",
+              "title": "Hybrid Spatial Audio with Bone Conduction: A Framework for Multilayer Perception",
+              "authors": [
+                "Matteo Tundo"
+              ],
+              "presenter": "Matteo Tundo"
+            },
+            {
+              "number": 83,
+              "time": "12:45",
+              "title": "Immersive evaluation of speech intelligibility and listening effort in noise",
+              "authors": [
+                "Nicola Prodi",
+                "Chiara Visentin",
+                "Matteo Pellegatti",
+                "Giovanni Turri",
+                "Marcello Bonfè",
+                "Andrea Bertelli",
+                "Andrea Trevisani",
+                "Luca Tebaldi",
+                "Marianna Manuelli",
+                "Andrea Ciorba"
+              ],
+              "presenter": null
+            }
+          ]
+        },
+        {
+          "id": "171",
+          "type": "break",
+          "title": "Lunch Break",
+          "start": "13:00",
+          "end": "14:00",
+          "parallel": false
+        },
+        {
+          "id": "173",
+          "code": "K2",
+          "type": "keynote",
+          "title": "Tin Oberman",
+          "start": "14:00",
+          "end": "14:45",
+          "room": "Warwick hall",
+          "chairs": [
+            "Antonella Bevilacqua"
+          ],
+          "keynote_title": "Decoding Soundscape Context: Human Perception Across Cities and Natural Protected Areas",
+          "parallel": false
+        },
+        {
+          "id": "172",
+          "code": "S2",
+          "type": "session",
+          "title": "Spatial Audio, Auralization & Digital Twins",
+          "start": "14:45",
+          "end": "16:00",
+          "room": "Warwick hall",
+          "chairs": [
+            "Angela Bellia"
+          ],
+          "description": [
+            "Auralization, virtual acoustics, and acoustic digital twins",
+            "Reconstruction of historical acoustic environments",
+            "Musicological auralization: immersive realization of historical scores, premieres, and lost performance practices",
+            "Digital twins of architectural, environmental, and virtual acoustic spaces"
+          ],
+          "parallel": true,
+          "talks": [
+            {
+              "number": 69,
+              "time": "14:45",
+              "title": "Reinterpreting Berio’s Electroacoustic Music in an Immersive-Audio Environment",
+              "authors": [
+                "Francesco Canavese",
+                "Francesco Giomi",
+                "Giovanni Magaglio",
+                "Francesco Vogli"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 41,
+              "time": "15:00",
+              "title": "From Fragmentary Evidence to Interactive Auralization: Acoustic Inference and Preliminary Interfaces for the Coricancha",
+              "authors": [
+                "Luna Valentin",
+                "Alba Menéndez Pereda"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 67,
+              "time": "15:15",
+              "title": "A Tangible Hemispherical Controller for Integrated Spatial Audio Mixing in Ambisonic Workflows",
+              "authors": [
+                "Calvin McCormack",
+                "Hassan Estakhrian"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 33,
+              "time": "15:30",
+              "title": "Resonances of Stones: Immersive Architectural and Acoustic Reconstruction for Acoustic Heritage",
+              "authors": [
+                "Gianluca Aresu",
+                "Alessandra Montali"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 12,
+              "time": "15:45",
+              "title": "Fragments of Extinction: Immersive Paleo-Choirs of Primary Forests Towards a Psychology of Nature Connectedness",
+              "authors": [
+                "David Monacchi"
+              ],
+              "presenter": null
+            }
+          ]
+        },
+        {
+          "id": "176",
+          "code": "D1",
+          "type": "demo",
+          "title": "Studio Pase / ONDA demo",
+          "start": "15:00",
+          "end": "17:00",
+          "room": "Installation Room",
+          "description": [
+            "Presentation, listening and practical demonstrations."
+          ],
+          "parallel": true
+        },
+        {
+          "id": "174",
+          "type": "break",
+          "title": "Coffee Break",
+          "start": "16:00",
+          "end": "16:30",
+          "parallel": false
+        },
+        {
+          "id": "177",
+          "code": "P8",
+          "type": "poster",
+          "title": "Perception, Cognition & Consciousness",
+          "start": "16:00",
+          "end": "17:00",
+          "room": "Poster Area",
+          "parallel": true,
+          "talks": [
+            {
+              "number": 15,
+              "time": null,
+              "title": "A New Questionnaire for Subjective Assessment of Acoustic Quality through Reproduction in Ambisonics and WFS Virtual Environments",
+              "authors": [
+                "Lamberto Tronchin",
+                "Giacomo Tentoni",
+                "Alessandro Martinetti",
+                "Angelica Denaro"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 64,
+              "time": null,
+              "title": "Reproducibility and Reliability of Binaural Beat Perception",
+              "authors": [
+                "Julia Schütze",
+                "Christoph Kirsch",
+                "Thomas P. Reber"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 79,
+              "time": null,
+              "title": "Numerical Assessment of the Impact of Extensive Heat Pump Deployment on Urban Soundscapes through Representative Case Studies",
+              "authors": [
+                "Giacomo Salvadori",
+                "Francesco Leccese",
+                "Fabio Bisegna",
+                "Maurizio Pieve",
+                "Raniero Trinchieri"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 73,
+              "time": null,
+              "title": "Acoustical Analysis of the Renaissance Teatro Olimpico in Vicenza: Preliminary Results",
+              "authors": [
+                "Fabio Peron"
+              ],
+              "presenter": "Fabio Peron"
+            },
+            {
+              "number": 18,
+              "time": null,
+              "title": "Evaluating Ray-Traced Environmental Audio Effects in Proximity Voice Chat: Perception and Interaction",
+              "authors": [
+                "Joshua Lowe"
+              ],
+              "presenter": "Joshua Lowe"
+            }
+          ]
+        },
+        {
+          "id": "178",
+          "code": "P1",
+          "type": "poster",
+          "title": "Spatial Audio Algorithms & Systems",
+          "start": "16:00",
+          "end": "17:00",
+          "room": "Poster Area",
+          "parallel": true,
+          "talks": [
+            {
+              "number": 57,
+              "time": null,
+              "title": "The acoustic design of Teatro Verdi in Terni (Italy) and immersive acoustics",
+              "authors": [
+                "Lamberto Tronchin"
+              ],
+              "presenter": "Lamberto Tronchin"
+            },
+            {
+              "number": 60,
+              "time": null,
+              "title": "The acoustics of the new Auditorium of Collecchio (Italy): sound diffusion and 3D acoustics design",
+              "authors": [
+                "Lamberto Tronchin"
+              ],
+              "presenter": "Lamberto Tronchin"
+            },
+            {
+              "number": 63,
+              "time": null,
+              "title": "Affective Audio Rendering: Linking Microexpressions to 3D Soundscapes",
+              "authors": [
+                "Felix Hamza-Lup",
+                "Ioana R. Goldbach"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 17,
+              "time": null,
+              "title": "Validating a Head-Tracking Spatial Beamformer in Virtual Reality: A Comparative Study of Simulated, Software-Based, and Real-World Hearing Aid Beamforming",
+              "authors": [
+                "Giso Grimm",
+                "Volker Hohmann"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 19,
+              "time": null,
+              "title": "Reducing The Geometric Complexity of Rooms For Simpler Acoustic Simulation",
+              "authors": [
+                "Omar Ahmed",
+                "David De Roure"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 27,
+              "time": null,
+              "title": "A Web-Based Framework for Virtual Acoustic Space Rendering and Collaborative Studio Evaluation",
+              "authors": [
+                "Victoria Keddie",
+                "Frank Zimmer",
+                "Gerriet Sharma",
+                "Cobi van Tonder"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 58,
+              "time": null,
+              "title": "A Fully Demountable AGORA Listening Room in Tresigallo: Project and Acoustic Specifications",
+              "authors": [
+                "Lamberto Tronchin",
+                "Adriano Farina",
+                "Maria Cristina Tommasino",
+                "Antonella Bevilacqua"
+              ],
+              "presenter": null
+            }
+          ]
+        },
+        {
+          "id": "306",
+          "code": "D2",
+          "type": "demo",
+          "title": "CAVERN, ARIADNE, LiLab : Interactive Web-Based Interfaces for Exploring Acoustic Heritage",
+          "start": "16:00",
+          "end": "17:00",
+          "room": "VR Room",
+          "description": [
+            "Luna Valentin, Celeste Betancur Gutiérrez, Alba Menéndez Pereda, Jonathan Berger"
+          ],
+          "parallel": true
+        },
+        {
+          "id": "307",
+          "code": "D3",
+          "type": "demo",
+          "title": "An Interactive Simulated Beamformer in Virtual Reality",
+          "start": "16:00",
+          "end": "17:00",
+          "room": "Demo Room 3",
+          "description": [
+            "Authors: Giso Grimm and Volker Hohmann",
+            "(about 5 minutes per person)"
+          ],
+          "parallel": true
+        },
+        {
+          "id": "313",
+          "type": "social",
+          "title": "Conservatorio Benedetto Marcello",
+          "start": "17:30",
+          "end": "18:30",
+          "room": "Conservatorio Benedetto Marcello",
+          "description": [
+            "Con una breve scelta di musiche per soprano e clavicembalo.",
+            "Alle 17: 30 nello splendido salone nobile di palazzo Pisani.",
+            "Duo Settesei ( Silvia Vavassori soprano Davide Pelissa clavicembalo)."
+          ],
+          "parallel": false
+        }
+      ]
+    },
+    {
+      "date": "2026-11-20",
+      "label": "Friday 20 November",
+      "sessions": [
+        {
+          "id": "180",
+          "code": "S11",
+          "type": "session",
+          "title": "Creative Practice & Immersive Media",
+          "start": "09:00",
+          "end": "10:15",
+          "room": "Warwick hall",
+          "chairs": [
+            "Jonathan Berger"
+          ],
+          "parallel": false,
+          "talks": [
+            {
+              "number": 71,
+              "time": "09:00",
+              "title": "Composing Hybrid Sonic Spaces Through Convolution",
+              "authors": [
+                "Davide Rizza",
+                "Mattia Pizzato",
+                "Francesco Cigana",
+                "Alberto Novello"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 54,
+              "time": "09:15",
+              "title": "Carving Out Creativity: A Multi-site, Spatial Audio, Immersive Video, and Haptics Installation of Stone Carver Electroencephalogram Data",
+              "authors": [
+                "Tanner Upthegrove",
+                "David Franusich",
+                "Lisa McNair",
+                "Julia Basso",
+                "Hiromi Okumura",
+                "Atlas Vernier",
+                "Dushan Boroyevich",
+                "Linda Correll"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 16,
+              "time": "09:30",
+              "title": "Score-Driven Spatial Automation: A Rule-Based Pipeline for Object-Based Audio Composition",
+              "authors": [
+                "Lorenzo Marra"
+              ],
+              "presenter": "Lorenzo Marra"
+            },
+            {
+              "number": 35,
+              "time": "09:45",
+              "title": "WAVES-4K: A 6th-Order Ambisonic and Synchronised 4K Video Dataset of Natural Inland and Coastal Waterside Soundscapes",
+              "authors": [
+                "Craig Cieciura",
+                "Philip Jackson"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 82,
+              "time": "10:00",
+              "title": "Spatial parameters with ambisonic microphones: an objective comparison",
+              "authors": [
+                "Gianluca Grazioli",
+                "Umberto Berardi",
+                "Richard King",
+                "Wieslaw Woszczyk"
+              ],
+              "presenter": null
+            }
+          ]
+        },
+        {
+          "id": "181",
+          "code": "K3",
+          "type": "keynote",
+          "title": "David Monacchi",
+          "start": "10:15",
+          "end": "11:00",
+          "room": "Warwick hall",
+          "chairs": [
+            "Cobi van Tonder"
+          ],
+          "parallel": false
+        },
+        {
+          "id": "182",
+          "type": "break",
+          "title": "Coffee Break",
+          "start": "11:00",
+          "end": "11:30",
+          "parallel": false
+        },
+        {
+          "id": "183",
+          "code": "S7",
+          "type": "session",
+          "title": "Audio Engineering, Signal Processing & AI",
+          "start": "11:30",
+          "end": "13:00",
+          "room": "Warwick hall",
+          "chairs": [
+            "Nicola Prodi"
+          ],
+          "description": [
+            "Advanced acoustic measurement, modeling, simulation, and nonlinear acoustics",
+            "Signal processing algorithms for spatial, binaural, and immersive audio",
+            "Machine learning and artificial intelligence for spatial rendering, personalization, source separation, acoustic modeling, and cross-environment reproduction",
+            "Automotive and intelligent immersive audio systems"
+          ],
+          "parallel": false,
+          "talks": [
+            {
+              "number": 28,
+              "time": "11:30",
+              "title": "Toward AI-Assisted Soundscape Generation for 3D Scenes: Design and Perceptual Gap Analysis",
+              "authors": [
+                "Masaki Yoshida",
+                "Ren Togo",
+                "Takahiro Ogawa",
+                "Miki Haseyama"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 66,
+              "time": "11:45",
+              "title": "Listener-Aware Objective Evaluation of Spatial Audio Rendering Using Deterministic Stimuli and Composite Spatial Metrics",
+              "authors": [
+                "Sanjay Majumder",
+                "Neal Anderson"
+              ],
+              "presenter": "Sanjay Majumder"
+            },
+            {
+              "number": 46,
+              "time": "12:00",
+              "title": "Towards an Aural Architecture of the Sacred: Immersive Technologies and Interdisciplinary Approaches in the VOICING Project",
+              "authors": [
+                "Angela Bellia"
+              ],
+              "presenter": "Angela Bellia"
+            },
+            {
+              "number": 72,
+              "time": "12:15",
+              "title": "Towards a unified framework for urban soundscape archaeology: the Genoa example",
+              "authors": [
+                "Matteo Caiaffa",
+                "Davide Audino",
+                "Francesco Altilio",
+                "Dario Casillo"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 47,
+              "time": "12:30",
+              "title": "Sound Field Synthesis for Distance Perception Using Virtual Source Rendering Based on Measured SHRIRs in a Spherical Loudspeaker Array",
+              "authors": [
+                "Taro Akai",
+                "Yoichi Haneda"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 23,
+              "time": "12:45",
+              "title": "Designing Accessible Archaeoacoustics: Interactive Web-Based Interfaces for Exploring Acoustic Heritage",
+              "authors": [
+                "Luna Valentin",
+                "Celeste Betancur Gutiérrez",
+                "Jonathan Berger"
+              ],
+              "presenter": null
+            }
+          ]
+        },
+        {
+          "id": "184",
+          "type": "break",
+          "title": "Lunch Break",
+          "start": "13:00",
+          "end": "14:00",
+          "parallel": false
+        },
+        {
+          "id": "186",
+          "code": "K4",
+          "type": "keynote",
+          "title": "Emma-Kate Matthews",
+          "start": "14:00",
+          "end": "14:45",
+          "room": "Warwick hall",
+          "chairs": [
+            "Cobi van Tonder"
+          ],
+          "keynote_title": "Inhabiting Resonant Bodies in Spatiosonic Fields",
+          "parallel": false
+        },
+        {
+          "id": "185",
+          "code": "S4",
+          "type": "session",
+          "title": "Spatial Capture & Measurement Technologies",
+          "start": "14:45",
+          "end": "15:45",
+          "room": "Warwick hall",
+          "chairs": [
+            "Jonathan Berger"
+          ],
+          "description": [
+            "Spatial microphone arrays and Higher Order Ambisonics capture",
+            "Soundscape and environmental recording systems",
+            "Bioacoustics and hydrophone-based immersive capture",
+            "MEMS, wearable, and miniaturized spatial sensing devices"
+          ],
+          "parallel": true,
+          "talks": [
+            {
+              "number": 80,
+              "time": "14:45",
+              "title": "A Framework for 6-DoF Extended Source Rendering via Spherical Acoustic Holography with Translation Operators",
+              "authors": [
+                "Joseph Elsom",
+                "Gavin Kearney"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 21,
+              "time": "15:00",
+              "title": "ATLAS: A Real-Time Embedded Audio Spatialization System for Live Theater Performers",
+              "authors": [
+                "Francesco Maria Sacerdoti",
+                "Luca de Gregorio",
+                "Ludovica Mennella",
+                "Alessandro Campanella"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 39,
+              "time": "15:15",
+              "title": "Apple Spatial Audio Format & Apple Positional Audio Codec – a new format for immersive content creation and distribution",
+              "authors": [
+                "Deep Sen",
+                "Moo-Young Kim",
+                "Sang Ryu",
+                "Frank Baumgarte",
+                "Keun Sup Lee",
+                "Francois Becker",
+                "Abdullah Fahim",
+                "Joshua Atkins",
+                "Venkataraman Atti",
+                "Tejaswi Nanjundaswamy",
+                "Sina Zamani",
+                "Jack Newman",
+                "Robert Coover",
+                "Ismael Nawfal",
+                "Richard Walters",
+                "Ravi Chivikula",
+                "Bela Bazas",
+                "Juha Merimaa",
+                "Marvin Pribadi",
+                "James Livingston",
+                "Aram Lindahl",
+                "Abhaya Parthy"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 50,
+              "time": "15:30",
+              "title": "Perceived Quality of Binaural Rendering From Baffled Microphone Arrays Evaluated Without an Explicit Reference, Part 2",
+              "authors": [
+                "Hannes Helmholz",
+                "Jeffery Crukley",
+                "Jens Ahrens"
+              ],
+              "presenter": null
+            }
+          ]
+        },
+        {
+          "id": "190",
+          "code": "Art",
+          "type": "demo",
+          "title": "Fragments of Extinction – installation",
+          "start": "15:00",
+          "end": "18:00",
+          "room": "Installation Room",
+          "description": [
+            "David Monacchi - Fragments of Extinction Installation",
+            "https://www.fragmentsofextinction.org/",
+            "Kindly note, only 15 persons can experience the installation at a given time.",
+            "It will therefore repeat 6 times. We will place a sign-up sheet at the door where you can place your name.",
+            "The times will be 15:00-15:30 * 15:30-16:00 * 16:00-16:30 * 16:30-17:00 * 17:00-17:30 * 17:30-18:00",
+            "Lastly, it is a space for listening quietly, please respect everyone's chance to be immersed and talk after you leave the room."
+          ],
+          "links": [
+            "https://www.fragmentsofextinction.org/"
+          ],
+          "parallel": true
+        },
+        {
+          "id": "187",
+          "type": "break",
+          "title": "Coffee Break",
+          "start": "15:45",
+          "end": "16:00",
+          "parallel": false
+        },
+        {
+          "id": "188",
+          "code": "S11b",
+          "type": "session",
+          "title": "Creative Practice & Immersive Media (part 2)",
+          "start": "16:00",
+          "end": "16:30",
+          "room": "Warwick hall",
+          "parallel": true,
+          "talks": [
+            {
+              "number": 2,
+              "time": "16:00",
+              "title": "Road to VOLTA: a journey in the prototyping of a portable loudspeaker setup for spatial audio.",
+              "authors": [
+                "Giuseppe Pisano-Riise",
+                "Davide Ercolano"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 48,
+              "time": "16:15",
+              "title": "Hutchinson Synthesis: Parametric Additive Synthesis via Probabilistic Distributions over the N-Dimensional Hypervolume of Time, Frequency, Amplitude and Spatial Direction in HOA",
+              "authors": [
+                "Anthony Di Furia",
+                "Nicoletta Andreuccetti"
+              ],
+              "presenter": "Anthony Di Furia"
+            }
+          ]
+        },
+        {
+          "id": "308",
+          "code": "D4",
+          "type": "demo",
+          "title": "Anguane di Ferro – Ode per Spiriti Meccanici Centenari (Quad sound plus video)",
+          "start": "16:30",
+          "end": "16:45",
+          "room": "Warwick hall",
+          "description": [
+            "Francesco Cigana, Alberto Novello, Mattia Pizzato, Davide Rizza",
+            "10min video plus quad sound"
+          ],
+          "parallel": true
+        },
+        {
+          "id": "189",
+          "code": "P6",
+          "type": "poster",
+          "title": "Heritage, Soundscapes & Digital Humanities",
+          "start": "17:00",
+          "end": "18:00",
+          "room": "Poster Area",
+          "chairs": [
+            "Gino Iannace"
+          ],
+          "description": [
+            "Sonic archaeology and heritage acoustics",
+            "Soundscape studies and environmental acoustics",
+            "Digital humanities approaches to acoustic heritage documentation",
+            "Environmental and urban soundscapes as cultural heritage"
+          ],
+          "parallel": true,
+          "talks": [
+            {
+              "number": 4,
+              "time": null,
+              "title": "Evaluation of acoustic and scenery within the Communal Theatre in Modena",
+              "authors": [
+                "Maria Cristina Tommasino",
+                "Angelica Denaro",
+                "Alessandro Martinetti",
+                "Giacomo Tentoni"
+              ],
+              "presenter": "Maria Cristina Tommasino"
+            },
+            {
+              "number": 7,
+              "time": null,
+              "title": "Acoustic Signature of Santa Maria di Galliera: A Pre-Restoration Study of an Oratorian Musical Baroque Space.",
+              "authors": [
+                "Lamberto Tronchin",
+                "Haruna Saito"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 45,
+              "time": null,
+              "title": "Acoustic characterisation of the Teatro di Corte at the Royal Palace of Caserta",
+              "authors": [
+                "Yimeng Feng",
+                "Angelica Denaro",
+                "Giacomo Tentoni",
+                "Alessandro Martinetti",
+                "Yajing Li",
+                "Ruoran Yan"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 38,
+              "time": null,
+              "title": "Toward a Spatial Grammar for Immersive Music: Space as a Structural Parameter Across Audio Systems",
+              "authors": [
+                "Marcela Pavia"
+              ],
+              "presenter": "Marcela Pavia"
+            },
+            {
+              "number": 74,
+              "time": null,
+              "title": "Hydroponic materials acoustics",
+              "authors": [
+                "Gino Iannace"
+              ],
+              "presenter": "Gino Iannace"
+            },
+            {
+              "number": 75,
+              "time": null,
+              "title": "The acoustics of vaulted rooms",
+              "authors": [
+                "Gino Iannace"
+              ],
+              "presenter": "Gino Iannace"
+            },
+            {
+              "number": 8,
+              "time": null,
+              "title": "Acoustic Diversity in a Large-Scale Historic Church: SS. Salvatore in Bologna",
+              "authors": [
+                "Haruna Saito"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 9,
+              "time": null,
+              "title": "Acoustic Characteristics of the Reconstructed Oratory of San Filippo Neri in Bologna: Spatial Analysis of Performer and Listener Positions.",
+              "authors": [
+                "Lamberto Tronchin",
+                "Haruna Saito"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 10,
+              "time": null,
+              "title": "Acoustic Field Analysis of Santi Gregorio e Siro utilizing 3D Spatiotemporal Mapping, Bologna.",
+              "authors": [
+                "Lamberto Tronchin",
+                "Haruna Saito"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 78,
+              "time": null,
+              "title": "A Multisensory Digital Twin Pipeline for Monumental Spaces: HOA Auralization and Volumetric Capture toward 6DoF Navigation",
+              "authors": [
+                "Francesco Bono",
+                "Giulia Sileo",
+                "Lorenzo Lavagna",
+                "Louena Shtrepi",
+                "Davide Calandra",
+                "Filippo Gabriele Pratticò",
+                "Fabrizio Lamberti",
+                "Arianna Astolfi"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 70,
+              "time": null,
+              "title": "Toward Acoustic Buttons: Factors Affecting the Perceived Suitability of Sound Images for Button Press Interaction",
+              "authors": [
+                "Karin Ochi",
+                "Yoichi Haneda"
+              ],
+              "presenter": null
+            }
+          ]
+        },
+        {
+          "id": "314",
+          "type": "social",
+          "title": "Dinner @ La Colomba",
+          "start": "19:30",
+          "end": "23:00",
+          "room": "La Colomba restaurant",
+          "description": [
+            "We can walk together (15min) to have dinner together at La Colomba - Piscina de Frezzaria, 1665, 30124 Venezia VE"
+          ],
+          "links": [
+            "https://www.google.com/maps/place//data=!4m2!3m1!1s0x477eb188e111574b:0xc455c95ee6d1e1dc?sa=X&ved=1t:8290&ictx=111"
+          ],
+          "parallel": false
+        }
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "label": "Saturday 21 November",
+      "sessions": [
+        {
+          "id": "191",
+          "code": "S12",
+          "type": "session",
+          "title": "Advanced 3D Audio",
+          "start": "09:00",
+          "end": "10:15",
+          "room": "Warwick hall",
+          "parallel": false,
+          "talks": [
+            {
+              "number": 68,
+              "time": "09:00",
+              "title": "Environmental Improvisation and Artificial Soundscapes: The Relationship between Performance, Spatialization, and Audiovisual Installation in Rustle by Minus Collettivo",
+              "authors": [
+                "Federico Pipia",
+                "Simone Faraci",
+                "Daniele Carcassi",
+                "Giovanni Magaglio"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 53,
+              "time": "09:15",
+              "title": "Space as Compositional Material: toward a Prototype for Diffused Spatial Authoring",
+              "authors": [
+                "Victor Nebbiolo Di Castri",
+                "Valeria Zane",
+                "Pierpaolo Ovarini",
+                "Riccardo Sellan"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 37,
+              "time": "09:30",
+              "title": "Performing Space: Distributed Live Practice and Micro-Residency Exchange across the Spatial Sound Consortium",
+              "authors": [
+                "Victoria Keddie",
+                "Zeynep Bulut",
+                "Annie Mahtani"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 34,
+              "time": "09:45",
+              "title": "Design and Acoustical Measurements of “Futures Studio”: A Hybrid Virtual/Immersive Production Environment",
+              "authors": [
+                "Craig Cieciura",
+                "Nuno Barreiro",
+                "Philip Jackson"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 31,
+              "time": "10:00",
+              "title": "From surveying to auralisation: an integrated methodological protocol for the digital reconstruction and audio-spatial simulation of ancient theatres",
+              "authors": [
+                "Laura Schepis"
+              ],
+              "presenter": "Laura Schepis"
+            }
+          ]
+        },
+        {
+          "id": "192",
+          "code": "K5",
+          "type": "keynote",
+          "title": "Deep Sen",
+          "start": "10:15",
+          "end": "11:00",
+          "room": "Warwick hall",
+          "chairs": [
+            "Lamberto Tronchin"
+          ],
+          "keynote_title": "Designing a new immersive audio format and its transport - the science, the challenges and deployment.",
+          "parallel": false
+        },
+        {
+          "id": "193",
+          "type": "break",
+          "title": "Coffee Break",
+          "start": "11:00",
+          "end": "11:30",
+          "parallel": false
+        },
+        {
+          "id": "194",
+          "code": "S3",
+          "type": "session",
+          "title": "Architectural Acoustics & Immersive Space Design",
+          "start": "11:30",
+          "end": "13:00",
+          "room": "Warwick hall",
+          "chairs": [
+            "Angela Bellia"
+          ],
+          "description": [
+            "Immersive design and renovation of studios, theaters, churches, and heritage performance spaces",
+            "Loudspeaker arrays, WFS, beamforming, and spatial reinforcement"
+          ],
+          "parallel": false,
+          "talks": [
+            {
+              "number": 25,
+              "time": "11:30",
+              "title": "Beamforming as Acoustic Embodiment: Constituting Space from Electronic Music to AI Voice",
+              "authors": [
+                "Gerriet Krishna Sharma",
+                "Verena Lercher"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 76,
+              "time": "11:45",
+              "title": "Acoustic models for implementing Third Carer principles in hospital design",
+              "authors": [
+                "Sergio Luzzi",
+                "Francesco Asdrubali",
+                "Veronica Amodeo",
+                "Simone Secchi",
+                "Sofia Boarino",
+                "Ab Rogers"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 26,
+              "time": "12:00",
+              "title": "Filling the House: Spatial Audio in Live Venue Practice, Programming, and Audience Experience",
+              "authors": [
+                "Glenn Dickins",
+                "Stuart Rogers"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 81,
+              "time": "12:15",
+              "title": "Analysis of Bio-Based Acoustic Panels as Dividers in Open-Plan Offices: A Numerical Study",
+              "authors": [
+                "Nicola Delmonte",
+                "Giorgia Mercati",
+                "Antonella Bevilacqua",
+                "Andrea Toscani",
+                "Adriano Farina",
+                "Gabriella Magri",
+                "Enrique Corrales-Crespo",
+                "Eva Monica de Miguel-Sanz",
+                "Carlos Castellote-Varona"
+              ],
+              "presenter": "Giorgia Mercati"
+            },
+            {
+              "number": 20,
+              "time": "12:30",
+              "title": "Using HRTF Interpolation for Improving Crosstalk Cancellation Algorithm in Binaural Audio Headrest",
+              "authors": [
+                "Nefeli Aikaterini Dourou",
+                "Valeria Bruschi",
+                "Alessandro Terenzi",
+                "Stefania Cecchi"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 84,
+              "time": "12:45",
+              "title": "Environmental Improvisation and Artificial Soundscapes: The Relationship between Performance, Spatialization and Audiovisual Installation in Rustle by Minus Collettivo",
+              "authors": [
+                "Federico Pipia"
+              ],
+              "presenter": "Federico Pipia"
+            }
+          ]
+        },
+        {
+          "id": "195",
+          "type": "break",
+          "title": "Lunch Break",
+          "start": "13:00",
+          "end": "14:00",
+          "parallel": false
+        },
+        {
+          "id": "196",
+          "code": "P4",
+          "type": "poster",
+          "title": "SIPARIO and AGORA' researches",
+          "start": "14:00",
+          "end": "15:30",
+          "room": "Poster Area",
+          "parallel": true,
+          "talks": [
+            {
+              "number": 5,
+              "time": null,
+              "title": "MIMO Measurements in Piazza Cavour: Innovative Approach for Measuring an Outdoor Environment",
+              "authors": [
+                "Antonella Bevilacqua",
+                "Adriano Farina",
+                "Lamberto Tronchin"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 6,
+              "time": null,
+              "title": "Acoustics of the Manifattura dei Marinati in Comacchio used as a Multipurpose Hall",
+              "authors": [
+                "Maria Cristina Tommasino",
+                "Giacomo Tentoni",
+                "Alessandro Martinetti",
+                "Angelica Denaro",
+                "Yajing Li"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 11,
+              "time": null,
+              "title": "MIMO Acoustic measurements in the Teatro Grande of Brescia",
+              "authors": [
+                "Lamberto Tronchin",
+                "Adriano Farina",
+                "Maria Cristina Tommasino",
+                "Antonella Bevilacqua"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 36,
+              "time": null,
+              "title": "Acoustic analysis of the Opera Theatre in Montecastello di Vibio",
+              "authors": [
+                "Lamberto Tronchin",
+                "Maria Cristina Tommasino"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 56,
+              "time": null,
+              "title": "MIMO Measurements in the Municipal Theatre of Piacenza",
+              "authors": [
+                "Lamberto Tronchin",
+                "Maria Cristina Tommasino"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 59,
+              "time": null,
+              "title": "Classroom acoustics: a 3D acoustic measurements at University of Bologna",
+              "authors": [
+                "Maria Cristina Tommasino"
+              ],
+              "presenter": "Maria Cristina Tommasino"
+            },
+            {
+              "number": 3,
+              "time": null,
+              "title": "3D Sound registrations in the Trepponti Square in Comacchio, Italy",
+              "authors": [
+                "Lamberto Tronchin",
+                "Maria Cristina Tommasino"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 29,
+              "time": null,
+              "title": "Comparison among the 3D acoustic propagation in the Victor Ion Popa Theatre in Bârlad and Bacovia Municipal Theatre in Bacau",
+              "authors": [
+                "Lamberto Tronchin",
+                "Maria Cristina Tommasino"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 30,
+              "time": null,
+              "title": "The 3D acoustic analysis in Iași and Piatra Neamț municipality theatres",
+              "authors": [
+                "Lamberto Tronchin"
+              ],
+              "presenter": "Lamberto Tronchin"
+            },
+            {
+              "number": 44,
+              "time": null,
+              "title": "Pompeii Odeon and Grand theatre: variation of 3D sound propagation",
+              "authors": [
+                "Lamberto Tronchin",
+                "Yajing Li"
+              ],
+              "presenter": null
+            },
+            {
+              "number": 62,
+              "time": null,
+              "title": "Luigi Russolo and his Futuristic Sounds for Early Auralization",
+              "authors": [
+                "Giacomo Tentoni",
+                "Lamberto Tronchin",
+                "Antonella Bevilacqua"
+              ],
+              "presenter": null
+            }
+          ]
+        },
+        {
+          "id": "309",
+          "code": "D5",
+          "type": "demo",
+          "title": "A tangible hemispherical controller for spatial audio mixing in Reaper",
+          "start": "14:00",
+          "end": "15:00",
+          "room": "Installation Room",
+          "description": [
+            "Calvin McCormack, Hassan Estakhrian",
+            "Shown with video and sound."
+          ],
+          "parallel": true
+        },
+        {
+          "id": "310",
+          "code": "D6",
+          "type": "demo",
+          "title": "A participatory room-scale XR piece",
+          "start": "14:00",
+          "end": "15:00",
+          "room": "VR Room",
+          "description": [
+            "Willy Le Maitre",
+            "Experienced in turns, about 5 minutes per person."
+          ],
+          "parallel": true
+        },
+        {
+          "id": "311",
+          "code": "D8",
+          "type": "demo",
+          "title": "Rustle by Minus Colletivo - Video with stereo sound",
+          "start": "14:00",
+          "end": "15:00",
+          "room": "Warwick hall",
+          "description": [
+            "Federico Pipia, Simone Faraci, Daniele Carcassi, Giovanni Magaglio",
+            "Remote presenter i.e. play through zoom."
+          ],
+          "parallel": true
+        },
+        {
+          "id": "197",
+          "code": "D7",
+          "type": "demo",
+          "title": "ONDA demo",
+          "start": "15:00",
+          "end": "16:00",
+          "room": "Installation Room",
+          "description": [
+            "Studio Pase / ONDA demo. Presentation, listening and practical demonstrations."
+          ],
+          "parallel": true
+        },
+        {
+          "id": "198",
+          "type": "break",
+          "title": "Coffee Break",
+          "start": "15:45",
+          "end": "16:15",
+          "parallel": false
+        }
+      ]
+    },
+    {
+      "date": "2026-11-22",
+      "label": "Sunday 22 November",
+      "sessions": [
+        {
+          "id": "199",
+          "type": "social",
+          "title": "SOCIAL EXCURSION",
+          "start": "11:00",
+          "end": "13:30",
+          "room": "External Location near Venezia Santa Lucia Station",
+          "description": [
+            "We will visit the Holy See Pavilion: The Ear Is the Eye of the Soul - Giardino Mistico",
+            "Curated by Hans Ulrich Obrist and Ben Vickers, in collaboration with Soundwalk Collective, the exhibition The Ear Is the Eye of the Soul, inspired by the life and legacy of Saint Hildegard of Bingen, took the form of a sonic prayer and invited visitors to engage in the contemplative act of listening through works by twenty-four internationally renowned artists.",
+            "The Pavilion's two venues were transformed respectively into a seven-stage journey of contemplation for the soul, the Mystical Garden, and into a living archive, the Santa Maria Ausiliatrice Complex. You could consider visiting the archive on your own time, kindly note we are visiting the Mystical Garden site only and you have to reserve a time-slot (we will provide this on paper during the conference).",
+            "Event location",
+            "Giardino Mistico, Cannaregio 54",
+            "https://maps.app.goo.gl/XDesvu8pBgzNccJG7",
+            "More info: https://www.dce.va/en/events/2026/the-ear-is-the-eye-of-the-soul.html"
+          ],
+          "links": [
+            "https://maps.app.goo.gl/XDesvu8pBgzNccJG7",
+            "https://www.dce.va/en/events/2026/the-ear-is-the-eye-of-the-soul.html"
+          ],
+          "parallel": false
+        }
+      ]
+    }
+  ],
+  "rooms": [
+    {
+      "name": "Warwick hall",
+      "location": "Main presentation room, floor 2"
+    },
+    {
+      "name": "Installation Room",
+      "location": "Fondazione Levi top floor, far back, to the right - corner room."
+    },
+    {
+      "name": "VR Room",
+      "location": "Warwick floor - opposite stairs by the entrance hall"
+    },
+    {
+      "name": "Catering Area",
+      "location": "Warwick Floor - Entrance Hall"
+    },
+    {
+      "name": "Lunch Area",
+      "location": "Warwick Floor - see signs"
+    },
+    {
+      "name": "Poster Area",
+      "location": "Fondazione Levi Library Lounge"
+    },
+    {
+      "name": "Demo Room 3",
+      "location": "Fondazione Levi top floor, to the left"
+    },
+    {
+      "name": "External Location near Venezia Santa Lucia Station",
+      "location": "Giardino Mistico, Cannaregio 54",
+      "map": "https://maps.app.goo.gl/XDesvu8pBgzNccJG7"
+    },
+    {
+      "name": "Conservatorio Benedetto Marcello",
+      "location": "We will walk together (5min from the conference venue) to Fondamenta Narisi, 2810, 30124 Venezia VE",
+      "map": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x477eb1d1c438bdb1:0x3527f7d58eff48c6?sa=X&ved=1t:8290&ictx=111"
+    },
+    {
+      "name": "La Colomba restaurant",
+      "map": "https://maps.app.goo.gl/zMo8o8NcvJTzLXnB9"
+    }
+  ]
+}
