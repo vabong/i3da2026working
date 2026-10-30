@@ -426,8 +426,8 @@
           "room": "Conservatorio Benedetto Marcello",
           "description": [
             "Con una breve scelta di musiche per soprano e clavicembalo.",
-            "Alle 17: 30 nello splendido salone nobile di palazzo Pisani.",
-            "Duo Settesei ( Silvia Vavassori soprano Davide Pelissa clavicembalo)."
+            "Alle 17:30 nello splendido salone nobile di palazzo Pisani.",
+            "Duo Settesei (Silvia Vavassori soprano Davide Pelissa clavicembalo)."
           ],
           "parallel": false
         }
@@ -1305,7 +1305,7 @@
           "id": "311",
           "code": "D8",
           "type": "demo",
-          "title": "Rustle by Minus Colletivo - Video with stereo sound",
+          "title": "Rustle by Minus Collettivo - Video with stereo sound",
           "start": "14:00",
           "end": "15:00",
           "room": "Warwick hall",
