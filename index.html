@@ -596,17 +596,17 @@
             }
 
             function renderTalk(talk) {
-                const row = el('div', { className: 'flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-3 py-2 border-t border-gray-100 first:border-t-0' });
+                const row = el('div', { className: 'flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-2 py-2 border-t border-gray-100 first:border-t-0' });
 
-                const meta = el('div', { className: 'flex gap-3 shrink-0 sm:w-28' });
-                if (talk.time) meta.appendChild(el('span', { className: 'text-xs text-gray-400 font-light', text: talk.time }));
-                meta.appendChild(el('span', { className: 'text-xs text-gray-400 font-light', text: '#' + talk.number }));
+                const meta = el('div', { className: 'flex gap-2 shrink-0 sm:w-24' });
+                if (talk.time) meta.appendChild(el('span', { className: 'text-sm text-gray-400 font-semibold', text: talk.time }));
+                meta.appendChild(el('span', { className: 'text-sm text-gray-400 font-semibold', text: '#' + talk.number }));
                 row.appendChild(meta);
 
                 const body = el('div', { className: 'min-w-0' });
-                body.appendChild(el('div', { className: 'text-sm text-gray-800 font-normal', text: talk.title }));
+                body.appendChild(el('div', { className: 'text-base text-gray-800 font-medium leading-snug', text: talk.title }));
 
-                const authorsLine = el('div', { className: 'text-xs text-gray-500 font-light mt-0.5' });
+                const authorsLine = el('div', { className: 'text-sm text-gray-600 font-light mt-1' });
                 (talk.authors || []).forEach((name, i) => {
                     if (i > 0) authorsLine.appendChild(document.createTextNode(', '));
                     // Split off a trailing " (R)" (remote-presenter marker) so it renders
@@ -615,7 +615,10 @@
                     const remoteMatch = name.match(/^(.*) \(R\)$/);
                     const baseName = remoteMatch ? remoteMatch[1] : name;
                     const isPresenter = talk.presenter && baseName === talk.presenter;
-                    authorsLine.appendChild(el(isPresenter ? 'u' : 'span', { text: baseName }));
+                    authorsLine.appendChild(el(isPresenter ? 'u' : 'span', {
+                        className: isPresenter ? 'text-base font-semibold text-gray-900' : '',
+                        text: baseName
+                    }));
                     if (remoteMatch) authorsLine.appendChild(document.createTextNode(' (R)'));
                 });
                 body.appendChild(authorsLine);
@@ -625,7 +628,7 @@
 
             function renderItem(item) {
                 if (item.type === 'break') {
-                    const row = el('div', { className: 'w-full flex justify-between items-center bg-lagoon-bg text-gray-500 text-xs font-light px-4 py-2 rounded my-2' });
+                    const row = el('div', { className: 'w-full lg:col-span-2 flex justify-between items-center bg-lagoon-bg text-gray-500 text-sm font-medium px-4 py-2 rounded my-1' });
                     row.appendChild(el('span', { text: item.title }));
                     row.appendChild(el('span', { className: 'shrink-0 ml-3', text: fmtTime(item.start, item.end) }));
                     return row;
@@ -658,23 +661,34 @@
                     return block;
                 }
 
-                const card = el('div', { className: 'bg-white border border-gray-100 shadow-sm rounded-lg p-5 mb-4 border-l-4' });
-                card.style.borderLeftColor = accent;
+                // Blocky card: a tinted header block (time/code/parallel) sitting
+                // on top of a content block, so a whole day reads as a grid of
+                // scannable tiles rather than one long column of text.
+                const card = el('div', { className: 'bg-white border border-gray-100 shadow-sm rounded-xl overflow-hidden flex flex-col' });
 
-                const headLine = el('div', { className: 'flex flex-wrap items-center gap-2' });
-                headLine.appendChild(el('span', { className: 'text-xs uppercase tracking-widest text-gray-400 font-medium', text: fmtTime(item.start, item.end) }));
+                const headBlock = el('div', { className: 'flex flex-wrap items-center gap-2 px-4 py-2.5' });
+                headBlock.style.backgroundColor = accent + '17';
+
+                const timeLabel = el('span', { className: 'text-base font-bold', text: fmtTime(item.start, item.end) });
+                timeLabel.style.color = accent;
+                headBlock.appendChild(timeLabel);
+
                 if (item.code) {
-                    headLine.appendChild(el('span', { className: 'inline-block text-[10px] font-semibold uppercase tracking-widest border border-lagoon-blue text-lagoon-blue rounded px-2 py-0.5', text: item.code }));
+                    const codeLabel = el('span', { className: 'inline-block text-xs font-bold uppercase tracking-widest bg-white/70 rounded px-2 py-0.5', text: item.code });
+                    codeLabel.style.color = accent;
+                    headBlock.appendChild(codeLabel);
                 }
                 if (item.parallel) {
-                    headLine.appendChild(el('span', { className: 'inline-block text-[10px] uppercase tracking-widest bg-gray-100 text-gray-500 rounded-full px-2 py-0.5', text: 'Parallel' }));
+                    headBlock.appendChild(el('span', { className: 'inline-block text-xs font-semibold uppercase tracking-widest bg-white/70 text-gray-500 rounded-full px-2 py-0.5', text: 'Parallel' }));
                 }
-                card.appendChild(headLine);
+                card.appendChild(headBlock);
 
-                card.appendChild(el('div', { className: `text-lg font-normal mt-1 ${titleColor}`, text: item.title }));
+                const body = el('div', { className: 'p-4 flex-1' });
+
+                body.appendChild(el('div', { className: `text-xl font-semibold leading-snug ${titleColor}`, text: item.title }));
 
                 if (item.type === 'keynote' && item.keynote_title) {
-                    card.appendChild(el('div', { className: 'text-base font-light italic text-lagoon-blue mt-1', text: '“' + item.keynote_title + '”' }));
+                    body.appendChild(el('div', { className: 'text-base font-light italic text-lagoon-blue mt-1', text: '“' + item.keynote_title + '”' }));
                 }
 
                 const metaBits = [];
@@ -683,28 +697,30 @@
                     metaBits.push((item.chairs.length > 1 ? 'Chairs: ' : 'Chair: ') + item.chairs.join(', '));
                 }
                 if (metaBits.length) {
-                    card.appendChild(el('div', { className: 'text-sm text-gray-500 font-light mt-1', text: metaBits.join('  ·  ') }));
+                    body.appendChild(el('div', { className: 'text-base text-gray-500 font-medium mt-1.5', text: metaBits.join('  ·  ') }));
                 }
 
                 if (item.description && item.description.length) {
-                    const desc = el('div', { className: 'mt-3 space-y-1' });
-                    item.description.forEach(line => desc.appendChild(el('p', { className: 'text-sm text-gray-600 font-light leading-relaxed', text: line })));
-                    card.appendChild(desc);
+                    const desc = el('div', { className: 'mt-2.5 space-y-1.5' });
+                    item.description.forEach(line => desc.appendChild(el('p', { className: 'text-base text-gray-600 font-light leading-relaxed', text: line })));
+                    body.appendChild(desc);
                 }
 
                 if (item.links && item.links.length) {
                     const links = el('div', { className: 'mt-2 space-y-1' });
                     item.links.forEach(url => {
-                        links.appendChild(el('a', { href: url, className: 'block text-sm text-lagoon-light hover:underline font-light', text: linkLabel(url) + ' ↗' }));
+                        links.appendChild(el('a', { href: url, className: 'block text-base text-lagoon-light hover:underline font-medium', text: linkLabel(url) + ' ↗' }));
                     });
-                    card.appendChild(links);
+                    body.appendChild(links);
                 }
 
                 if (item.talks && item.talks.length) {
-                    const talksWrap = el('div', { className: 'mt-4 border-t border-gray-100 pt-1' });
+                    const talksWrap = el('div', { className: 'mt-3 border-t border-gray-100 pt-1' });
                     item.talks.forEach(t => talksWrap.appendChild(renderTalk(t)));
-                    card.appendChild(talksWrap);
+                    body.appendChild(talksWrap);
                 }
+
+                card.appendChild(body);
 
                 return card;
             }
@@ -728,7 +744,12 @@
                 dayWrap.appendChild(el('h4', { className: 'text-xl font-light text-lagoon-blue border-b border-gray-200 pb-2 mb-4', text: day.label }));
 
                 if (SHOW_FULL_DETAILS) {
-                    (day.sessions || []).forEach(item => dayWrap.appendChild(renderItem(item)));
+                    // Grid of blocky tiles, two per row on wider screens, so a
+                    // whole day's shape reads at a glance instead of one long
+                    // scroll of full-width cards.
+                    const grid = el('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-3 items-start' });
+                    (day.sessions || []).forEach(item => grid.appendChild(renderItem(item)));
+                    dayWrap.appendChild(grid);
                 } else {
                     const row = el('div', { className: 'flex flex-wrap items-stretch gap-3' });
                     (day.sessions || []).forEach(item => row.appendChild(renderItem(item)));
