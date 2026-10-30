@@ -599,8 +599,14 @@
                 const authorsLine = el('div', { className: 'text-xs text-gray-500 font-light mt-0.5' });
                 (talk.authors || []).forEach((name, i) => {
                     if (i > 0) authorsLine.appendChild(document.createTextNode(', '));
-                    const isPresenter = talk.presenter && name === talk.presenter;
-                    authorsLine.appendChild(el(isPresenter ? 'u' : 'span', { text: name }));
+                    // Split off a trailing " (R)" (remote-presenter marker) so it renders
+                    // outside the underline, and so presenter-matching (which never
+                    // carries that suffix) still works.
+                    const remoteMatch = name.match(/^(.*) \(R\)$/);
+                    const baseName = remoteMatch ? remoteMatch[1] : name;
+                    const isPresenter = talk.presenter && baseName === talk.presenter;
+                    authorsLine.appendChild(el(isPresenter ? 'u' : 'span', { text: baseName }));
+                    if (remoteMatch) authorsLine.appendChild(document.createTextNode(' (R)'));
                 });
                 body.appendChild(authorsLine);
                 row.appendChild(body);

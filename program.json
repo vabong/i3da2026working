@@ -171,7 +171,7 @@
               "time": "14:45",
               "title": "Reinterpreting Berio’s Electroacoustic Music in an Immersive-Audio Environment",
               "authors": [
-                "Francesco Canavese",
+                "Francesco Canavese (R)",
                 "Francesco Giomi",
                 "Giovanni Magaglio",
                 "Francesco Vogli"
@@ -203,7 +203,7 @@
               "time": "15:30",
               "title": "Resonances of Stones: Immersive Architectural and Acoustic Reconstruction for Acoustic Heritage",
               "authors": [
-                "Gianluca Aresu",
+                "Gianluca Aresu (R)",
                 "Alessandra Montali"
               ],
               "presenter": null
@@ -369,9 +369,9 @@
               "time": null,
               "title": "A Web-Based Framework for Virtual Acoustic Space Rendering and Collaborative Studio Evaluation",
               "authors": [
-                "Victoria Keddie",
+                "Victoria Keddie (R)",
                 "Frank Zimmer",
-                "Gerriet Sharma",
+                "Gerriet Sharma (R)",
                 "Cobi van Tonder"
               ],
               "presenter": null
@@ -467,7 +467,7 @@
               "time": "09:15",
               "title": "Carving Out Creativity: A Multi-site, Spatial Audio, Immersive Video, and Haptics Installation of Stone Carver Electroencephalogram Data",
               "authors": [
-                "Tanner Upthegrove",
+                "Tanner Upthegrove (R)",
                 "David Franusich",
                 "Lisa McNair",
                 "Julia Basso",
@@ -492,7 +492,7 @@
               "time": "09:45",
               "title": "WAVES-4K: A 6th-Order Ambisonic and Synchronised 4K Video Dataset of Natural Inland and Coastal Waterside Soundscapes",
               "authors": [
-                "Craig Cieciura",
+                "Craig Cieciura (R)",
                 "Philip Jackson"
               ],
               "presenter": null
@@ -502,7 +502,7 @@
               "time": "10:00",
               "title": "Spatial parameters with ambisonic microphones: an objective comparison",
               "authors": [
-                "Gianluca Grazioli",
+                "Gianluca Grazioli (R)",
                 "Umberto Berardi",
                 "Richard King",
                 "Wieslaw Woszczyk"
@@ -568,7 +568,7 @@
               "time": "11:45",
               "title": "Listener-Aware Objective Evaluation of Spatial Audio Rendering Using Deterministic Stimuli and Composite Spatial Metrics",
               "authors": [
-                "Sanjay Majumder",
+                "Sanjay Majumder (R)",
                 "Neal Anderson"
               ],
               "presenter": "Sanjay Majumder"
@@ -588,7 +588,7 @@
               "title": "Towards a unified framework for urban soundscape archaeology: the Genoa example",
               "authors": [
                 "Matteo Caiaffa",
-                "Davide Audino",
+                "Davide Audino (R)",
                 "Francesco Altilio",
                 "Dario Casillo"
               ],
@@ -767,7 +767,7 @@
               "time": "16:00",
               "title": "Road to VOLTA: a journey in the prototyping of a portable loudspeaker setup for spatial audio.",
               "authors": [
-                "Giuseppe Pisano-Riise",
+                "Giuseppe Pisano-Riise (R)",
                 "Davide Ercolano"
               ],
               "presenter": null
@@ -973,7 +973,7 @@
               "time": "09:00",
               "title": "Environmental Improvisation and Artificial Soundscapes: The Relationship between Performance, Spatialization, and Audiovisual Installation in Rustle by Minus Collettivo",
               "authors": [
-                "Federico Pipia",
+                "Federico Pipia (R)",
                 "Simone Faraci",
                 "Daniele Carcassi",
                 "Giovanni Magaglio"
@@ -997,9 +997,9 @@
               "time": "09:30",
               "title": "Performing Space: Distributed Live Practice and Micro-Residency Exchange across the Spatial Sound Consortium",
               "authors": [
-                "Victoria Keddie",
+                "Victoria Keddie (R)",
                 "Zeynep Bulut",
-                "Annie Mahtani"
+                "Annie Mahtani (R)"
               ],
               "presenter": null
             },
@@ -1008,7 +1008,7 @@
               "time": "09:45",
               "title": "Design and Acoustical Measurements of “Futures Studio”: A Hybrid Virtual/Immersive Production Environment",
               "authors": [
-                "Craig Cieciura",
+                "Craig Cieciura (R)",
                 "Nuno Barreiro",
                 "Philip Jackson"
               ],
@@ -1069,7 +1069,7 @@
               "time": "11:30",
               "title": "Beamforming as Acoustic Embodiment: Constituting Space from Electronic Music to AI Voice",
               "authors": [
-                "Gerriet Krishna Sharma",
+                "Gerriet Krishna Sharma (R)",
                 "Verena Lercher"
               ],
               "presenter": null
@@ -1121,7 +1121,7 @@
               "title": "Using HRTF Interpolation for Improving Crosstalk Cancellation Algorithm in Binaural Audio Headrest",
               "authors": [
                 "Nefeli Aikaterini Dourou",
-                "Valeria Bruschi",
+                "Valeria Bruschi (R)",
                 "Alessandro Terenzi",
                 "Stefania Cecchi"
               ],
@@ -1132,7 +1132,7 @@
               "time": "12:45",
               "title": "Environmental Improvisation and Artificial Soundscapes: The Relationship between Performance, Spatialization and Audiovisual Installation in Rustle by Minus Collettivo",
               "authors": [
-                "Federico Pipia"
+                "Federico Pipia (R)"
               ],
               "presenter": "Federico Pipia"
             }
@@ -1310,7 +1310,7 @@
           "end": "15:00",
           "room": "Warwick hall",
           "description": [
-            "Federico Pipia, Simone Faraci, Daniele Carcassi, Giovanni Magaglio",
+            "Federico Pipia (R), Simone Faraci, Daniele Carcassi, Giovanni Magaglio",
             "Remote presenter i.e. play through zoom."
           ],
           "parallel": true
