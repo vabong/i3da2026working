@@ -629,7 +629,7 @@
 
             function renderItem(item) {
                 if (item.type === 'break') {
-                    const row = el('div', { className: 'flex justify-between items-center bg-lagoon-bg text-gray-500 text-xs font-light px-4 py-2 rounded my-2' });
+                    const row = el('div', { className: 'w-full flex justify-between items-center bg-lagoon-bg text-gray-500 text-xs font-light px-4 py-2 rounded my-2' });
                     row.appendChild(el('span', { text: item.title }));
                     row.appendChild(el('span', { className: 'shrink-0 ml-3', text: fmtTime(item.start, item.end) }));
                     return row;
@@ -637,6 +637,31 @@
 
                 const accent = accentByType[item.type] || accentByType.session;
                 const titleColor = titleColorByType[item.type] || 'text-gray-800';
+
+                if (!SHOW_FULL_DETAILS) {
+                    // Compact horizontal block: a quick day-at-a-glance overview,
+                    // not the full session detail.
+                    const block = el('div', { className: 'bg-white border border-gray-100 shadow-sm rounded-lg p-3 border-l-4 w-36 sm:w-40' });
+                    block.style.borderLeftColor = accent;
+
+                    block.appendChild(el('div', { className: 'text-xs uppercase tracking-widest text-gray-400 font-medium', text: fmtTime(item.start, item.end) }));
+
+                    const tags = el('div', { className: 'flex flex-wrap gap-1 mt-1' });
+                    if (item.code) {
+                        tags.appendChild(el('span', { className: 'inline-block text-[10px] font-semibold uppercase tracking-widest border border-lagoon-blue text-lagoon-blue rounded px-1.5 py-0.5', text: item.code }));
+                    }
+                    if (item.parallel) {
+                        tags.appendChild(el('span', { className: 'inline-block text-[10px] uppercase tracking-widest bg-gray-100 text-gray-500 rounded-full px-1.5 py-0.5', text: 'Parallel' }));
+                    }
+                    if (tags.childNodes.length) block.appendChild(tags);
+
+                    block.appendChild(el('div', { className: `text-sm font-medium mt-1 ${titleColor}`, text: typeLabel[item.type] || 'Session' }));
+                    if (item.room) {
+                        block.appendChild(el('div', { className: 'text-xs text-gray-500 font-light mt-1', text: item.room }));
+                    }
+                    return block;
+                }
+
                 const card = el('div', { className: 'bg-white border border-gray-100 shadow-sm rounded-lg p-5 mb-4 border-l-4' });
                 card.style.borderLeftColor = accent;
 
@@ -649,14 +674,6 @@
                     headLine.appendChild(el('span', { className: 'inline-block text-[10px] uppercase tracking-widest bg-gray-100 text-gray-500 rounded-full px-2 py-0.5', text: 'Parallel' }));
                 }
                 card.appendChild(headLine);
-
-                if (!SHOW_FULL_DETAILS) {
-                    card.appendChild(el('div', { className: `text-lg font-normal mt-1 ${titleColor}`, text: typeLabel[item.type] || 'Session' }));
-                    if (item.room) {
-                        card.appendChild(el('div', { className: 'text-sm text-gray-500 font-light mt-1', text: 'Room: ' + item.room }));
-                    }
-                    return card;
-                }
 
                 card.appendChild(el('div', { className: `text-lg font-normal mt-1 ${titleColor}`, text: item.title }));
 
@@ -713,7 +730,15 @@
                 dayWrap.id = 'prog-day-' + i;
                 dayWrap.style.scrollMarginTop = '20px';
                 dayWrap.appendChild(el('h4', { className: 'text-xl font-light text-lagoon-blue border-b border-gray-200 pb-2 mb-4', text: day.label }));
-                (day.sessions || []).forEach(item => dayWrap.appendChild(renderItem(item)));
+
+                if (SHOW_FULL_DETAILS) {
+                    (day.sessions || []).forEach(item => dayWrap.appendChild(renderItem(item)));
+                } else {
+                    const row = el('div', { className: 'flex flex-wrap items-stretch gap-3' });
+                    (day.sessions || []).forEach(item => row.appendChild(renderItem(item)));
+                    dayWrap.appendChild(row);
+                }
+
                 container.appendChild(dayWrap);
             });
 
