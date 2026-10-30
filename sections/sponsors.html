@@ -26,25 +26,23 @@
                 Confirmed Sponsors
             </h3>
 
-            <!-- Sponsors are grouped by tier. Every sponsor logo is shown at the same
-                 height. Apple's own brand guidelines require clear space around its logo
-                 at least equal to the height of the logo body, hence the wider padding on
-                 that row only; it is not a rule that applies to the other sponsors. -->
+            <!-- All sponsor logos share the same size, spacing, and styling —
+                 no sponsor is singled out or given extra prominence. -->
 
-            <p class="text-center text-[11px] uppercase tracking-[0.25em] text-lagoon-light mt-10">
-                Platinum Sponsor
-            </p>
-            <div class="flex items-center justify-center" style="padding: 130px;">
-                <a href="https://www.apple.com" target="_blank" rel="noopener">
-                    <img src="/assets/images/apple-logo-black.png"
-                         alt="Apple"
-                         style="height: 90px; width: auto;">
-                </a>
-            </div>
+            <div class="grid md:grid-cols-3 mt-10">
+                <div>
+                    <p class="text-center text-[11px] uppercase tracking-[0.25em] text-lagoon-light">
+                        Platinum Sponsor
+                    </p>
+                    <div class="flex items-center justify-center" style="padding: 48px;">
+                        <a href="https://www.apple.com" target="_blank" rel="noopener">
+                            <img src="/assets/images/apple-logo-black.png"
+                                 alt="Apple"
+                                 style="height: 90px; width: auto;">
+                        </a>
+                    </div>
+                </div>
 
-            <!-- Silver and Bronze sit side by side from the md breakpoint up;
-                 they stack on narrow screens. -->
-            <div class="grid md:grid-cols-2">
                 <div>
                     <p class="text-center text-[11px] uppercase tracking-[0.25em] text-lagoon-light">
                         Silver Sponsor
