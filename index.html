@@ -554,6 +554,20 @@
                 return;
             }
 
+            // Programme is still being finalized: show only the general day-by-day
+            // skeleton (times, codes, room, session type) with no titles, names,
+            // chairs, authors, descriptions or links. Flip to true once the
+            // programme is finalized to restore the full detailed view.
+            const SHOW_FULL_DETAILS = false;
+
+            const typeLabel = {
+                session: 'Session',
+                keynote: 'Keynote',
+                poster: 'Poster',
+                demo: 'Demo',
+                social: 'Social Event'
+            };
+
             const el = (tag, opts = {}) => {
                 const e = document.createElement(tag);
                 if (opts.className) e.className = opts.className;
@@ -635,6 +649,14 @@
                     headLine.appendChild(el('span', { className: 'inline-block text-[10px] uppercase tracking-widest bg-gray-100 text-gray-500 rounded-full px-2 py-0.5', text: 'Parallel' }));
                 }
                 card.appendChild(headLine);
+
+                if (!SHOW_FULL_DETAILS) {
+                    card.appendChild(el('div', { className: `text-lg font-normal mt-1 ${titleColor}`, text: typeLabel[item.type] || 'Session' }));
+                    if (item.room) {
+                        card.appendChild(el('div', { className: 'text-sm text-gray-500 font-light mt-1', text: 'Room: ' + item.room }));
+                    }
+                    return card;
+                }
 
                 card.appendChild(el('div', { className: `text-lg font-normal mt-1 ${titleColor}`, text: item.title }));
 
