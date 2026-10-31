@@ -576,6 +576,34 @@
 
             const fmtTime = (s, en) => (s && en) ? `${s}–${en}` : (s || '');
 
+            const toMinutes = (t) => {
+                if (!t) return null;
+                const [h, m] = t.split(':').map(Number);
+                return h * 60 + m;
+            };
+
+            const timeOverlaps = (a, b) => {
+                const aStart = toMinutes(a.start), aEnd = toMinutes(a.end);
+                const bStart = toMinutes(b.start), bEnd = toMinutes(b.end);
+                if (aStart == null || aEnd == null || bStart == null || bEnd == null) return false;
+                return aStart < bEnd && bStart < aEnd;
+            };
+
+            // Group a run of parallel items into rows of items that are
+            // actually running at the same time, even if they didn't start
+            // together — e.g. a demo starting at 3pm lands next to a talk
+            // from an earlier session that's still running at 3pm, rather
+            // than next to whatever happens to be adjacent in the list.
+            const clusterByOverlap = (items) => {
+                const clusters = [];
+                items.forEach(item => {
+                    const match = clusters.find(c => c.some(other => timeOverlaps(other, item)));
+                    if (match) match.push(item);
+                    else clusters.push([item]);
+                });
+                return clusters;
+            };
+
             // Set as inline styles rather than Tailwind border-{color} utility classes:
             // the CDN build's generated rule order isn't guaranteed, so a directional
             // class like border-l-venice-red can lose the cascade to the plain
@@ -746,12 +774,42 @@
                 dayWrap.appendChild(el('h4', { className: 'text-xl font-light text-lagoon-blue border-b border-gray-200 pb-2 mb-4', text: day.label }));
 
                 if (SHOW_FULL_DETAILS) {
-                    // Grid of blocky tiles, two per row on wider screens, so a
-                    // whole day's shape reads at a glance instead of one long
-                    // scroll of full-width cards.
-                    const grid = el('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-3 items-start' });
-                    (day.sessions || []).forEach(item => grid.appendChild(renderItem(item)));
-                    dayWrap.appendChild(grid);
+                    // Blocky tiles, two per row on wider screens, so a whole
+                    // day's shape reads at a glance. Non-parallel sessions
+                    // keep flowing through one shared grid; a run of
+                    // parallel sessions is instead split into rows of
+                    // items that overlap in time, so simultaneous talks
+                    // always land side by side.
+                    const sessions = day.sessions || [];
+                    let idx = 0;
+                    while (idx < sessions.length) {
+                        if (sessions[idx].parallel) {
+                            const run = [];
+                            while (idx < sessions.length && sessions[idx].parallel) {
+                                run.push(sessions[idx]);
+                                idx++;
+                            }
+                            clusterByOverlap(run).forEach(cluster => {
+                                const row = el('div', { className: 'flex flex-wrap gap-3 items-start mb-3' });
+                                cluster.forEach(it => {
+                                    const card = renderItem(it);
+                                    card.classList.add('flex-1');
+                                    card.style.minWidth = '260px';
+                                    row.appendChild(card);
+                                });
+                                dayWrap.appendChild(row);
+                            });
+                        } else {
+                            const run = [];
+                            while (idx < sessions.length && !sessions[idx].parallel) {
+                                run.push(sessions[idx]);
+                                idx++;
+                            }
+                            const grid = el('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-3 items-start mb-3' });
+                            run.forEach(it => grid.appendChild(renderItem(it)));
+                            dayWrap.appendChild(grid);
+                        }
+                    }
                 } else {
                     const row = el('div', { className: 'flex flex-wrap items-stretch gap-3' });
                     (day.sessions || []).forEach(item => row.appendChild(renderItem(item)));
