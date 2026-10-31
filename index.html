@@ -77,8 +77,7 @@
                     <a data-target="program" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Programme</a>
                     <a data-target="call-for-papers" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Call for papers</a>
                     <a data-target="registration" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Registration</a>
-                    <a data-target="sponsors" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Sponsors</a>
-                    <a data-target="patronage" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Patronage</a>
+                    <a data-target="patronage" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Patrons &amp; Sponsors</a>
                     <a data-target="contact" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Contacts</a>
                     <a data-target="news" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">News</a>
                 </nav>
@@ -104,8 +103,7 @@
                 <a data-target="program" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Programme</a>
                 <a data-target="call-for-papers" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Call for papers</a>
                 <a data-target="registration" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Registration</a>
-                <a data-target="sponsors" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Sponsors</a>
-                <a data-target="patronage" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Patronage</a>
+                <a data-target="patronage" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Patrons &amp; Sponsors</a>
                 <a data-target="contact" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Contacts</a>
                 <a data-target="news" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">News</a>
             </nav>
@@ -467,6 +465,10 @@
         }
 
         async function handleNavigation(targetId) {
+            // Sponsors and Patronage were merged into one page; keep old
+            // /?section=sponsors links and nav state working.
+            if (targetId === 'sponsors') targetId = 'patronage';
+
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             document.querySelectorAll(`.nav-link[data-target="${targetId}"]`).forEach(l => l.classList.add('active'));
 
