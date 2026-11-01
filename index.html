@@ -615,6 +615,14 @@
 
             const fmtTime = (s, en) => (s && en) ? `${s}–${en}` : (s || '');
 
+            const backToTopLink = () => {
+                const a = document.createElement('a');
+                a.href = '#programme-top';
+                a.className = 'inline-flex items-center gap-1 mt-4 text-xs uppercase tracking-widest text-lagoon-light hover:text-lagoon-blue hover:underline';
+                a.textContent = '↑ Back to top';
+                return a;
+            };
+
             const toMinutes = (t) => {
                 if (!t) return null;
                 const [h, m] = t.split(':').map(Number);
@@ -855,6 +863,8 @@
                     dayWrap.appendChild(row);
                 }
 
+                dayWrap.appendChild(backToTopLink());
+
                 container.appendChild(dayWrap);
             });
 
@@ -872,6 +882,7 @@
                     list.appendChild(row);
                 });
                 roomsWrap.appendChild(list);
+                roomsWrap.appendChild(backToTopLink());
                 container.appendChild(roomsWrap);
             }
 
