@@ -651,6 +651,17 @@
                 return clusters;
             };
 
+            // A rough measure of how much a session card has to show, so a
+            // cluster row can give a packed card more width and a sparse one
+            // (e.g. a single-line entry) less, instead of splitting evenly.
+            const contentWeight = (item) => {
+                let w = 1;
+                if (item.description) w += item.description.length;
+                if (item.talks) w += item.talks.length * 1.5;
+                if (item.keynote_title) w += 1;
+                return Math.min(w, 5);
+            };
+
             // Set as inline styles rather than Tailwind border-{color} utility classes:
             // the CDN build's generated rule order isn't guaranteed, so a directional
             // class like border-l-venice-red can lose the cascade to the plain
@@ -838,9 +849,10 @@
                             }
                             clusterByOverlap(run).forEach(cluster => {
                                 const row = el('div', { className: 'flex flex-wrap gap-3 items-start mb-3' });
-                                cluster.forEach(it => {
+                                const weights = cluster.map(contentWeight);
+                                cluster.forEach((it, i) => {
                                     const card = renderItem(it);
-                                    card.classList.add('flex-1');
+                                    card.style.flex = `${weights[i]} 1 260px`;
                                     card.style.minWidth = '260px';
                                     row.appendChild(card);
                                 });
