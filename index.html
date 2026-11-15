@@ -686,7 +686,10 @@
             function renderTalk(talk) {
                 const row = el('div', { className: 'flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-2 py-2 border-t border-gray-100 first:border-t-0' });
 
-                const meta = el('div', { className: 'flex gap-2 shrink-0 sm:w-24' });
+                // Posters have no talk.time, just "#N" — give that a much
+                // narrower reserved column than a timed session talk needs,
+                // so the title doesn't sit stranded behind empty space.
+                const meta = el('div', { className: `flex gap-2 shrink-0 ${talk.time ? 'sm:w-24' : 'sm:w-10'}` });
                 if (talk.time) meta.appendChild(el('span', { className: 'text-sm text-gray-400 font-semibold', text: talk.time }));
                 meta.appendChild(el('span', { className: 'text-sm text-gray-400 font-semibold', text: '#' + talk.number }));
                 row.appendChild(meta);
