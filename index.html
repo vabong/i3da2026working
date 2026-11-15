@@ -879,7 +879,11 @@
                                 idx++;
                             }
                             const grid = el('div', { className: 'grid grid-cols-1 lg:grid-cols-2 gap-3 items-start mb-3' });
-                            run.forEach(it => grid.appendChild(renderItem(it)));
+                            run.forEach(it => {
+                                const card = renderItem(it);
+                                if (run.length === 1) card.classList.add('lg:col-span-2');
+                                grid.appendChild(card);
+                            });
                             dayWrap.appendChild(grid);
                         }
                     }
