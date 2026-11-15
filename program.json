@@ -938,7 +938,7 @@
             "We can walk together (15min) to have dinner together at La Colomba - Piscina de Frezzaria, 1665, 30124 Venezia VE"
           ],
           "links": [
-            "https://www.google.com/maps/place//data=!4m2!3m1!1s0x477eb188e111574b:0xc455c95ee6d1e1dc?sa=X&amp;ved=1t:8290&amp;ictx=111"
+            "https://www.google.com/maps/place//data=!4m2!3m1!1s0x477eb188e111574b:0xc455c95ee6d1e1dc?sa=X&ved=1t:8290&ictx=111"
           ],
           "parallel": false
         }
@@ -1421,7 +1421,7 @@
     {
       "name": "Conservatorio Benedetto Marcello",
       "location": "We will walk together (5min from the conference venue) to Fondamenta Narisi, 2810, 30124 Venezia VE",
-      "map": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x477eb1d1c438bdb1:0x3527f7d58eff48c6?sa=X&amp;ved=1t:8290&amp;ictx=111"
+      "map": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x477eb1d1c438bdb1:0x3527f7d58eff48c6?sa=X&ved=1t:8290&ictx=111"
     },
     {
       "name": "La Colomba restaurant",
