@@ -753,6 +753,9 @@
                 // on top of a content block, so a whole day reads as a grid of
                 // scannable tiles rather than one long column of text.
                 const card = el('div', { className: 'bg-white border border-gray-100 shadow-sm rounded-xl overflow-hidden flex flex-col' });
+                if (item.type === 'keynote' && item.code) {
+                    card.dataset.keynoteCode = item.code;
+                }
 
                 const headBlock = el('div', { className: 'flex flex-wrap items-center gap-2 px-4 py-2.5' });
                 headBlock.style.backgroundColor = accent + '17';
@@ -786,6 +789,14 @@
                 }
                 if (metaBits.length) {
                     body.appendChild(el('div', { className: 'text-base text-gray-500 font-medium mt-1.5', text: metaBits.join('  ·  ') }));
+                }
+
+                if (item.type === 'keynote' && item.code) {
+                    const bio = document.querySelector('#keynote-bios-source details[data-code="' + item.code + '"]');
+                    if (bio) {
+                        bio.classList.add('mt-3');
+                        body.appendChild(bio); // moves the node from the hidden template into this card
+                    }
                 }
 
                 if (item.description && item.description.length) {
