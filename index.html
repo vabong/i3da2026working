@@ -952,6 +952,23 @@
         document.getElementById('sidebar-toggle').addEventListener('click', () => setSidebarCollapsed(true));
         document.getElementById('sidebar-reopen').addEventListener('click', () => setSidebarCollapsed(false));
 
+        // Author-index "#NN" links jump to a <details> abstract card; a closed
+        // <details> doesn't reliably auto-expand on fragment navigation across
+        // browsers, so open it ourselves before scrolling.
+        function openAbstractFragment(hash) {
+            if (!hash || !hash.startsWith('#paper-')) return false;
+            const target = document.querySelector(hash);
+            if (!target) return false;
+            target.open = true;
+            target.scrollIntoView({ block: 'start' });
+            return true;
+        }
+        document.addEventListener('click', (e) => {
+            const a = e.target.closest('a[href^="#paper-"]');
+            if (!a) return;
+            if (openAbstractFragment(a.getAttribute('href'))) e.preventDefault();
+        });
+
         document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', (e) => {
             document.getElementById('mobile-menu').classList.add('hidden');
             handleNavigation(e.currentTarget.getAttribute('data-target'));
