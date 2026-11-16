@@ -11,7 +11,7 @@
         {
           "id": "166",
           "type": "break",
-          "title": "Registration and Welcome Coffee",
+          "title": "Registration and welcome coffee",
           "start": "09:00",
           "end": "09:55",
           "parallel": false
@@ -352,7 +352,8 @@
                 "Lamberto Tronchin",
                 "Giacomo Tentoni",
                 "Alessandro Martinetti",
-                "Angelica Denaro"
+                "Angelica Denaro",
+                "Antonella Bevilacqua"
               ],
               "presenter": null
             },
@@ -836,8 +837,8 @@
               "time": null,
               "title": "Acoustic Characteristics of the Reconstructed Oratory of San Filippo Neri in Bologna: Spatial Analysis of Performer and Listener Positions.",
               "authors": [
-                "Lamberto Tronchin",
-                "Haruna Saito"
+                "Haruna Saito",
+                "Lamberto Tronchin"
               ],
               "presenter": null
             },
@@ -846,8 +847,8 @@
               "time": null,
               "title": "Acoustic Field Analysis of Santi Gregorio e Siro utilizing 3D Spatiotemporal Mapping, Bologna.",
               "authors": [
-                "Lamberto Tronchin",
-                "Haruna Saito"
+                "Haruna Saito",
+                "Lamberto Tronchin"
               ],
               "presenter": null
             },
@@ -882,20 +883,19 @@
               "time": null,
               "title": "Evaluation of acoustic and scenery within the Communal Theatre in Modena",
               "authors": [
-                "Maria Cristina Tommasino",
-                "Angelica Denaro",
-                "Alessandro Martinetti",
-                "Giacomo Tentoni"
+                "Antonella Bevilacqua",
+                "Adriano Farina",
+                "Lamberto Tronchin"
               ],
-              "presenter": "Angelica Denaro"
+              "presenter": null
             },
             {
               "number": 7,
               "time": null,
               "title": "Acoustic Signature of Santa Maria di Galliera: A Pre-Restoration Study of an Oratorian Musical Baroque Space.",
               "authors": [
-                "Lamberto Tronchin",
-                "Haruna Saito"
+                "Haruna Saito",
+                "Lamberto Tronchin"
               ],
               "presenter": null
             },
@@ -938,7 +938,7 @@
             "We can walk together (15min) to have dinner together at La Colomba - Piscina de Frezzaria, 1665, 30124 Venezia VE"
           ],
           "links": [
-            "https://www.google.com/maps/place//data=!4m2!3m1!1s0x477eb188e111574b:0xc455c95ee6d1e1dc?sa=X&ved=1t:8290&ictx=111"
+            "https://www.google.com/maps/place//data=!4m2!3m1!1s0x477eb188e111574b:0xc455c95ee6d1e1dc?sa=X&amp;ved=1t:8290&amp;ictx=111"
           ],
           "parallel": false
         }
@@ -1159,8 +1159,10 @@
               "time": null,
               "title": "3D Sound registrations in the Trepponti Square in Comacchio, Italy",
               "authors": [
-                "Lamberto Tronchin",
-                "Maria Cristina Tommasino"
+                "Angelica Denaro",
+                "Maria Cristina Tommasino",
+                "Alessandro Martinetti",
+                "Giacomo Tentoni"
               ],
               "presenter": null
             },
@@ -1169,8 +1171,12 @@
               "time": null,
               "title": "Comparison among the 3D acoustic propagation in the Victor Ion Popa Theatre in Bârlad and Bacovia Municipal Theatre in Bacau",
               "authors": [
-                "Lamberto Tronchin",
-                "Maria Cristina Tommasino"
+                "Ruoran Yan",
+                "Yajing Li",
+                "Yimeng Feng",
+                "Angelica Denaro",
+                "Giacomo Tentoni",
+                "Alessandro Martinetti"
               ],
               "presenter": null
             },
@@ -1193,8 +1199,12 @@
               "time": null,
               "title": "Pompeii Odeon and Grand theatre: variation of 3D sound propagation",
               "authors": [
-                "Lamberto Tronchin",
-                "Yajing Li"
+                "Yajing Li",
+                "Yimeng Feng",
+                "Ruoran Yan",
+                "Angelica Denaro",
+                "Alessandro Martinetti",
+                "Giacomo Tentoni"
               ],
               "presenter": null
             },
@@ -1204,8 +1214,8 @@
               "title": "Luigi Russolo and his Futuristic Sounds for Early Auralization",
               "authors": [
                 "Giacomo Tentoni",
-                "Lamberto Tronchin",
-                "Antonella Bevilacqua"
+                "Antonella Bevilacqua",
+                "Lamberto Tronchin"
               ],
               "presenter": null
             },
@@ -1260,8 +1270,11 @@
               "time": null,
               "title": "MIMO Measurements in the Municipal Theatre of Piacenza",
               "authors": [
-                "Lamberto Tronchin",
-                "Maria Cristina Tommasino"
+                "Adriano Farina",
+                "Antonella Bevilacqua",
+                "Yimeng Feng",
+                "Yajing Li",
+                "Lamberto Tronchin"
               ],
               "presenter": null
             },
@@ -1312,7 +1325,7 @@
           "end": "16:00",
           "room": "VR Room",
           "description": [
-            "Mantinea Institute, Gianluca Aresu and Professor Montali",
+            "Mantinea Institute, Gianluca Aresu and Professor Montali,",
             "Resonances of Stones: Virtual Reconstruction of the Tower of Bazeos with Auralization."
           ],
           "parallel": true
@@ -1419,7 +1432,7 @@
     {
       "name": "Conservatorio Benedetto Marcello",
       "location": "We will walk together (5min from the conference venue) to Fondamenta Narisi, 2810, 30124 Venezia VE",
-      "map": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x477eb1d1c438bdb1:0x3527f7d58eff48c6?sa=X&ved=1t:8290&ictx=111"
+      "map": "https://www.google.com/maps/place//data=!4m2!3m1!1s0x477eb1d1c438bdb1:0x3527f7d58eff48c6?sa=X&amp;ved=1t:8290&amp;ictx=111"
     },
     {
       "name": "La Colomba restaurant",
