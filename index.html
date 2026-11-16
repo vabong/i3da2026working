@@ -700,16 +700,14 @@
                 const authorsLine = el('div', { className: 'text-sm text-gray-600 font-light mt-1' });
                 (talk.authors || []).forEach((name, i) => {
                     if (i > 0) authorsLine.appendChild(document.createTextNode(', '));
-                    // Split off a trailing " (R)" (remote-presenter marker) so it renders
-                    // outside the underline, and so presenter-matching (which never
-                    // carries that suffix) still works.
+                    // Split off a trailing " (R)" (remote-presenter marker) so it
+                    // renders the same way regardless of where it falls in the name.
                     const remoteMatch = name.match(/^(.*) \(R\)$/);
                     const baseName = remoteMatch ? remoteMatch[1] : name;
-                    const isPresenter = talk.presenter && baseName === talk.presenter;
-                    authorsLine.appendChild(el(isPresenter ? 'u' : 'span', {
-                        className: isPresenter ? 'text-base font-semibold text-gray-900' : '',
-                        text: baseName
-                    }));
+                    // Presenter data only exists for a minority of talks in the
+                    // source export, so it isn't highlighted here — doing so just
+                    // for the few we happen to have would look inconsistent.
+                    authorsLine.appendChild(el('span', { text: baseName }));
                     if (remoteMatch) authorsLine.appendChild(document.createTextNode(' (R)'));
                 });
                 body.appendChild(authorsLine);

@@ -1307,14 +1307,12 @@
           "id": "310",
           "code": "D6",
           "type": "demo",
-          "title": "1) A participatory room-scale XR piece 2)Resonances of Stones",
+          "title": "Resonances of Stones",
           "start": "14:00",
           "end": "16:00",
           "room": "VR Room",
           "description": [
-            "1) Willy Le Maitre",
-            "Experienced in turns, about 5 minutes per person.",
-            "2) Mantinea Institute, Gianluca Aresu and Professor Montali,",
+            "Mantinea Institute, Gianluca Aresu and Professor Montali",
             "Resonances of Stones: Virtual Reconstruction of the Tower of Bazeos with Auralization."
           ],
           "parallel": true
