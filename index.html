@@ -864,12 +864,34 @@
                             clusterByOverlap(run).forEach(cluster => {
                                 const row = el('div', { className: 'flex flex-wrap gap-3 items-start mb-3' });
                                 const weights = cluster.map(contentWeight);
-                                cluster.forEach((it, i) => {
-                                    const card = renderItem(it);
-                                    card.style.flex = `${weights[i]} 1 260px`;
-                                    card.style.minWidth = '260px';
-                                    row.appendChild(card);
-                                });
+                                // A card with a long talk list (e.g. a packed poster
+                                // session) next to a couple of short demo cards reads
+                                // as an oddly tall, skinny column if split evenly. Give
+                                // it real width instead, and stack the short ones in a
+                                // single column beside it.
+                                const domIdx = cluster.findIndex(it => (it.talks || []).length >= 10);
+                                if (domIdx !== -1 && cluster.length >= 3) {
+                                    const domCard = renderItem(cluster[domIdx]);
+                                    domCard.style.flex = '3 1 340px';
+                                    domCard.style.minWidth = '340px';
+                                    row.appendChild(domCard);
+
+                                    const stack = el('div', { className: 'flex flex-col gap-3' });
+                                    stack.style.flex = '2 1 260px';
+                                    stack.style.minWidth = '260px';
+                                    cluster.forEach((it, i) => {
+                                        if (i === domIdx) return;
+                                        stack.appendChild(renderItem(it));
+                                    });
+                                    row.appendChild(stack);
+                                } else {
+                                    cluster.forEach((it, i) => {
+                                        const card = renderItem(it);
+                                        card.style.flex = `${weights[i]} 1 260px`;
+                                        card.style.minWidth = '260px';
+                                        row.appendChild(card);
+                                    });
+                                }
                                 dayWrap.appendChild(row);
                             });
                         } else {
