@@ -503,8 +503,8 @@
           "chairs": [
             "Cobi van Tonder"
           ],
-          "parallel": false,
-          "keynote_title": "Fragments of Extinction (1998-2026): Immersive Paleo-Choirs of Primary Forests Towards a Psychology of Nature Connectedness"
+          "keynote_title": "Fragments of Extinction (1998-2026): Immersive Paleo-Choirs of Primary Forests Towards a Psychology of Nature Connectedness",
+          "parallel": false
         },
         {
           "id": "182",
@@ -1309,7 +1309,7 @@
           "title": "A tangible hemispherical controller for spatial audio mixing in Reaper",
           "start": "14:00",
           "end": "15:00",
-          "room": "Installation Room",
+          "room": "Warwick hall",
           "description": [
             "Calvin McCormack, Hassan Estakhrian",
             "Shown with video and sound."
@@ -1331,20 +1331,6 @@
           "parallel": true
         },
         {
-          "id": "311",
-          "code": "D8",
-          "type": "demo",
-          "title": "Environmental Improvisation and Artificial Soundscapes: Rustle by Minus Collettivo",
-          "start": "14:00",
-          "end": "15:00",
-          "room": "Warwick hall",
-          "description": [
-            "Federico Pipia, Simone Faraci, Daniele Carcassi, Giovanni Magaglio",
-            "Remote presenter - Video with stereo sound"
-          ],
-          "parallel": true
-        },
-        {
           "id": "197",
           "code": "D7",
           "type": "demo",
@@ -1354,6 +1340,20 @@
           "room": "Installation Room",
           "description": [
             "Studio Pase / ONDA demo. Presentation, listening and practical demonstrations."
+          ],
+          "parallel": true
+        },
+        {
+          "id": "311",
+          "code": "D8",
+          "type": "demo",
+          "title": "Environmental Improvisation and Artificial Soundscapes: Rustle by Minus Collettivo",
+          "start": "15:00",
+          "end": "16:00",
+          "room": "Warwick hall",
+          "description": [
+            "Federico Pipia, Simone Faraci, Daniele Carcassi, Giovanni Magaglio",
+            "Remote presenter - Video with stereo sound"
           ],
           "parallel": true
         },
