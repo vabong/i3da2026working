@@ -108,6 +108,7 @@
                     <a data-target="about" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500 active">About</a>
                     <a data-target="venue" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Conference venue</a>
                     <a data-target="program" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Programme</a>
+                    <a data-target="attendees" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Attendees</a>
                     <a data-target="call-for-papers" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Call for papers</a>
                     <a data-target="registration" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Registration</a>
                     <a data-target="patronage" class="nav-link text-xs uppercase tracking-[0.15em] font-medium text-gray-500">Patrons &amp; Sponsors</a>
@@ -140,6 +141,7 @@
                 <a data-target="about" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">About</a>
                 <a data-target="venue" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Conference venue</a>
                 <a data-target="program" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Programme</a>
+                <a data-target="attendees" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Attendees</a>
                 <a data-target="call-for-papers" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Call for papers</a>
                 <a data-target="registration" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Registration</a>
                 <a data-target="patronage" class="nav-link block text-sm uppercase tracking-[0.15em] font-medium text-gray-600">Patrons &amp; Sponsors</a>
@@ -503,6 +505,69 @@
             bnAnimId = requestAnimationFrame(bannerLoop);
         }
 
+        // ---- Attendees section (password protected) ----
+        // The section's content is stored encrypted in sections/attendees.html
+        // (AES-GCM, key derived from the password with PBKDF2). The password is
+        // not stored anywhere on the site; a wrong one simply fails to decrypt.
+        const ATTENDEES_ITERATIONS = 250000; // must match the encrypt script
+        const ATTENDEES_KEY = 'i3da-attendees-pass';
+
+        function b64ToBytes(b64) {
+            return Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+        }
+
+        async function decryptAttendees(password) {
+            const payload = document.getElementById('attendees-payload');
+            if (!payload || !payload.dataset.ct || !window.crypto || !crypto.subtle) return null;
+            try {
+                const baseKey = await crypto.subtle.importKey(
+                    'raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveKey']);
+                const key = await crypto.subtle.deriveKey(
+                    { name: 'PBKDF2', salt: b64ToBytes(payload.dataset.salt), iterations: ATTENDEES_ITERATIONS, hash: 'SHA-256' },
+                    baseKey, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+                const plain = await crypto.subtle.decrypt(
+                    { name: 'AES-GCM', iv: b64ToBytes(payload.dataset.iv) }, key, b64ToBytes(payload.dataset.ct));
+                return new TextDecoder().decode(plain);
+            } catch (err) {
+                return null; // wrong password
+            }
+        }
+
+        async function unlockAttendees(password) {
+            // Not case sensitive: phones often capitalise only the first letter.
+            const normalised = (password || '').trim().toUpperCase();
+            if (!normalised) return false;
+            const html = await decryptAttendees(normalised);
+            if (html === null) return false;
+            document.getElementById('attendees-content').innerHTML = html;
+            document.getElementById('attendees-content').classList.remove('hidden');
+            document.getElementById('attendees-locked').classList.add('hidden');
+            try { sessionStorage.setItem(ATTENDEES_KEY, normalised); } catch (e) {}
+            return true;
+        }
+
+        async function initAttendees() {
+            const form = document.getElementById('attendees-form');
+            if (!form) return;
+            const input = document.getElementById('attendees-password');
+            const error = document.getElementById('attendees-error');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                error.classList.add('hidden');
+                const ok = await unlockAttendees(input.value);
+                if (!ok) {
+                    error.classList.remove('hidden');
+                    input.select();
+                }
+            });
+
+            // Already unlocked earlier in this browser tab: open straight away.
+            let saved = null;
+            try { saved = sessionStorage.getItem(ATTENDEES_KEY); } catch (e) {}
+            if (saved) await unlockAttendees(saved);
+        }
+
         async function handleNavigation(targetId) {
             // Sponsors and Patronage were merged into one page; keep old
             // /?section=sponsors links and nav state working.
@@ -523,6 +588,10 @@
 
                     if (targetId === 'program') {
                         await loadProgramme();
+                    }
+
+                    if (targetId === 'attendees') {
+                        await initAttendees();
                     }
                 }
             } catch (err) {
@@ -986,7 +1055,7 @@
         
         window.addEventListener('load', () => {
             const params = new URLSearchParams(window.location.search);
-            const validSections = ['about', 'venue', 'program', 'call-for-papers', 'registration', 'sponsors', 'patronage', 'contact', 'news', 'sponsorship-info'];
+            const validSections = ['about', 'venue', 'program', 'attendees', 'call-for-papers', 'registration', 'sponsors', 'patronage', 'contact', 'news', 'sponsorship-info'];
             
             let section = params.get('section') || 'about';
             if (!validSections.includes(section)) section = 'about';

@@ -1,0 +1,38 @@
+<section id="attendees" class="section-padding bg-lagoon-bg">
+  <div class="max-w-4xl mx-auto" style="hyphens:none; -webkit-hyphens:none;">
+    <h2 class="text-3xl font-light text-lagoon-blue mb-4 uppercase tracking-[0.1em]">
+      Attendees
+    </h2>
+
+    <!-- Locked view -->
+    <div id="attendees-locked">
+      <p class="text-lg font-light text-gray-700 max-w-2xl mb-8">
+        This area is for registered I3DA 2026 attendees. Please enter the password you received from the organisers.
+      </p>
+
+      <form id="attendees-form" class="flex flex-col sm:flex-row gap-3 max-w-md" autocomplete="off">
+        <label for="attendees-password" class="sr-only">Password</label>
+        <input id="attendees-password" type="password" required placeholder="Password"
+               autocapitalize="characters" autocorrect="off" spellcheck="false"
+               class="flex-1 border border-gray-300 bg-white px-4 py-3 text-base font-light text-gray-800 focus:outline-none focus:border-lagoon-blue">
+        <button type="submit"
+                class="bg-lagoon-blue text-white px-6 py-3 text-xs uppercase tracking-[0.15em] font-medium hover:bg-lagoon-light transition-colors">
+          Enter
+        </button>
+      </form>
+
+      <p id="attendees-error" class="hidden mt-4 text-sm text-red-700" role="alert">
+        That password is not correct. Please try again.
+      </p>
+    </div>
+
+    <!-- Unlocked view: filled in after the password is accepted -->
+    <div id="attendees-content" class="hidden"></div>
+
+    <!-- The attendee content is stored encrypted. To change it, edit the private
+         source file and re-run the encrypt script; do not edit the block below by hand. -->
+    <!-- PAYLOAD:START -->
+    <div id="attendees-payload" class="hidden" data-salt="fAFQsk90sZtqKHubqjcJzQ==" data-iv="+WGEJJTeJ46qqBul" data-ct="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"></div>
+    <!-- PAYLOAD:END -->
+  </div>
+</section>
